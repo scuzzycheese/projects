@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F2D72C30A2A7E41004618B5 /* libhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D72C10A2A7E41004618B5 /* libhash.c */; };
+		2F2D730A0A2A84B0004618B5 /* browserViewRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D73080A2A84B0004618B5 /* browserViewRemote.m */; };
+		2F30ADEC0A2B6D4900163739 /* ftpparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F30ADEA0A2B6D4900163739 /* ftpparse.c */; };
+		2F30B0D90A2D0EF600163739 /* generalClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F30B0D70A2D0EF500163739 /* generalClass.m */; };
+		2F57EFD80A1F6F9700BD73E0 /* browserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F57EFD60A1F6F9700BD73E0 /* browserView.m */; };
+		2F6CE1260A2E5D4800DDE3D0 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6CE1250A2E5D4800DDE3D0 /* libcurl.a */; };
+		2F6CE1720A2E62D500DDE3D0 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6CE1710A2E62D500DDE3D0 /* libssl.dylib */; };
+		2F6CE1740A2E62FD00DDE3D0 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6CE1730A2E62FD00DDE3D0 /* libcrypto.dylib */; };
+		2F794A110A33788C001771C9 /* browserEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F794A0F0A33788C001771C9 /* browserEventHandler.m */; };
+		2F794C9B0A344C77001771C9 /* reverseorderLogo.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2F794C9A0A344C77001771C9 /* reverseorderLogo.tga */; };
+		2F7951500A379928001771C9 /* upArrow.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2F79514F0A379926001771C9 /* upArrow.tga */; };
+		2F7951520A37993D001771C9 /* downArrow.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2F7951510A37993D001771C9 /* downArrow.tga */; };
+		2F7951D70A37B448001771C9 /* ipix32x32.ico in Resources */ = {isa = PBXBuildFile; fileRef = 2F7951D60A37B448001771C9 /* ipix32x32.ico */; };
+		2F7951D90A37B482001771C9 /* ipix16x16.ico in Resources */ = {isa = PBXBuildFile; fileRef = 2F7951D80A37B482001771C9 /* ipix16x16.ico */; };
+		2F7951F50A37B795001771C9 /* ppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2F7951F40A37B795001771C9 /* ppIcon.icns */; };
+		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2F2D72C10A2A7E41004618B5 /* libhash.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = libhash.c; sourceTree = "<group>"; };
+		2F2D72C20A2A7E41004618B5 /* libhash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = libhash.h; sourceTree = "<group>"; };
+		2F2D73070A2A84B0004618B5 /* browserViewRemote.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = browserViewRemote.h; sourceTree = "<group>"; };
+		2F2D73080A2A84B0004618B5 /* browserViewRemote.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = browserViewRemote.m; sourceTree = "<group>"; };
+		2F30ADEA0A2B6D4900163739 /* ftpparse.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = ftpparse.c; sourceTree = "<group>"; };
+		2F30ADEB0A2B6D4900163739 /* ftpparse.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ftpparse.h; sourceTree = "<group>"; };
+		2F30B0D60A2D0EF500163739 /* generalClass.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = generalClass.h; sourceTree = "<group>"; };
+		2F30B0D70A2D0EF500163739 /* generalClass.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = generalClass.m; sourceTree = "<group>"; };
+		2F57EFD60A1F6F9700BD73E0 /* browserView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = browserView.m; sourceTree = "<group>"; };
+		2F57EFD70A1F6F9700BD73E0 /* browserView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = browserView.h; sourceTree = "<group>"; };
+		2F6CE1250A2E5D4800DDE3D0 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = /usr/lib/libcurl.a; sourceTree = "<absolute>"; };
+		2F6CE1710A2E62D500DDE3D0 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = /usr/lib/libssl.dylib; sourceTree = "<absolute>"; };
+		2F6CE1730A2E62FD00DDE3D0 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
+		2F794A0F0A33788C001771C9 /* browserEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = browserEventHandler.m; sourceTree = "<group>"; };
+		2F794A100A33788C001771C9 /* browserEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = browserEventHandler.h; sourceTree = "<group>"; };
+		2F794C9A0A344C77001771C9 /* reverseorderLogo.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = reverseorderLogo.tga; path = ../../Desktop/reverseorderLogo.tga; sourceTree = SOURCE_ROOT; };
+		2F79514F0A379926001771C9 /* upArrow.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = upArrow.tga; path = ../../Desktop/upArrow.tga; sourceTree = SOURCE_ROOT; };
+		2F7951510A37993D001771C9 /* downArrow.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = downArrow.tga; path = ../../Desktop/downArrow.tga; sourceTree = SOURCE_ROOT; };
+		2F7951D60A37B448001771C9 /* ipix32x32.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; name = ipix32x32.ico; path = ../../Desktop/RAC_DOC_NameCryptedToProtectYourPrivacy_X2006529193444221020215154511636320151415067017777018455027372022015055/ipix32x32.ico; sourceTree = SOURCE_ROOT; };
+		2F7951D80A37B482001771C9 /* ipix16x16.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; name = ipix16x16.ico; path = ../../Desktop/RAC_DOC_NameCryptedToProtectYourPrivacy_X2006529193444221020215154511636320151415067017777018455027372022015055/ipix16x16.ico; sourceTree = SOURCE_ROOT; };
+		2F7951F40A37B795001771C9 /* ppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ppIcon.icns; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* ftpClient_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftpClient_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* ftpClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ftpClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				2F6CE1260A2E5D4800DDE3D0 /* libcurl.a in Frameworks */,
+				2F6CE1720A2E62D500DDE3D0 /* libssl.dylib in Frameworks */,
+				2F6CE1740A2E62FD00DDE3D0 /* libcrypto.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* ftpClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* ftpClient */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = ftpClient;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2F6CE1730A2E62FD00DDE3D0 /* libcrypto.dylib */,
+				2F6CE1710A2E62D500DDE3D0 /* libssl.dylib */,
+				2F6CE1250A2E5D4800DDE3D0 /* libcurl.a */,
+				2F30ADEA0A2B6D4900163739 /* ftpparse.c */,
+				2F30ADEB0A2B6D4900163739 /* ftpparse.h */,
+				2F2D72C10A2A7E41004618B5 /* libhash.c */,
+				2F2D72C20A2A7E41004618B5 /* libhash.h */,
+				32CA4F630368D1EE00C91783 /* ftpClient_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				2F57EFD60A1F6F9700BD73E0 /* browserView.m */,
+				2F57EFD70A1F6F9700BD73E0 /* browserView.h */,
+				2F2D73070A2A84B0004618B5 /* browserViewRemote.h */,
+				2F2D73080A2A84B0004618B5 /* browserViewRemote.m */,
+				2F30B0D60A2D0EF500163739 /* generalClass.h */,
+				2F30B0D70A2D0EF500163739 /* generalClass.m */,
+				2F794A0F0A33788C001771C9 /* browserEventHandler.m */,
+				2F794A100A33788C001771C9 /* browserEventHandler.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F7951F40A37B795001771C9 /* ppIcon.icns */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				2F794C9A0A344C77001771C9 /* reverseorderLogo.tga */,
+				2F79514F0A379926001771C9 /* upArrow.tga */,
+				2F7951510A37993D001771C9 /* downArrow.tga */,
+				2F7951D60A37B448001771C9 /* ipix32x32.ico */,
+				2F7951D80A37B482001771C9 /* ipix16x16.ico */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* ftpClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F30ABB90A2B1BFC00163739 /* Build configuration list for PBXNativeTarget "ftpClient" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ftpClient;
+			productInstallPath = "$(HOME)/Applications";
+			productName = ftpClient;
+			productReference = 8D1107320486CEB800E47090 /* ftpClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2F30ABBD0A2B1BFC00163739 /* Build configuration list for PBXProject "ftpClient" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* ftpClient */;
+			projectDirPath = "";
+			targets = (
+				8D1107260486CEB800E47090 /* ftpClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				2F794C9B0A344C77001771C9 /* reverseorderLogo.tga in Resources */,
+				2F7951500A379928001771C9 /* upArrow.tga in Resources */,
+				2F7951520A37993D001771C9 /* downArrow.tga in Resources */,
+				2F7951D70A37B448001771C9 /* ipix32x32.ico in Resources */,
+				2F7951D90A37B482001771C9 /* ipix16x16.ico in Resources */,
+				2F7951F50A37B795001771C9 /* ppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				2F57EFD80A1F6F9700BD73E0 /* browserView.m in Sources */,
+				2F2D72C30A2A7E41004618B5 /* libhash.c in Sources */,
+				2F2D730A0A2A84B0004618B5 /* browserViewRemote.m in Sources */,
+				2F30ADEC0A2B6D4900163739 /* ftpparse.c in Sources */,
+				2F30B0D90A2D0EF600163739 /* generalClass.m in Sources */,
+				2F794A110A33788C001771C9 /* browserEventHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2F30ABBA0A2B1BFC00163739 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Users/scuzzy/homework/ftpClient,
+					/Users/scuzzy/homework/frameworks,
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ftpClient_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PREBINDING = NO;
+				PRODUCT_NAME = ftpClient;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		2F30ABBB0A2B1BFC00163739 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Users/scuzzy/homework/ftpClient,
+					/Users/scuzzy/homework/frameworks,
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ftpClient_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PREBINDING = NO;
+				PRODUCT_NAME = ftpClient;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		2F30ABBC0A2B1BFC00163739 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					/Users/scuzzy/homework/ftpClient,
+					/Users/scuzzy/homework/frameworks,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ftpClient_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = ftpClient;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		2F30ABBE0A2B1BFC00163739 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		2F30ABBF0A2B1BFC00163739 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
+		2F30ABC00A2B1BFC00163739 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F30ABB90A2B1BFC00163739 /* Build configuration list for PBXNativeTarget "ftpClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F30ABBA0A2B1BFC00163739 /* Development */,
+				2F30ABBB0A2B1BFC00163739 /* Deployment */,
+				2F30ABBC0A2B1BFC00163739 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		2F30ABBD0A2B1BFC00163739 /* Build configuration list for PBXProject "ftpClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F30ABBE0A2B1BFC00163739 /* Development */,
+				2F30ABBF0A2B1BFC00163739 /* Deployment */,
+				2F30ABC00A2B1BFC00163739 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

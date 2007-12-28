@@ -1,0 +1,51 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = browserEventHandler; LANGUAGE = ObjC; SUPERCLASS = NSBrowser; }, 
+        {
+            ACTIONS = {browse = id; singleClick = id; }; 
+            CLASS = browserView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                fileImage = NSImageView; 
+                fileInfo = NSTextField; 
+                myFiles = browserEventHandler; 
+                remoteFiles = browserEventHandler; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                connect = id; 
+                copyToClient = id; 
+                copyToClientThread = id; 
+                copyToServer = id; 
+                copyToServerThread = id; 
+                singleClick = id; 
+            }; 
+            CLASS = browserViewRemote; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                copyToClient = NSButton; 
+                copyToServer = NSButton; 
+                files = browserEventHandler; 
+                localFiles = browserEventHandler; 
+                password = NSTextField; 
+                progress = NSProgressIndicator; 
+                progressToClient = NSProgressIndicator; 
+                throttle = NSSlider; 
+                username = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {closeAboutPanel = id; openAboutPanel = id; }; 
+            CLASS = generalClass; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {aboutPanel = NSPanel; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
