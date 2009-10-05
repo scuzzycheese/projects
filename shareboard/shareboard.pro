@@ -1,4 +1,4 @@
-CONFIG += qt
+CONFIG += qt debug
 HEADERS +=	classes/widgets/qtcolorpicker.h \
 				classes/widgets/pWidget.h \
 				ui_shareboard.h

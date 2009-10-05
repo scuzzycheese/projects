@@ -1,39 +1,49 @@
 #ifndef PWIDGET_H
 #define PWIDGET_H
 
+#include <QColor>
+#include <QImage>
+#include <QPoint>
 #include <QWidget>
-#include <QBrush>
-#include <QFont>
-#include <QPen>
-
-class QPaintEvent;
 
 class pWidget : public QWidget
 {
 	Q_OBJECT
 	
 	public:
-		pWidget(QWidget *parent);
+		pWidget(QWidget *parent = 0);
+		
+		bool openImage(const QString &fileName);
+		bool saveImage(const QString &fileName, const char *fileFormat);
+		void setPenColor(const QColor &newColor);
+		void setPenWidth(int newWidth);
+	
+		bool isModified() const { return modified; }
+		QColor penColor() const { return myPenColor; }
+		int penWidth() const { return myPenWidth; }
 	
 	public slots:
-		void animate();
+		void clearImage();
+		void print();
+		void setPenColorSig(const QColor &newColor);
 	
 	protected:
+		void mousePressEvent(QMouseEvent *event);
+		void mouseMoveEvent(QMouseEvent *event);
+		void mouseReleaseEvent(QMouseEvent *event);
 		void paintEvent(QPaintEvent *event);
-		void paint(QPainter *painter, QPaintEvent *event, int elapsed);
+		void resizeEvent(QResizeEvent *event);
 	
 	private:
-		int elapsed;
-
-
-		//Painting stuff
-		QBrush background;
-		QBrush circleBrush;
-		QFont textFont;
-		QPen circlePen;
-		QPen textPen;
+		void drawLineTo(const QPoint &endPoint);
+		void resizeImage(QImage *image, const QSize &newSize);
+		
+		bool modified;
+		bool scribbling;
+		int myPenWidth;
+		QColor myPenColor;
+		QImage image;
+		QPoint lastPoint;
 };
-
-
 
 #endif

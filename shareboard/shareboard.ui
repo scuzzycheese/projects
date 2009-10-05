@@ -11,18 +11,31 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ShareBoard</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="pWidget" name="drawArea" native="true">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>641</width>
-      <height>371</height>
+      <width>640</width>
+      <height>315</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <zorder>horizontalSpacer</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -65,37 +78,129 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="minimumSize">
     <size>
      <width>79</width>
-     <height>58</height>
+     <height>100</height>
     </size>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
-    <widget class="QtColorPicker" name="colorpicker">
+    <widget class="QtColorPicker" name="colourPicker">
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>0</y>
+       <y>10</y>
        <width>85</width>
        <height>28</height>
       </rect>
+     </property>
+     <property name="colorDialog" stdset="0">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="clearButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>0</y>
+       <y>10</y>
        <width>92</width>
        <height>28</height>
       </rect>
      </property>
      <property name="text">
       <string>Clear</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="horizontalSlider">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>20</y>
+       <width>161</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>0</y>
+       <width>71</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Thickness</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="sizeIconSmall">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>apple.png</normaloff>
+       <disabledoff>apple.png</disabledoff>apple.png</iconset>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>0</y>
+       <width>41</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>apple.png</normaloff>
+       <disabledoff>apple.png</disabledoff>apple.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>44</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -124,6 +229,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="lineThinIcon.qrc"/>
+ </resources>
  <connections/>
 </ui>

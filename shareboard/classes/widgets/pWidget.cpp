@@ -1,65 +1,144 @@
 #include <QtGui>
 #include "pWidget.h"
 
-
 pWidget::pWidget(QWidget *parent) : QWidget(parent)
 {
-	elapsed = 0;
-	setFixedSize(200, 200);
-
-
-	QLinearGradient gradient(QPointF(50, -20), QPointF(80, 20));
-	gradient.setColorAt(0.0, Qt::white);
-	gradient.setColorAt(1.0, QColor(0xa6, 0xce, 0x39));
-	
-	background = QBrush(QColor(64, 32, 64));
-	circleBrush = QBrush(gradient);
-	circlePen = QPen(Qt::black);
-	circlePen.setWidth(1);
-	textPen = QPen(Qt::white);
-	textFont.setPixelSize(50);
-
-
+	setAttribute(Qt::WA_StaticContents);
+	modified = false;
+	scribbling = false;
+	myPenWidth = 1;
+	myPenColor = Qt::blue;
 }
 
-void pWidget::animate()
+bool pWidget::openImage(const QString &fileName)
 {
-	elapsed = (elapsed + qobject_cast<QTimer*>(sender())->interval()) % 1000;
-	repaint();
+	QImage loadedImage;
+	if (!loadedImage.load(fileName)) return false;
+	
+	QSize newSize = loadedImage.size().expandedTo(size());
+	resizeImage(&loadedImage, newSize);
+	image = loadedImage;
+	modified = false;
+	update();
+	return true;
 }
 
-void pWidget::paintEvent(QPaintEvent *event)
+bool pWidget::saveImage(const QString &fileName, const char *fileFormat)
 {
-	QPainter painter;
-	painter.begin(this);
-	painter.setRenderHint(QPainter::Antialiasing);
-	paint(&painter, event, elapsed);
-	painter.end();
-}
-
-void pWidget::paint(QPainter *painter, QPaintEvent *event, int elapsed)
-{
-	painter->fillRect(event->rect(), background);
-	painter->translate(100, 100);
+	QImage visibleImage = image;
+	resizeImage(&visibleImage, size());
 	
-	painter->save();
-	painter->setBrush(circleBrush);
-	painter->setPen(circlePen);
-	painter->rotate(elapsed * 0.030);
-	
-	qreal r = elapsed/1000.0;
-	int n = 30;
-	for(int i = 0; i < n; ++i)
+	if(visibleImage.save(fileName, fileFormat))
 	{
-		painter->rotate(30);
-		qreal radius = 0 + 120.0*((i+r)/n);
-		qreal circleRadius = 1 + ((i+r)/n)*20;
-		painter->drawEllipse(QRectF(radius, -circleRadius,
-		circleRadius*2, circleRadius*2));
+		modified = false;
+		return true;
 	}
-	painter->restore();
+	else
+	{
+		return false;
+	}
+}
+
+
+void pWidget::setPenColorSig(const QColor &newColor)
+{
+	setPenColor(newColor);
+}
+
+void pWidget::setPenColor(const QColor &newColor)
+{
+	myPenColor = newColor;
+}
+
+void pWidget::setPenWidth(int newWidth)
+{
+	myPenWidth = newWidth;
+}
+
+void pWidget::clearImage()
+{
+	image.fill(qRgb(255, 255, 255));
+	modified = true;
+	update();
+}
+
+void pWidget::mousePressEvent(QMouseEvent *event)
+{
+	if(event->button() == Qt::LeftButton)
+	{
+		lastPoint = event->pos();
+		scribbling = true;
+	}
+}
+
+void pWidget::mouseMoveEvent(QMouseEvent *event)
+{
+	if((event->buttons() & Qt::LeftButton) && scribbling) drawLineTo(event->pos());
+}
+
+void pWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+	if(event->button() == Qt::LeftButton && scribbling)
+	{
+		drawLineTo(event->pos());
+		scribbling = false;
+	}
+}
+
+void pWidget::paintEvent(QPaintEvent * /* event */)
+{
+	QPainter painter(this);
+	painter.drawImage(QPoint(0, 0), image);
+}
+
+void pWidget::resizeEvent(QResizeEvent *event)
+{
+	if(width() > image.width() || height() > image.height())
+	{
+		int newWidth = qMax(width() + 128, image.width());
+		int newHeight = qMax(height() + 128, image.height());
+		resizeImage(&image, QSize(newWidth, newHeight));
+		update();
+	}
+	QWidget::resizeEvent(event);
+}
+
+void pWidget::drawLineTo(const QPoint &endPoint)
+{
+	QPainter painter(&image);
+	painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+	painter.drawLine(lastPoint, endPoint);
+	modified = true;
 	
-	painter->setPen(textPen);
-	painter->setFont(textFont);
-	painter->drawText(QRect(-50, -50, 100, 100), Qt::AlignCenter, "Qt");
+	int rad = (myPenWidth / 2) + 2;
+	update(QRect(lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad));
+	lastPoint = endPoint;
+}
+
+void pWidget::resizeImage(QImage *image, const QSize &newSize)
+{
+	if(image->size() == newSize) return;
+
+	QImage newImage(newSize, QImage::Format_RGB32);
+	newImage.fill(qRgb(255, 255, 255));
+	QPainter painter(&newImage);
+	painter.drawImage(QPoint(0, 0), *image);
+	*image = newImage;
+}
+
+void pWidget::print()
+{
+	QPrinter printer(QPrinter::HighResolution);
+	
+	QPrintDialog *printDialog = new QPrintDialog(&printer, this);
+	if(printDialog->exec() == QDialog::Accepted)
+	{
+		QPainter painter(&printer);
+		QRect rect = painter.viewport();
+		QSize size = image.size();
+		size.scale(rect.size(), Qt::KeepAspectRatio);
+		painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
+		painter.setWindow(image.rect());
+		painter.drawImage(0, 0, image);
+	}
 }
