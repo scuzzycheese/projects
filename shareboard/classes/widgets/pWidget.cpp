@@ -40,7 +40,7 @@ bool pWidget::saveImage(const QString &fileName, const char *fileFormat)
 }
 
 
-void pWidget::setPenColorSig(const QColor &newColor)
+void pWidget::setPenColorSlot(const QColor &newColor)
 {
 	setPenColor(newColor);
 }
@@ -50,6 +50,10 @@ void pWidget::setPenColor(const QColor &newColor)
 	myPenColor = newColor;
 }
 
+void pWidget::setPenWidthSlot(int newWidth)
+{
+	setPenWidth(newWidth);
+}
 void pWidget::setPenWidth(int newWidth)
 {
 	myPenWidth = newWidth;

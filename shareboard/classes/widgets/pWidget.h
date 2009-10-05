@@ -25,7 +25,8 @@ class pWidget : public QWidget
 	public slots:
 		void clearImage();
 		void print();
-		void setPenColorSig(const QColor &newColor);
+		void setPenColorSlot(const QColor &newColor);
+		void setPenWidthSlot(int newWidth);
 	
 	protected:
 		void mousePressEvent(QMouseEvent *event);
