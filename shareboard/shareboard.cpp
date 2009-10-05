@@ -23,6 +23,13 @@ int main(int argc, char **argv)
 	QObject::connect(sldr, SIGNAL(valueChanged(int)), widthVal, SLOT(setNum(int)));
 
 
+	clrPkr->insertColor(Qt::black, "Black", 1);
+	clrPkr->insertColor(Qt::blue, "Blue", 2);
+	clrPkr->insertColor(Qt::green, "Green", 3);
+	clrPkr->insertColor(Qt::red, "Red", 4);
+	clrPkr->insertColor(Qt::yellow, "Yellow", 5);
+	clrPkr->insertColor(Qt::white, "White", 6);
+
 	mainWindow->show();
 
 
