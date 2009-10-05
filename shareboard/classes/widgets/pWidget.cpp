@@ -7,7 +7,7 @@ pWidget::pWidget(QWidget *parent) : QWidget(parent)
 	modified = false;
 	scribbling = false;
 	myPenWidth = 1;
-	myPenColor = Qt::blue;
+	myPenColor = Qt::black;
 }
 
 bool pWidget::openImage(const QString &fileName)

@@ -12,14 +12,15 @@ int main(int argc, char **argv)
 
 	QtColorPicker *clrPkr = mainWindow->findChild<QtColorPicker *>("colourPicker");
 	QSlider *sldr = mainWindow->findChild<QSlider *>("penThickness");
-
 	pWidget *drawArea = mainWindow->findChild<pWidget *>("drawArea");
 	QPushButton *clearButton = mainWindow->findChild<QPushButton *>("clearButton");
+	QLabel *widthVal = mainWindow->findChild<QLabel *>("widthVal");
 
 
   	QObject::connect(clearButton, SIGNAL(clicked()), drawArea, SLOT(clearImage()));
 	QObject::connect(clrPkr, SIGNAL(colorChanged(const QColor &)), drawArea, SLOT(setPenColorSlot(const QColor &)));
 	QObject::connect(sldr, SIGNAL(valueChanged(int)), drawArea, SLOT(setPenWidthSlot(int)));
+	QObject::connect(sldr, SIGNAL(valueChanged(int)), widthVal, SLOT(setNum(int)));
 
 
 	mainWindow->show();

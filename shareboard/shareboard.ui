@@ -148,14 +148,14 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>170</x>
        <y>0</y>
-       <width>71</width>
+       <width>41</width>
        <height>18</height>
       </rect>
      </property>
      <property name="text">
-      <string>Thickness</string>
+      <string>Width: </string>
      </property>
     </widget>
     <widget class="QPushButton" name="sizeIconSmall">
@@ -213,6 +213,19 @@
      </property>
      <property name="flat">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="widthVal">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>0</y>
+       <width>81</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0</string>
      </property>
     </widget>
    </widget>
