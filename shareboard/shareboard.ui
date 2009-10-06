@@ -10,6 +10,12 @@
     <height>480</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>ShareBoard</string>
   </property>
@@ -17,25 +23,20 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="pWidget" name="drawArea" native="true">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>640</width>
-      <height>315</height>
+      <x>-1</x>
+      <y>-1</y>
+      <width>641</width>
+      <height>331</height>
      </rect>
     </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <zorder>horizontalSpacer</zorder>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="pWidget" name="drawArea" native="true"/>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -67,7 +68,6 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionAbout_2"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -79,16 +79,25 @@
     <bool>true</bool>
    </property>
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
    <property name="minimumSize">
     <size>
-     <width>79</width>
+     <width>416</width>
      <height>100</height>
     </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>100</height>
+    </size>
+   </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>
@@ -97,7 +106,7 @@
     <widget class="QtColorPicker" name="colourPicker">
      <property name="geometry">
       <rect>
-       <x>550</x>
+       <x>540</x>
        <y>10</y>
        <width>85</width>
        <height>28</height>
@@ -231,11 +240,6 @@
    </widget>
   </widget>
   <action name="actionAbout">
-   <property name="text">
-    <string>About</string>
-   </property>
-  </action>
-  <action name="actionAbout_2">
    <property name="text">
     <string>About</string>
    </property>

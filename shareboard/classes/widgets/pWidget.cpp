@@ -1,5 +1,6 @@
 #include <QtGui>
 #include "pWidget.h"
+#include <iostream>
 
 pWidget::pWidget(QWidget *parent) : QWidget(parent)
 {
@@ -97,6 +98,7 @@ void pWidget::paintEvent(QPaintEvent * /* event */)
 
 void pWidget::resizeEvent(QResizeEvent *event)
 {
+	std::cout << "Resize!" << std::endl;
 	if(width() > image.width() || height() > image.height())
 	{
 		int newWidth = qMax(width() + 128, image.width());
