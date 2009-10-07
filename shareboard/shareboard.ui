@@ -34,7 +34,11 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="pWidget" name="drawArea" native="true"/>
+      <widget class="cVectorDrawWidget" name="drawArea" native="true">
+       <property name="cursor">
+        <cursorShape>CrossCursor</cursorShape>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -252,9 +256,9 @@
    <header>qtcolorpicker.h</header>
   </customwidget>
   <customwidget>
-   <class>pWidget</class>
+   <class>cVectorDrawWidget</class>
    <extends>QWidget</extends>
-   <header>pWidget.h</header>
+   <header>cVectorDrawWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -1,20 +1,25 @@
-#ifndef PWIDGET_H
-#define PWIDGET_H
+#ifndef CVECTORDRAWWIDGET_H
+#define CVECTORDRAWWIDGET_H
 
 #include <QColor>
 #include <QImage>
 #include <QPoint>
 #include <QWidget>
+#include <QMatrix>
+#include <iostream>
+#include <deque>
 
-class pWidget : public QWidget
+
+using namespace std;
+
+class cVectorDrawWidget : public QWidget
 {
 	Q_OBJECT
 	
 	public:
-		pWidget(QWidget *parent = 0);
+		cVectorDrawWidget(QWidget *parent = 0);
+		~cVectorDrawWidget();
 		
-		bool openImage(const QString &fileName);
-		bool saveImage(const QString &fileName, const char *fileFormat);
 		void setPenColor(const QColor &newColor);
 		void setPenWidth(int newWidth);
 	
@@ -24,7 +29,6 @@ class pWidget : public QWidget
 	
 	public slots:
 		void clearImage();
-		void print();
 		void setPenColorSlot(const QColor &newColor);
 		void setPenWidthSlot(int newWidth);
 	
@@ -36,7 +40,7 @@ class pWidget : public QWidget
 		void resizeEvent(QResizeEvent *event);
 	
 	private:
-		void drawLineTo(const QPoint &endPoint);
+		void drawLine(const QPoint &startPoint, const QPoint &endPoint);
 		void resizeImage(QImage *image, const QSize &newSize);
 		
 		bool modified;
@@ -45,6 +49,12 @@ class pWidget : public QWidget
 		QColor myPenColor;
 		QImage image;
 		QPoint lastPoint;
+
+		//Matrix related stuff
+		QMatrix *dDrawMat;
+		deque<deque<QPoint> > *dLines;
+		deque<QPoint> *dTempLine;
+		
 };
 
 #endif

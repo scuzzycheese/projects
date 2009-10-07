@@ -1,5 +1,5 @@
 #include "ui_shareboard.h"
-#include "pWidget.h"
+#include "cVectorDrawWidget.h"
 #include <QtGui/QButtonGroup>
 
 int main(int argc, char **argv)
@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 
 	QtColorPicker *clrPkr = mainWindow->findChild<QtColorPicker *>("colourPicker");
 	QSlider *sldr = mainWindow->findChild<QSlider *>("penThickness");
-	pWidget *drawArea = mainWindow->findChild<pWidget *>("drawArea");
+	cVectorDrawWidget *drawArea = mainWindow->findChild<cVectorDrawWidget *>("drawArea");
 	QPushButton *clearButton = mainWindow->findChild<QPushButton *>("clearButton");
 	QLabel *widthVal = mainWindow->findChild<QLabel *>("widthVal");
 
