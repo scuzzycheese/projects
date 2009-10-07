@@ -19,7 +19,8 @@ class QLine : public QObject
 		QColor dColour;
 		int dDiameter;
 
-		void drawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint);
+		void mDraw(QImage &image);
+		void mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint);
 
 	public:
 		QLine();

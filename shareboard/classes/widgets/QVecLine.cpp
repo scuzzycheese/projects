@@ -22,20 +22,20 @@ QLine::~QLine()
 }
 
 
-void draw(QImage &image)
+void QLine::mDraw(QImage &image)
 {
 	//TODO: finish this function to draw the entire line
-	QPoint lastPoint = dLine[0];
+	QPoint lastPoint = (*dLine)[0];
 }
 
-void QLine::drawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint)
+void QLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint)
 {
 	QPainter painter(&image);
 	painter.setPen(QPen(dColour, dDiameter, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 	painter.drawLine(startPoint, endPoint);
-	modified = true;
+	//modified = true;
 	
-	int rad = (myPenWidth / 2) + 2;
-	update(QRect(lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad));
-	lastPoint = endPoint;
+	//int rad = (myPenWidth / 2) + 2;
+	//update(QRect(lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad));
+	//lastPoint = endPoint;
 }
