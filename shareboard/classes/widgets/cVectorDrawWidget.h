@@ -8,6 +8,7 @@
 #include <QMatrix>
 #include <iostream>
 #include <deque>
+#include "QVecLine.h"
 
 
 using namespace std;
@@ -52,8 +53,8 @@ class cVectorDrawWidget : public QWidget
 
 		//Matrix related stuff
 		QMatrix *dDrawMat;
-		deque<deque<QPoint> > *dLines;
-		deque<QPoint> *dTempLine;
+		deque<QVecLine> dLines;
+		QVecLine *dTempLine;
 		
 };
 

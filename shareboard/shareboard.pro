@@ -1,11 +1,11 @@
 CONFIG += qt debug
 HEADERS +=	classes/widgets/qtcolorpicker.h \
 				classes/widgets/cVectorDrawWidget.h \
-				classes/widgets/QLine.h \
+				classes/widgets/QVecLine.h \
 				ui_shareboard.h
 SOURCES +=	classes/widgets/qtcolorpicker.cpp \
 				classes/widgets/cVectorDrawWidget.cpp \
-				classes/widgets/QLine.cpp \
+				classes/widgets/QVecLine.cpp \
 				shareboard.cpp
 TARGET = shareboard
 FORMS += shareboard.ui

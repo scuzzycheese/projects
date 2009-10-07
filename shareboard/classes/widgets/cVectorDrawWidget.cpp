@@ -10,13 +10,13 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
 	myPenWidth = 1;
 	myPenColor = Qt::black;
 	dDrawMat = new QMatrix();
-	dLines = new deque<deque<QPoint> >();
+	//dLines = new deque<QVecLine>();
 	dTempLine = NULL;
 }
 
 cVectorDrawWidget::~cVectorDrawWidget()
 {
-	delete(dLines);
+	//delete(dLines);
 }
 
 
@@ -51,8 +51,8 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 	if(event->button() == Qt::LeftButton)
 	{
 		//lastPoint = event->pos();
-		dTempLine = new deque<QPoint>;
-		dTempLine->push_front(event->pos());
+		dTempLine = new QVecLine(myPenColor, myPenWidth);
+		dTempLine->mAddVector(event->pos());
 
 		scribbling = true;
 	}
@@ -63,7 +63,7 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 	if((event->buttons() & Qt::LeftButton) && scribbling)
 	{
 		//drawLineTo(event->pos());
-		dTempLine->push_front(event->pos());
+		dTempLine->mAddVector(event->pos());
 	}
 }
 
@@ -72,8 +72,8 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 	if(event->button() == Qt::LeftButton && scribbling)
 	{
 		//drawLineTo(event->pos());
-		dTempLine->push_front(event->pos());
-		dLines->push_front(*dTempLine);
+		dTempLine->mAddVector(event->pos());
+		dLines.push_back(*dTempLine);
 
 		//memory cleanups
 		delete(dTempLine);
@@ -85,20 +85,15 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 {
-	//Draw the lines currently being drawn
-	
-
 	//Draw the existing lines in the queue
-	for(deque<deque<QPoint> >::iterator i = dLines->begin(); i < dLines->end(); i ++)
+	for(deque<QVecLine>::iterator i = dLines.begin(); i < dLines.end(); i ++)
 	{
-		QPoint lastPoint = (*i)[0];
-		for(deque<QPoint>::iterator j = (i->begin() + 1); j < i->end(); ++ j)
-		{
-			QPoint newPoint = *j;
-			drawLine(lastPoint, newPoint);
-			lastPoint = newPoint;
-		}
+		(*i).mDraw(image);
 	}
+
+	//Draw the lines currently being drawn
+	if(dTempLine) dTempLine->mDraw(image);
+
 	QPainter painter(this);
 	painter.drawImage(QPoint(0, 0), image);
 	//TODO: maybe take the update line out of the drawLine function

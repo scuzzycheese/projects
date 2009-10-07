@@ -1,41 +1,45 @@
-#include "QLine.h"
+#include "QVecLine.h"
 
 
-QLine::QLine(QColor colour, int diameter)
+QVecLine::QVecLine(QColor colour, int diameter) : lastPoint(NULL)
 {
-	dLine = new deque<QPoint>();
 	dColour = colour;
 	dDiameter = diameter;
 }
 
 
-QLine::QLine()
+QVecLine::QVecLine() : lastPoint(NULL)
 {
-	dLine = new deque<QPoint>();
 	dColour = Qt::black;
 	dDiameter = 1;
 }
 
-QLine::~QLine()
+QVecLine::~QVecLine()
 {
-	delete(dLine);
 }
 
 
-void QLine::mDraw(QImage &image)
+void QVecLine::mDraw(QImage &image)
 {
-	//TODO: finish this function to draw the entire line
-	QPoint lastPoint = (*dLine)[0];
+	for(deque<QPoint>::iterator i = dLine.begin(); i < dLine.end(); ++ i)
+	{
+		QPoint &newPoint = *i;
+		if(lastPoint) mDrawLine(image, *lastPoint, newPoint);
+		lastPoint = &newPoint;
+	}
+	lastPoint = NULL;
 }
 
-void QLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint)
+void QVecLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint)
 {
 	QPainter painter(&image);
 	painter.setPen(QPen(dColour, dDiameter, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 	painter.drawLine(startPoint, endPoint);
-	//modified = true;
-	
-	//int rad = (myPenWidth / 2) + 2;
-	//update(QRect(lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad));
-	//lastPoint = endPoint;
 }
+
+
+void QVecLine::mAddVector(const QPoint &newVec)
+{
+	dLine.push_back(newVec);
+}
+
