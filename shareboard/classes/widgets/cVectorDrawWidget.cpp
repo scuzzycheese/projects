@@ -41,8 +41,8 @@ void cVectorDrawWidget::setPenWidth(int newWidth)
 
 void cVectorDrawWidget::clearImage()
 {
+	dLines.clear();
 	image.fill(qRgb(255, 255, 255));
-	modified = true;
 	update();
 }
 
