@@ -154,9 +154,18 @@ void cVectorDrawWidget::rotate(int angle, QPoint &point)
 
 void cVectorDrawWidget::scaleSlot(int scale)
 {
+	QPoint point(319, 164);
+	doScale(scale, point);
 
-	dScaleMatrix = QMatrix((double)scale, 0, 0, (double)scale, 0, 0);
+
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+}
 
+void cVectorDrawWidget::doScale(int scale, QPoint &point)
+{
+	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
+
+	double newScale = 1 + ((double)scale / 10.0f);
+	dScaleMatrix = arbTranslationMatrix.inverted() * QMatrix(newScale, 0, 0, newScale, 0, 0) * arbTranslationMatrix;
 }
 

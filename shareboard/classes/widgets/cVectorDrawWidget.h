@@ -28,6 +28,7 @@ class cVectorDrawWidget : public QWidget
 		int penWidth() const { return myPenWidth; }
 
 		void rotate(int angle, QPoint &point);
+		void doScale(int scale, QPoint &point);
 
 	
 	public slots:
