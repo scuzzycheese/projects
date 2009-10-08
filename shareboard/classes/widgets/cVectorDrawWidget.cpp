@@ -10,15 +10,8 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
 	myPenWidth = 1;
 	myPenColor = Qt::black;
 	dDrawMat = new QMatrix();
-	//dLines = new deque<QVecLine>();
 	dTempLine = NULL;
 }
-
-cVectorDrawWidget::~cVectorDrawWidget()
-{
-	//delete(dLines);
-}
-
 
 void cVectorDrawWidget::setPenColorSlot(const QColor &newColor)
 {
@@ -113,18 +106,8 @@ void cVectorDrawWidget::resizeEvent(QResizeEvent *event)
 	QWidget::resizeEvent(event);
 }
 
-void cVectorDrawWidget::drawLine(const QPoint &startPoint, const QPoint &endPoint)
-{
-	QPainter painter(&image);
-	painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
-	painter.drawLine(startPoint, endPoint);
-	modified = true;
-	
-	int rad = (myPenWidth / 2) + 2;
-	update(QRect(lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad));
-	lastPoint = endPoint;
-}
 
+//TODO: refactor this to redraw with vectors instead
 void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 {
 	if(image->size() == newSize) return;

@@ -19,7 +19,6 @@ class cVectorDrawWidget : public QWidget
 	
 	public:
 		cVectorDrawWidget(QWidget *parent = 0);
-		~cVectorDrawWidget();
 		
 		void setPenColor(const QColor &newColor);
 		void setPenWidth(int newWidth);
@@ -41,7 +40,6 @@ class cVectorDrawWidget : public QWidget
 		void resizeEvent(QResizeEvent *event);
 	
 	private:
-		void drawLine(const QPoint &startPoint, const QPoint &endPoint);
 		void resizeImage(QImage *image, const QSize &newSize);
 		
 		bool modified;
