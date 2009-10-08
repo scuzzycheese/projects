@@ -43,9 +43,9 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 	if(event->button() == Qt::LeftButton)
 	{
 		//lastPoint = event->pos();
-		dInvertedTransMat = dTransMat.inverted();
+		dInvertedWorldMatrix = dWorldMatrix.inverted();
 		dTempLine = new QVecLine(myPenColor, myPenWidth);
-		dTempLine->mAddVector(dInvertedTransMat.map(event->pos()));
+		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
 
 		scribbling = true;
 	}
@@ -56,7 +56,7 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 	if((event->buttons() & Qt::LeftButton) && scribbling)
 	{
 		//drawLineTo(event->pos());
-		dTempLine->mAddVector(dInvertedTransMat.map(event->pos()));
+		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
 	}
 }
 
@@ -65,7 +65,7 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 	if(event->button() == Qt::LeftButton && scribbling)
 	{
 		//drawLineTo(event->pos());
-		dTempLine->mAddVector(dInvertedTransMat.map(event->pos()));
+		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
 		dLines.push_back(*dTempLine);
 
 		//memory cleanups
@@ -82,14 +82,14 @@ void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 	//Draw the existing lines in the queue
 	for(deque<QVecLine>::iterator i = dLines.begin(); i < dLines.end(); i ++)
 	{
-		(*i).mDraw(image, dTransMat);
+		(*i).mDraw(image, dWorldMatrix);
 	}
 
 	//Draw the lines currently being drawn
-	if(dTempLine) dTempLine->mDraw(image, dTransMat);
+	if(dTempLine) dTempLine->mDraw(image, dWorldMatrix);
 
 	QPainter painter(this);
-	//painter.setMatrix(dTransMat);
+	//painter.setMatrix(dWorldMatrix);
 	painter.drawImage(QPoint(0, 0), image);
 	//TODO: maybe take the update line out of the drawLine function
 	update();
@@ -123,8 +123,12 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 
 void cVectorDrawWidget::rotateSlot(int angle)
 {
+	//this point needs to be dynamic in future
 	QPoint point(319, 164);
 	rotate(angle, point);
+
+	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+
 }
 
 void cVectorDrawWidget::rotate(int angle, QPoint &point)
@@ -133,7 +137,7 @@ void cVectorDrawWidget::rotate(int angle, QPoint &point)
 	//This is the matrix for transforming against an arbitrary point
 	//This matrix, AND it's inverted counterpart, should really be 
 	//calculated once.
-	QMatrix translationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
+	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
 	//cout << "Angle: " << angle << endl;
 	
 	double pi = 3.14159;
@@ -144,6 +148,15 @@ void cVectorDrawWidget::rotate(int angle, QPoint &point)
 
 	QMatrix rotationMatrix(cosa, sina, -sina, cosa, 0, 0);
 	
-	dTransMat = translationMatrix.inverted() * rotationMatrix * translationMatrix;
-	
+	dRotationMatrix = arbTranslationMatrix.inverted() * rotationMatrix * arbTranslationMatrix;
 }
+
+
+void cVectorDrawWidget::scaleSlot(int scale)
+{
+
+	dScaleMatrix = QMatrix((double)scale, 0, 0, (double)scale, 0, 0);
+	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+
+}
+

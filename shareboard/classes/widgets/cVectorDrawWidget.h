@@ -35,6 +35,7 @@ class cVectorDrawWidget : public QWidget
 		void setPenColorSlot(const QColor &newColor);
 		void setPenWidthSlot(int newWidth);
 		void rotateSlot(int angle);
+		void scaleSlot(int scale);
 	
 	protected:
 		void mousePressEvent(QMouseEvent *event);
@@ -54,8 +55,13 @@ class cVectorDrawWidget : public QWidget
 		QPoint lastPoint;
 
 		//Matrix related stuff
-		QMatrix dTransMat;
-		QMatrix dInvertedTransMat;
+		QMatrix dWorldMatrix;
+		QMatrix dInvertedWorldMatrix;
+
+		QMatrix dTranslationMatrix;
+		QMatrix dRotationMatrix;
+		QMatrix dScaleMatrix;
+
 		deque<QVecLine> dLines;
 		QVecLine *dTempLine;
 		
