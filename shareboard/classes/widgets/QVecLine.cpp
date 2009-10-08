@@ -19,12 +19,12 @@ QVecLine::~QVecLine()
 }
 
 
-void QVecLine::mDraw(QImage &image)
+void QVecLine::mDraw(QImage &image, QMatrix &mat)
 {
 	for(deque<QPoint>::iterator i = dLine.begin(); i < dLine.end(); ++ i)
 	{
 		QPoint &newPoint = *i;
-		if(lastPoint) mDrawLine(image, *lastPoint, newPoint);
+		if(lastPoint) mDrawLine(image, mat.map(*lastPoint), mat.map(newPoint));
 		lastPoint = &newPoint;
 	}
 	lastPoint = NULL;

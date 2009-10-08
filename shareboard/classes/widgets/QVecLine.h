@@ -25,7 +25,7 @@ class QVecLine
 		QVecLine();
 		QVecLine(QColor colour, int diameter);
 		~QVecLine();
-		void mDraw(QImage &image);
+		void mDraw(QImage &image, QMatrix &mat);
 		void mAddVector(const QPoint &newVec);
 
 };

@@ -15,12 +15,14 @@ int main(int argc, char **argv)
 	cVectorDrawWidget *drawArea = mainWindow->findChild<cVectorDrawWidget *>("drawArea");
 	QPushButton *clearButton = mainWindow->findChild<QPushButton *>("clearButton");
 	QLabel *widthVal = mainWindow->findChild<QLabel *>("widthVal");
+	QDial *angleDial = mainWindow->findChild<QDial *>("orientation");
 
 
   	QObject::connect(clearButton, SIGNAL(clicked()), drawArea, SLOT(clearImage()));
 	QObject::connect(clrPkr, SIGNAL(colorChanged(const QColor &)), drawArea, SLOT(setPenColorSlot(const QColor &)));
 	QObject::connect(sldr, SIGNAL(valueChanged(int)), drawArea, SLOT(setPenWidthSlot(int)));
 	QObject::connect(sldr, SIGNAL(valueChanged(int)), widthVal, SLOT(setNum(int)));
+	QObject::connect(angleDial, SIGNAL(valueChanged(int)), drawArea, SLOT(rotateSlot(int)));
 
 
 	clrPkr->insertColor(Qt::black, "Black", 1);

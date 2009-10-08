@@ -9,7 +9,6 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
 	scribbling = false;
 	myPenWidth = 1;
 	myPenColor = Qt::black;
-	dDrawMat = new QMatrix();
 	dTempLine = NULL;
 }
 
@@ -44,8 +43,9 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 	if(event->button() == Qt::LeftButton)
 	{
 		//lastPoint = event->pos();
+		dInvertedTransMat = dTransMat.inverted();
 		dTempLine = new QVecLine(myPenColor, myPenWidth);
-		dTempLine->mAddVector(event->pos());
+		dTempLine->mAddVector(dInvertedTransMat.map(event->pos()));
 
 		scribbling = true;
 	}
@@ -56,7 +56,7 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 	if((event->buttons() & Qt::LeftButton) && scribbling)
 	{
 		//drawLineTo(event->pos());
-		dTempLine->mAddVector(event->pos());
+		dTempLine->mAddVector(dInvertedTransMat.map(event->pos()));
 	}
 }
 
@@ -65,7 +65,7 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 	if(event->button() == Qt::LeftButton && scribbling)
 	{
 		//drawLineTo(event->pos());
-		dTempLine->mAddVector(event->pos());
+		dTempLine->mAddVector(dInvertedTransMat.map(event->pos()));
 		dLines.push_back(*dTempLine);
 
 		//memory cleanups
@@ -78,16 +78,18 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 {
+	image.fill(qRgb(255, 255, 255));
 	//Draw the existing lines in the queue
 	for(deque<QVecLine>::iterator i = dLines.begin(); i < dLines.end(); i ++)
 	{
-		(*i).mDraw(image);
+		(*i).mDraw(image, dTransMat);
 	}
 
 	//Draw the lines currently being drawn
-	if(dTempLine) dTempLine->mDraw(image);
+	if(dTempLine) dTempLine->mDraw(image, dTransMat);
 
 	QPainter painter(this);
+	//painter.setMatrix(dTransMat);
 	painter.drawImage(QPoint(0, 0), image);
 	//TODO: maybe take the update line out of the drawLine function
 	update();
@@ -119,3 +121,19 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 	*image = newImage;
 }
 
+
+void cVectorDrawWidget::rotateSlot(int angle)
+{
+	//cout << "Angle: " << angle << endl;
+	
+	double pi = 3.14159;
+	 
+	double a    = pi/180 * (double)angle;
+	double sina = sin(a);
+	double cosa = cos(a);
+
+	QMatrix rotationMatrix(cosa, sina, -sina, cosa, 0, 0);
+	
+	dTransMat = rotationMatrix;
+	
+}

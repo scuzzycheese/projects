@@ -26,11 +26,14 @@ class cVectorDrawWidget : public QWidget
 		bool isModified() const { return modified; }
 		QColor penColor() const { return myPenColor; }
 		int penWidth() const { return myPenWidth; }
+
+
 	
 	public slots:
 		void clearImage();
 		void setPenColorSlot(const QColor &newColor);
 		void setPenWidthSlot(int newWidth);
+		void rotateSlot(int angle);
 	
 	protected:
 		void mousePressEvent(QMouseEvent *event);
@@ -50,7 +53,8 @@ class cVectorDrawWidget : public QWidget
 		QPoint lastPoint;
 
 		//Matrix related stuff
-		QMatrix *dDrawMat;
+		QMatrix dTransMat;
+		QMatrix dInvertedTransMat;
 		deque<QVecLine> dLines;
 		QVecLine *dTempLine;
 		
