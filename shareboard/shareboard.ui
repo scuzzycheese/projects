@@ -313,7 +313,7 @@
       <string>Zoom:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="widthVal_2">
+    <widget class="QLabel" name="zoomVal">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -323,7 +323,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>1</string>
+      <string>0</string>
      </property>
     </widget>
    </widget>
@@ -350,5 +350,38 @@
  <resources>
   <include location="lineThinIcon.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>scale</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>zoomVal</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>98</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>245</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>penThickness</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>widthVal</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>78</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>245</x>
+     <y>57</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
