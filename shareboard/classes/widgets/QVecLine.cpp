@@ -19,21 +19,21 @@ QVecLine::~QVecLine()
 }
 
 
-void QVecLine::mDraw(QImage &image, QMatrix &mat)
+void QVecLine::mDraw(QImage &image, QMatrix &mat, double thicknesScale)
 {
 	for(deque<QPoint>::iterator i = dLine.begin(); i < dLine.end(); ++ i)
 	{
 		QPoint &newPoint = *i;
-		if(lastPoint) mDrawLine(image, mat.map(*lastPoint), mat.map(newPoint));
+		if(lastPoint) mDrawLine(image, mat.map(*lastPoint), mat.map(newPoint), thicknesScale);
 		lastPoint = &newPoint;
 	}
 	lastPoint = NULL;
 }
 
-void QVecLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint)
+void QVecLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint, double thicknesScale)
 {
 	QPainter painter(&image);
-	painter.setPen(QPen(dColour, dDiameter, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+	painter.setPen(QPen(dColour, dDiameter * thicknesScale, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 	painter.drawLine(startPoint, endPoint);
 }
 

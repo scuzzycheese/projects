@@ -10,6 +10,7 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
 	myPenWidth = 1;
 	myPenColor = Qt::black;
 	dTempLine = NULL;
+	dScale = 1.0f;
 }
 
 void cVectorDrawWidget::setPenColorSlot(const QColor &newColor)
@@ -82,11 +83,11 @@ void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 	//Draw the existing lines in the queue
 	for(deque<QVecLine>::iterator i = dLines.begin(); i < dLines.end(); i ++)
 	{
-		(*i).mDraw(image, dWorldMatrix);
+		(*i).mDraw(image, dWorldMatrix, dScale);
 	}
 
 	//Draw the lines currently being drawn
-	if(dTempLine) dTempLine->mDraw(image, dWorldMatrix);
+	if(dTempLine) dTempLine->mDraw(image, dWorldMatrix, dScale);
 
 	QPainter painter(this);
 	//painter.setMatrix(dWorldMatrix);
@@ -154,18 +155,18 @@ void cVectorDrawWidget::rotate(int angle, QPoint &point)
 
 void cVectorDrawWidget::scaleSlot(int scale)
 {
-	QPoint point(319, 164);
-	doScale(scale, point);
+	dScale = 1 + ((double)scale / 10.0f);
 
+	QPoint point(319, 164);
+	doScale(point);
 
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 }
 
-void cVectorDrawWidget::doScale(int scale, QPoint &point)
+void cVectorDrawWidget::doScale(QPoint &point)
 {
 	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
 
-	double newScale = 1 + ((double)scale / 10.0f);
-	dScaleMatrix = arbTranslationMatrix.inverted() * QMatrix(newScale, 0, 0, newScale, 0, 0) * arbTranslationMatrix;
+	dScaleMatrix = arbTranslationMatrix.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * arbTranslationMatrix;
 }
 

@@ -19,13 +19,13 @@ class QVecLine
 		int dDiameter;
 		QPoint *lastPoint;
 
-		void mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint);
+		void mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint, double thicknesScale);
 
 	public:
 		QVecLine();
 		QVecLine(QColor colour, int diameter);
 		~QVecLine();
-		void mDraw(QImage &image, QMatrix &mat);
+		void mDraw(QImage &image, QMatrix &mat, double thicknesScale);
 		void mAddVector(const QPoint &newVec);
 
 };
