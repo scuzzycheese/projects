@@ -121,9 +121,19 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 	*image = newImage;
 }
 
-
 void cVectorDrawWidget::rotateSlot(int angle)
 {
+	QPoint point(319, 164);
+	rotate(angle, point);
+}
+
+void cVectorDrawWidget::rotate(int angle, QPoint &point)
+{
+
+	//This is the matrix for transforming against an arbitrary point
+	//This matrix, AND it's inverted counterpart, should really be 
+	//calculated once.
+	QMatrix translationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
 	//cout << "Angle: " << angle << endl;
 	
 	double pi = 3.14159;
@@ -134,6 +144,6 @@ void cVectorDrawWidget::rotateSlot(int angle)
 
 	QMatrix rotationMatrix(cosa, sina, -sina, cosa, 0, 0);
 	
-	dTransMat = rotationMatrix;
+	dTransMat = translationMatrix.inverted() * rotationMatrix * translationMatrix;
 	
 }

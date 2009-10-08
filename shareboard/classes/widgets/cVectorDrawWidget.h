@@ -27,6 +27,7 @@ class cVectorDrawWidget : public QWidget
 		QColor penColor() const { return myPenColor; }
 		int penWidth() const { return myPenWidth; }
 
+		void rotate(int angle, QPoint &point);
 
 	
 	public slots:
