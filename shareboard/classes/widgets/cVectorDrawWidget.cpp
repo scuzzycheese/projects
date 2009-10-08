@@ -29,7 +29,7 @@ void cVectorDrawWidget::setPenWidthSlot(int newWidth)
 }
 void cVectorDrawWidget::setPenWidth(int newWidth)
 {
-	myPenWidth = newWidth;
+	myPenWidth = 1 + newWidth;
 }
 
 void cVectorDrawWidget::clearImage()
