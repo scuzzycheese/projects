@@ -2,11 +2,12 @@
 #include "cVectorDrawWidget.h"
 #include <iostream>
 
-cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
+cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent), operationPos(319, 164)
 {
 	setAttribute(Qt::WA_StaticContents);
 	modified = false;
 	scribbling = false;
+	scrolling = false;
 	myPenWidth = 1;
 	myPenColor = Qt::black;
 	dTempLine = NULL;
@@ -43,12 +44,20 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 {
 	if(event->button() == Qt::LeftButton)
 	{
-		//lastPoint = event->pos();
+		//Set up the matrix to draw to, this is because
+		//our world matrix could be rotated or moved or scaled.
 		dInvertedWorldMatrix = dWorldMatrix.inverted();
+		//create a new vector line object
 		dTempLine = new QVecLine(myPenColor, myPenWidth);
+		//Add this vector to he current line being drawn
 		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
 
 		scribbling = true;
+	}
+	if(event->button() == Qt::RightButton)
+	{
+		scrolling = true;
+		lastPos = event->pos();
 	}
 }
 
@@ -56,8 +65,17 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 {
 	if((event->buttons() & Qt::LeftButton) && scribbling)
 	{
-		//drawLineTo(event->pos());
+		//Add this vector to he current line being drawn
 		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
+	}
+	if((event->buttons() & Qt::RightButton) && scrolling)
+	{
+		//QPoint diffPos = event->pos() - lastPos;
+		translate(event->pos(), operationPos);
+		//dTranslationMatrix.translate(diffPos.x(), diffPos.y());
+		//operationPos -= diffPos;
+		dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+		lastPos = event->pos();
 	}
 }
 
@@ -65,15 +83,17 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if(event->button() == Qt::LeftButton && scribbling)
 	{
-		//drawLineTo(event->pos());
-		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
+		//push the new line onto the deque.
 		dLines.push_back(*dTempLine);
-
-		//memory cleanups
+		//delete the old line
 		delete(dTempLine);
 		dTempLine = NULL;
-		
+		//Set the scribble state to false;
 		scribbling = false;
+	}
+	if((event->buttons() & Qt::RightButton) && scrolling)
+	{
+		scrolling = false;
 	}
 }
 
@@ -124,9 +144,7 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 
 void cVectorDrawWidget::rotateSlot(const int &angle)
 {
-	//this point needs to be dynamic in future
-	QPoint point(319, 164);
-	rotate(angle, point);
+	rotate(angle, dWorldMatrix.inverted().map(operationPos));
 
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 
@@ -157,8 +175,8 @@ void cVectorDrawWidget::scaleSlot(const int &scale)
 {
 	dScale = 1 + ((double)scale / 10.0f);
 
-	QPoint point(319, 164);
-	doScale(point);
+	
+	doScale(dWorldMatrix.inverted().map(operationPos));
 
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 }
@@ -170,3 +188,14 @@ void cVectorDrawWidget::doScale(const QPoint &point)
 	dScaleMatrix = arbTranslationMatrix.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * arbTranslationMatrix;
 }
 
+
+
+void cVectorDrawWidget::translate(const QPoint &transTo, const QPoint &point)
+{
+	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
+	QMatrix translateMatrix = QMatrix(1, 0, 0, 1, transTo.x(), transTo.y());
+
+	dTranslationMatrix = arbTranslationMatrix.inverted() * translateMatrix * arbTranslationMatrix;
+
+	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+}

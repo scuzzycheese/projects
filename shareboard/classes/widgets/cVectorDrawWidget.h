@@ -29,6 +29,7 @@ class cVectorDrawWidget : public QWidget
 
 		void rotate(const int &angle, const QPoint &point);
 		void doScale(const QPoint &point);
+		void translate(const QPoint &translateDiff, const QPoint &point);
 
 	
 	public slots:
@@ -50,10 +51,14 @@ class cVectorDrawWidget : public QWidget
 		
 		bool modified;
 		bool scribbling;
+		bool scrolling;
 		int myPenWidth;
 		QColor myPenColor;
 		QImage image;
-		QPoint lastPoint;
+		
+		//points that are important
+		QPoint lastPos;
+		QPoint operationPos;
 
 		//Matrix related stuff
 		QMatrix dWorldMatrix;
