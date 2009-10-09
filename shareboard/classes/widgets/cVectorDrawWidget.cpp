@@ -122,7 +122,7 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 	*image = newImage;
 }
 
-void cVectorDrawWidget::rotateSlot(int angle)
+void cVectorDrawWidget::rotateSlot(const int &angle)
 {
 	//this point needs to be dynamic in future
 	QPoint point(319, 164);
@@ -132,7 +132,7 @@ void cVectorDrawWidget::rotateSlot(int angle)
 
 }
 
-void cVectorDrawWidget::rotate(int angle, QPoint &point)
+void cVectorDrawWidget::rotate(const int &angle, const QPoint &point)
 {
 
 	//This is the matrix for transforming against an arbitrary point
@@ -153,7 +153,7 @@ void cVectorDrawWidget::rotate(int angle, QPoint &point)
 }
 
 
-void cVectorDrawWidget::scaleSlot(int scale)
+void cVectorDrawWidget::scaleSlot(const int &scale)
 {
 	dScale = 1 + ((double)scale / 10.0f);
 
@@ -163,7 +163,7 @@ void cVectorDrawWidget::scaleSlot(int scale)
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 }
 
-void cVectorDrawWidget::doScale(QPoint &point)
+void cVectorDrawWidget::doScale(const QPoint &point)
 {
 	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
 

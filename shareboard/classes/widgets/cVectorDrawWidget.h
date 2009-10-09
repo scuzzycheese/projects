@@ -27,16 +27,16 @@ class cVectorDrawWidget : public QWidget
 		QColor penColor() const { return myPenColor; }
 		int penWidth() const { return myPenWidth; }
 
-		void rotate(int angle, QPoint &point);
-		void doScale(QPoint &point);
+		void rotate(const int &angle, const QPoint &point);
+		void doScale(const QPoint &point);
 
 	
 	public slots:
 		void clearImage();
 		void setPenColorSlot(const QColor &newColor);
 		void setPenWidthSlot(int newWidth);
-		void rotateSlot(int angle);
-		void scaleSlot(int scale);
+		void rotateSlot(const int &angle);
+		void scaleSlot(const int &scale);
 	
 	protected:
 		void mousePressEvent(QMouseEvent *event);
