@@ -72,9 +72,6 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 	{
 		QPoint diffPos = event->pos() - lastPos;
 		translate(diffPos);
-		//dTranslationMatrix.translate(diffPos.x(), diffPos.y());
-		//operationPos -= diffPos;
-		dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 		lastPos = event->pos();
 	}
 }
@@ -146,7 +143,7 @@ void cVectorDrawWidget::rotateSlot(const int &angle)
 {
 	double pi = 3.14159;
 	 
-	double a    = pi/180 * (double)angle;
+	double a = pi/180 * (double)angle;
 	double sina = sin(a);
 	double cosa = cos(a);
 
