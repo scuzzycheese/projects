@@ -27,10 +27,7 @@ class cVectorDrawWidget : public QWidget
 		QColor penColor() const { return myPenColor; }
 		int penWidth() const { return myPenWidth; }
 
-		void rotate(const int &angle, const QPoint &point);
-		void doScale(const QPoint &point);
-		void translate(const QPoint &translateDiff, const QPoint &point);
-
+		void translate(const QPoint &transBy);
 	
 	public slots:
 		void clearImage();
@@ -58,7 +55,7 @@ class cVectorDrawWidget : public QWidget
 		
 		//points that are important
 		QPoint lastPos;
-		QPoint operationPos;
+		QMatrix dOperationTranslation;
 
 		//Matrix related stuff
 		QMatrix dWorldMatrix;

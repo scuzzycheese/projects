@@ -2,7 +2,7 @@
 #include "cVectorDrawWidget.h"
 #include <iostream>
 
-cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent), operationPos(319, 164)
+cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent), dOperationTranslation(1, 0, 0, 1, 319, 164)
 {
 	setAttribute(Qt::WA_StaticContents);
 	modified = false;
@@ -70,8 +70,8 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 	}
 	if((event->buttons() & Qt::RightButton) && scrolling)
 	{
-		//QPoint diffPos = event->pos() - lastPos;
-		translate(event->pos(), operationPos);
+		QPoint diffPos = event->pos() - lastPos;
+		translate(diffPos);
 		//dTranslationMatrix.translate(diffPos.x(), diffPos.y());
 		//operationPos -= diffPos;
 		dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
@@ -144,58 +144,28 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 
 void cVectorDrawWidget::rotateSlot(const int &angle)
 {
-	rotate(angle, dWorldMatrix.inverted().map(operationPos));
-
-	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
-
-}
-
-void cVectorDrawWidget::rotate(const int &angle, const QPoint &point)
-{
-
-	//This is the matrix for transforming against an arbitrary point
-	//This matrix, AND it's inverted counterpart, should really be 
-	//calculated once.
-	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
-	//cout << "Angle: " << angle << endl;
-	
 	double pi = 3.14159;
 	 
 	double a    = pi/180 * (double)angle;
 	double sina = sin(a);
 	double cosa = cos(a);
 
-	QMatrix rotationMatrix(cosa, sina, -sina, cosa, 0, 0);
-	
-	dRotationMatrix = arbTranslationMatrix.inverted() * rotationMatrix * arbTranslationMatrix;
+	dRotationMatrix = dOperationTranslation.inverted() * QMatrix(cosa, sina, -sina, cosa, 0, 0) * dOperationTranslation;
+	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 }
 
 
 void cVectorDrawWidget::scaleSlot(const int &scale)
 {
 	dScale = 1 + ((double)scale / 10.0f);
-
-	
-	doScale(dWorldMatrix.inverted().map(operationPos));
-
+	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 }
 
-void cVectorDrawWidget::doScale(const QPoint &point)
+
+
+void cVectorDrawWidget::translate(const QPoint &transBy)
 {
-	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
-
-	dScaleMatrix = arbTranslationMatrix.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * arbTranslationMatrix;
-}
-
-
-
-void cVectorDrawWidget::translate(const QPoint &transTo, const QPoint &point)
-{
-	QMatrix arbTranslationMatrix(1, 0, 0, 1, (double)point.x(), (double)point.y());
-	QMatrix translateMatrix = QMatrix(1, 0, 0, 1, transTo.x(), transTo.y());
-
-	dTranslationMatrix = arbTranslationMatrix.inverted() * translateMatrix * arbTranslationMatrix;
-
+	dTranslationMatrix.translate(transBy.x(), transBy.y());
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
 }
