@@ -1,14 +1,14 @@
 #include "QVecLine.h"
 
 
-QVecLine::QVecLine(QColor colour, int diameter) : lastPoint(NULL)
+QVecLine::QVecLine(QColor colour, int diameter) : dLastPoint(NULL)
 {
 	dColour = colour;
 	dDiameter = diameter;
 }
 
 
-QVecLine::QVecLine() : lastPoint(NULL)
+QVecLine::QVecLine() : dLastPoint(NULL)
 {
 	dColour = Qt::black;
 	dDiameter = 1;
@@ -24,10 +24,10 @@ void QVecLine::mDraw(QImage &image, QMatrix &mat, double thicknesScale)
 	for(deque<QPoint>::iterator i = dLine.begin(); i < dLine.end(); ++ i)
 	{
 		QPoint &newPoint = *i;
-		if(lastPoint) mDrawLine(image, mat.map(*lastPoint), mat.map(newPoint), thicknesScale);
-		lastPoint = &newPoint;
+		if(dLastPoint) mDrawLine(image, mat.map(*dLastPoint), mat.map(newPoint), thicknesScale);
+		dLastPoint = &newPoint;
 	}
-	lastPoint = NULL;
+	dLastPoint = NULL;
 }
 
 void QVecLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint, double thicknesScale)

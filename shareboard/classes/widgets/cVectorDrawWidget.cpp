@@ -5,11 +5,10 @@
 cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent), dOperationTranslation(1, 0, 0, 1, 319, 164)
 {
 	setAttribute(Qt::WA_StaticContents);
-	modified = false;
-	scribbling = false;
-	scrolling = false;
-	myPenWidth = 1;
-	myPenColor = Qt::black;
+	dScribbling = false;
+	dScrolling = false;
+	dCurrentPenWidth = 1;
+	dCurrentPenColour = Qt::black;
 	dTempLine = NULL;
 	dScale = 1.0f;
 }
@@ -21,7 +20,7 @@ void cVectorDrawWidget::setPenColorSlot(const QColor &newColor)
 
 void cVectorDrawWidget::setPenColor(const QColor &newColor)
 {
-	myPenColor = newColor;
+	dCurrentPenColour = newColor;
 }
 
 void cVectorDrawWidget::setPenWidthSlot(int newWidth)
@@ -30,13 +29,13 @@ void cVectorDrawWidget::setPenWidthSlot(int newWidth)
 }
 void cVectorDrawWidget::setPenWidth(int newWidth)
 {
-	myPenWidth = 1 + newWidth;
+	dCurrentPenWidth = 1 + newWidth;
 }
 
 void cVectorDrawWidget::clearImage()
 {
 	dLines.clear();
-	image.fill(qRgb(255, 255, 255));
+	dImage.fill(qRgb(255, 255, 255));
 	update();
 }
 
@@ -48,37 +47,37 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 		//our world matrix could be rotated or moved or scaled.
 		dInvertedWorldMatrix = dWorldMatrix.inverted();
 		//create a new vector line object
-		dTempLine = new QVecLine(myPenColor, myPenWidth);
+		dTempLine = new QVecLine(dCurrentPenColour, dCurrentPenWidth);
 		//Add this vector to he current line being drawn
 		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
 
-		scribbling = true;
+		dScribbling = true;
 	}
 	if(event->button() == Qt::RightButton)
 	{
-		scrolling = true;
-		lastPos = event->pos();
+		dScrolling = true;
+		dLastPos = event->pos();
 	}
 }
 
 void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 {
-	if((event->buttons() & Qt::LeftButton) && scribbling)
+	if((event->buttons() & Qt::LeftButton) && dScribbling)
 	{
 		//Add this vector to he current line being drawn
 		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
 	}
-	if((event->buttons() & Qt::RightButton) && scrolling)
+	if((event->buttons() & Qt::RightButton) && dScrolling)
 	{
-		QPoint diffPos = event->pos() - lastPos;
+		QPoint diffPos = event->pos() - dLastPos;
 		translate(diffPos);
-		lastPos = event->pos();
+		dLastPos = event->pos();
 	}
 }
 
 void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-	if(event->button() == Qt::LeftButton && scribbling)
+	if(event->button() == Qt::LeftButton && dScribbling)
 	{
 		//push the new line onto the deque.
 		dLines.push_back(*dTempLine);
@@ -86,29 +85,29 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 		delete(dTempLine);
 		dTempLine = NULL;
 		//Set the scribble state to false;
-		scribbling = false;
+		dScribbling = false;
 	}
-	if((event->buttons() & Qt::RightButton) && scrolling)
+	if((event->buttons() & Qt::RightButton) && dScrolling)
 	{
-		scrolling = false;
+		dScrolling = false;
 	}
 }
 
 void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 {
-	image.fill(qRgb(255, 255, 255));
+	dImage.fill(qRgb(255, 255, 255));
 	//Draw the existing lines in the queue
 	for(deque<QVecLine>::iterator i = dLines.begin(); i < dLines.end(); i ++)
 	{
-		(*i).mDraw(image, dWorldMatrix, dScale);
+		(*i).mDraw(dImage, dWorldMatrix, dScale);
 	}
 
 	//Draw the lines currently being drawn
-	if(dTempLine) dTempLine->mDraw(image, dWorldMatrix, dScale);
+	if(dTempLine) dTempLine->mDraw(dImage, dWorldMatrix, dScale);
 
 	QPainter painter(this);
 	//painter.setMatrix(dWorldMatrix);
-	painter.drawImage(QPoint(0, 0), image);
+	painter.drawImage(QPoint(0, 0), dImage);
 	//TODO: maybe take the update line out of the drawLine function
 	update();
 }
@@ -116,11 +115,11 @@ void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 void cVectorDrawWidget::resizeEvent(QResizeEvent *event)
 {
 	std::cout << "Resize!" << std::endl;
-	if(width() > image.width() || height() > image.height())
+	if(width() > dImage.width() || height() > dImage.height())
 	{
-		int newWidth = qMax(width() + 128, image.width());
-		int newHeight = qMax(height() + 128, image.height());
-		resizeImage(&image, QSize(newWidth, newHeight));
+		int newWidth = qMax(width() + 128, dImage.width());
+		int newHeight = qMax(height() + 128, dImage.height());
+		resizeImage(&dImage, QSize(newWidth, newHeight));
 		update();
 	}
 	QWidget::resizeEvent(event);

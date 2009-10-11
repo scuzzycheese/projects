@@ -16,6 +16,36 @@ using namespace std;
 class cVectorDrawWidget : public QWidget
 {
 	Q_OBJECT
+
+
+	//Data members
+	private:
+		
+		bool dScribbling;
+		bool dScrolling;
+		int dCurrentPenWidth;
+		QColor dCurrentPenColour;
+		QImage dImage;
+		
+		//points that are important
+		QPoint dLastPos;
+
+		//This is the translation matrix that we rotate and scale around
+		QMatrix dOperationTranslation;
+
+		//Matrix related stuff
+		QMatrix dWorldMatrix;
+		QMatrix dInvertedWorldMatrix;
+
+		QMatrix dTranslationMatrix;
+		QMatrix dRotationMatrix;
+		QMatrix dScaleMatrix;
+
+		double dScale;
+
+		deque<QVecLine> dLines;
+		QVecLine *dTempLine;
+
 	
 	public:
 		cVectorDrawWidget(QWidget *parent = 0);
@@ -23,9 +53,8 @@ class cVectorDrawWidget : public QWidget
 		void setPenColor(const QColor &newColor);
 		void setPenWidth(int newWidth);
 	
-		bool isModified() const { return modified; }
-		QColor penColor() const { return myPenColor; }
-		int penWidth() const { return myPenWidth; }
+		QColor penColor() const { return dCurrentPenColour; }
+		int penWidth() const { return dCurrentPenWidth; }
 
 		void translate(const QPoint &transBy);
 	
@@ -46,29 +75,6 @@ class cVectorDrawWidget : public QWidget
 	private:
 		void resizeImage(QImage *image, const QSize &newSize);
 		
-		bool modified;
-		bool scribbling;
-		bool scrolling;
-		int myPenWidth;
-		QColor myPenColor;
-		QImage image;
-		
-		//points that are important
-		QPoint lastPos;
-		QMatrix dOperationTranslation;
-
-		//Matrix related stuff
-		QMatrix dWorldMatrix;
-		QMatrix dInvertedWorldMatrix;
-
-		QMatrix dTranslationMatrix;
-		QMatrix dRotationMatrix;
-		QMatrix dScaleMatrix;
-
-		double dScale;
-
-		deque<QVecLine> dLines;
-		QVecLine *dTempLine;
 		
 };
 

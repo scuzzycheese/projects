@@ -17,7 +17,7 @@ class QVecLine
 		deque<QPoint> dLine;
 		QColor dColour;
 		int dDiameter;
-		QPoint *lastPoint;
+		QPoint *dLastPoint;
 
 		void mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint, double thicknesScale);
 
