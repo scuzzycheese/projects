@@ -13,6 +13,25 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent), dOperat
 	dScale = 1.0f;
 }
 
+
+
+QMatrix *cVectorDrawWidget::mGetWorldMatrix()
+{
+	return &dWorldMatrix;
+}
+QMatrix *cVectorDrawWidget::mGetTranslationMatrix()
+{
+	return &dTranslationMatrix;
+}
+QMatrix *cVectorDrawWidget::mGetScaleMatrix()
+{
+	return &dScaleMatrix;
+}
+QMatrix *cVectorDrawWidget::mGetRotationMatrix()
+{
+	return &dRotationMatrix;
+}
+
 void cVectorDrawWidget::setPenColorSlot(const QColor &newColor)
 {
 	setPenColor(newColor);
@@ -146,8 +165,30 @@ void cVectorDrawWidget::rotateSlot(const int &angle)
 	double sina = sin(a);
 	double cosa = cos(a);
 
-	dRotationMatrix = dOperationTranslation.inverted() * QMatrix(cosa, sina, -sina, cosa, 0, 0) * dOperationTranslation;
+
+
+
+
+	dRotationMatrix = QMatrix(cosa, sina, -sina, cosa, 0, 0);
+	QMatrix newTrans = dOperationTranslation.inverted() * dTranslationMatrix * dRotationMatrix * dOperationTranslation;
+	QPoint transVector(newTrans.dx() - dTranslationMatrix.dx(), newTrans.dy() - dTranslationMatrix.dy());
+	translate(transVector);
+
+
+
+
+	/*
+
+	dRotationMatrix = QMatrix(cosa, sina, -sina, cosa, 0, 0);
+	mDumpMatrix("dOperationTranslation", dOperationTranslation);
+	mDumpMatrix("dTranslationMatrix", dTranslationMatrix);
+	mDumpMatrix("dRotationMatrix", dRotationMatrix);
+	dTranslationMatrix = dOperationTranslation.inverted() * dTranslationMatrix * dRotationMatrix * dOperationTranslation;
+	mSetRotationToIdentity(dTranslationMatrix);
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+	*/
+	emit mMatrixChanged();
+
 }
 
 
@@ -156,12 +197,32 @@ void cVectorDrawWidget::scaleSlot(const int &scale)
 	dScale = 1 + ((double)scale / 10.0f);
 	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+	emit mMatrixChanged();
 }
 
 
 
 void cVectorDrawWidget::translate(const QPoint &transBy)
 {
+	dOperationTranslation.translate(-transBy.x(), -transBy.y());
 	dTranslationMatrix.translate(transBy.x(), transBy.y());
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+	emit mMatrixChanged();
+}
+
+void cVectorDrawWidget::mSetRotationToIdentity(QMatrix &mat)
+{
+	QPointF holdPoint(mat.dx(), mat.dy());
+	mat.setMatrix(1, 0, 0, 1, holdPoint.x(), holdPoint.y());
+}
+
+void cVectorDrawWidget::mDumpMatrix(string name, QMatrix &mat)
+{
+	cout << name << ": ";
+	cout << mat.m11() << ", ";
+	cout << mat.m12() << ", ";
+	cout << mat.m21() << ", ";
+	cout << mat.m22() << ", ";
+	cout << mat.dx() << ", ";
+	cout << mat.dy() << endl;
 }

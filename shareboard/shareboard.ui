@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>1280</width>
     <height>480</height>
    </rect>
   </property>
@@ -42,6 +42,46 @@
      </item>
     </layout>
    </widget>
+   <widget class="cMatrixWidget" name="WM_W" native="true">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>0</y>
+      <width>321</width>
+      <height>161</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="cMatrixWidget" name="TM_W" native="true">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>160</y>
+      <width>321</width>
+      <height>161</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="cMatrixWidget" name="SM_W" native="true">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>160</y>
+      <width>321</width>
+      <height>161</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="cMatrixWidget" name="RM_W" native="true">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>0</y>
+      <width>321</width>
+      <height>161</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -49,7 +89,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>640</width>
+     <width>1280</width>
      <height>25</height>
     </rect>
    </property>
@@ -346,10 +386,14 @@
    <header>cVectorDrawWidget.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>cMatrixWidget</class>
+   <extends>QWidget</extends>
+   <header>cMatrixWidget.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
- <resources>
-  <include location="lineThinIcon.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>scale</sender>

@@ -57,6 +57,12 @@ class cVectorDrawWidget : public QWidget
 		int penWidth() const { return dCurrentPenWidth; }
 
 		void translate(const QPoint &transBy);
+		void mSetRotationToIdentity(QMatrix &mat);
+		void mDumpMatrix(string name, QMatrix &mat);
+		QMatrix *mGetWorldMatrix();
+		QMatrix *mGetTranslationMatrix();
+		QMatrix *mGetScaleMatrix();
+		QMatrix *mGetRotationMatrix();
 	
 	public slots:
 		void clearImage();
@@ -64,6 +70,8 @@ class cVectorDrawWidget : public QWidget
 		void setPenWidthSlot(int newWidth);
 		void rotateSlot(const int &angle);
 		void scaleSlot(const int &scale);
+	signals:
+		void mMatrixChanged();
 	
 	protected:
 		void mousePressEvent(QMouseEvent *event);
