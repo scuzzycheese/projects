@@ -366,6 +366,32 @@
       <string>0</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="resetButton">
+     <property name="geometry">
+      <rect>
+       <x>660</x>
+       <y>10</y>
+       <width>92</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reset</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="angleSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>40</y>
+       <width>81</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>359</number>
+     </property>
+    </widget>
    </widget>
   </widget>
   <action name="actionAbout">

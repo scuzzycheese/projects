@@ -15,8 +15,10 @@ int main(int argc, char **argv)
 	QSlider *sldr = mainWindow->findChild<QSlider *>("penThickness");
 	cVectorDrawWidget *drawArea = mainWindow->findChild<cVectorDrawWidget *>("drawArea");
 	QPushButton *clearButton = mainWindow->findChild<QPushButton *>("clearButton");
+	QPushButton *resetButton = mainWindow->findChild<QPushButton *>("resetButton");
 	QDial *angleDial = mainWindow->findChild<QDial *>("orientation");
 	QSlider *scale = mainWindow->findChild<QSlider *>("scale");
+	QSpinBox *angleSpinBox = mainWindow->findChild<QSpinBox *>("angleSpinBox");
 
 	cMatrixWidget *worldMatrixWidget = mainWindow->findChild<cMatrixWidget *>("WM_W");
 	cMatrixWidget *rotationMatrixWidget = mainWindow->findChild<cMatrixWidget *>("RM_W");
@@ -36,10 +38,13 @@ int main(int argc, char **argv)
 
 
   	QObject::connect(clearButton, SIGNAL(clicked()), drawArea, SLOT(clearImage()));
+  	QObject::connect(resetButton, SIGNAL(clicked()), drawArea, SLOT(mResetMatrices()));
 	QObject::connect(clrPkr, SIGNAL(colorChanged(const QColor &)), drawArea, SLOT(setPenColorSlot(const QColor &)));
 	QObject::connect(sldr, SIGNAL(valueChanged(int)), drawArea, SLOT(setPenWidthSlot(int)));
 	QObject::connect(angleDial, SIGNAL(valueChanged(int)), drawArea, SLOT(rotateSlot(int)));
 	QObject::connect(scale, SIGNAL(valueChanged(int)), drawArea, SLOT(scaleSlot(int)));
+	QObject::connect(angleSpinBox, SIGNAL(valueChanged(int)), angleDial, SLOT(setValue(int)));
+	QObject::connect(angleDial, SIGNAL(valueChanged(int)), angleSpinBox, SLOT(setValue(int)));
 
 	QObject::connect(drawArea, SIGNAL(mMatrixChanged()), worldMatrixWidget, SLOT(mUpdate()));
 	QObject::connect(drawArea, SIGNAL(mMatrixChanged()), rotationMatrixWidget, SLOT(mUpdate()));

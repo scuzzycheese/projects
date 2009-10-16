@@ -70,6 +70,7 @@ class cVectorDrawWidget : public QWidget
 		void setPenWidthSlot(int newWidth);
 		void rotateSlot(const int &angle);
 		void scaleSlot(const int &scale);
+		void mResetMatrices();
 	signals:
 		void mMatrixChanged();
 	

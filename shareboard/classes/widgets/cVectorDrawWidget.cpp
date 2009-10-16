@@ -57,6 +57,19 @@ void cVectorDrawWidget::clearImage()
 	dImage.fill(qRgb(255, 255, 255));
 	update();
 }
+void cVectorDrawWidget::mResetMatrices()
+{
+	QDial *angleDial = nativeParentWidget()->findChild<QDial *>("orientation");
+	angleDial->setValue(0);
+	dWorldMatrix.reset();
+	dInvertedWorldMatrix.reset();
+	dRotationMatrix.reset();
+	dTranslationMatrix.reset();
+	dScaleMatrix.reset();
+	dOperationTranslation.setMatrix(1, 0, 0, 1, 319, 164);
+	dScale = 0;
+	emit mMatrixChanged();
+}
 
 void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 {
