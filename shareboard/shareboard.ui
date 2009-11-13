@@ -282,6 +282,9 @@
      </property>
     </widget>
     <widget class="QDial" name="orientation">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -380,6 +383,9 @@
      </property>
     </widget>
     <widget class="QSpinBox" name="angleSpinBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>540</x>

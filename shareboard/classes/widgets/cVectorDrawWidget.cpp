@@ -67,7 +67,7 @@ void cVectorDrawWidget::mResetMatrices()
 	dTranslationMatrix.reset();
 	dScaleMatrix.reset();
 	dOperationTranslation.setMatrix(1, 0, 0, 1, 319, 164);
-	dScale = 0;
+	dScale = 1.0f;
 	emit mMatrixChanged();
 }
 
@@ -180,13 +180,14 @@ void cVectorDrawWidget::rotateSlot(const int &angle)
 
 
 
-
+	/*
 
 	dRotationMatrix = QMatrix(cosa, sina, -sina, cosa, 0, 0);
 	QMatrix newTrans = dOperationTranslation.inverted() * dTranslationMatrix * dRotationMatrix * dOperationTranslation;
 	QPoint transVector(newTrans.dx() - dTranslationMatrix.dx(), newTrans.dy() - dTranslationMatrix.dy());
 	translate(transVector);
 
+	*/
 
 
 
@@ -209,7 +210,7 @@ void cVectorDrawWidget::scaleSlot(const int &scale)
 {
 	dScale = 1 + ((double)scale / 10.0f);
 	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
-	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+	dWorldMatrix = dScaleMatrix * dTranslationMatrix;
 	emit mMatrixChanged();
 }
 
@@ -217,9 +218,15 @@ void cVectorDrawWidget::scaleSlot(const int &scale)
 
 void cVectorDrawWidget::translate(const QPoint &transBy)
 {
+	//I think this needs to be here, because scaling performs quite complex
+	//operations on the matrix, the scale matrix has to be updated with
+	//every translation operation
 	dOperationTranslation.translate(-transBy.x(), -transBy.y());
+	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
+
 	dTranslationMatrix.translate(transBy.x(), transBy.y());
-	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
+
+	dWorldMatrix = dScaleMatrix * dTranslationMatrix;
 	emit mMatrixChanged();
 }
 
