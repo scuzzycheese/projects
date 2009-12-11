@@ -221,10 +221,16 @@ void cVectorDrawWidget::translate(const QPoint &transBy)
 	//I think this needs to be here, because scaling performs quite complex
 	//operations on the matrix, the scale matrix has to be updated with
 	//every translation operation
-	dOperationTranslation.translate(-transBy.x(), -transBy.y());
 	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
 
-	dTranslationMatrix.translate(transBy.x(), transBy.y());
+
+	QMatrix tempMatrix = dScaleMatrix;
+	tempMatrix.setMatrix(tempMatrix.m11(), tempMatrix.m12(), tempMatrix.m21(), tempMatrix.m22(), 0, 0);
+	QPointF tempPoint = tempMatrix.inverted().map(QPointF(transBy));
+	
+
+	dOperationTranslation.translate(-tempPoint.x(), -tempPoint.y());
+	dTranslationMatrix.translate(tempPoint.x(), tempPoint.y());
 
 	dWorldMatrix = dScaleMatrix * dTranslationMatrix;
 	emit mMatrixChanged();
