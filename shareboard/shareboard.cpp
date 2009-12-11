@@ -2,6 +2,7 @@
 #include "cVectorDrawWidget.h"
 #include <QtGui/QButtonGroup>
 #include <QObject>
+#include "cServer.h"
 
 int main(int argc, char **argv)
 {
@@ -10,6 +11,7 @@ int main(int argc, char **argv)
 	QMainWindow *mainWindow = new QMainWindow;
 	Ui::ShareBoard ui;
 	ui.setupUi(mainWindow);
+
 
 	QtColorPicker *clrPkr = mainWindow->findChild<QtColorPicker *>("colourPicker");
 	QSlider *sldr = mainWindow->findChild<QSlider *>("penThickness");
@@ -58,6 +60,10 @@ int main(int argc, char **argv)
 	clrPkr->insertColor(Qt::red, "Red", 4);
 	clrPkr->insertColor(Qt::yellow, "Yellow", 5);
 	clrPkr->insertColor(Qt::white, "White", 6);
+
+
+	//Set up the TCP server
+	cServer *srv = new cServer();
 
 	mainWindow->show();
 

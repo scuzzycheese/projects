@@ -1,16 +1,26 @@
 #ifndef CSERVER_H
 #define CSERVER_H
 
-#include <QtNetwork>
 
-class cServer
+#define SERVERPORT 1234
+#define SERVERBIND QHostAddress::Any
+
+
+#include <Qt/QtNetwork>
+#include <QWidget>
+
+class cServer : public QWidget
 {
+	Q_OBJECT
 
 	private:
-		QTcpServer *cTcpSrv;
+		QTcpServer *dTcpSrv;
 
 	public:
-		cServer(int port);
+		cServer(QWidget *parent = 0);
+
+	public slots:
+		void mAcceptConnection();
 
 
 };
