@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>480</height>
+    <width>640</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -23,65 +23,52 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>-1</x>
-      <y>-1</y>
-      <width>641</width>
-      <height>331</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="cVectorDrawWidget" name="drawArea" native="true">
-       <property name="cursor">
-        <cursorShape>CrossCursor</cursorShape>
-       </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Draw Area</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="cVectorDrawWidget" name="drawArea" native="true"/>
+        </item>
+       </layout>
       </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="cMatrixWidget" name="WM_W" native="true">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>0</y>
-      <width>321</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="cMatrixWidget" name="TM_W" native="true">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>160</y>
-      <width>321</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="cMatrixWidget" name="SM_W" native="true">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>160</y>
-      <width>321</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="cMatrixWidget" name="RM_W" native="true">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>0</y>
-      <width>321</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Debug</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="cMatrixWidget" name="WM_W" native="true"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="cMatrixWidget" name="RM_W" native="true"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="cMatrixWidget" name="TM_W" native="true"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="cMatrixWidget" name="SM_W" native="true"/>
+        </item>
+       </layout>
+       <zorder>WM_W</zorder>
+       <zorder>TM_W</zorder>
+       <zorder>RM_W</zorder>
+       <zorder>SM_W</zorder>
+       <zorder>WM_W</zorder>
+       <zorder>TM_W</zorder>
+       <zorder>RM_W</zorder>
+       <zorder>SM_W</zorder>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -89,7 +76,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1280</width>
+     <width>640</width>
      <height>25</height>
     </rect>
    </property>
@@ -110,8 +97,11 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>Server</string>
     </property>
+    <addaction name="actionStart_Server"/>
+    <addaction name="actionStop_Server"/>
+    <addaction name="actionClients"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -150,9 +140,9 @@
     <widget class="QtColorPicker" name="colourPicker">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>10</y>
-       <width>85</width>
+       <x>330</x>
+       <y>0</y>
+       <width>81</width>
        <height>28</height>
       </rect>
      </property>
@@ -164,8 +154,8 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
-       <width>92</width>
+       <y>0</y>
+       <width>81</width>
        <height>28</height>
       </rect>
      </property>
@@ -176,7 +166,7 @@
     <widget class="QSlider" name="penThickness">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>120</x>
        <y>20</y>
        <width>161</width>
        <height>17</height>
@@ -201,7 +191,7 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>140</x>
        <y>0</y>
        <width>41</width>
        <height>18</height>
@@ -217,7 +207,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>90</x>
        <y>20</y>
        <width>21</width>
        <height>21</height>
@@ -244,8 +234,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>0</y>
+       <x>290</x>
+       <y>10</y>
        <width>41</width>
        <height>51</height>
       </rect>
@@ -271,7 +261,7 @@
     <widget class="QLabel" name="widthVal">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>-2</y>
        <width>51</width>
        <height>20</height>
@@ -321,7 +311,7 @@
     <widget class="QSlider" name="scale">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>120</x>
        <y>40</y>
        <width>161</width>
        <height>17</height>
@@ -346,7 +336,7 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>140</x>
        <y>60</y>
        <width>41</width>
        <height>18</height>
@@ -359,7 +349,7 @@
     <widget class="QLabel" name="zoomVal">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>51</width>
        <height>20</height>
@@ -372,9 +362,9 @@
     <widget class="QPushButton" name="resetButton">
      <property name="geometry">
       <rect>
-       <x>660</x>
-       <y>10</y>
-       <width>92</width>
+       <x>10</x>
+       <y>30</y>
+       <width>81</width>
        <height>28</height>
       </rect>
      </property>
@@ -388,8 +378,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>40</y>
+       <x>500</x>
+       <y>20</y>
        <width>81</width>
        <height>28</height>
       </rect>
@@ -403,6 +393,21 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionStart_Server">
+   <property name="text">
+    <string>Start Server</string>
+   </property>
+  </action>
+  <action name="actionStop_Server">
+   <property name="text">
+    <string>Stop Server</string>
+   </property>
+  </action>
+  <action name="actionClients">
+   <property name="text">
+    <string>Clients</string>
    </property>
   </action>
  </widget>

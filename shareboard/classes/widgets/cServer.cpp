@@ -19,9 +19,13 @@ cServer::cServer(QWidget *parent) : QWidget(parent)
 
 void cServer::mAcceptConnection()
 {
+	
+
 	printf("Connection Accepted\n");
 
 	QTcpSocket *client = dTcpSrv->nextPendingConnection();
+
+	dClients.push(client);
 	
 	//I presume this is just a nice cleanup routine
 	connect(client, SIGNAL(disconnected()), client, SLOT(deleteLater()));

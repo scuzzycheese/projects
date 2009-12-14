@@ -8,6 +8,7 @@
 
 #include <Qt/QtNetwork>
 #include <QWidget>
+#include <deque>
 
 class cServer : public QWidget
 {
@@ -15,6 +16,7 @@ class cServer : public QWidget
 
 	private:
 		QTcpServer *dTcpSrv;
+		deque<QTcpSocket *client> dClients;
 
 	public:
 		cServer(QWidget *parent = 0);

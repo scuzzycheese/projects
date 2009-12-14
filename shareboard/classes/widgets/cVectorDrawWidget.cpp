@@ -146,7 +146,6 @@ void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 
 void cVectorDrawWidget::resizeEvent(QResizeEvent *event)
 {
-	std::cout << "Resize!" << std::endl;
 	if(width() > dImage.width() || height() > dImage.height())
 	{
 		int newWidth = qMax(width() + 128, dImage.width());
