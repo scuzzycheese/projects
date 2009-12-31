@@ -61,6 +61,10 @@ void cVectorDrawWidget::mResetMatrices()
 {
 	QDial *angleDial = nativeParentWidget()->findChild<QDial *>("orientation");
 	angleDial->setValue(0);
+
+	QSlider *scale = nativeParentWidget()->findChild<QSlider *>("scale");	
+	scale->setValue(0);
+
 	dWorldMatrix.reset();
 	dInvertedWorldMatrix.reset();
 	dRotationMatrix.reset();

@@ -16,7 +16,7 @@ class cServer : public QWidget
 
 	private:
 		QTcpServer *dTcpSrv;
-		deque<QTcpSocket *client> dClients;
+		std::deque<QTcpSocket *> dClients;
 
 	public:
 		cServer(QWidget *parent = 0);

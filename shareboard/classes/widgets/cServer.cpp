@@ -25,13 +25,13 @@ void cServer::mAcceptConnection()
 
 	QTcpSocket *client = dTcpSrv->nextPendingConnection();
 
-	dClients.push(client);
+	dClients.push_front(client);
 	
 	//I presume this is just a nice cleanup routine
 	connect(client, SIGNAL(disconnected()), client, SLOT(deleteLater()));
 
 
-	client->write("Hello\r\n", 7);
-	client->disconnectFromHost();
+	client->write("Hello from shareboard\r\n", 23);
+	//client->disconnectFromHost();
 
 }
