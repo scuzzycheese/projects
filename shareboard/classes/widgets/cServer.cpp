@@ -15,6 +15,11 @@ cServer::cServer(QWidget *parent) : QWidget(parent)
 
 	connect(dTcpSrv, SIGNAL(newConnection()), this, SLOT(mAcceptConnection()));
 
+	//We push ourselves onto the peer list
+	sNetPeer peer(sNetPeer::MASTER, sNetPeer::LIVE);
+	dClients.push_front(peer);
+	
+
 }
 
 void cServer::mAcceptConnection()
@@ -23,15 +28,27 @@ void cServer::mAcceptConnection()
 
 	printf("Connection Accepted\n");
 
-	QTcpSocket *client = dTcpSrv->nextPendingConnection();
+	//Add peers to our list
+	sNetPeer peer(sNetPeer::PEER, sNetPeer::LIVE);
+	peer.dClient = dTcpSrv->nextPendingConnection();
 
-	dClients.push_front(client);
+	//Add some additional information
+	peer.dHostAddress = peer.dClient->peerAddress();
+	//We just adopt OUR bind port, in future I want the host
+	//to be able to announce what port peers must connect to 
+	//it on.
+	peer.dHostPort = peer.dClient->localPort();
+
+	dClients.push_front(peer);
 	
 	//I presume this is just a nice cleanup routine
-	connect(client, SIGNAL(disconnected()), client, SLOT(deleteLater()));
+	connect(peer.dClient, SIGNAL(disconnected()), peer.dClient, SLOT(deleteLater()));
 
 
-	client->write("Hello from shareboard\r\n", 23);
+	peer.dClient->write("Hello from shareboard\r\n", 23);
 	//client->disconnectFromHost();
 
 }
+
+
+
