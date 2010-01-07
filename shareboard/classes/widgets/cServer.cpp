@@ -1,6 +1,6 @@
 #include "cServer.h"
 
-cServer::cServer(QWidget *parent) : QWidget(parent)
+cServer::cServer(QWidget *parent) : QWidget(parent), dSelfPeer(sNetPeer::UNKNOWN, sNetPeer::LIVE)
 {
 
 	dTcpSrv = new QTcpServer(this);
@@ -16,39 +16,55 @@ cServer::cServer(QWidget *parent) : QWidget(parent)
 	connect(dTcpSrv, SIGNAL(newConnection()), this, SLOT(mAcceptConnection()));
 
 	//We push ourselves onto the peer list
-	sNetPeer peer(sNetPeer::MASTER, sNetPeer::LIVE);
-	dClients.push_front(peer);
-	
+	dClients.push_front(&dSelfPeer);
 
+}
+
+cServer::~cServer()
+{
+	//clean up all the memory we used
+	for(std::list<sNetPeer *>::iterator sNetPeerIter = dClients.begin(); sNetPeerIter != dClients.end(); sNetPeerIter ++)
+	{
+		sNetPeer *peer = *sNetPeerIter;
+		delete(peer);
+	}
 }
 
 void cServer::mAcceptConnection()
 {
-	
-
 	printf("Connection Accepted\n");
 
 	//Add peers to our list
-	sNetPeer peer(sNetPeer::PEER, sNetPeer::LIVE);
-	peer.dClient = dTcpSrv->nextPendingConnection();
+	sNetPeer *peer = new sNetPeer(sNetPeer::PEER, sNetPeer::LIVE);
+	peer->dClient = dTcpSrv->nextPendingConnection();
 
 	//Add some additional information
-	peer.dHostAddress = peer.dClient->peerAddress();
+	peer->dPeerIPAddress = peer->dClient->peerAddress();
 	//We just adopt OUR bind port, in future I want the host
 	//to be able to announce what port peers must connect to 
 	//it on.
-	peer.dHostPort = peer.dClient->localPort();
+	peer->dPeerPort = SERVERPORT;
 
-	dClients.push_front(peer);
 	
 	//I presume this is just a nice cleanup routine
-	connect(peer.dClient, SIGNAL(disconnected()), peer.dClient, SLOT(deleteLater()));
+	connect(peer->dClient, SIGNAL(disconnected()), peer->dClient, SLOT(deleteLater()));
 
 
-	peer.dClient->write("Hello from shareboard\r\n", 23);
-	//client->disconnectFromHost();
+	peer->dClient->write("Hello from shareboard\r\n", 23);
 
+	//since I don't know what interface clients are binding to,
+	//I need to find out on my first inward connection
+	if(dSelfPeer.dPeerIPAddress == QHostAddress::Null)
+	{
+		dSelfPeer.dPeerIPAddress = peer->dClient->localAddress();
+	}
+
+
+	//finally push the peer onto the stack
+	dClients.push_front(peer);
 }
+
+
 
 
 

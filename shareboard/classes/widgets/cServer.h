@@ -17,7 +17,8 @@ struct sNetPeer
 	enum CLASS
 	{
 		MASTER = 0,
-		PEER = 1
+		PEER = 1,
+		UNKNOWN = 3
 	};
 
 	enum STATUS
@@ -29,13 +30,15 @@ struct sNetPeer
 	sNetPeer(CLASS cls, STATUS status) : dPeerClass(cls), dStatus(status)
 	{
 		dClient = NULL;
-		dHostAddress = QHostAddress::Null;
+		dPeerIPAddress = QHostAddress::Null;
+		//This might need to be more dynamic in future
+		dPeerPort = SERVERPORT;
 	}
 
 	QTcpSocket *dClient;
 	std::string dPeerName;
-	QHostAddress dHostAddress;
-	quint16 dHostPort;
+	QHostAddress dPeerIPAddress;
+	quint16 dPeerPort;
 	uint8_t dPeerClass : 2;
 	uint8_t dStatus : 2;
 };
@@ -46,10 +49,12 @@ class cServer : public QWidget
 
 	private:
 		QTcpServer *dTcpSrv;
-		std::deque<sNetPeer> dClients;
+		std::list<sNetPeer *> dClients;
+		sNetPeer dSelfPeer;
 
 	public:
 		cServer(QWidget *parent = 0);
+		~cServer();
 
 	public slots:
 		void mAcceptConnection();
