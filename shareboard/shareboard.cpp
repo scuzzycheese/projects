@@ -62,9 +62,8 @@ int main(int argc, char **argv)
 	clrPkr->insertColor(Qt::white, "White", 6);
 
 
-	//Set up the TCP server
-	cServer *srv = new cServer();
-
+	cNetwork *net = new cNetwork();
+	
 	mainWindow->show();
 
 

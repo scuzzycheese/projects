@@ -1,6 +1,10 @@
 #include "cServer.h"
 
-cServer::cServer(QWidget *parent) : QWidget(parent), dSelfPeer(sNetPeer::UNKNOWN, sNetPeer::LIVE)
+/**
+ * All clients start off as masters. The idea, is when
+ * you opt to connect to another server you become a peer
+ */
+cServer::cServer(QWidget *parent, std::list<sNetPeer *> *clients) : QWidget(parent), dSelfPeer(sNetPeer::MASTER, sNetPeer::LIVE), dClients(clients)
 {
 
 	dTcpSrv = new QTcpServer(this);
@@ -16,18 +20,20 @@ cServer::cServer(QWidget *parent) : QWidget(parent), dSelfPeer(sNetPeer::UNKNOWN
 	connect(dTcpSrv, SIGNAL(newConnection()), this, SLOT(mAcceptConnection()));
 
 	//We push ourselves onto the peer list
-	dClients.push_front(&dSelfPeer);
+	dClients->push_front(&dSelfPeer);
 
 }
 
 cServer::~cServer()
 {
+	printf("Cleaning up!\n");
 	//clean up all the memory we used
-	for(std::list<sNetPeer *>::iterator sNetPeerIter = dClients.begin(); sNetPeerIter != dClients.end(); sNetPeerIter ++)
+	for(std::list<sNetPeer *>::iterator sNetPeerIter = dClients->begin(); sNetPeerIter != dClients->end(); sNetPeerIter ++)
 	{
 		sNetPeer *peer = *sNetPeerIter;
 		delete(peer);
 	}
+	printf("Done\n");
 }
 
 void cServer::mAcceptConnection()
@@ -50,7 +56,6 @@ void cServer::mAcceptConnection()
 	connect(peer->dClient, SIGNAL(disconnected()), peer->dClient, SLOT(deleteLater()));
 
 
-	peer->dClient->write("Hello from shareboard\r\n", 23);
 
 	//since I don't know what interface clients are binding to,
 	//I need to find out on my first inward connection
@@ -59,9 +64,10 @@ void cServer::mAcceptConnection()
 		dSelfPeer.dPeerIPAddress = peer->dClient->localAddress();
 	}
 
+	peer->dClient->write("Hello from shareboard\r\n", 23);
 
 	//finally push the peer onto the stack
-	dClients.push_front(peer);
+	dClients->push_front(peer);
 }
 
 
