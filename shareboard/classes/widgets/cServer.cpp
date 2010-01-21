@@ -24,16 +24,14 @@ cServer::cServer(QWidget *parent, std::list<sNetPeer *> *clients) : QWidget(pare
 
 }
 
+/**
+ * Eve tho we populate a large chunk of the dClients list, 
+ * we don't actuall own it, we just write to it, so the
+ * cleanup must be handled buy the server class, not this
+ * one
+ */
 cServer::~cServer()
 {
-	printf("Cleaning up!\n");
-	//clean up all the memory we used
-	for(std::list<sNetPeer *>::iterator sNetPeerIter = dClients->begin(); sNetPeerIter != dClients->end(); sNetPeerIter ++)
-	{
-		sNetPeer *peer = *sNetPeerIter;
-		delete(peer);
-	}
-	printf("Done\n");
 }
 
 void cServer::mAcceptConnection()

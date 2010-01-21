@@ -2,6 +2,7 @@
 #define CNETWORK_H
 
 #include <Qt/QtNetwork>
+#include <QObject>
 
 #define SERVERPORT 1234
 #define SERVERBIND QHostAddress::Any
@@ -49,6 +50,8 @@ class cNetwork
 	public:
 		cNetwork();
 		~cNetwork();
+
+		int connectToHost(const QString &host, quint16 port);
 
 		cServer *server;
 		std::list<sNetPeer *> dClients;
