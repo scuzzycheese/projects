@@ -29,6 +29,9 @@ struct sNetPeer
 		dPeerIPAddress = QHostAddress::Null;
 		//This might need to be more dynamic in future
 		dPeerPort = SERVERPORT;
+
+		dClient = NULL;
+		dPeerPort = 0;
 	}
 
 	QTcpSocket *dClient;
@@ -46,15 +49,21 @@ class cServer;
 
 class cNetwork
 {
-	
+	Q_OBJECT	
+
 	public:
 		cNetwork();
 		~cNetwork();
 
-		int connectToHost(const QString &host, quint16 port);
+		int mConnectToHost(const QString &host, quint16 port);
+		void mPeerList();
 
-		cServer *server;
+		cServer *dServer;
 		std::list<sNetPeer *> dClients;
+
+	public slots:	
+		void mHandleConnection();
+
 
 };
 

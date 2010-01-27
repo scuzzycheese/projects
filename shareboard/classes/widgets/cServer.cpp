@@ -25,7 +25,7 @@ cServer::cServer(QWidget *parent, std::list<sNetPeer *> *clients) : QWidget(pare
 }
 
 /**
- * Eve tho we populate a large chunk of the dClients list, 
+ * Even tho we populate a large chunk of the dClients list, 
  * we don't actuall own it, we just write to it, so the
  * cleanup must be handled buy the server class, not this
  * one

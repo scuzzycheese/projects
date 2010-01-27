@@ -63,6 +63,10 @@ int main(int argc, char **argv)
 
 
 	cNetwork *net = new cNetwork();
+
+	net->mConnectToHost("127.0.0.1", 1234);
+
+	net->mPeerList();
 	
 	mainWindow->show();
 
