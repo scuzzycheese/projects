@@ -32,6 +32,7 @@ int cNetwork::mConnectToHost(const QString &host, quint16 port)
 {
 	QTcpSocket *sock = new QTcpSocket();
 	sock->connectToHost(host, port, QIODevice::ReadWrite);
+	sock->waitForConnected(1000);
 
 	sNetPeer *peer = new sNetPeer(sNetPeer::PEER, sNetPeer::LIVE);
 	peer->dClient = sock;

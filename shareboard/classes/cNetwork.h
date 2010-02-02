@@ -47,7 +47,7 @@ struct sNetPeer
 
 class cServer;
 
-class cNetwork
+class cNetwork : public QObject
 {
 	Q_OBJECT	
 

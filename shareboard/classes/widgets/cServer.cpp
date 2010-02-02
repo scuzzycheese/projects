@@ -41,6 +41,8 @@ void cServer::mAcceptConnection()
 	//Add peers to our list
 	sNetPeer *peer = new sNetPeer(sNetPeer::PEER, sNetPeer::LIVE);
 	peer->dClient = dTcpSrv->nextPendingConnection();
+	//I don't even know if this is nessesary in this slot
+	peer->dClient->waitForConnected(1000);
 
 	//Add some additional information
 	peer->dPeerIPAddress = peer->dClient->peerAddress();
