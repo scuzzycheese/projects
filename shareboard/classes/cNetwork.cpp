@@ -2,6 +2,8 @@
 
 cNetwork::cNetwork()
 {
+	connectDialog = NULL;
+
 	//Set up the TCP server
 	dServer = new cServer(0, &dClients);
 }
@@ -78,3 +80,21 @@ void cNetwork::mPeerList()
 
 
 }
+
+
+
+void cNetwork::connectTo()
+{
+	QLineEdit *hostLine = connectDialog->findChild<QLineEdit *>("host");
+
+	mConnectToHost(hostLine->text(), SERVERPORT);
+
+	//printf("HIT: %s\n", hostLine->text().toLocal8Bit().data());
+	connectDialog->hide();
+}
+
+void cNetwork::setConnectDialog(QDialog *connDiag)
+{
+	connectDialog = connDiag;
+}
+

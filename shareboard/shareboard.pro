@@ -14,6 +14,6 @@ SOURCES +=	classes/widgets/qtcolorpicker.cpp \
 				classes/cNetwork.cpp \
 				shareboard.cpp
 TARGET = shareboard
-FORMS += shareboard.ui
+FORMS += shareboard.ui connectDialog.ui
 QT += network
 INCLUDEPATH += classes/widgets classes/vector classes

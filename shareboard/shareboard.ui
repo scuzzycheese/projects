@@ -47,20 +47,16 @@
         <item row="0" column="0">
          <widget class="cMatrixWidget" name="WM_W" native="true"/>
         </item>
-        <item row="0" column="1">
-         <widget class="cMatrixWidget" name="RM_W" native="true"/>
-        </item>
         <item row="1" column="0">
          <widget class="cMatrixWidget" name="TM_W" native="true"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="cMatrixWidget" name="RM_W" native="true"/>
         </item>
         <item row="1" column="1">
          <widget class="cMatrixWidget" name="SM_W" native="true"/>
         </item>
        </layout>
-       <zorder>WM_W</zorder>
-       <zorder>TM_W</zorder>
-       <zorder>RM_W</zorder>
-       <zorder>SM_W</zorder>
        <zorder>WM_W</zorder>
        <zorder>TM_W</zorder>
        <zorder>RM_W</zorder>
@@ -97,11 +93,9 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Server</string>
+     <string>Network</string>
     </property>
-    <addaction name="actionStart_Server"/>
-    <addaction name="actionStop_Server"/>
-    <addaction name="actionClients"/>
+    <addaction name="actionConnect_to_Network"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -408,6 +402,11 @@
   <action name="actionClients">
    <property name="text">
     <string>Clients</string>
+   </property>
+  </action>
+  <action name="actionConnect_to_Network">
+   <property name="text">
+    <string>Connect to Network</string>
    </property>
   </action>
  </widget>

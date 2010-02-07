@@ -2,6 +2,8 @@
 #define CNETWORK_H
 
 #include <Qt/QtNetwork>
+#include <QtGui/QLineEdit>
+#include <QtGui/QDialog>
 #include <QObject>
 
 #define SERVERPORT 1234
@@ -51,6 +53,9 @@ class cNetwork : public QObject
 {
 	Q_OBJECT	
 
+	private:
+		QDialog *connectDialog;
+
 	public:
 		cNetwork();
 		~cNetwork();
@@ -61,8 +66,12 @@ class cNetwork : public QObject
 		cServer *dServer;
 		std::list<sNetPeer *> dClients;
 
+		void setConnectDialog(QDialog *connDiag);
+
 	public slots:	
 		void mHandleConnection();
+		void connectTo();
+
 
 
 };

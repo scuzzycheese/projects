@@ -1,4 +1,5 @@
 #include "ui_shareboard.h"
+#include "ui_connectDialog.h"
 #include "cVectorDrawWidget.h"
 #include <QtGui/QButtonGroup>
 #include <QObject>
@@ -12,6 +13,10 @@ int main(int argc, char **argv)
 	Ui::ShareBoard ui;
 	ui.setupUi(mainWindow);
 
+	QDialog *connectDialog = new QDialog;
+	Ui::ConnectDialog cd;
+	cd.setupUi(connectDialog);
+
 
 	QtColorPicker *clrPkr = mainWindow->findChild<QtColorPicker *>("colourPicker");
 	QSlider *sldr = mainWindow->findChild<QSlider *>("penThickness");
@@ -21,6 +26,9 @@ int main(int argc, char **argv)
 	QDial *angleDial = mainWindow->findChild<QDial *>("orientation");
 	QSlider *scale = mainWindow->findChild<QSlider *>("scale");
 	QSpinBox *angleSpinBox = mainWindow->findChild<QSpinBox *>("angleSpinBox");
+
+	QAction *connectToNetworkAction = mainWindow->findChild<QAction *>("actionConnect_to_Network");
+	QPushButton *connectButton = connectDialog->findChild<QPushButton *>("connectButton");
 
 	cMatrixWidget *worldMatrixWidget = mainWindow->findChild<cMatrixWidget *>("WM_W");
 	cMatrixWidget *rotationMatrixWidget = mainWindow->findChild<cMatrixWidget *>("RM_W");
@@ -37,6 +45,8 @@ int main(int argc, char **argv)
 	scaleMatrixWidget->mSetMatrix(drawArea->mGetScaleMatrix());
 
 	
+
+	QObject::connect(connectToNetworkAction, SIGNAL(triggered()), connectDialog, SLOT(show()));
 
 
   	QObject::connect(clearButton, SIGNAL(clicked()), drawArea, SLOT(clearImage()));
@@ -63,10 +73,13 @@ int main(int argc, char **argv)
 
 
 	cNetwork *net = new cNetwork();
+	net->setConnectDialog(connectDialog);
 
 	net->mConnectToHost("127.0.0.1", 1234);
 
 	net->mPeerList();
+
+	QObject::connect(connectButton, SIGNAL(clicked()), net, SLOT(connectTo())); 
 	
 	mainWindow->show();
 
