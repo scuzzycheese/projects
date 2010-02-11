@@ -4,6 +4,7 @@
 #include <QtGui/QButtonGroup>
 #include <QObject>
 #include "cServer.h"
+#include "cConnDiag.h"
 
 int main(int argc, char **argv)
 {
@@ -13,9 +14,9 @@ int main(int argc, char **argv)
 	Ui::ShareBoard ui;
 	ui.setupUi(mainWindow);
 
-	QDialog *connectDialog = new QDialog;
-	Ui::ConnectDialog cd;
-	cd.setupUi(connectDialog);
+	cConnDiag *connectDialog = new cConnDiag;
+	//Ui::ConnectDialog cd;
+	//cd.setupUi(connectDialog);
 
 
 	QtColorPicker *clrPkr = mainWindow->findChild<QtColorPicker *>("colourPicker");
