@@ -107,6 +107,18 @@ class cBufferBase
 	{
 		mBufferSize = size;
 	}
+
+	/*
+	void copy(char *data, size_t size)
+	{
+		((Derived *)this)->copy(data, size);
+	}
+
+	char *currentBuffer()
+	{
+		return ((Derived *)this)->currentBuffer();
+	}
+	*/
 	
 };
 

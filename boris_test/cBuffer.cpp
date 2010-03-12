@@ -1,13 +1,14 @@
 #include "cBuffer.h"
 
 
-cBuffer::cBuffer() : dNumChunks(1)
+void cBuffer::allocateInternalBuffer(size_t size)
 {
 	/**
 	 * NOTE: catch an exception here (allocation
 	 * failure)
 	 */
-	dChunks.push_back(new cDStore(DEFAULT_ALLOC_SIZE));
+	mChunks.push_back(new cDStore(size));
+	mNumChunks = 1;
 }
 
 
@@ -20,7 +21,7 @@ cBuffer::~cBuffer()
 
 void cBuffer::copy(char *data,  size_t size)
 {
-	cDStore *dstore = dChunks.back();
+	cDStore *dstore = mChunks.back();
 	size_t spaceLeft = dstore->mSpaceLeft();
 
 	if(spaceLeft >= size)
@@ -40,15 +41,15 @@ void cBuffer::copy(char *data,  size_t size)
 
 		//allocate a new buffer, with enough space to hold the rest
 		//of the data + extra
-		dChunks.push_back(new cDStore(size + DEFAULT_ALLOC_SIZE));
+		mChunks.push_back(new cDStore(size + DEFAULT_ALLOC_SIZE));
 
-		dstore = dChunks.back();
+		dstore = mChunks.back();
 		dstore->append(data, size);
 	}
 } 
 
 char *cBuffer::currentBuffer()
 {
-	return dChunks.back()->getData();
+	return mChunks.back()->getData();
 }
 

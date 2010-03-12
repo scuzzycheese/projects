@@ -67,13 +67,15 @@ class cDStore
 };
 
 
-class cBuffer
+class cBuffer : public cBufferBase<cBuffer>
 {
-	std::vector<cDStore *> dChunks;
-	size_t dNumChunks;
+	std::vector<cDStore *> mChunks;
+	size_t mNumChunks;
+
+	//we don't ever want to instantiate this class directly
+	cBuffer();
 
 	public: 
-	cBuffer();
 	~cBuffer();
 
 	void copy(char *data, size_t size);
