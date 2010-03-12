@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#define DEFAULT_ALLOC_SIZE 1204
+#define DEFAULT_ALLOC_SIZE 10
 
 
 class cDStore
@@ -49,11 +49,17 @@ class cDStore
 		{
 			memcpy(dData, data, size);
 			dAt += size;
+			dDataSize += size;
 		}
 		else
 		{
 			//NOTE: maybe throw an exception, or return 0?
 		}
+	}
+
+	char *mGetData()
+	{
+		return dData;
 	}
 
 
@@ -69,9 +75,12 @@ class cBuffer
 	cBuffer();
 	~cBuffer();
 
-	void copy(char *data,  size_t &size);
+	void copy(char *data,  size_t size);
+	
+	char *mCurrentBuffer();
 
 };
 
 
 #endif
+

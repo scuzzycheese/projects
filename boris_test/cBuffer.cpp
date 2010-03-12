@@ -12,12 +12,18 @@ cBuffer::cBuffer() : dNumChunks(1)
 
 
 
-void cBuffer::copy(char *data,  size_t &size)
+cBuffer::~cBuffer()
 {
-	cDStore *dstore = dChunks.front();
+}
+
+
+
+void cBuffer::copy(char *data,  size_t size)
+{
+	cDStore *dstore = dChunks.back();
 	size_t spaceLeft = dstore->mSpaceLeft();
 
-	if(spaceLeft > size)
+	if(spaceLeft >= size)
 	{
 		dstore->mAppend(data, size);
 	}
@@ -30,13 +36,19 @@ void cBuffer::copy(char *data,  size_t &size)
 		}
 
 		//calculate how much data still needs to be saved
-		size_t bufferLeft = size - spaceLeft;
+		size -= spaceLeft;
 
 		//allocate a new buffer, with enough space to hold the rest
-		//of the data
-		dChunks.push_back(new cDStore(bufferLeft + DEFAULT_ALLOC_SIZE));
+		//of the data + extra
+		dChunks.push_back(new cDStore(size + DEFAULT_ALLOC_SIZE));
 
-		dstore = dChunks.front();
-		dstore->mAppend(data, bufferLeft);
+		dstore = dChunks.back();
+		dstore->mAppend(data, size);
 	}
 } 
+
+char *cBuffer::mCurrentBuffer()
+{
+	return dChunks.back()->mGetData();
+}
+
