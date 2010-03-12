@@ -11,20 +11,20 @@ class cDStore
 {
 
 	char *dData;
-	uint32_t dAllocSize;
-	uint32_t dDataSize;
+	size_t dAllocSize;
+	size_t dDataSize;
 
 	public: 
-	/**
-	 * dAllocSize should maybe be initialised after the new
-	 * because we want to make sure the allocation doesn't
-	 * faile
-	 */
-	cDStore(uint32_t size) : dData(NULL), dAllocSize(size), dDataSize(0)
+	cDStore(size_t size) : dData(NULL), dAllocSize(0), dDataSize(0)
 	{
 		if(!(dData = new(std::nothrow) char[size]))
 		{
-			//Do some error handling here
+			//NOTE: Do some error handling here
+			//maybe throw and exception
+		}
+		else
+		{
+			dAllocSize = size;
 		}
 	}
 
@@ -39,10 +39,16 @@ class cDStore
 class cBuffer
 {
 	std::vector<cDStore> dChunks;
-	uint16_t dNumChunks;
+	size_t dNumChunks;
 
 	public: 
 	cBuffer();
+
+	void copy(char *data,  size_t size)
+	{
+		cDStore *dstore = &(dChunks.front());
+		if(dstore
+	} 
 
 };
 
