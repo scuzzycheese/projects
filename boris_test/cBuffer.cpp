@@ -25,13 +25,13 @@ void cBuffer::copy(char *data,  size_t size)
 
 	if(spaceLeft >= size)
 	{
-		dstore->mAppend(data, size);
+		dstore->append(data, size);
 	}
 	else
 	{
 		if(spaceLeft > 0)
 		{
-			dstore->mAppend(data, spaceLeft);
+			dstore->append(data, spaceLeft);
 			data += spaceLeft;
 		}
 
@@ -43,12 +43,12 @@ void cBuffer::copy(char *data,  size_t size)
 		dChunks.push_back(new cDStore(size + DEFAULT_ALLOC_SIZE));
 
 		dstore = dChunks.back();
-		dstore->mAppend(data, size);
+		dstore->append(data, size);
 	}
 } 
 
-char *cBuffer::mCurrentBuffer()
+char *cBuffer::currentBuffer()
 {
-	return dChunks.back()->mGetData();
+	return dChunks.back()->getData();
 }
 
