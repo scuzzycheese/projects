@@ -30,7 +30,7 @@ cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &capacity,
 	if(capacity < size)
 	{
 		//Throw an exception
-		std::cout << "EXCEPTION: capacity does not exceed space" << std::endl;
+		std::cout << "=======================EXCEPTION: capacity does not exceed space" << std::endl;
 	}
 	mChunks.push_back(new cDStore(size, data, takeOwnership));
 	if(capacity > size)
@@ -73,16 +73,16 @@ void cBuffer::copy(char *data, size_t size)
 
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
 	{
-		if(size < (*i)->getAllocSize())
+		if(size < (*i)->mAllocSize)
 		{
 			(*i)->copy(data, size);
 			return;
 		}
 		else
 		{
-			(*i)->copy(data, (*i)->getAllocSize());
-			size -= (*i)->getAllocSize();
-			data += (*i)->getAllocSize();
+			(*i)->copy(data, (*i)->mAllocSize);
+			size -= (*i)->mAllocSize;
+			data += (*i)->mAllocSize;
 		}
 	}
 }
@@ -144,7 +144,7 @@ void cBuffer::dumpBuffers()
 {
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
 	{
-		std::cout << "BUFFER DATA: " << (*i)->getData() << std::endl;
+		std::cout << "BUFFER DATA: " << (*i)->mData << std::endl;
 		std::cout << "ALLOC SIZE: " << (*i)->mAllocSize << std::endl;
 		std::cout << "BUFFER SIZE: " << (*i)->mDataSize << std::endl << std::endl;
 	}

@@ -12,9 +12,8 @@
 
 class cDStore
 {
+	friend class cBuffer;
 
-	//note, this is just for debugging, should be private
-	public:
 	char *mData;
 	char *mAt;
 	size_t mAllocSize;
@@ -98,21 +97,6 @@ class cDStore
 		{
 			//NOTE: maybe throw an exception, or return 0?
 		}
-	}
-
-	char *getData()
-	{
-		return mData;
-	}
-	
-	size_t getAllocSize()
-	{
-		return mAllocSize;
-	}
-
-	size_t getDataSize()
-	{
-		return mDataSize;
 	}
 
 };
