@@ -65,7 +65,7 @@ void cBuffer::copy(char *data, size_t size)
 {
 	if(size > mBufferSize)
 	{
-		expandBy(size - mBufferSize);
+		expandBy((size - mBufferSize) + DEFAULT_ALLOC_SIZE);
 	}
 
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)

@@ -14,7 +14,8 @@ int main()
 	buff1.copy(data, strlen(data)); 
 	buff1.dumpBuffers();
 	
-
+	buff1.append("this is kick ass", strlen("this is kick ass"));
+	buff1.dumpBuffers();
 
 
 
