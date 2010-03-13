@@ -15,6 +15,9 @@ class cDStore
 {
 	friend class cBuffer;
 
+#ifdef BUFF_DEBUG
+	public:
+#endif
 	char *mData;
 	char *mAt;
 	size_t mAllocSize;
@@ -137,12 +140,11 @@ class cDStore
 
 class cBuffer
 {
-	std::vector<cDStore *> mChunks;
 
-	//note, this is just for debugging, should be private
 #ifdef BUFF_DEBUG
 	public:
 #endif
+	std::vector<cDStore *> mChunks;
 	size_t mNumChunks;
 	size_t mBufferSize;
 	size_t mLogicalSize;
