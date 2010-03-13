@@ -10,9 +10,9 @@ int main()
 
 	cBuffer buff;
 
-	buff.copy("hello there my", 15);
+	buff.copy("hello there my good good friend,", strlen("hello there my good good friend,")); 
+	buff.copy(" how are you doing today?", strlen(" how are you doing today?"));
 
-
-	printf("BUFFER: %s\n", buff.currentBuffer());
+	buff.dumpBuffers();
 
 }
