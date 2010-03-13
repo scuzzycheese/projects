@@ -53,6 +53,23 @@ cBuffer::~cBuffer()
 }
 
 
+void cBuffer::copy(char *data, size_t size)
+{
+	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
+	{
+		if(size < (*i)->getAllocSize())
+		{
+			(*i)->copy(data, size);
+			return;
+		}
+		else
+		{
+			(*i)->copy(data, (*i)->getAllocSize());
+			size -= (*i)->getAllocSize();
+			data += (*i)->getAllocSize();
+		}
+	}
+}
 
 void cBuffer::append(char *data, size_t size)
 {
@@ -106,10 +123,5 @@ void cBuffer::dumpBuffers()
 		std::cout << "ALLOC SIZE: " << (*i)->mAllocSize << std::endl;
 		std::cout << "BUFFER SIZE: " << (*i)->mDataSize << std::endl << std::endl;
 	}
-}
-
-char *cBuffer::currentBuffer()
-{
-	return mChunks.back()->getData();
 }
 

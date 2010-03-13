@@ -9,7 +9,7 @@ int main()
 {
 
 
-	cBuffer buff(10, 57);
+	cBuffer buff(10, 3);
 
 	buff.dumpBuffers();
 	std::cout << "BUFFSIZE: " << buff.mBufferSize << std::endl;
@@ -37,6 +37,15 @@ int main()
 	std::cout << "NUMBER OF CHUNKS: " << buff.mNumChunks << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
+
+	buff.copy("woot12312", strlen("woot12312"));
+	buff.dumpBuffers();
+	std::cout << "BUFFSIZE: " << buff.mBufferSize << std::endl;
+	std::cout << "LOGICALSIZE: " << buff.mLogicalSize << std::endl;
+	std::cout << "NUMBER OF CHUNKS: " << buff.mNumChunks << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+
 
 	char *moo = (char *)malloc(10);
 	memcpy(moo, "1234567890", 10);

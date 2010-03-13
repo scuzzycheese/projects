@@ -73,6 +73,18 @@ class cDStore
 		return mAllocSize - mDataSize;
 	}
 
+	void copy(char * const &data, const size_t &size)
+	{
+		if(size <= mAllocSize)
+		{
+			memcpy(mData, data, size);
+		}
+		else
+		{
+			//NOTE: maybe throw an exception
+		}
+	}
+
 	void append(char * const &data, const size_t &size)
 	{
 		//NOTE: maybe optimise this if statement
@@ -92,7 +104,16 @@ class cDStore
 	{
 		return mData;
 	}
+	
+	size_t getAllocSize()
+	{
+		return mAllocSize;
+	}
 
+	size_t getDataSize()
+	{
+		return mDataSize;
+	}
 
 };
 
@@ -122,7 +143,6 @@ class cBuffer
 	void capacity(const size_t &size);
 	
 	void dumpBuffers();
-	char *currentBuffer();
 };
 
 
