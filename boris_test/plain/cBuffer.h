@@ -72,13 +72,18 @@ class cDStore
 		return mAllocSize - mDataSize;
 	}
 
+	/**
+	 * Test this method for edge cases
+	 * eg: where mDataSize and size are
+	 * the same
+	 */
 	void copy(char * const &data, const size_t &size)
 	{
 		if(size <= mAllocSize)
 		{
 			memcpy(mData, data, size);
-			mAt += size;
-			mDataSize += size;
+			mAt += (mDataSize < size) ? size - mDataSize : 0;
+			mDataSize += (mDataSize < size) ? size - mDataSize : 0;
 		}
 		else
 		{

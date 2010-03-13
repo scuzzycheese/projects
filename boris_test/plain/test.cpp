@@ -8,6 +8,13 @@
 int main()
 {
 
+	char *blah = (char *)malloc(1000);
+	memset(blah, '#', 1000);
+	free(blah);
+
+
+
+
 	char *data = "This is a pretty good test";
 
 	cBuffer buff1(3);
@@ -19,18 +26,16 @@ int main()
 
 
 
-	cBuffer buff(3);
 
+	cBuffer buff(3);
 	buff.dumpBuffers();
 
 	buff.append("hello there my good good friend,", strlen("hello there my good good friend,")); 
 	buff.append(" how are you doing today?", strlen(" how are you doing today?"));
-
 	buff.dumpBuffers();
 
 
 	buff.append("moo", strlen("moo"));
-
 	buff.dumpBuffers();
 
 	buff.copy("woot12312", strlen("woot12312"));
@@ -38,7 +43,7 @@ int main()
 	std::cout << "FINAL: " << buff.getBinary() << std::endl;
 
 	
-
+/*
 	char *moo = (char *)malloc(10);
 	memcpy(moo, "1234567890", 10);
 	cBuffer buff2(moo, 10, 20, true); 
@@ -48,5 +53,6 @@ int main()
 
 	buff2.capacity(100);
 	buff2.dumpBuffers();
+*/
 
 }
