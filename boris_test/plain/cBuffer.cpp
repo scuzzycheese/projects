@@ -1,14 +1,13 @@
 #include "cBuffer.h"
 
 
-void cBuffer::allocateInternalBuffer(size_t size)
+cBuffer::cBuffer() : mNumChunks(1)
 {
 	/**
 	 * NOTE: catch an exception here (allocation
 	 * failure)
 	 */
-	mChunks.push_back(new cDStore(size));
-	mNumChunks = 1;
+	mChunks.push_back(new cDStore(DEFAULT_ALLOC_SIZE));
 }
 
 

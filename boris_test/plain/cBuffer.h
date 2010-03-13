@@ -1,11 +1,11 @@
 #ifndef CBUFFER_H
 #define CBUFFER_H
 
-#include "cBufferBase.h"
-
 #include <vector>
 #include <stdint.h>
 #include <string.h>
+
+#define DEFAULT_ALLOC_SIZE 10
 
 
 
@@ -67,15 +67,13 @@ class cDStore
 };
 
 
-class cBuffer : public cBufferBase<cBuffer>
+class cBuffer
 {
 	std::vector<cDStore *> mChunks;
 	size_t mNumChunks;
 
-	//we don't ever want to instantiate this class directly
-	cBuffer();
-
 	public: 
+	cBuffer();
 	~cBuffer();
 
 	void copy(char *data, size_t size);
@@ -83,12 +81,6 @@ class cBuffer : public cBufferBase<cBuffer>
 	void capacity(size_t size);
 	
 	char *currentBuffer();
-
-	void allocateInternalBuffer(size_t size);
-	void copyToInternalBuffer(char *data, size_t size);
-	void appendToInternalBuffer(char *data, size_t size);
-	void setInternalCapacity(size_t size);
-
 };
 
 
