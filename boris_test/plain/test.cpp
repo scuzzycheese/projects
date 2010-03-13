@@ -17,10 +17,7 @@ struct testCase
 
 int main()
 {
-
 	std::list<testCase> tests;
-
-
 
 	char *data = "This is a pretty good test";
 	cBuffer buff1(3);
@@ -79,32 +76,25 @@ int main()
 
 	tests.push_back(testCase("Capacity Copy Test Chunks", buff.mNumChunks == 2));
 	tests.push_back(testCase("Capacity Copy Test Logical Buffer Size", buff.mLogicalSize == 23));
-
-	std::cout << "Logical Buffer Size: " << buff.mLogicalSize << std::endl;
- 
 	tests.push_back(testCase("Capacity Copy Test Buffer Size", buff.mBufferSize == 200));
-	tests.push_back(testCase("Capacity Copy Test getBinary", memcmp(buff.getBinary(), "AAA34567899876543210555", 23) == 0));
+	tests.push_back(testCase("Capacity Copy Test getBinary 1", memcmp(buff.getBinary(), "AAA34567899876543210555", 23) == 0));
 	
-
-	buff.append("moo", strlen("moo"));
-	buff.dumpBuffers();
-
-	buff.copy("woot12312", strlen("woot12312"));
-	buff.dumpBuffers();
-	std::cout << "FINAL: " << buff.getBinary() << std::endl;
-
+	buff.copy("AAaAaA", 6);
 	
-/*
-	char *moo = (char *)malloc(10);
-	memcpy(moo, "1234567890", 10);
-	cBuffer buff2(moo, 10, 20, true); 
-	buff2.append("Test123", 7);
+	tests.push_back(testCase("Capacity Copy Test getBinary 2", memcmp(buff.getBinary(), "AAaAaA67899876543210555", 23) == 0));
 
-	buff2.dumpBuffers();
+	buff.copy("00000000000000000000000", 23);
 
-	buff2.capacity(100);
-	buff2.dumpBuffers();
-*/
+	tests.push_back(testCase("Capacity Copy Test getBinary 3", memcmp(buff.getBinary(), "00000000000000000000000", 23) == 0));
+
+	buff.copy("0000000000000000000000000", 25);
+	
+	tests.push_back(testCase("Capacity Copy Test Chunks 2", buff.mNumChunks == 2));
+	tests.push_back(testCase("Capacity Copy Test Logical Buffer Size 2", buff.mLogicalSize == 25));
+	tests.push_back(testCase("Capacity Copy Test getBinary 3", memcmp(buff.getBinary(), "0000000000000000000000000", 25) == 0));
+
+
+
 
 
 	uint16_t passes = 0;
@@ -122,7 +112,7 @@ int main()
 		}
 		std::cout << std::endl;
 	}
-	std::cout << "Test Pass/Fail Rate: ";
+	std::cout << "Tests Pass Rate: ";
 	std::cout << passes << "/" << tests.size() << std::endl;
 
 }

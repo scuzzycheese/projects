@@ -1,14 +1,12 @@
 #include "cBuffer.h"
 
-
+/**
+ * Creates a buffer with a default size
+ *
+ * @throw std::bad_alloc
+ */
 cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSize(0), mBinaryP(NULL)
 {
-	/**
-	 * NOTE: catch an exception here (allocation
-	 * failure)
-	 * NOTE NOTE: if new throws an exception, then that's fine,
-	 * it can be caught further up by the user. Mayeb
-	 */
 	mChunks.push_back(new cDStore(DEFAULT_ALLOC_SIZE));
 }
 

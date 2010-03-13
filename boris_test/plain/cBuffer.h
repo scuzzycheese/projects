@@ -25,28 +25,36 @@ class cDStore
 
 
 	public: 
-	cDStore(const size_t &size) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+	/**
+	 * Creates a cDStore allocation block of a given size
+	 *
+	 * @param[in] size allocate a block of <size>
+	 */
+	cDStore(const size_t &size) throw(std::bad_alloc) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 	{
 #ifdef BUFF_DEBUG
 		mData = new(std::nothrow) char[size + sizeof(uint32_t)];
 		*((uint32_t *)(mData + size)) = 0xDEADBEEF;
-		if(!(mData))
 #else
-		if(!(mData = new(std::nothrow) char[size]))
+		mData = new(std::nothrow) char[size];
 #endif
-		{
-			//NOTE: Do some error handling here
-			//maybe throw and exception
-		}
-		else
-		{
-			mAllocSize = size;
-			mAt = mData;
-		}
+		mAllocSize = size;
+		mAt = mData;
 	}
 
-	
-	cDStore(const size_t &size, char * const &data, bool takeOwnership = false) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+	/**
+	 * Creates a cDStore allocation block of given size and pass in data
+	 *
+	 * Creates a cDStore allocation block of a given size and copies
+	 * data into it. If takeOwnership is specified, then the block
+	 * assume ownership of the data, and uses size as a basis for it's
+	 * size
+	 *
+	 * @param[in] size allocate a block of <size> or use this as the size of data
+	 * @param[in] data the data to be copied/owned
+	 * @param[in] takeOwnership ownership flag for data
+	 */
+	cDStore(const size_t &size, char * const &data, bool takeOwnership = false) throw(std::bad_alloc) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 	{
 		if(takeOwnership)
 		{
@@ -60,21 +68,13 @@ class cDStore
 #ifdef BUFF_DEBUG
 			mData = new(std::nothrow) char[size + sizeof(uint32_t)];
 			*((uint32_t *)(mData + size)) = 0xDEADBEEF;
-			if(!(mData))
 #else
-			if(!(mData = new(std::nothrow) char[size]))
+			mData = new(std::nothrow) char[size];
 #endif
-			{
-				//NOTE: Do some error handling here
-				//maybe throw and exception
-			}
-			else
-			{
-				mAllocSize = size;
-				mAt = mData;
-				memcpy(mAt, data, size);
-				mAt += size;
-			}
+			mAllocSize = size;
+			mAt = mData;
+			memcpy(mAt, data, size);
+			mAt += size;
 		}
 	}
 
@@ -94,6 +94,12 @@ class cDStore
 	 * eg: where mDataSize and size are
 	 * the same
 	 */
+	/**
+	 * Copy data into the beginning of the block
+	 *
+	 * @param[in] data Data to be copied
+	 * @param[in] size Size of the data to be copied
+	 */
 	void copy(char * const &data, const size_t &size)
 	{
 		if(size <= mAllocSize)
@@ -108,7 +114,6 @@ class cDStore
 			//NOTE: maybe throw an exception
 		}
 #ifdef BUFF_DEBUG
-		printf("BOUNDRY: %X\n", *((uint32_t *)(mData + mAllocSize)));
 		assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);
 #endif
 		
@@ -130,7 +135,6 @@ class cDStore
 			//NOTE: maybe throw an exception, or return 0?
 		}
 #ifdef BUFF_DEBUG
-		printf("BOUNDRY: %X\n", *((uint32_t *)(mData + mAllocSize)));
 		assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);
 #endif
 	}
