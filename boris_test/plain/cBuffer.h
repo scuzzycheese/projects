@@ -42,6 +42,7 @@ class cDStore
 		{
 			mData = data;
 			mAllocSize = size;
+			mDataSize = size;
 			mAt = mData;
 		}
 		else
@@ -118,7 +119,7 @@ class cBuffer
 
 	void copy(char *data, size_t size);
 	void append(char *date, size_t size);
-	void capacity(size_t size);
+	void capacity(const size_t &size);
 	
 	void dumpBuffers();
 	char *currentBuffer();

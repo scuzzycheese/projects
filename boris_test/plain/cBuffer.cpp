@@ -15,9 +15,9 @@ cBuffer::cBuffer(const size_t &size) : mNumChunks(1), mBufferSize(size), mLogica
 	mChunks.push_back(new cDStore(size));
 }
 
-cBuffer::cBuffer(const size_t &size, const size_t &growToWithoutRealloc) : mNumChunks(1), mBufferSize(growToWithoutRealloc), mLogicalSize(0)
+cBuffer::cBuffer(const size_t &size, const size_t &capacity) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(0)
 {
-	mChunks.push_back(new cDStore(growToWithoutRealloc));
+	mChunks.push_back(new cDStore(capacity));
 }
 
 cBuffer::cBuffer(char * const &data, const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(size)
@@ -25,18 +25,19 @@ cBuffer::cBuffer(char * const &data, const size_t &size) : mNumChunks(1), mBuffe
 	mChunks.push_back(new cDStore(size, data));
 }
 
-cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &growToWithoutRealloc, bool takeOwnership) : mBufferSize(growToWithoutRealloc), mLogicalSize(size)
+cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &capacity, bool takeOwnership) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(size)
 {
-	if(takeOwnership)
+	if(capacity < size)
 	{
-		mChunks.push_back(new cDStore(size, data, takeOwnership));
-		mChunks.push_back(new cDStore(size));
-		mNumChunks = 2;
+		//Throw an exception
+		std::cout << "EXCEPTION: capacity does not exceed space" << std::endl;
 	}
-	else
+	mChunks.push_back(new cDStore(size, data, takeOwnership));
+	if(capacity > size)
 	{
-		mChunks.push_back(new cDStore(growToWithoutRealloc, data));
-		mNumChunks = 1;
+		//I don't know is this is the desired behavior, maybe.
+		mChunks.push_back(new cDStore(capacity - size));
+		mNumChunks = 2;
 	}
 }
 
@@ -45,11 +46,15 @@ cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &growToWit
 
 cBuffer::~cBuffer()
 {
+	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
+	{
+		delete(*i);
+	}
 }
 
 
 
-void cBuffer::copy(char *data, size_t size)
+void cBuffer::append(char *data, size_t size)
 {
 	cDStore *dstore = mChunks.back();
 	size_t spaceLeft = dstore->mSpaceLeft();
@@ -82,6 +87,16 @@ void cBuffer::copy(char *data, size_t size)
 		mLogicalSize += size;
 	}
 } 
+
+void cBuffer::capacity(const size_t &size)
+{
+	if(mBufferSize < size)
+	{
+		mChunks.push_back(new cDStore(size));
+		mNumChunks ++;
+		mBufferSize += size;
+	}
+}
 
 void cBuffer::dumpBuffers()
 {
