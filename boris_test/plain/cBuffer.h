@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdint.h>
 #include <string.h>
+#include <assert.h>
 
 #define DEFAULT_ALLOC_SIZE 10
 
@@ -19,10 +20,17 @@ class cDStore
 	size_t mAllocSize;
 	size_t mDataSize;
 
+
 	public: 
 	cDStore(const size_t &size) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 	{
+#ifdef BUFF_DEBUG
+		mData = new(std::nothrow) char[size + sizeof(uint32_t)];
+		*((uint32_t *)(mData + size)) = 0xDEADBEEF;
+		if(!(mData))
+#else
 		if(!(mData = new(std::nothrow) char[size]))
+#endif
 		{
 			//NOTE: Do some error handling here
 			//maybe throw and exception
@@ -46,7 +54,13 @@ class cDStore
 		}
 		else
 		{
+#ifdef BUFF_DEBUG
+			mData = new(std::nothrow) char[size + sizeof(uint32_t)];
+			*((uint32_t *)(mData + size)) = 0xDEADBEEF;
+			if(!(mData))
+#else
 			if(!(mData = new(std::nothrow) char[size]))
+#endif
 			{
 				//NOTE: Do some error handling here
 				//maybe throw and exception
@@ -90,6 +104,11 @@ class cDStore
 			std::cout << "=======================EXCEPTION: Either block does not have sufficient space" << std::endl;
 			//NOTE: maybe throw an exception
 		}
+#ifdef BUFF_DEBUG
+		printf("BOUNDRY: %X\n", *((uint32_t *)(mData + size)));
+		assert(*((uint32_t *)(mData + size)) == 0xDEADBEEF);
+#endif
+		
 	}
 
 	void append(char * const &data, const size_t &size)

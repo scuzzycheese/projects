@@ -8,9 +8,6 @@
 int main()
 {
 
-	char *blah = (char *)malloc(1000);
-	memset(blah, '#', 1000);
-	free(blah);
 
 
 
