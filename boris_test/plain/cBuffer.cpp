@@ -72,14 +72,14 @@ void cBuffer::copy(char *data, size_t size)
 	{
 		if(size <= (*i)->mAllocSize)
 		{
+			if(size > (*i)->mDataSize) mLogicalSize +=  size - (*i)->mDataSize;
 			(*i)->copy(data, size);
-			mLogicalSize += size;
 			return;
 		}
 		else
 		{
+			if((*i)->mAllocSize > (*i)->mDataSize) mLogicalSize += (*i)->mAllocSize - (*i)->mDataSize;
 			(*i)->copy(data, (*i)->mAllocSize);
-			mLogicalSize += (*i)->mAllocSize;
 			size -= (*i)->mAllocSize;
 			data += (*i)->mAllocSize;
 		}
