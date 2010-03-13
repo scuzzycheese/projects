@@ -1,7 +1,7 @@
 #include "cBuffer.h"
 
 
-cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSize(0)
+cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSize(0), mBinaryP(NULL)
 {
 	/**
 	 * NOTE: catch an exception here (allocation
@@ -10,22 +10,22 @@ cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSiz
 	mChunks.push_back(new cDStore(DEFAULT_ALLOC_SIZE));
 }
 
-cBuffer::cBuffer(const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(0)
+cBuffer::cBuffer(const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(0), mBinaryP(NULL)
 {
 	mChunks.push_back(new cDStore(size));
 }
 
-cBuffer::cBuffer(const size_t &size, const size_t &capacity) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(0)
+cBuffer::cBuffer(const size_t &size, const size_t &capacity) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(0), mBinaryP(NULL)
 {
 	mChunks.push_back(new cDStore(capacity));
 }
 
-cBuffer::cBuffer(char * const &data, const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(size)
+cBuffer::cBuffer(char * const &data, const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(size), mBinaryP(NULL)
 {
 	mChunks.push_back(new cDStore(size, data));
 }
 
-cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &capacity, bool takeOwnership) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(size)
+cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &capacity, bool takeOwnership) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(size), mBinaryP(NULL)
 {
 	if(capacity < size)
 	{
@@ -48,6 +48,12 @@ cBuffer::~cBuffer()
 	{
 		delete(*i);
 	}
+	if(mBinaryP)
+	{
+		delete[] mBinaryP;
+		mBinaryP = NULL;
+	}
+	
 }
 
 
@@ -97,6 +103,7 @@ void cBuffer::append(char *data, size_t size)
 		{
 			dstore->append(data, spaceLeft);
 			data += spaceLeft;
+			mLogicalSize += spaceLeft;
 		}
 
 		//calculate how much data still needs to be saved
@@ -109,7 +116,6 @@ void cBuffer::append(char *data, size_t size)
 		dstore = mChunks.back();
 		dstore->append(data, size);
 		
-		mBufferSize += size + DEFAULT_ALLOC_SIZE;
 		mLogicalSize += size;
 	}
 } 
@@ -120,6 +126,18 @@ void cBuffer::capacity(const size_t &size)
 	{
 		expandBy(size - mBufferSize);
 	}
+}
+
+char *cBuffer::getBinary()
+{
+	mBinaryP = new char[mLogicalSize];
+	char *retDataP = mBinaryP;
+	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
+	{
+		memcpy(retDataP, (*i)->mData, (*i)->mDataSize);
+		retDataP += (*i)->mDataSize;
+	}
+	return mBinaryP;
 }
 
 void cBuffer::dumpBuffers()

@@ -127,6 +127,7 @@ class cBuffer
 	size_t mNumChunks;
 	size_t mBufferSize;
 	size_t mLogicalSize;
+	char *mBinaryP;
 
 	void expandBy(const size_t &size);
 	public: 
@@ -142,6 +143,8 @@ class cBuffer
 	void copy(char *data, size_t size);
 	void append(char *date, size_t size);
 	void capacity(const size_t &size);
+
+	char *getBinary();
 	
 	void dumpBuffers();
 };
