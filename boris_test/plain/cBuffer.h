@@ -13,13 +13,15 @@
 class cDStore
 {
 
+	//note, this is just for debugging, should be private
+	public:
 	char *mData;
 	char *mAt;
 	size_t mAllocSize;
 	size_t mDataSize;
 
 	public: 
-	cDStore(size_t size) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+	cDStore(const size_t &size) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 	{
 		if(!(mData = new(std::nothrow) char[size]))
 		{
@@ -34,7 +36,7 @@ class cDStore
 	}
 
 	
-	cDStore(size_t size, char *data, bool takeOwnership = false) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+	cDStore(const size_t &size, char * const &data, bool takeOwnership = false) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 	{
 		if(takeOwnership)
 		{
@@ -70,7 +72,7 @@ class cDStore
 		return mAllocSize - mDataSize;
 	}
 
-	void append(char *&data, size_t &size)
+	void append(char * const &data, const size_t &size)
 	{
 		//NOTE: maybe optimise this if statement
 		if(mSpaceLeft() > 0 && size <= mSpaceLeft())
@@ -97,6 +99,9 @@ class cDStore
 class cBuffer
 {
 	std::vector<cDStore *> mChunks;
+
+	//note, this is just for debugging, should be private
+	public:
 	size_t mNumChunks;
 	size_t mBufferSize;
 	size_t mLogicalSize;
@@ -104,10 +109,10 @@ class cBuffer
 	public: 
 
 	cBuffer();
-	cBuffer(size_t &size);
-	cBuffer(size_t &size, size_t &growToWithoutRealloc);
-	cBuffer(char *&data, size_t &size);
-	cBuffer(char *&data, size_t &size, size_t &growToWithoutRealloc, bool takeOwnership = false);
+	cBuffer(const size_t &size);
+	cBuffer(const size_t &size, const size_t &growToWithoutRealloc);
+	cBuffer(char * const &data, const size_t &size);
+	cBuffer(char * const &data, const size_t &size, const size_t &growToWithoutRealloc, bool takeOwnership = false);
 
 	~cBuffer();
 
