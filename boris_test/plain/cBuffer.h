@@ -77,9 +77,12 @@ class cDStore
 		if(size <= mAllocSize)
 		{
 			memcpy(mData, data, size);
+			mAt += size;
+			mDataSize += size;
 		}
 		else
 		{
+			std::cout << "=======================EXCEPTION: Either block does not have sufficient space" << std::endl;
 			//NOTE: maybe throw an exception
 		}
 	}
@@ -95,6 +98,8 @@ class cDStore
 		}
 		else
 		{
+			
+			std::cout << "=======================EXCEPTION: Either block has no space left, or requested space is not sufficient" << std::endl;
 			//NOTE: maybe throw an exception, or return 0?
 		}
 	}
@@ -118,7 +123,6 @@ class cBuffer
 
 	cBuffer();
 	cBuffer(const size_t &size);
-	cBuffer(const size_t &size, const size_t &growToWithoutRealloc);
 	cBuffer(char * const &data, const size_t &size);
 	cBuffer(char * const &data, const size_t &size, const size_t &growToWithoutRealloc, bool takeOwnership = false);
 

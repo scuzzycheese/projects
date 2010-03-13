@@ -6,6 +6,8 @@ cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSiz
 	/**
 	 * NOTE: catch an exception here (allocation
 	 * failure)
+	 * NOTE NOTE: if new throws an exception, then that's fine,
+	 * it can be caught further up by the user. Mayeb
 	 */
 	mChunks.push_back(new cDStore(DEFAULT_ALLOC_SIZE));
 }
@@ -13,11 +15,6 @@ cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSiz
 cBuffer::cBuffer(const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(0), mBinaryP(NULL)
 {
 	mChunks.push_back(new cDStore(size));
-}
-
-cBuffer::cBuffer(const size_t &size, const size_t &capacity) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(0), mBinaryP(NULL)
-{
-	mChunks.push_back(new cDStore(capacity));
 }
 
 cBuffer::cBuffer(char * const &data, const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(size), mBinaryP(NULL)
@@ -73,14 +70,16 @@ void cBuffer::copy(char *data, size_t size)
 
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
 	{
-		if(size < (*i)->mAllocSize)
+		if(size <= (*i)->mAllocSize)
 		{
 			(*i)->copy(data, size);
+			mLogicalSize += size;
 			return;
 		}
 		else
 		{
 			(*i)->copy(data, (*i)->mAllocSize);
+			mLogicalSize += (*i)->mAllocSize;
 			size -= (*i)->mAllocSize;
 			data += (*i)->mAllocSize;
 		}
@@ -142,11 +141,16 @@ char *cBuffer::getBinary()
 
 void cBuffer::dumpBuffers()
 {
+   std::cout << "WHOLE BUFFER SIZE: " << mBufferSize << std::endl;
+   std::cout << "WHOLE LOGICAL SIZE: " << mLogicalSize << std::endl;
+   std::cout << "NUMBER OF CHUNKS: " << mNumChunks << std::endl;
+
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
 	{
-		std::cout << "BUFFER DATA: " << (*i)->mData << std::endl;
-		std::cout << "ALLOC SIZE: " << (*i)->mAllocSize << std::endl;
-		std::cout << "BUFFER SIZE: " << (*i)->mDataSize << std::endl << std::endl;
+		std::cout << "    BUFFER DATA: " << (*i)->mData << std::endl;
+		std::cout << "    ALLOC SIZE: " << (*i)->mAllocSize << std::endl;
+		std::cout << "    DATA SIZE: " << (*i)->mDataSize << std::endl << std::endl;
 	}
+	std::cout << std::endl;
 }
 
