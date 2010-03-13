@@ -105,8 +105,8 @@ class cDStore
 			//NOTE: maybe throw an exception
 		}
 #ifdef BUFF_DEBUG
-		printf("BOUNDRY: %X\n", *((uint32_t *)(mData + size)));
-		assert(*((uint32_t *)(mData + size)) == 0xDEADBEEF);
+		printf("BOUNDRY: %X\n", *((uint32_t *)(mData + mAllocSize)));
+		assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);
 #endif
 		
 	}
@@ -126,6 +126,10 @@ class cDStore
 			std::cout << "=======================EXCEPTION: Either block has no space left, or requested space is not sufficient" << std::endl;
 			//NOTE: maybe throw an exception, or return 0?
 		}
+#ifdef BUFF_DEBUG
+		printf("BOUNDRY: %X\n", *((uint32_t *)(mData + mAllocSize)));
+		assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);
+#endif
 	}
 
 };
@@ -136,7 +140,9 @@ class cBuffer
 	std::vector<cDStore *> mChunks;
 
 	//note, this is just for debugging, should be private
+#ifdef BUFF_DEBUG
 	public:
+#endif
 	size_t mNumChunks;
 	size_t mBufferSize;
 	size_t mLogicalSize;

@@ -3,12 +3,22 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <list>
 
+struct testCase
+{
+	testCase(std::string name, bool pass) : mName(name), mPass(pass)
+	{
+	}
+
+	std::string mName;
+	bool mPass;
+};
 
 int main()
 {
 
-
+	std::list<testCase> tests;
 
 
 
@@ -17,6 +27,10 @@ int main()
 	cBuffer buff1(3);
 	buff1.copy(data, strlen(data)); 
 	buff1.dumpBuffers();
+
+	tests.push_back(testCase("Copy Test Chunks", buff1.mNumChunks == 2)); 
+
+
 	
 	buff1.append("this is kick ass", strlen("this is kick ass"));
 	buff1.dumpBuffers();
@@ -51,5 +65,11 @@ int main()
 	buff2.capacity(100);
 	buff2.dumpBuffers();
 */
+
+
+	for(std::list<testCase>::iterator i = tests.begin(), q = tests.end(); i != q; ++i)
+	{
+		std::cout << i->mName << ": " << (i->mPass ? "pass" : "fail") << std::endl;
+	}
 
 }
