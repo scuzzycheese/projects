@@ -42,8 +42,6 @@ cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &capacity,
 }
 
 
-
-
 cBuffer::~cBuffer()
 {
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
@@ -53,8 +51,20 @@ cBuffer::~cBuffer()
 }
 
 
+void cBuffer::expandBy(const size_t &size)
+{
+	mChunks.push_back(new cDStore(size));
+	++ mNumChunks;
+	mBufferSize += size;
+}
+
 void cBuffer::copy(char *data, size_t size)
 {
+	if(size > mBufferSize)
+	{
+		expandBy(size - mBufferSize);
+	}
+
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)
 	{
 		if(size < (*i)->getAllocSize())
@@ -94,12 +104,11 @@ void cBuffer::append(char *data, size_t size)
 
 		//allocate a new buffer, with enough space to hold the rest
 		//of the data + extra
-		mChunks.push_back(new cDStore(size + DEFAULT_ALLOC_SIZE));
+		expandBy(size + DEFAULT_ALLOC_SIZE);
 
 		dstore = mChunks.back();
 		dstore->append(data, size);
 		
-		mNumChunks ++;
 		mBufferSize += size + DEFAULT_ALLOC_SIZE;
 		mLogicalSize += size;
 	}
@@ -109,9 +118,7 @@ void cBuffer::capacity(const size_t &size)
 {
 	if(mBufferSize < size)
 	{
-		mChunks.push_back(new cDStore(size));
-		mNumChunks ++;
-		mBufferSize += size;
+		expandBy(size - mBufferSize);
 	}
 }
 

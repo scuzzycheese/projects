@@ -128,6 +128,7 @@ class cBuffer
 	size_t mBufferSize;
 	size_t mLogicalSize;
 
+	void expandBy(const size_t &size);
 	public: 
 
 	cBuffer();
