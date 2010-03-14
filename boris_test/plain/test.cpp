@@ -138,6 +138,28 @@ void testcBufferContig(std::list<testCase> &tests)
 	
 	tests.push_back(testCase("cBufferContig Ownership Test Logical Buffer size", buff3.mLogicalSize == 6));
 	tests.push_back(testCase("cBufferContig Ownership Test Buffer size", buff3.mBufferSize == 20));
+	
+	try
+	{
+		cBufferContig buff5(-5);
+		tests.push_back(testCase("negative allocation fail", false));
+	}
+	catch(std::exception &e)
+	{
+		tests.push_back(testCase("negative allocation fail", true));
+	}
+
+	try
+	{
+		cBufferContig buff6("hello", -5, 60);
+		tests.push_back(testCase("negative size fail", false));
+	}
+	catch(std::exception &e)
+	{
+		tests.push_back(testCase("negative size fail", true));
+	}
+
+
 }
 
 void testcBuffer(std::list<testCase> &tests)
@@ -247,5 +269,24 @@ void testcBuffer(std::list<testCase> &tests)
 	tests.push_back(testCase("copy in with constructor chunk allocation size", buff5.mChunks[0]->mAllocSize == 5));
 
 
+	try
+	{
+		cBuffer buff5(-5);
+		tests.push_back(testCase("negative allocation fail", false));
+	}
+	catch(std::exception &e)
+	{
+		tests.push_back(testCase("negative allocation fail", true));
+	}
+
+	try
+	{
+		cBuffer buff6("hello", -5, 60);
+		tests.push_back(testCase("negative size fail", false));
+	}
+	catch(std::exception &e)
+	{
+		tests.push_back(testCase("negative size fail", true));
+	}
 
 }

@@ -117,7 +117,6 @@ class cBufferContig
 	 *
 	 */
 	size_t getSize();
-	
 
 #ifdef BUFF_DEBUG
 	public:
