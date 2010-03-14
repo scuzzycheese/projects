@@ -7,7 +7,7 @@
 
 struct testCase
 {
-	testCase(std::string name, bool pass) : mName(name), mPass(pass)
+	testCase(const std::string &name, const bool &pass) : mName(name), mPass(pass)
 	{
 	}
 
@@ -15,10 +15,36 @@ struct testCase
 	bool mPass;
 };
 
+void testcBuffer(std::list<testCase> &tests);
+
 int main()
 {
 	std::list<testCase> tests;
 
+	testcBuffer(tests);
+
+	uint16_t passes = 0;
+	for(std::list<testCase>::iterator i = tests.begin(), q = tests.end(); i != q; ++i)
+	{
+		std::cout << i->mName << ": ";
+		if(i->mPass)
+		{
+			std::cout << "pass";
+			++ passes;
+		}
+		else
+		{
+			std::cout << "fail";
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "Tests Pass Rate: ";
+	std::cout << passes << "/" << tests.size() << std::endl;
+}
+
+
+void testcBuffer(std::list<testCase> &tests)
+{
 	char *data = "This is a pretty good test";
 	cBuffer buff1(3);
 	buff1.copy(data, strlen(data)); 
@@ -114,28 +140,5 @@ int main()
 	tests.push_back(testCase("Ownership Test Block 0 Alloc size",  buff3.mChunks[0]->mAllocSize == 6));
 	tests.push_back(testCase("Ownership Test Block 1 size",  buff3.mChunks[1]->mDataSize == 0));
 	tests.push_back(testCase("Ownership Test Block 1 Alloc size",  buff3.mChunks[1]->mAllocSize == 14));
-
-
-
-
-
-
-	uint16_t passes = 0;
-	for(std::list<testCase>::iterator i = tests.begin(), q = tests.end(); i != q; ++i)
-	{
-		std::cout << i->mName << ": ";
-		if(i->mPass)
-		{
-			std::cout << "pass";
-			++ passes;
-		}
-		else
-		{
-			std::cout << "fail";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << "Tests Pass Rate: ";
-	std::cout << passes << "/" << tests.size() << std::endl;
 
 }

@@ -1,5 +1,8 @@
 #include "cBuffer.h"
 
+/**
+ * NOTE: Maybe replace some of the push_backs with expandBy instead
+ */
 cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSize(0), mBinaryP(NULL)
 {
 	mChunks.push_back(new cDStore(DEFAULT_ALLOC_SIZE));
