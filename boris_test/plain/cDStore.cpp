@@ -4,10 +4,10 @@
 cDStore::cDStore(const size_t &size) throw(std::bad_alloc) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 {
 #ifdef BUFF_DEBUG
-	mData = new(std::nothrow) char[size + sizeof(uint32_t)];
+	mData = new char[size + sizeof(uint32_t)];
 	*((uint32_t *)(mData + size)) = 0xDEADBEEF;
 #else
-	mData = new(std::nothrow) char[size];
+	mData = new char[size];
 #endif
 	mAllocSize = size;
 	mAt = mData;
@@ -27,10 +27,10 @@ cDStore::cDStore(const size_t &size, char * const &data, bool takeOwnership) thr
 	else
 	{
 #ifdef BUFF_DEBUG
-		mData = new(std::nothrow) char[size + sizeof(uint32_t)];
+		mData = new char[size + sizeof(uint32_t)];
 		*((uint32_t *)(mData + size)) = 0xDEADBEEF;
 #else
-		mData = new(std::nothrow) char[size];
+		mData = new char[size];
 #endif
 		mAllocSize = size;
 		mAt = mData;

@@ -1,10 +1,5 @@
 #include "cBuffer.h"
 
-/**
- * Creates a buffer with a default size
- *
- * @throw std::bad_alloc
- */
 cBuffer::cBuffer() : mNumChunks(1), mBufferSize(DEFAULT_ALLOC_SIZE), mLogicalSize(0), mBinaryP(NULL)
 {
 	mChunks.push_back(new cDStore(DEFAULT_ALLOC_SIZE));
@@ -52,14 +47,14 @@ cBuffer::~cBuffer()
 }
 
 
-void cBuffer::expandBy(const size_t &size)
+void cBuffer::expandBy(const size_t &size) throw(std::bad_alloc)
 {
 	mChunks.push_back(new cDStore(size));
 	++ mNumChunks;
 	mBufferSize += size;
 }
 
-void cBuffer::copy(char *data, size_t size)
+void cBuffer::copy(char *data, size_t size) throw(std::bad_alloc)
 {
 	if(size > mBufferSize)
 	{
@@ -84,7 +79,7 @@ void cBuffer::copy(char *data, size_t size)
 	}
 }
 
-void cBuffer::append(char *data, size_t size)
+void cBuffer::append(char *data, size_t size) throw(std::bad_alloc)
 {
 	cDStore *dstore = mChunks.back();
 	size_t spaceLeft = dstore->mSpaceLeft();
@@ -117,7 +112,7 @@ void cBuffer::append(char *data, size_t size)
 	}
 } 
 
-void cBuffer::capacity(const size_t &size)
+void cBuffer::capacity(const size_t &size) throw(std::bad_alloc)
 {
 	if(mBufferSize < size)
 	{
