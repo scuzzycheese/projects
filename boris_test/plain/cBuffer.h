@@ -23,7 +23,7 @@ class cBuffer
 	size_t mLogicalSize;
 	char *mBinaryP;
 
-	void expandBy(const size_t &size) throw(std::bad_alloc);
+	void expandBy(const size_t &size);
 	public: 
 
 	/**
@@ -58,7 +58,8 @@ class cBuffer
 	 * @param size Size of the data passed in
 	 * @param capacity Overall capacity of the buffer (Must be greater or equal to size)
 	 * @param takeOwnership Specify if you want to take ownership of the pointer
-	 * @throw capacityTooSmall (to be implemented)
+	 * @throw bad_alloc
+	 * @throw bad_capacity
 	 */
 	cBuffer(char * const &data, const size_t &size, const size_t &capacity, bool takeOwnership = false);
 
@@ -71,7 +72,7 @@ class cBuffer
 	 * @param size Size of the data to be copied in
 	 * @throw std::bad_alloc
 	 */
-	void copy(char *data, size_t size) throw(std::bad_alloc);
+	void copy(char *data, size_t size);
 
 	/**
 	 * Append data onto the end of the buffer
@@ -80,7 +81,7 @@ class cBuffer
 	 * @param size Size of the data to be appended
 	 * @throw std::bad_alloc
 	 */
-	void append(char *date, size_t size) throw(std::bad_alloc);
+	void append(char *data, size_t size);
 
 	/**
 	 * Make sure the buffer has a specific capacity(without re-allocation)
@@ -88,7 +89,7 @@ class cBuffer
 	 * @param size Size of the buffers capacity
 	 * @throw std::bad_alloc
 	 */
-	void capacity(const size_t &size) throw(std::bad_alloc);
+	void capacity(const size_t &size);
 
 
 	/**

@@ -1,4 +1,5 @@
 #include "cBuffer.h"
+#include "cBufferContig.h"
 #include <stdio.h>
 
 #include <stdlib.h>
@@ -42,6 +43,82 @@ int main()
 	std::cout << passes << "/" << tests.size() << std::endl;
 }
 
+void testcBufferContig(std::list<testCase> &tests)
+{
+	char *data = "This is a pretty good test";
+	cBufferContig buff1(3);
+	buff1.copy(data, strlen(data)); 
+
+	tests.push_back(testCase("cBufferContig Copy Test Buffer Size", buff1.mBufferSize == 26 + DEFAULT_ALLOC_SIZE)); 
+	tests.push_back(testCase("cBufferContig Copy Test Logical Buffer Size", buff1.mLogicalSize == 26)); 
+	tests.push_back(testCase("cBufferContig Copy Test getBinary", memcmp(buff1.getBinary(), "This is a pretty good test", 26) == 0));
+
+	buff1.append("this is kick ass", strlen("this is kick ass"));
+
+	tests.push_back(testCase("cBufferContig Append Test Logical Buffer Size", buff1.mLogicalSize == 42));
+	tests.push_back(testCase("cBufferContig Append Test Buffer Size", buff1.mBufferSize == 42 + DEFAULT_ALLOC_SIZE));
+	tests.push_back(testCase("cBufferContig Append Test getBinary", memcmp(buff1.getBinary(), "This is a pretty good testthis is kick ass", 42) == 0));
+
+	cBufferContig buff;
+	
+	tests.push_back(testCase("cBufferContig NoSize Test Logical Buffer Size", buff.mLogicalSize == 0));
+	tests.push_back(testCase("cBufferContig NoSize Test Buffer Size", buff.mBufferSize == DEFAULT_ALLOC_SIZE));
+
+	buff.append("0123456789", 10); 
+
+	tests.push_back(testCase("cBufferContig NoSize Test Logical Buffer Size 2", buff.mLogicalSize == 10));
+	tests.push_back(testCase("cBufferContig NoSize Test Buffer Size 2", buff.mBufferSize == 10));
+
+	buff.capacity(200);
+
+	tests.push_back(testCase("cBufferContig Capacity Test Logical Buffer Size", buff.mLogicalSize == 10));
+	tests.push_back(testCase("cBufferContig Capacity Test Buffer Size", buff.mBufferSize == 200));
+	tests.push_back(testCase("cBufferContig Capacity Test getBinary", memcmp(buff.getBinary(), "0123456789", 10) == 0));
+
+	buff.append("9876543210555", 13);
+
+	tests.push_back(testCase("cBufferContig Capacity Append Test Logical Buffer Size", buff.mLogicalSize == 23));
+	tests.push_back(testCase("cBufferContig Capacity Append Test Buffer Size", buff.mBufferSize == 200));
+	tests.push_back(testCase("cBufferContig Capacity Test getBinary", memcmp(buff.getBinary(), "01234567899876543210555", 23) == 0));
+	
+	buff.copy("AAA", 3);
+
+	tests.push_back(testCase("cBufferContig Capacity Copy Test Logical Buffer Size", buff.mLogicalSize == 23));
+	tests.push_back(testCase("cBufferContig Capacity Copy Test Buffer Size", buff.mBufferSize == 200));
+	tests.push_back(testCase("cBufferContig Capacity Copy Test getBinary 1", memcmp(buff.getBinary(), "AAA34567899876543210555", 23) == 0));
+	
+	buff.copy("AAaAaA", 6);
+	
+	tests.push_back(testCase("cBufferContig Capacity Copy Test getBinary 2", memcmp(buff.getBinary(), "AAaAaA67899876543210555", 23) == 0));
+
+	buff.copy("00000000000000000000000", 23);
+
+	tests.push_back(testCase("cBufferContig Capacity Copy Test getBinary 3", memcmp(buff.getBinary(), "00000000000000000000000", 23) == 0));
+
+	buff.copy("0000000000000000000000000", 25);
+	
+	tests.push_back(testCase("cBufferContig Capacity Copy Test Logical Buffer Size 2", buff.mLogicalSize == 25));
+	tests.push_back(testCase("cBufferContig Capacity Copy Test getBinary 3", memcmp(buff.getBinary(), "0000000000000000000000000", 25) == 0));
+
+	try
+	{
+		cBufferContig buff2("hello", 5, 4);
+		tests.push_back(testCase("cBufferContig Capacity failure test", false));
+	}
+	catch(std::exception &e)
+	{
+		tests.push_back(testCase("cBufferContig Capacity failure test", true));
+	}
+
+	char *allocData = new char[20];
+	memcpy(allocData, "hello", 6);
+	cBufferContig buff3(allocData, 6, 20, true);
+
+	tests.push_back(testCase("cBufferContig Ownership Test", buff3.mData == allocData));
+	tests.push_back(testCase("cBufferContig Ownership Test Logical Buffer size", buff3.mLogicalSize == 6));
+	tests.push_back(testCase("cBufferContig Ownership Test Buffer size", buff3.mBufferSize == 20));
+
+}
 
 void testcBuffer(std::list<testCase> &tests)
 {

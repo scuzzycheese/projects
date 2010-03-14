@@ -39,7 +39,67 @@ cBufferContig::cBufferContig(char *&data, const size_t &size, const size_t &capa
 
 }
 
+cBufferContig::cBufferContig(char * const &data, const size_t &size, const size_t &capacity) : mData(NULL), mBufferSize(0), mLogicalSize(size)
+{
+	if(capacity < size)
+	{
+		throw bad_capacity("capacity does not exceed space");
+	}
+	
+	expandBy(capacity);
+	memcpy(mData, data, size);
+}
 
+
+cBufferContig::~cBufferContig()
+{
+	delete[] mData;
+}
+
+void cBufferContig::copy(char *data, size_t size) throw(std::bad_alloc)
+{
+	if(size > mBufferSize)
+	{
+		expandBy((size - mBufferSize) + DEFAULT_ALLOC_SIZE);
+		memcpy(mData, data, size);
+		mLogicalSize = size;
+	}
+	else
+	{
+		memcpy(mData, data, size);
+		if(size > mLogicalSize) mLogicalSize = size;
+	}
+}
+
+void cBufferContig::append(char *data, size_t size) throw(std::bad_alloc)
+{
+	if(mBufferSize < (mLogicalSize + size))
+	{
+		expandBy(((mLogicalSize + size) - mBufferSize) + DEFAULT_ALLOC_SIZE);
+		memcpy(mData + mLogicalSize, data, size);
+		mLogicalSize += size;
+	}
+	else
+	{
+		memcpy(mData + mLogicalSize, data, size);
+		mLogicalSize += size;
+	}
+}
+
+
+void cBufferContig::capacity(const size_t &size) throw(std::bad_alloc)
+{
+	if(mBufferSize < size)
+	{
+		expandBy(size - mBufferSize);
+	}
+}
+
+
+char *cBufferContig::getBinary()
+{
+	return mData;
+}
 
 
 

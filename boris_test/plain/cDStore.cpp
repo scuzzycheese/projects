@@ -1,7 +1,7 @@
 #include "cDStore.h"
 
 
-cDStore::cDStore(const size_t &size) throw(std::bad_alloc) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+cDStore::cDStore(const size_t &size) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 {
 #ifdef BUFF_DEBUG
 	mData = new char[size + sizeof(uint32_t)];
@@ -15,7 +15,7 @@ cDStore::cDStore(const size_t &size) throw(std::bad_alloc) : mData(NULL), mAt(NU
 
 
 
-cDStore::cDStore(const size_t &size, char * const &data, bool takeOwnership) throw(std::bad_alloc) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+cDStore::cDStore(const size_t &size, char * const &data, bool takeOwnership) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 {
 	if(takeOwnership)
 	{
@@ -50,7 +50,7 @@ size_t cDStore::mSpaceLeft()
 	return mAllocSize - mDataSize;
 }
 
-void cDStore::copy(char * const &data, const size_t &size) throw(bad_capacity)
+void cDStore::copy(char * const &data, const size_t &size)
 {
 	if(size <= mAllocSize)
 	{
@@ -68,7 +68,7 @@ void cDStore::copy(char * const &data, const size_t &size) throw(bad_capacity)
 	
 }
 
-void cDStore::append(char * const &data, const size_t &size) throw(bad_capacity)
+void cDStore::append(char * const &data, const size_t &size)
 {
 	//NOTE: maybe optimise this if statement
 	if(mSpaceLeft() > 0 && size <= mSpaceLeft())

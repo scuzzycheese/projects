@@ -49,14 +49,14 @@ cBuffer::~cBuffer()
 }
 
 
-void cBuffer::expandBy(const size_t &size) throw(std::bad_alloc)
+void cBuffer::expandBy(const size_t &size)
 {
 	mChunks.push_back(new cDStore(size));
 	++ mNumChunks;
 	mBufferSize += size;
 }
 
-void cBuffer::copy(char *data, size_t size) throw(std::bad_alloc)
+void cBuffer::copy(char *data, size_t size)
 {
 	if(size > mBufferSize)
 	{
@@ -81,7 +81,7 @@ void cBuffer::copy(char *data, size_t size) throw(std::bad_alloc)
 	}
 }
 
-void cBuffer::append(char *data, size_t size) throw(std::bad_alloc)
+void cBuffer::append(char *data, size_t size)
 {
 	cDStore *dstore = mChunks.back();
 	size_t spaceLeft = dstore->mSpaceLeft();
@@ -114,7 +114,7 @@ void cBuffer::append(char *data, size_t size) throw(std::bad_alloc)
 	}
 } 
 
-void cBuffer::capacity(const size_t &size) throw(std::bad_alloc)
+void cBuffer::capacity(const size_t &size) 
 {
 	if(mBufferSize < size)
 	{

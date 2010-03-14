@@ -57,7 +57,8 @@ class cBufferContig
 	 * @param takeOwnership Specify if you want to take ownership of the pointer
 	 * @throw capacityTooSmall (to be implemented)
 	 */
-	cBufferContig(char *&data, const size_t &size, const size_t &capacity, bool takeOwnership = false);
+	cBufferContig(char *&data, const size_t &size, const size_t &capacity, bool takeOwnership);
+	cBufferContig(char * const &data, const size_t &size, const size_t &capacity);
 
 	~cBufferContig();
 
@@ -77,7 +78,7 @@ class cBufferContig
 	 * @param size Size of the data to be appended
 	 * @throw std::bad_alloc
 	 */
-	void append(char *date, size_t size) throw(std::bad_alloc);
+	void append(char *data, size_t size) throw(std::bad_alloc);
 
 	/**
 	 * Make sure the buffer has a specific capacity(without re-allocation)
@@ -98,8 +99,8 @@ class cBufferContig
 	 */
 	char *getBinary();
 	
+	private:
 	void expandBy(const size_t &size);
-
 	void reAlloc(char *&data, const size_t &oldSize, const size_t &newSize);
 };
 
