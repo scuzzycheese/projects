@@ -7,6 +7,8 @@
 #include <string.h>
 #include <assert.h>
 
+#include "cExceptions.h"
+
 class cDStore
 {
 	friend class cBuffer;
@@ -24,7 +26,7 @@ class cDStore
 	/**
 	 * Creates a cDStore allocation block of a given size
 	 *
-	 * @param[in] size allocate a block of <size>
+	 * @param size allocate a block of <size>
 	 */
 	cDStore(const size_t &size) throw(std::bad_alloc);
 
@@ -36,9 +38,9 @@ class cDStore
 	 * assume ownership of the data, and uses size as a basis for it's
 	 * size
 	 *
-	 * @param[in] size allocate a block of <size> or use this as the size of data
-	 * @param[in] data the data to be copied/owned
-	 * @param[in] takeOwnership ownership flag for data
+	 * @param size allocate a block of <size> or use this as the size of data
+	 * @param data the data to be copied/owned
+	 * @param takeOwnership ownership flag for data
 	 */
 	cDStore(const size_t &size, char * const &data, bool takeOwnership = false) throw(std::bad_alloc);
 
@@ -47,14 +49,20 @@ class cDStore
 	size_t mSpaceLeft();
 
 	/**
-	 * Copy data into the beginning of the block
+	 * Copy data into the beginning of the block if there is enough space
 	 *
-	 * @param[in] data Data to be copied
-	 * @param[in] size Size of the data to be copied
+	 * @param data Data to be copied
+	 * @param size Size of the data to be copied
 	 */
-	void copy(char * const &data, const size_t &size);
+	void copy(char * const &data, const size_t &size) throw(bad_capacity);
 
-	void append(char * const &data, const size_t &size);
+	/**
+	 * Append data to the block if there is enough space
+	 *
+	 * @param data Data to be appended
+	 * @param size Size of the data to be appended
+	 */
+	void append(char * const &data, const size_t &size) throw(bad_capacity);
 
 };
 

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <assert.h>
 #include "cDStore.h"
+#include "cExceptions.h"
 
 #define DEFAULT_ALLOC_SIZE 10
 

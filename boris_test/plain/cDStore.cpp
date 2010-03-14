@@ -56,7 +56,7 @@ size_t cDStore::mSpaceLeft()
  * eg: where mDataSize and size are
  * the same
  */
-void cDStore::copy(char * const &data, const size_t &size)
+void cDStore::copy(char * const &data, const size_t &size) throw(bad_capacity)
 {
 	if(size <= mAllocSize)
 	{
@@ -66,8 +66,7 @@ void cDStore::copy(char * const &data, const size_t &size)
 	}
 	else
 	{
-		std::cout << "=======================EXCEPTION: Either block does not have sufficient space" << std::endl;
-		//NOTE: maybe throw an exception
+		throw bad_capacity("block does not have enough space");
 	}
 #ifdef BUFF_DEBUG
 	assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);
@@ -76,7 +75,7 @@ void cDStore::copy(char * const &data, const size_t &size)
 }
 
 
-void cDStore::append(char * const &data, const size_t &size)
+void cDStore::append(char * const &data, const size_t &size) throw(bad_capacity)
 {
 	//NOTE: maybe optimise this if statement
 	if(mSpaceLeft() > 0 && size <= mSpaceLeft())
@@ -87,9 +86,7 @@ void cDStore::append(char * const &data, const size_t &size)
 	}
 	else
 	{
-		
-		std::cout << "=======================EXCEPTION: Either block has no space left, or requested space is not sufficient" << std::endl;
-		//NOTE: maybe throw an exception, or return 0?
+		throw bad_capacity("block does not have enough space");
 	}
 #ifdef BUFF_DEBUG
 	assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);

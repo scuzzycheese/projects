@@ -19,8 +19,7 @@ cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &capacity,
 {
 	if(capacity < size)
 	{
-		//Throw an exception
-		std::cout << "=======================EXCEPTION: capacity does not exceed space" << std::endl;
+		throw bad_capacity("capacity does not exceed space");
 	}
 	mChunks.push_back(new cDStore(size, data, takeOwnership));
 	if(capacity > size)

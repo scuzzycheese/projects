@@ -93,7 +93,22 @@ int main()
 	tests.push_back(testCase("Capacity Copy Test Logical Buffer Size 2", buff.mLogicalSize == 25));
 	tests.push_back(testCase("Capacity Copy Test getBinary 3", memcmp(buff.getBinary(), "0000000000000000000000000", 25) == 0));
 
+	try
+	{
+		cBuffer buff2("hello", 5, 4);
+		tests.push_back(testCase("Capacity failure test", false));
+	}
+	catch(std::exception &e)
+	{
+		tests.push_back(testCase("Capacity failure test", true));
+	}
 
+	char *allocData = new char[20];
+	memcpy(allocData, "hello", 6);
+	cBuffer buff3(allocData, 6, 20, true);
+
+	tests.push_back(testCase("Ownership Test 1", buff3.mChunks[0]->mData == allocData));
+	tests.push_back(testCase("Ownership Test Buffer size", buff3.mBufferSize == 6));
 
 
 
