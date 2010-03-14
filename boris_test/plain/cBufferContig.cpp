@@ -108,9 +108,9 @@ void cBufferContig::expandBy(const size_t &size)
 	if(mData)
 	{
 		reAlloc(mData, mLogicalSize, mBufferSize + size);
-		mBufferSize += size;
 	}
 	else mData = new char[size];
+	mBufferSize += size;
 }
 
 void cBufferContig::reAlloc(char *&data, const size_t &oldSize, const size_t &newSize)

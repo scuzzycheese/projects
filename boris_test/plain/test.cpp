@@ -17,12 +17,14 @@ struct testCase
 };
 
 void testcBuffer(std::list<testCase> &tests);
+void testcBufferContig(std::list<testCase> &tests);
 
 int main()
 {
 	std::list<testCase> tests;
 
 	testcBuffer(tests);
+	testcBufferContig(tests);
 
 	uint16_t passes = 0;
 	for(std::list<testCase>::iterator i = tests.begin(), q = tests.end(); i != q; ++i)
