@@ -110,7 +110,7 @@ class cBufferContig
 	 *
 	 * @return pointer to a copy of the buffer as a contiguous block
 	 */
-	char *getBinary();
+	char *getBinary() const;
 
 	/**
 	 * Returns the logical size of the buffer

@@ -47,6 +47,10 @@ class cDStore
 
 	~cDStore();
 
+	/**
+	 * Real time calculation of how much space if lect
+	 *
+	 */
 	size_t mSpaceLeft();
 
 	/**

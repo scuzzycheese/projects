@@ -96,7 +96,7 @@ void cBufferContig::capacity(const size_t &size)
 }
 
 
-char *cBufferContig::getBinary()
+char *cBufferContig::getBinary() const
 {
 	return mData;
 }
