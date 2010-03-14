@@ -56,7 +56,7 @@ cBufferContig::~cBufferContig()
 	delete[] mData;
 }
 
-void cBufferContig::copy(char *data, size_t size) throw(std::bad_alloc)
+void cBufferContig::copy(char *data, size_t size)
 {
 	if(size > mBufferSize)
 	{
@@ -71,7 +71,7 @@ void cBufferContig::copy(char *data, size_t size) throw(std::bad_alloc)
 	}
 }
 
-void cBufferContig::append(char *data, size_t size) throw(std::bad_alloc)
+void cBufferContig::append(char *data, size_t size)
 {
 	if(mBufferSize < (mLogicalSize + size))
 	{
@@ -87,7 +87,7 @@ void cBufferContig::append(char *data, size_t size) throw(std::bad_alloc)
 }
 
 
-void cBufferContig::capacity(const size_t &size) throw(std::bad_alloc)
+void cBufferContig::capacity(const size_t &size)
 {
 	if(mBufferSize < size)
 	{

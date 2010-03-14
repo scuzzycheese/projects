@@ -70,7 +70,7 @@ class cBufferContig
 	 * @param size Size of the data to be copied in
 	 * @throw std::bad_alloc
 	 */
-	void copy(char *data, size_t size) throw(std::bad_alloc);
+	void copy(char *data, size_t size);
 
 	/**
 	 * Append data onto the end of the buffer
@@ -79,7 +79,7 @@ class cBufferContig
 	 * @param size Size of the data to be appended
 	 * @throw std::bad_alloc
 	 */
-	void append(char *data, size_t size) throw(std::bad_alloc);
+	void append(char *data, size_t size);
 
 	/**
 	 * Make sure the buffer has a specific capacity(without re-allocation)
@@ -87,7 +87,7 @@ class cBufferContig
 	 * @param size Size of the buffers capacity
 	 * @throw std::bad_alloc
 	 */
-	void capacity(const size_t &size) throw(std::bad_alloc);
+	void capacity(const size_t &size);
 
 
 	/**
