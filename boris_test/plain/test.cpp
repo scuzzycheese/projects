@@ -51,20 +51,20 @@ void testcBufferContig(std::list<testCase> &tests)
 	cBufferContig buff1(3);
 	buff1.copy(data, strlen(data)); 
 
-	tests.push_back(testCase("cBufferContig Copy Test Buffer Size", buff1.mBufferSize == 26 + DEFAULT_ALLOC_SIZE)); 
+	tests.push_back(testCase("cBufferContig Copy Test Buffer Size", buff1.mBufferSize == 26 + cBufferContig::DEFAULT_ALLOC_SIZE)); 
 	tests.push_back(testCase("cBufferContig Copy Test Logical Buffer Size", buff1.getSize() == 26)); 
 	tests.push_back(testCase("cBufferContig Copy Test getBinary", memcmp(buff1.getBinary(), "This is a pretty good test", 26) == 0));
 
 	buff1.append("this is kick ass", strlen("this is kick ass"));
 
 	tests.push_back(testCase("cBufferContig Append Test Logical Buffer Size", buff1.mLogicalSize == 42));
-	tests.push_back(testCase("cBufferContig Append Test Buffer Size", buff1.mBufferSize == 42 + DEFAULT_ALLOC_SIZE));
+	tests.push_back(testCase("cBufferContig Append Test Buffer Size", buff1.mBufferSize == 42 + cBufferContig::DEFAULT_ALLOC_SIZE));
 	tests.push_back(testCase("cBufferContig Append Test getBinary", memcmp(buff1.getBinary(), "This is a pretty good testthis is kick ass", 42) == 0));
 
 	cBufferContig buff;
 	
 	tests.push_back(testCase("cBufferContig NoSize Test Logical Buffer Size", buff.mLogicalSize == 0));
-	tests.push_back(testCase("cBufferContig NoSize Test Buffer Size", buff.mBufferSize == DEFAULT_ALLOC_SIZE));
+	tests.push_back(testCase("cBufferContig NoSize Test Buffer Size", buff.mBufferSize == cBufferContig::DEFAULT_ALLOC_SIZE));
 
 	buff.append("0123456789", 10); 
 
@@ -148,19 +148,19 @@ void testcBuffer(std::list<testCase> &tests)
 	buff1.dumpBuffers();
 
 	tests.push_back(testCase("Copy Test Chunks", buff1.mNumChunks == 2)); 
-	tests.push_back(testCase("Copy Test Buffer Size", buff1.mBufferSize == 26 + DEFAULT_ALLOC_SIZE)); 
+	tests.push_back(testCase("Copy Test Buffer Size", buff1.mBufferSize == 26 + cBuffer::DEFAULT_ALLOC_SIZE)); 
 	tests.push_back(testCase("Copy Test Logical Buffer Size", buff1.getSize() == 26)); 
 	tests.push_back(testCase("Copy Test BuffChunk Data 1 size", buff1.mChunks[0]->mDataSize == 3));
 	tests.push_back(testCase("Copy Test BuffChunk Allocation 1 size", buff1.mChunks[0]->mAllocSize == 3));
 	tests.push_back(testCase("Copy Test BuffChunk Data 2 size", buff1.mChunks[1]->mDataSize == 23));
-	tests.push_back(testCase("Copy Test BuffChunk Allocation 2 size", buff1.mChunks[1]->mAllocSize == 23 + DEFAULT_ALLOC_SIZE));
+	tests.push_back(testCase("Copy Test BuffChunk Allocation 2 size", buff1.mChunks[1]->mAllocSize == 23 + cBuffer::DEFAULT_ALLOC_SIZE));
 	tests.push_back(testCase("Copy Test getBinary", memcmp(buff1.getBinary(), "This is a pretty good test", 26) == 0));
 
 	buff1.append("this is kick ass", strlen("this is kick ass"));
 	buff1.dumpBuffers();
 
 	tests.push_back(testCase("Append Test Logical Buffer Size", buff1.mLogicalSize == 42));
-	tests.push_back(testCase("Append Test Buffer Size", buff1.mBufferSize == 42 + DEFAULT_ALLOC_SIZE));
+	tests.push_back(testCase("Append Test Buffer Size", buff1.mBufferSize == 42 + cBuffer::DEFAULT_ALLOC_SIZE));
 	tests.push_back(testCase("Append Test Chunks", buff1.mNumChunks == 3));
 	tests.push_back(testCase("Append Test BuffChunk Data 2 size", buff1.mChunks[1]->mDataSize == 33));
 	tests.push_back(testCase("Append Test BuffChunk Allocation 2 size", buff1.mChunks[1]->mAllocSize == 33));
@@ -172,7 +172,7 @@ void testcBuffer(std::list<testCase> &tests)
 	buff.dumpBuffers();
 	
 	tests.push_back(testCase("NoSize Test Logical Buffer Size", buff.mLogicalSize == 0));
-	tests.push_back(testCase("NoSize Test Buffer Size", buff.mBufferSize == DEFAULT_ALLOC_SIZE));
+	tests.push_back(testCase("NoSize Test Buffer Size", buff.mBufferSize == cBuffer::DEFAULT_ALLOC_SIZE));
 	tests.push_back(testCase("NoSize Test Chunks", buff.mNumChunks == 1));
 
 	buff.append("0123456789", 10); 

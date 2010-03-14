@@ -9,8 +9,6 @@
 #include "cDStore.h"
 #include "cExceptions.h"
 
-#define DEFAULT_ALLOC_SIZE 10
-
 class cBufferContig
 {
 
@@ -21,7 +19,21 @@ class cBufferContig
 	size_t mBufferSize;
 	size_t mLogicalSize;
 
+	private:
+	/**
+	 * Stop the compiler making me a copy constructor
+	 * and an operator=
+	 */
+	cBufferContig(const cBufferContig& me);
+	cBufferContig &operator=(const cBufferContig& me);
+
+
 	public: 
+
+	enum
+	{
+		DEFAULT_ALLOC_SIZE = 10
+	};
 
 	/**
 	 * Creates a buffer with a default size

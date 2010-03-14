@@ -9,8 +9,6 @@
 #include "cDStore.h"
 #include "cExceptions.h"
 
-#define DEFAULT_ALLOC_SIZE 10
-
 class cBuffer
 {
 
@@ -24,7 +22,20 @@ class cBuffer
 	char *mBinaryP;
 
 	void expandBy(const size_t &size);
+
+	private:
+	/**
+	 * Stop the compiler making me a copy constructor
+	 * and an operator=
+	 */
+	cBuffer(const cBuffer& me);
+	cBuffer &operator=(const cBuffer& me);
+
 	public: 
+	enum
+	{
+		DEFAULT_ALLOC_SIZE = 10
+	};
 
 	/**
 	 * Creates a buffer with a default size
