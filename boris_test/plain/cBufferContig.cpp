@@ -128,6 +128,6 @@ void cBufferContig::reAlloc(char *&data, const size_t &oldSize, const size_t &ne
 	}
 	else
 	{
-		//EXCEPTION: Maybe throw a bad_capacity exception
+		throw bad_capacity("new size does not exceed oldsize");
 	}
 }

@@ -59,6 +59,16 @@ class cBufferContig
 	 * @throw bad_capacity
 	 */
 	cBufferContig(char *&data, const size_t &size, const size_t &capacity, bool takeOwnership);
+
+	/**
+	 * Create a buffer and copy data into it and mandate the buffer size
+	 *
+	 * @param data Data to be copied in
+	 * @param size Size of the data to be copied
+	 * @param capacity Overall Capacity of the buffer
+	 * @throw std::bad_alloc
+	 * @throw bad_capacity
+	 */
 	cBufferContig(char * const &data, const size_t &size, const size_t &capacity);
 
 	~cBufferContig();
@@ -95,6 +105,7 @@ class cBufferContig
 	 *
 	 * The pointer is only gauranteed until another modifying action takes place
 	 * on the buffer. Otherwise the behavior is undefined.
+	 *
 	 * NOTE: modifying the contents of the returned pointer DOES affect
 	 * the content ofthe buffer, however if more data is written to it
 	 * than the size of the buffer the behavior is undefined.
