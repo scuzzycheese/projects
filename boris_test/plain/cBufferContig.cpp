@@ -102,6 +102,10 @@ char *cBufferContig::getBinary()
 }
 
 
+size_t cBufferContig::getSize()
+{
+	return mLogicalSize;
+}
 
 void cBufferContig::expandBy(const size_t &size)
 {

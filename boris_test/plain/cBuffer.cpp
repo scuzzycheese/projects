@@ -140,6 +140,11 @@ char *cBuffer::getBinary()
 	return mBinaryP;
 }
 
+size_t cBuffer::getSize()
+{
+	return mLogicalSize;
+}
+
 void cBuffer::dumpBuffers()
 {
    std::cout << "WHOLE BUFFER SIZE: " << mBufferSize << std::endl;

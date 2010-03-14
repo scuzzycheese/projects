@@ -55,7 +55,8 @@ class cBufferContig
 	 * @param size Size of the data passed in
 	 * @param capacity Overall capacity of the buffer (Must be greater or equal to size)
 	 * @param takeOwnership Specify if you want to take ownership of the pointer
-	 * @throw capacityTooSmall (to be implemented)
+	 * @throw std::bad_alloc
+	 * @throw bad_capacity
 	 */
 	cBufferContig(char *&data, const size_t &size, const size_t &capacity, bool takeOwnership);
 	cBufferContig(char * const &data, const size_t &size, const size_t &capacity);
@@ -94,10 +95,19 @@ class cBufferContig
 	 *
 	 * The pointer is only gauranteed until another modifying action takes place
 	 * on the buffer. Otherwise the behavior is undefined.
+	 * NOTE: modifying the contents of the returned pointer DOES affect
+	 * the content ofthe buffer, however if more data is written to it
+	 * than the size of the buffer the behavior is undefined.
 	 *
 	 * @return pointer to a copy of the buffer as a contiguous block
 	 */
 	char *getBinary();
+
+	/**
+	 * Returns the logical size of the buffer
+	 *
+	 */
+	size_t getSize();
 	
 	private:
 	void expandBy(const size_t &size);

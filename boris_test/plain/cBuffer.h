@@ -97,10 +97,18 @@ class cBuffer
 	 *
 	 * The pointer is only gauranteed until another modifying action takes place
 	 * on the buffer. Otherwise the behavior is undefined.
+	 * NOTE: modifying the contents of the returned pointer does not affect
+	 * the content ofthe buffer
 	 *
 	 * @return pointer to a copy of the buffer as a contiguous block
 	 */
 	char *getBinary();
+
+	/**
+	 * Returns the logical size of the buffer
+	 *
+	 */
+	size_t getSize();
 	
 	void dumpBuffers();
 };
