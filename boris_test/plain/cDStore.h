@@ -13,22 +13,6 @@ class cDStore
 {
 	friend class cBuffer;
 
-#ifdef BUFF_DEBUG
-	public:
-#endif
-	char *mData;
-	char *mAt;
-	size_t mAllocSize;
-	size_t mDataSize;
-
-
-	private:
-	/**
-	 * Stop the compiler making me a copy constructor
-	 * and an operator=
-	 */
-	cDStore(const cDStore& me);
-	cDStore &operator=(const cDStore& me);
 
 	public: 
 	/**
@@ -82,6 +66,25 @@ class cDStore
 	 * @throw bad_capacity
 	 */
 	void append(const char * const &data, const size_t &size);
+
+#ifdef BUFF_DEBUG
+	public:
+#else
+	private:
+#endif
+	char *mData;
+	char *mAt;
+	size_t mAllocSize;
+	size_t mDataSize;
+
+
+	private:
+	/**
+	 * Stop the compiler making me a copy constructor
+	 * and an operator=
+	 */
+	cDStore(const cDStore& me);
+	cDStore &operator=(const cDStore& me);
 
 };
 

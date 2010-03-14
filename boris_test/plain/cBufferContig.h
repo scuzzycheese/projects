@@ -12,20 +12,6 @@
 class cBufferContig
 {
 
-#ifdef BUFF_DEBUG
-	public:
-#endif
-	char *mData;
-	size_t mBufferSize;
-	size_t mLogicalSize;
-
-	private:
-	/**
-	 * Stop the compiler making me a copy constructor
-	 * and an operator=
-	 */
-	cBufferContig(const cBufferContig& me);
-	cBufferContig &operator=(const cBufferContig& me);
 
 
 	public: 
@@ -132,7 +118,24 @@ class cBufferContig
 	 */
 	size_t getSize();
 	
+
+#ifdef BUFF_DEBUG
+	public:
+#else
 	private:
+#endif
+	char *mData;
+	size_t mBufferSize;
+	size_t mLogicalSize;
+
+	private:
+	/**
+	 * Stop the compiler making me a copy constructor
+	 * and an operator=
+	 */
+	cBufferContig(const cBufferContig& me);
+	cBufferContig &operator=(const cBufferContig& me);
+
 	void expandBy(const size_t &size);
 	void reAlloc(char *&data, const size_t &oldSize, const size_t &newSize);
 };

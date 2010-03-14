@@ -11,26 +11,6 @@
 
 class cBuffer
 {
-
-#ifdef BUFF_DEBUG
-	public:
-#endif
-	std::vector<cDStore *> mChunks;
-	size_t mNumChunks;
-	size_t mBufferSize;
-	size_t mLogicalSize;
-	char *mBinaryP;
-
-	void expandBy(const size_t &size);
-
-	private:
-	/**
-	 * Stop the compiler making me a copy constructor
-	 * and an operator=
-	 */
-	cBuffer(const cBuffer& me);
-	cBuffer &operator=(const cBuffer& me);
-
 	public: 
 	enum
 	{
@@ -132,7 +112,29 @@ class cBuffer
 	 */
 	size_t getSize();
 	
+
+#ifdef BUFF_DEBUG
+	public:
 	void dumpBuffers();
+#else
+	private:
+#endif
+	std::vector<cDStore *> mChunks;
+	size_t mNumChunks;
+	size_t mBufferSize;
+	size_t mLogicalSize;
+	char *mBinaryP;
+
+	void expandBy(const size_t &size);
+
+	/**
+	 * Stop the compiler making me a copy constructor
+	 * and an operator=
+	 */
+	cBuffer(const cBuffer& me);
+	cBuffer &operator=(const cBuffer& me);
+
+
 };
 
 
