@@ -42,7 +42,16 @@ class cDStore
 	 * @param data the data to be copied/owned
 	 * @param takeOwnership ownership flag for data
 	 */
-	cDStore(const size_t &size, char * const &data, bool takeOwnership = false);
+	cDStore(const size_t &size, char * const &data, bool takeOwnership);
+
+
+	/**
+	 * Creates a cDStore allocation block of given size and pass in data
+	 *
+	 * @param size allocate a block of <size>
+	 * @param data data to be copied into the block
+	 */
+	cDStore(const size_t &size, const char * const &data);
 
 	~cDStore();
 
@@ -55,7 +64,7 @@ class cDStore
 	 * @param size Size of the data to be copied
 	 * @throw bad_capacity
 	 */
-	void copy(char * const &data, const size_t &size);
+	void copy(const char * const &data, const size_t &size);
 
 	/**
 	 * Append data to the block if there is enough space
@@ -64,7 +73,7 @@ class cDStore
 	 * @param size Size of the data to be appended
 	 * @throw bad_capacity
 	 */
-	void append(char * const &data, const size_t &size);
+	void append(const char * const &data, const size_t &size);
 
 };
 

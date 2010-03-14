@@ -12,7 +12,7 @@ cBufferContig::cBufferContig(const size_t &size) : mData(NULL), mBufferSize(0), 
 	expandBy(size);
 }
 
-cBufferContig::cBufferContig(char * const &data, const size_t &size) : mData(NULL), mBufferSize(0), mLogicalSize(size)
+cBufferContig::cBufferContig(const char * const &data, const size_t &size) : mData(NULL), mBufferSize(0), mLogicalSize(size)
 {
 	expandBy(size);
 	memcpy(mData, data, size);
@@ -39,7 +39,7 @@ cBufferContig::cBufferContig(char *&data, const size_t &size, const size_t &capa
 
 }
 
-cBufferContig::cBufferContig(char * const &data, const size_t &size, const size_t &capacity) : mData(NULL), mBufferSize(0), mLogicalSize(size)
+cBufferContig::cBufferContig(const char * const &data, const size_t &size, const size_t &capacity) : mData(NULL), mBufferSize(0), mLogicalSize(size)
 {
 	if(capacity < size)
 	{
@@ -56,7 +56,7 @@ cBufferContig::~cBufferContig()
 	delete[] mData;
 }
 
-void cBufferContig::copy(char *data, size_t size)
+void cBufferContig::copy(const char * const &data, const size_t &size)
 {
 	if(size > mBufferSize)
 	{
@@ -71,7 +71,7 @@ void cBufferContig::copy(char *data, size_t size)
 	}
 }
 
-void cBufferContig::append(char *data, size_t size)
+void cBufferContig::append(const char * const &data, const size_t &size)
 {
 	if(mBufferSize < (mLogicalSize + size))
 	{

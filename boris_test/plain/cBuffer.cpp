@@ -13,7 +13,7 @@ cBuffer::cBuffer(const size_t &size) : mNumChunks(1), mBufferSize(size), mLogica
 	mChunks.push_back(new cDStore(size));
 }
 
-cBuffer::cBuffer(char * const &data, const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(size), mBinaryP(NULL)
+cBuffer::cBuffer(const char * const &data, const size_t &size) : mNumChunks(1), mBufferSize(size), mLogicalSize(size), mBinaryP(NULL)
 {
 	mChunks.push_back(new cDStore(size, data));
 }
@@ -33,6 +33,20 @@ cBuffer::cBuffer(char * const &data, const size_t &size, const size_t &capacity,
 	}
 }
 
+cBuffer::cBuffer(const char * const &data, const size_t &size, const size_t &capacity) : mNumChunks(1), mBufferSize(capacity), mLogicalSize(size), mBinaryP(NULL)
+{
+	if(capacity < size)
+	{
+		throw bad_capacity("capacity does not exceed space");
+	}
+	mChunks.push_back(new cDStore(size, data));
+	if(capacity > size)
+	{
+		//I don't know is this is the desired behavior, maybe.
+		mChunks.push_back(new cDStore(capacity - size));
+		mNumChunks = 2;
+	}
+}
 
 cBuffer::~cBuffer()
 {
@@ -56,7 +70,7 @@ void cBuffer::expandBy(const size_t &size)
 	mBufferSize += size;
 }
 
-void cBuffer::copy(char *data, size_t size)
+void cBuffer::copy(const char *data, size_t size)
 {
 	if(size > mBufferSize)
 	{
@@ -81,7 +95,7 @@ void cBuffer::copy(char *data, size_t size)
 	}
 }
 
-void cBuffer::append(char *data, size_t size)
+void cBuffer::append(const char *data, size_t size)
 {
 	cDStore *dstore = mChunks.back();
 	size_t spaceLeft = dstore->mSpaceLeft();

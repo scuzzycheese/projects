@@ -45,7 +45,7 @@ class cBuffer
 	 * @param data The data being copied into the buffer
 	 * @param size The size of the buffer being copied in
 	 */
-	cBuffer(char * const &data, const size_t &size);
+	cBuffer(const char * const &data, const size_t &size);
 	/**
 	 * Create a buffer that that copies the data into it, of a given size or takes ownership
 	 * 
@@ -61,7 +61,18 @@ class cBuffer
 	 * @throw bad_alloc
 	 * @throw bad_capacity
 	 */
-	cBuffer(char * const &data, const size_t &size, const size_t &capacity, bool takeOwnership = false);
+	cBuffer(char * const &data, const size_t &size, const size_t &capacity, bool takeOwnership);
+
+	/**
+	 * Create a buffer that that copies the data into it and sanction a size
+	 *
+	 * @param data Data to be copied into the buffer
+	 * @param size Size of the data to be copied
+	 * @param capacity Overall capacity of the buffer (Must be greater or equal to size)
+	 * @throw bad_alloc
+	 * @throw bad_capacity
+	 */
+	cBuffer(const char * const &data, const size_t &size, const size_t &capacity);
 
 	~cBuffer();
 
@@ -72,7 +83,7 @@ class cBuffer
 	 * @param size Size of the data to be copied in
 	 * @throw std::bad_alloc
 	 */
-	void copy(char *data, size_t size);
+	void copy(const char *data, size_t size);
 
 	/**
 	 * Append data onto the end of the buffer
@@ -81,7 +92,7 @@ class cBuffer
 	 * @param size Size of the data to be appended
 	 * @throw std::bad_alloc
 	 */
-	void append(char *data, size_t size);
+	void append(const char *data, size_t size);
 
 	/**
 	 * Make sure the buffer has a specific capacity(without re-allocation)
