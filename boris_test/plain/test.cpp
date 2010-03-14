@@ -108,7 +108,15 @@ int main()
 	cBuffer buff3(allocData, 6, 20, true);
 
 	tests.push_back(testCase("Ownership Test 1", buff3.mChunks[0]->mData == allocData));
-	tests.push_back(testCase("Ownership Test Buffer size", buff3.mBufferSize == 6));
+	tests.push_back(testCase("Ownership Test Logical Buffer size", buff3.mLogicalSize == 6));
+	tests.push_back(testCase("Ownership Test Buffer size", buff3.mBufferSize == 20));
+	tests.push_back(testCase("Ownership Test Block 0 size",  buff3.mChunks[0]->mDataSize == 6));
+	tests.push_back(testCase("Ownership Test Block 0 Alloc size",  buff3.mChunks[0]->mAllocSize == 6));
+	tests.push_back(testCase("Ownership Test Block 1 size",  buff3.mChunks[1]->mDataSize == 0));
+	tests.push_back(testCase("Ownership Test Block 1 Alloc size",  buff3.mChunks[1]->mAllocSize == 14));
+
+
+
 
 
 
