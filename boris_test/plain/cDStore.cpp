@@ -50,12 +50,6 @@ size_t cDStore::mSpaceLeft()
 	return mAllocSize - mDataSize;
 }
 
-
-/**
- * Test this method for edge cases
- * eg: where mDataSize and size are
- * the same
- */
 void cDStore::copy(char * const &data, const size_t &size) throw(bad_capacity)
 {
 	if(size <= mAllocSize)
@@ -73,7 +67,6 @@ void cDStore::copy(char * const &data, const size_t &size) throw(bad_capacity)
 #endif
 	
 }
-
 
 void cDStore::append(char * const &data, const size_t &size) throw(bad_capacity)
 {
