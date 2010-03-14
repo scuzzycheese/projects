@@ -1,10 +1,23 @@
-all:
-	g++ -g -O0 -Wall -D BUFF_DEBUG -c cBuffer.cpp -o cBuffer.o
-	g++ -g -O0 -Wall -D BUFF_DEBUG -c cDStore.cpp -o cDStore.o
-	g++ -g -O0 -Wall -D BUFF_DEBUG -c cBufferContig.cpp -o cBufferContig.o
-	
-	g++ -g -O0 -Wall -D BUFF_DEBUG test.cpp cBuffer.o cDStore.o cBufferContig.o -o test
+CC = g++
+OPTIONS = -O0 -Wall -D BUFF_DEBUG
 
+OBS = cBuffer.o cDStore.o cBufferContig.o 
+
+all: $(OBS)
+	$(CC) $(OPTIONS) $(OBS) test.cpp -o test
+
+cBuffer.o: cBuffer.cpp cBuffer.h
+	$(CC) $(OPTIONS) -c -o cBuffer.o cBuffer.cpp
+
+cBufferContig.o: cBufferContig.cpp cBufferContig.h
+	$(CC) $(OPTIONS) -c -o cBufferContig.o cBufferContig.cpp
+
+cDStore.o: cDStore.cpp cDStore.h
+	$(CC) $(OPTIONS) -c -o cDStore.o cDStore.cpp
 
 	
+clean:
+	rm -Rf *.o
+	rm -Rf test
+
 	
