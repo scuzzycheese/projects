@@ -127,6 +127,12 @@ void cBuffer::capacity(const size_t &size)
 
 char *cBuffer::getBinary()
 {
+	if(mBinaryP)
+	{
+		delete[] mBinaryP;
+		mBinaryP = NULL;
+	}
+
 	mBinaryP = new char[mLogicalSize];
 	char *retDataP = mBinaryP;
 	for(std::vector<cDStore *>::iterator i = mChunks.begin(), q = mChunks.end(); i != q; ++i)

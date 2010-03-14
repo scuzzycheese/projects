@@ -36,6 +36,15 @@ class cBuffer
 	void append(char *date, size_t size);
 	void capacity(const size_t &size);
 
+
+	/**
+	 * Returns a char * pointer to a copy of the buffer.
+	 *
+	 * The pointer is only gauranteed until another modifying action takes place
+	 * on the buffer. Otherwise the behavior is undefined.
+	 *
+	 * @return pointer to a copy of the buffer as a contiguous block
+	 */
 	char *getBinary();
 	
 	void dumpBuffers();
