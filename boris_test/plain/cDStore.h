@@ -22,6 +22,14 @@ class cDStore
 	size_t mDataSize;
 
 
+	private:
+	/**
+	 * Stop the compiler making me a copy constructor
+	 * and an operator=
+	 */
+	cDStore(const cDStore& me);
+	cDStore &operator=(const cDStore& me);
+
 	public: 
 	/**
 	 * Creates a cDStore allocation block of a given size

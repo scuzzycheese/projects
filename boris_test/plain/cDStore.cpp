@@ -4,18 +4,22 @@
 cDStore::cDStore(const size_t &size) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
 {
 #ifdef BUFF_DEBUG
-	mData = new char[size + sizeof(uint32_t)];
-	*((uint32_t *)(mData + size)) = 0xDEADBEEF;
+	mData = new char[size + 4];
+	uint32_t sentinel = 0xDEADBEEF;
+	memcpy(mData + size, &sentinel, 4);
 #else
 	mData = new char[size];
 #endif
 	mAllocSize = size;
 	mAt = mData;
+#ifdef BUFF_DEBUG
+	assert(memcmp(mData + size, &sentinel, 4) == 0);
+#endif
 }
 
 
 
-cDStore::cDStore(const size_t &size, char * const &data, bool takeOwnership) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+cDStore::cDStore(const size_t &size, char * const &data, bool takeOwnership) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(size)
 {
 	if(takeOwnership)
 	{
@@ -27,8 +31,9 @@ cDStore::cDStore(const size_t &size, char * const &data, bool takeOwnership) : m
 	else
 	{
 #ifdef BUFF_DEBUG
-		mData = new char[size + sizeof(uint32_t)];
-		*((uint32_t *)(mData + size)) = 0xDEADBEEF;
+		mData = new char[size + 4];
+		uint32_t sentinel = 0xDEADBEEF;
+		memcpy(mData + size, &sentinel, 4);
 #else
 		mData = new char[size];
 #endif
@@ -36,14 +41,18 @@ cDStore::cDStore(const size_t &size, char * const &data, bool takeOwnership) : m
 		mAt = mData;
 		memcpy(mAt, data, size);
 		mAt += size;
+#ifdef BUFF_DEBUG
+		assert(memcmp(mData + size, &sentinel, 4) == 0);
+#endif
 	}
 }
 
-cDStore::cDStore(const size_t &size, const char * const &data) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(0)
+cDStore::cDStore(const size_t &size, const char * const &data) : mData(NULL), mAt(NULL), mAllocSize(0), mDataSize(size)
 {
 #ifdef BUFF_DEBUG
-	mData = new char[size + sizeof(uint32_t)];
-	*((uint32_t *)(mData + size)) = 0xDEADBEEF;
+	mData = new char[size + 4];
+	uint32_t sentinel = 0xDEADBEEF;
+	memcpy(mData + size, &sentinel, 4);
 #else
 	mData = new char[size];
 #endif
@@ -51,6 +60,9 @@ cDStore::cDStore(const size_t &size, const char * const &data) : mData(NULL), mA
 	mAt = mData;
 	memcpy(mAt, data, size);
 	mAt += size;
+#ifdef BUFF_DEBUG
+	assert(memcmp(mData + size, &sentinel, 4) == 0);
+#endif
 }
 
 cDStore::~cDStore()
@@ -77,7 +89,8 @@ void cDStore::copy(const char * const &data, const size_t &size)
 		throw bad_capacity("block does not have enough space");
 	}
 #ifdef BUFF_DEBUG
-	assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);
+	uint32_t sentinel = 0xDEADBEEF;
+	assert(memcmp(mData + mAllocSize, &sentinel, 4) == 0);
 #endif
 	
 }
@@ -96,7 +109,8 @@ void cDStore::append(const char * const &data, const size_t &size)
 		throw bad_capacity("block does not have enough space");
 	}
 #ifdef BUFF_DEBUG
-	assert(*((uint32_t *)(mData + mAllocSize)) == 0xDEADBEEF);
+	uint32_t sentinel = 0xDEADBEEF;
+	assert(memcmp(mData + mAllocSize, &sentinel, 4) == 0);
 #endif
 }
 

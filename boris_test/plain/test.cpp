@@ -238,4 +238,14 @@ void testcBuffer(std::list<testCase> &tests)
 	tests.push_back(testCase("Ownership Test Block 1 size",  buff3.mChunks[1]->mDataSize == 0));
 	tests.push_back(testCase("Ownership Test Block 1 Alloc size",  buff3.mChunks[1]->mAllocSize == 14));
 
+	cBuffer buff5("hello", 5);
+
+	tests.push_back(testCase("copy in with constructor Logical Buffer size", buff5.mLogicalSize == 5));
+	tests.push_back(testCase("copy in with constructor Buffer size", buff5.mBufferSize == 5));
+	tests.push_back(testCase("copy in with constructor number chunks", buff5.mNumChunks == 1));
+	tests.push_back(testCase("copy in with constructor chunk data size", buff5.mChunks[0]->mDataSize == 5));
+	tests.push_back(testCase("copy in with constructor chunk allocation size", buff5.mChunks[0]->mAllocSize == 5));
+
+
+
 }
