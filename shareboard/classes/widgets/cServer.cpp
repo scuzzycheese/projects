@@ -4,10 +4,10 @@
  * All clients start off as masters. The idea, is when
  * you opt to connect to another server you become a peer
  */
-cServer::cServer(QWidget *parent, std::list<sNetPeer *> *clients) : QWidget(parent), dSelfPeer(sNetPeer::MASTER, sNetPeer::LIVE), dClients(clients)
+cServer::cServer(QWidget *parent) : QWidget(parent)
 {
 
-	dTcpSrv = new QTcpServer(this);
+	dTcpSrv = new QTcpServer(parent);
 	if(!dTcpSrv->listen(SERVERBIND, SERVERPORT))
 	{
 		printf("Error setting up server\n");
@@ -17,21 +17,15 @@ cServer::cServer(QWidget *parent, std::list<sNetPeer *> *clients) : QWidget(pare
 	}
 	printf("Server up and running\n");
 
-	connect(dTcpSrv, SIGNAL(newConnection()), this, SLOT(mAcceptConnection()));
-
-	//We push ourselves onto the peer list
-	dClients->push_front(&dSelfPeer);
-
+	QObject::connect(dTcpSrv, SIGNAL(newConnection()), this, SLOT(mAcceptConnection()));
 }
 
-/**
- * Even tho we populate a large chunk of the dClients list, 
- * we don't actuall own it, we just write to it, so the
- * cleanup must be handled buy the server class, not this
- * one
- */
 cServer::~cServer()
 {
+	for(std::list<sNetPeer *>::iterator item = dClients.begin(), end = dClients.end(); item != end; ++ item)
+	{
+		delete *item;
+	}
 }
 
 void cServer::mAcceptConnection()
@@ -39,7 +33,7 @@ void cServer::mAcceptConnection()
 	printf("Connection Accepted\n");
 
 	//Add peers to our list
-	sNetPeer *peer = new sNetPeer(sNetPeer::PEER, sNetPeer::LIVE);
+	sNetPeer *peer = new sNetPeer(sNetPeer::CLIENT, sNetPeer::LIVE);
 	peer->dClient = dTcpSrv->nextPendingConnection();
 	//I don't even know if this is nessesary in this slot
 	peer->dClient->waitForConnected(1000);
@@ -51,23 +45,13 @@ void cServer::mAcceptConnection()
 	//it on.
 	peer->dPeerPort = SERVERPORT;
 
-	
 	//I presume this is just a nice cleanup routine
-	connect(peer->dClient, SIGNAL(disconnected()), peer->dClient, SLOT(deleteLater()));
-
-
-
-	//since I don't know what interface clients are binding to,
-	//I need to find out on my first inward connection
-	if(dSelfPeer.dPeerIPAddress == QHostAddress::Null)
-	{
-		dSelfPeer.dPeerIPAddress = peer->dClient->localAddress();
-	}
+	QObject::connect(peer->dClient, SIGNAL(disconnected()), peer->dClient, SLOT(deleteLater()));
 
 	peer->dClient->write("Hello from shareboard\r\n", 23);
 
 	//finally push the peer onto the stack
-	dClients->push_front(peer);
+	dClients.push_front(peer);
 }
 
 

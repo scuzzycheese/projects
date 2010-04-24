@@ -3,9 +3,14 @@
 
 
 #include <Qt/QtNetwork>
+#include <QObject>
+#include <QTcpServer>
 #include <QWidget>
 #include <deque>
-#include "cNetwork.h"
+#include "sNetPeer.h"
+
+#define SERVERBIND QHostAddress::Any
+#define SERVERPORT 1234
 
 class cServer : public QWidget
 {
@@ -13,11 +18,10 @@ class cServer : public QWidget
 
 	private:
 		QTcpServer *dTcpSrv;
-		sNetPeer dSelfPeer;
 
 	public:
-		std::list<sNetPeer *> *dClients;
-		cServer(QWidget *parent = 0, std::list<sNetPeer *> *clients = NULL);
+		std::list<sNetPeer *> dClients;
+		cServer(QWidget *parent = 0);
 		~cServer();
 
 	public slots:

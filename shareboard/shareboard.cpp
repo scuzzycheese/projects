@@ -5,6 +5,7 @@
 #include <QObject>
 #include "cServer.h"
 #include "cConnDiag.h"
+#include "cClient.h"
 
 int main(int argc, char **argv)
 {
@@ -29,7 +30,6 @@ int main(int argc, char **argv)
 	QSpinBox *angleSpinBox = mainWindow->findChild<QSpinBox *>("angleSpinBox");
 
 	QAction *connectToNetworkAction = mainWindow->findChild<QAction *>("actionConnect_to_Network");
-	QPushButton *connectButton = connectDialog->findChild<QPushButton *>("connectButton");
 
 	cMatrixWidget *worldMatrixWidget = mainWindow->findChild<cMatrixWidget *>("WM_W");
 	cMatrixWidget *rotationMatrixWidget = mainWindow->findChild<cMatrixWidget *>("RM_W");
@@ -73,6 +73,7 @@ int main(int argc, char **argv)
 	clrPkr->insertColor(Qt::white, "White", 6);
 
 
+	/*
 	cNetwork *net = new cNetwork();
 	net->setConnectDialog(connectDialog);
 
@@ -80,7 +81,14 @@ int main(int argc, char **argv)
 
 	net->mPeerList();
 
-	QObject::connect(connectButton, SIGNAL(clicked()), net, SLOT(connectTo())); 
+	QObject::connect(connectButton, SIGNAL(clicked()), net, SLOT(connectTo()));
+	 */
+
+	cServer *serv = new cServer;
+	cClient *cli = new cClient();
+	QObject::connect(connectDialog, SIGNAL(connectToHost(const QString &, quint16)), cli, SLOT(mConnectToHostSlot(const QString &, quint16)));
+
+
 	
 	mainWindow->show();
 
