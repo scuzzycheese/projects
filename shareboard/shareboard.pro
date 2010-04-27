@@ -6,6 +6,7 @@ HEADERS +=	classes/widgets/qtcolorpicker.h \
 				classes/widgets/cServer.h \
 				classes/widgets/cConnDiag.h \
 				classes/widgets/cClient.h\
+				classes/cPDU.h \
 				ui_shareboard.h
 SOURCES +=	classes/widgets/qtcolorpicker.cpp \
 				classes/widgets/cVectorDrawWidget.cpp \
@@ -14,6 +15,7 @@ SOURCES +=	classes/widgets/qtcolorpicker.cpp \
 				classes/widgets/cServer.cpp \
 				classes/widgets/cConnDiag.cpp \
 				classes/widgets/cClient.cpp \
+				classes/cPDU.cpp \
 				shareboard.cpp
 TARGET = shareboard
 FORMS += shareboard.ui connectDialog.ui
