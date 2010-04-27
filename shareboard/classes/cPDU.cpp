@@ -10,7 +10,7 @@ void cPDU::build()
 	 * 		nameLength(m_short16)
 	 * 			name(char *)
 	 * 		dataLength(m_int32)
-	 * 			data(void *)
+	 * 			data(char *)
 	 */
 
 	//PDULength includes ittself in the length	
@@ -45,37 +45,37 @@ void cPDU::build()
 }
 
 
-std::string cPDU::getName()
+std::string cPDU::mGetName()
 {
 	if(!PDUd) build();
 	return name;
 }
 
-m_short16 cPDU::getNameLength()
+m_short16 cPDU::mGetNameLength()
 {
 	if(!PDUd) build();
 	return nameLength;
 }
 
-void *cPDU::getData()
+char *cPDU::mGetData()
 {
 	if(!PDUd) build();
 	return data;
 }
 
-m_int32 cPDU::getDataLength()
+m_int32 cPDU::mGetDataLength()
 {
 	if(!PDUd) build();
 	return dataLength;
 }
 
-void *cPDU::getPDU()
+char *cPDU::mGetPDU()
 {
 	if(!PDUd) build();
 	return PDUd;
 }
 
-m_int32 cPDU::getPDULength()
+m_int32 cPDU::mGetPDULength()
 {
 	if(!PDUd) build();
 	return PDULength;
@@ -109,7 +109,7 @@ cPDU::cPDU(cPDU &pdu)
 }
 
 
-cPDU::cPDU(void *in) : PDUd(NULL), PDUInc(NULL), data(NULL), PDULength(0), dataLength(0), nameLength(0)
+cPDU::cPDU(char *in) : PDUd(NULL), PDUInc(NULL), data(NULL), PDULength(0), dataLength(0), nameLength(0)
 {
 	char *inData = (char *)in;
 	char *beginInData = inData;
@@ -140,13 +140,13 @@ cPDU::cPDU(void *in) : PDUd(NULL), PDUInc(NULL), data(NULL), PDULength(0), dataL
 }
 
 
-void cPDU::addFieldName(std::string fn)
+void cPDU::mAddFieldName(std::string fn)
 {
 	name = fn;
 	nameLength = name.length();
 }
 
-void cPDU::addData(void *d, m_int32 length)
+void cPDU::mAddData(char *d, m_int32 length)
 {
 	data = new char[length];
 	memcpy(data, d, length);

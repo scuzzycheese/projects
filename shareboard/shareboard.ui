@@ -57,10 +57,6 @@
          <widget class="cMatrixWidget" name="SM_W" native="true"/>
         </item>
        </layout>
-       <zorder>WM_W</zorder>
-       <zorder>TM_W</zorder>
-       <zorder>RM_W</zorder>
-       <zorder>SM_W</zorder>
       </widget>
      </widget>
     </item>
@@ -96,6 +92,7 @@
      <string>Network</string>
     </property>
     <addaction name="actionConnect_to_Network"/>
+    <addaction name="actionStart_Server_2"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -407,6 +404,11 @@
   <action name="actionConnect_to_Network">
    <property name="text">
     <string>Connect to Network</string>
+   </property>
+  </action>
+  <action name="actionStart_Server_2">
+   <property name="text">
+    <string>Start Server</string>
    </property>
   </action>
  </widget>

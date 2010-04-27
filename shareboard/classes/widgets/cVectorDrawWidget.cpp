@@ -173,6 +173,7 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 	*image = newImage;
 }
 
+/*
 void cVectorDrawWidget::rotateSlot(const int &angle)
 {
 	double pi = 3.14159;
@@ -183,18 +184,16 @@ void cVectorDrawWidget::rotateSlot(const int &angle)
 
 
 
-	/*
+
 
 	dRotationMatrix = QMatrix(cosa, sina, -sina, cosa, 0, 0);
 	QMatrix newTrans = dOperationTranslation.inverted() * dTranslationMatrix * dRotationMatrix * dOperationTranslation;
 	QPoint transVector(newTrans.dx() - dTranslationMatrix.dx(), newTrans.dy() - dTranslationMatrix.dy());
 	translate(transVector);
 
-	*/
 
 
 
-	/*
 
 	dRotationMatrix = QMatrix(cosa, sina, -sina, cosa, 0, 0);
 	mDumpMatrix("dOperationTranslation", dOperationTranslation);
@@ -203,10 +202,10 @@ void cVectorDrawWidget::rotateSlot(const int &angle)
 	dTranslationMatrix = dOperationTranslation.inverted() * dTranslationMatrix * dRotationMatrix * dOperationTranslation;
 	mSetRotationToIdentity(dTranslationMatrix);
 	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
-	*/
 	emit mMatrixChanged();
 
 }
+*/
 
 
 void cVectorDrawWidget::scaleSlot(const int &scale)

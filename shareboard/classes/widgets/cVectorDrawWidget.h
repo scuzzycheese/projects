@@ -68,7 +68,7 @@ class cVectorDrawWidget : public QWidget
 		void clearImage();
 		void setPenColorSlot(const QColor &newColor);
 		void setPenWidthSlot(int newWidth);
-		void rotateSlot(const int &angle);
+		//void rotateSlot(const int &angle);
 		void scaleSlot(const int &scale);
 		void mResetMatrices();
 	signals:

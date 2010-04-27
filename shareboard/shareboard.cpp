@@ -5,6 +5,7 @@
 #include <QObject>
 #include "cServer.h"
 #include "cConnDiag.h"
+#include "cStartServerDiag.h"
 #include "cClient.h"
 
 int main(int argc, char **argv)
@@ -16,8 +17,7 @@ int main(int argc, char **argv)
 	ui.setupUi(mainWindow);
 
 	cConnDiag *connectDialog = new cConnDiag;
-	//Ui::ConnectDialog cd;
-	//cd.setupUi(connectDialog);
+	cStartServerDiag *startServerDialog = new cStartServerDiag;
 
 
 	QtColorPicker *clrPkr = mainWindow->findChild<QtColorPicker *>("colourPicker");
@@ -30,6 +30,7 @@ int main(int argc, char **argv)
 	QSpinBox *angleSpinBox = mainWindow->findChild<QSpinBox *>("angleSpinBox");
 
 	QAction *connectToNetworkAction = mainWindow->findChild<QAction *>("actionConnect_to_Network");
+	QAction *startServerAction = mainWindow->findChild<QAction *>("actionStart_Server_2");
 
 	cMatrixWidget *worldMatrixWidget = mainWindow->findChild<cMatrixWidget *>("WM_W");
 	cMatrixWidget *rotationMatrixWidget = mainWindow->findChild<cMatrixWidget *>("RM_W");
@@ -48,6 +49,7 @@ int main(int argc, char **argv)
 	
 
 	QObject::connect(connectToNetworkAction, SIGNAL(triggered()), connectDialog, SLOT(show()));
+	QObject::connect(startServerAction, SIGNAL(triggered()), startServerDialog, SLOT(show()));
 
 
   	QObject::connect(clearButton, SIGNAL(clicked()), drawArea, SLOT(clearImage()));

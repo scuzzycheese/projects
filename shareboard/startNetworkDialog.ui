@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConnectDialog</class>
- <widget class="QDialog" name="ConnectDialog">
+ <class>StartNetworkDialog</class>
+ <widget class="QDialog" name="StartNetworkDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Connect To Network</string>
+   <string>Start Network</string>
   </property>
-  <widget class="QLineEdit" name="host">
+  <widget class="QLineEdit" name="networkName">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>130</x>
      <y>20</y>
-     <width>301</width>
+     <width>251</width>
      <height>26</height>
     </rect>
    </property>
@@ -26,17 +26,17 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>20</y>
-     <width>41</width>
-     <height>31</height>
+     <width>111</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
-    <string>Host:</string>
+    <string>Network Name:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="connectButton">
+  <widget class="QPushButton" name="startNetworkButton">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Connect</string>
+    <string>Start</string>
    </property>
   </widget>
  </widget>

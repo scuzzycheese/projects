@@ -63,17 +63,17 @@ class cPDU
 	public:
 
 		//Accessors
-		std::string getName();
-		m_short16 getNameLength();
-		void *getData();
-		m_int32 getDataLength();
-		void *getPDU();
-		m_int32 getPDULength();
+		std::string mGetName();
+		m_short16 mGetNameLength();
+		char *mGetData();
+		m_int32 mGetDataLength();
+		char *mGetPDU();
+		m_int32 mGetPDULength();
 		cPDU();
-		cPDU(void *in);
+		cPDU(char *in);
 		cPDU(cPDU &pdu);
-		void addFieldName(std::string fn);
-		void addData(void *d, m_int32 length);
+		void mAddFieldName(std::string fn);
+		void mAddData(char *d, m_int32 length);
 		~cPDU();
 };
 
