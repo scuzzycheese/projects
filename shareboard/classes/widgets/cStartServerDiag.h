@@ -12,6 +12,7 @@
 #include <QObject>
 #include <QWidget>
 #include "ui_startNetworkDialog.h"
+#include "cServer.h"
 
 namespace Ui
 {
@@ -24,9 +25,11 @@ class cStartServerDiag : public QDialog
 
 public:
 	cStartServerDiag(QWidget *parent = 0);
+	void mSetServer(cServer *srv);
 
 private:
 	Ui::StartNetworkDialog *ssd;
+	cServer *server;
 
 public slots:
 	void mHandleServerStartButton();

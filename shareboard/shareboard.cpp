@@ -3,10 +3,12 @@
 #include "cVectorDrawWidget.h"
 #include <QtGui/QButtonGroup>
 #include <QObject>
+#include <QApplication>
 #include "cServer.h"
 #include "cConnDiag.h"
 #include "cStartServerDiag.h"
 #include "cClient.h"
+#include "qtcolorpicker.h"
 
 int main(int argc, char **argv)
 {
@@ -67,26 +69,20 @@ int main(int argc, char **argv)
 	QObject::connect(drawArea, SIGNAL(mMatrixChanged()), scaleMatrixWidget, SLOT(mUpdate()));
 
 
+	/*
 	clrPkr->insertColor(Qt::black, "Black", 1);
 	clrPkr->insertColor(Qt::blue, "Blue", 2);
 	clrPkr->insertColor(Qt::green, "Green", 3);
 	clrPkr->insertColor(Qt::red, "Red", 4);
 	clrPkr->insertColor(Qt::yellow, "Yellow", 5);
 	clrPkr->insertColor(Qt::white, "White", 6);
-
-
-	/*
-	cNetwork *net = new cNetwork();
-	net->setConnectDialog(connectDialog);
-
-	net->mConnectToHost("127.0.0.1", 1234);
-
-	net->mPeerList();
-
-	QObject::connect(connectButton, SIGNAL(clicked()), net, SLOT(connectTo()));
 	 */
+	clrPkr->setStandardColors();
 
-	cServer *serv = new cServer;
+
+	cServer *serv = NULL;
+	startServerDialog->mSetServer(serv);
+
 	cClient *cli = new cClient();
 	QObject::connect(connectDialog, SIGNAL(connectToHost(const QString &, quint16)), cli, SLOT(mConnectToHostSlot(const QString &, quint16)));
 

@@ -22,7 +22,7 @@ class cClient : public QWidget
 		int mConnectToHost(const QString &host, quint16 port);
 		void mPeerList();
 
-		sNetPeer dServer;
+		sNetPeer *dServer;
 
 		void setConnectDialog(QDialog *connDiag);
 

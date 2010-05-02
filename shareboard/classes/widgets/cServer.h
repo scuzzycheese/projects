@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <deque>
 #include "sNetPeer.h"
+#include "cPDU.h"
+#include <iostream>
 
 #define SERVERBIND QHostAddress::Any
 #define SERVERPORT 1234
@@ -18,14 +20,22 @@ class cServer : public QWidget
 
 	private:
 		QTcpServer *dTcpSrv;
+		QString serverName;
 
 	public:
 		std::list<sNetPeer *> dClients;
-		cServer(QWidget *parent = 0);
+		cServer(QString srvName, QWidget *parent = 0);
 		~cServer();
+		void mRelayMessage(cPDU &message);
+		void mSendToHost(QTcpSocket *sock, cPDU &message);
+		static char *mGetPDUFromSocket(QTcpSocket *sock);
+		static bool mSendPDUToSocket(QTcpSocket *sock, cPDU &pdu);
+
+
 
 	public slots:
 		void mAcceptConnection();
+		void mHandleData();
 
 
 };

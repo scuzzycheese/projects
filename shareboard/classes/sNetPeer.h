@@ -1,17 +1,15 @@
-/* 
- * File:   sNetPeer.h
- * Author: scuzzy
- *
- * Created on 23 April 2010, 16:55
- */
 #include <iostream>
+#include <QObject>
+#include <Qt/QtNetwork>
 
 #ifndef _SNETPEER_H
 #define	_SNETPEER_H
 
-struct sNetPeer
+class sNetPeer : public QObject
 {
+	Q_OBJECT
 
+public:
 	enum CLASS
 	{
 		CLIENT,
@@ -24,21 +22,35 @@ struct sNetPeer
 		LIVE
 	};
 
-	sNetPeer(CLASS cls, STATUS status) : dPeerClass(cls), dStatus(status)
+	sNetPeer(CLASS cls, STATUS status, QTcpSocket *sock, QObject *parent = 0) : QObject(parent), dPeerClass(cls), dStatus(status), dClient(sock)
 	{
-		dClient = NULL;
 		dPeerIPAddress = QHostAddress::Null;
-
-		dClient = NULL;
 		dPeerPort = 0;
+		QObject::connect(dClient, SIGNAL(readyRead()), this, SLOT(mHandleDataReady()));
 	}
 
-	QTcpSocket *dClient;
+	~sNetPeer()
+	{
+
+	}
+
 	std::string dPeerName;
 	QHostAddress dPeerIPAddress;
 	quint16 dPeerPort;
 	uint8_t dPeerClass : 2;
 	uint8_t dStatus : 2;
+	QTcpSocket *dClient;
+
+
+signals:
+	void sDataReady();
+
+public slots:
+	void mHandleDataReady()
+	{
+		emit(sDataReady());
+	}
+
 };
 
 

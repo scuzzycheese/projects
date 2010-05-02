@@ -1,7 +1,8 @@
 #include "cClient.h"
 
-cClient::cClient(QWidget *parent) : QWidget(parent), dServer(sNetPeer::CLIENT, sNetPeer::LIVE)
+cClient::cClient(QWidget *parent) : QWidget(parent)
 {
+	dServer = NULL;
 	connectDialog = NULL;
 }
 
@@ -11,6 +12,7 @@ cClient::cClient(QWidget *parent) : QWidget(parent), dServer(sNetPeer::CLIENT, s
 cClient::~cClient()
 {
 	printf("Cleaning up!\n");
+	delete(dServer);
 }
 
 
@@ -23,9 +25,9 @@ int cClient::mConnectToHost(const QString &host, quint16 port)
 	sock->connectToHost(host, port, QIODevice::ReadWrite);
 	sock->waitForConnected(1000);
 
-	dServer.dClient = sock;
-	dServer.dPeerIPAddress = sock->peerAddress();
-	dServer.dPeerPort = port;
+	dServer = new sNetPeer(sNetPeer::CLIENT, sNetPeer::LIVE, sock);
+	dServer->dPeerIPAddress = sock->peerAddress();
+	dServer->dPeerPort = port;
 
 	//Some cleanup mastery from QT
 	QObject::connect(sock, SIGNAL(disconnected()), sock, SLOT(deleteLater()));

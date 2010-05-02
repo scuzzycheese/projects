@@ -8,6 +8,7 @@ HEADERS +=	classes/widgets/qtcolorpicker.h \
 				classes/widgets/cStartServerDiag.h \
 				classes/widgets/cClient.h\
 				classes/cPDU.h \
+				classes/sNetPeer.h \
 				ui_shareboard.h
 SOURCES +=	classes/widgets/qtcolorpicker.cpp \
 				classes/widgets/cVectorDrawWidget.cpp \

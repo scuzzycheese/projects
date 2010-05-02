@@ -13,7 +13,7 @@ cConnDiag::cConnDiag(QWidget *parent) : QDialog(parent), cd(new Ui::ConnectDialo
 void cConnDiag::mHandleConnectButton()
 {
 	QLineEdit *hostLine = findChild<QLineEdit *>("host");
-	emit(connectToHost(hostLine->text(), 1234));
+	emit(connectToHost(hostLine->text(), SERVERPORT));
 
    hide();
 }
