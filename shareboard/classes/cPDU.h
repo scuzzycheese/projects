@@ -40,41 +40,51 @@ ASSERT_SIZEOF(m_short16, 2);
 //the maximum length a PDU can be
 #define MAX_PDU_LENGTH 2000000
 
-
-
-#define MSG_WAITALL 0x8
-
 class cPDU
 {
+private:
+	char *PDUd;
+	//Fake pointer for doing 1byte arithmatic
+	char *PDUInc;
+	char *data;
+	std::string name;
 
-	private:
-		char *PDUd;
-		//Fake pointer for doing 1byte arithmatic
-		char *PDUInc;
-		char *data;
-		std::string name;
+	m_int32 PDULength;
+	m_int32 dataLength;
+	m_short16 nameLength;
 
-		m_int32 PDULength;
-		m_int32 dataLength;
-		m_short16 nameLength;
+	void build();
 
-		void build();
+public:
 
-	public:
+	/**
+	 * These types need to just be added
+	 * to as we need more
+	 */
+	enum PDUTYPE
+	{
+		DATA_START_LINE_VECTOR,
+		DATA_LINE_VECTOR,
+		DATA_END_LINE_VECTOR,
+		DATA_LINE_COLOR,
+		DATA_LINE_WIDTH,
+		DATA_MATRIX
+	};
 
-		//Accessors
-		std::string mGetName();
-		m_short16 mGetNameLength();
-		char *mGetData();
-		m_int32 mGetDataLength();
-		char *mGetPDU();
-		m_int32 mGetPDULength();
-		cPDU();
-		cPDU(char *in);
-		cPDU(cPDU &pdu);
-		void mAddFieldName(std::string fn);
-		void mAddData(char *d, m_int32 length);
-		~cPDU();
+
+	//Accessors
+	std::string mGetName();
+	m_short16 mGetNameLength();
+	char *mGetData();
+	m_int32 mGetDataLength();
+	char *mGetPDU();
+	m_int32 mGetPDULength();
+	cPDU();
+	cPDU(char *in);
+	cPDU(cPDU &pdu);
+	void mAddFieldName(std::string fn);
+	void mAddData(char *d, m_int32 length);
+	~ cPDU();
 };
 
 #endif

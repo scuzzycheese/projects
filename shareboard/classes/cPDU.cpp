@@ -1,7 +1,5 @@
 #include "cPDU.h"
 
-
-
 void cPDU::build()
 {
 	/**
@@ -24,7 +22,7 @@ void cPDU::build()
 		//now we construct the PDU in a single block of memory
 		memcpy(PDUInc, &PDULength, sizeof(PDULength));
 		PDUInc += sizeof(PDULength);
-	
+
 		memcpy(PDUInc, &nameLength, sizeof(nameLength));
 		PDUInc += sizeof(nameLength);
 
@@ -43,7 +41,6 @@ void cPDU::build()
 		PDULength = 0;
 	}
 }
-
 
 std::string cPDU::mGetName()
 {
@@ -81,45 +78,43 @@ m_int32 cPDU::mGetPDULength()
 	return PDULength;
 }
 
-
 cPDU::cPDU() : PDUd(NULL), PDUInc(NULL), data(NULL), PDULength(0), dataLength(0), nameLength(0)
 {
 }
 
 cPDU::cPDU(cPDU &pdu)
 {
-		//Damnit Silex, you got me again!
-		//NOTE: KEEP THIS UP TO DATE
+	//Damnit Silex, you got me again!
+	//NOTE: KEEP THIS UP TO DATE
 
-		//non allocation members
-		PDULength = pdu.PDULength;
-		dataLength = pdu.dataLength;
-		nameLength = pdu.nameLength;
+	//non allocation members
+	PDULength = pdu.PDULength;
+	dataLength = pdu.dataLength;
+	nameLength = pdu.nameLength;
 
-		//pointers;
-		PDUd = new char[PDULength];
-		memcpy(PDUd, pdu.PDUd, PDULength);
-		PDUInc = (char *)PDUd;
+	//pointers;
+	PDUd = new char[PDULength];
+	memcpy(PDUd, pdu.PDUd, PDULength);
+	PDUInc = (char *) PDUd;
 
-		data = new char[dataLength];
-		memcpy(data, pdu.data, dataLength);
+	data = new char[dataLength];
+	memcpy(data, pdu.data, dataLength);
 
-		//I think strings take care of themselves
-		name = pdu.name;
+	//I think strings take care of themselves
+	name = pdu.name;
 }
-
 
 cPDU::cPDU(char *in) : PDUd(NULL), PDUInc(NULL), data(NULL), PDULength(0), dataLength(0), nameLength(0)
 {
-	char *inData = (char *)in;
+	char *inData = (char *) in;
 	char *beginInData = inData;
 	//Parse the PDU
-	memcpy(&PDULength, inData, sizeof(PDULength)); 
+	memcpy(&PDULength, inData, sizeof(PDULength));
 	inData += sizeof(PDULength);
 
 	memcpy(&nameLength, inData, sizeof(nameLength));
 	inData += sizeof(nameLength);
-	
+
 	char *inName = new char[nameLength + 1];
 	//we null terminate just incase it's not already null terminated
 	//as it won't be if it's created with this library
@@ -139,7 +134,6 @@ cPDU::cPDU(char *in) : PDUd(NULL), PDUInc(NULL), data(NULL), PDULength(0), dataL
 	delete[](beginInData);
 }
 
-
 void cPDU::mAddFieldName(std::string fn)
 {
 	name = fn;
@@ -152,8 +146,6 @@ void cPDU::mAddData(char *d, m_int32 length)
 	memcpy(data, d, length);
 	dataLength = length;
 }
-
-
 
 cPDU::~cPDU()
 {

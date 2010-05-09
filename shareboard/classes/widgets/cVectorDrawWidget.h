@@ -63,7 +63,7 @@ class cVectorDrawWidget : public QWidget
 		QMatrix *mGetTranslationMatrix();
 		QMatrix *mGetScaleMatrix();
 		QMatrix *mGetRotationMatrix();
-	
+
 	public slots:
 		void clearImage();
 		void setPenColorSlot(const QColor &newColor);
