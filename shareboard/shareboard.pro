@@ -1,26 +1,26 @@
 CONFIG += qt debug
-HEADERS +=	classes/widgets/qtcolorpicker.h \
-				classes/widgets/cVectorDrawWidget.h \
-				classes/widgets/QVecLine.h \
-				classes/widgets/cMatrixWidget.h \
-				classes/widgets/cServer.h \
-				classes/widgets/cConnDiag.h \
-				classes/widgets/cStartServerDiag.h \
-				classes/widgets/cClient.h\
-				classes/cPDU.h \
-				classes/sNetPeer.h \
+HEADERS +=	classes/display/qtcolorpicker.h \
+				classes/display/cVectorDrawWidget.h \
+				classes/display/cMatrixWidget.h \
+				classes/display/cConnDiag.h \
+				classes/display/cStartServerDiag.h \
+				classes/appengine/QVecLine.h \
+				classes/network/cPDU.h \
+				classes/network/sNetPeer.h \
+				classes/network/cClient.h\
+				classes/network/cServer.h \
 				ui_shareboard.h
-SOURCES +=	classes/widgets/qtcolorpicker.cpp \
-				classes/widgets/cVectorDrawWidget.cpp \
-				classes/widgets/QVecLine.cpp \
-				classes/widgets/cMatrixWidget.cpp \
-				classes/widgets/cServer.cpp \
-				classes/widgets/cConnDiag.cpp \
-				classes/widgets/cStartServerDiag.cpp \
-				classes/widgets/cClient.cpp \
-				classes/cPDU.cpp \
+SOURCES +=	classes/display/qtcolorpicker.cpp \
+				classes/display/cVectorDrawWidget.cpp \
+				classes/display/cMatrixWidget.cpp \
+				classes/display/cConnDiag.cpp \
+				classes/display/cStartServerDiag.cpp \
+				classes/appengine/QVecLine.cpp \
+				classes/network/cPDU.cpp \
+				classes/network/cServer.cpp \
+				classes/network/cClient.cpp \
 				shareboard.cpp
 TARGET = shareboard
 FORMS += shareboard.ui connectDialog.ui startNetworkDialog.ui
 QT += network
-INCLUDEPATH += classes/widgets classes/vector classes
+INCLUDEPATH += classes/display classes/network classes/appengine classes
