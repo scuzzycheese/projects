@@ -8,8 +8,10 @@
 #include <QMatrix>
 #include <iostream>
 #include <deque>
-#include "QVecLine.h"
+#include "cVecLine.h"
+#include "cEngine.h"
 
+extern cEngine *engine;
 
 using namespace std;
 
@@ -42,9 +44,6 @@ class cVectorDrawWidget : public QWidget
 		QMatrix dScaleMatrix;
 
 		double dScale;
-
-		deque<QVecLine> dLines;
-		QVecLine *dTempLine;
 
 	
 	public:

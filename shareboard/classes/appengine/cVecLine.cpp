@@ -1,25 +1,25 @@
-#include "QVecLine.h"
+#include "cVecLine.h"
 
 
-QVecLine::QVecLine(QColor colour, int diameter) : dLastPoint(NULL)
+cVecLine::cVecLine(QColor colour, int diameter) : dLastPoint(NULL)
 {
 	dColour = colour;
 	dDiameter = diameter;
 }
 
 
-QVecLine::QVecLine() : dLastPoint(NULL)
+cVecLine::cVecLine() : dLastPoint(NULL)
 {
 	dColour = Qt::black;
 	dDiameter = 1;
 }
 
-QVecLine::~QVecLine()
+cVecLine::~cVecLine()
 {
 }
 
 
-void QVecLine::mDraw(QImage &image, QMatrix &mat, double thicknesScale)
+void cVecLine::mDraw(QImage &image, QMatrix &mat, double thicknesScale)
 {
 	for(deque<QPoint>::iterator i = dLine.begin(); i < dLine.end(); ++ i)
 	{
@@ -30,7 +30,7 @@ void QVecLine::mDraw(QImage &image, QMatrix &mat, double thicknesScale)
 	dLastPoint = NULL;
 }
 
-void QVecLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint, double thicknesScale)
+void cVecLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &endPoint, double thicknesScale)
 {
 	QPainter painter(&image);
 	painter.setPen(QPen(dColour, dDiameter * thicknesScale, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
@@ -38,7 +38,7 @@ void QVecLine::mDrawLine(QImage &image, const QPoint &startPoint, const QPoint &
 }
 
 
-void QVecLine::mAddVector(const QPoint &newVec)
+void cVecLine::mAddVector(const QPoint &newVec)
 {
 	dLine.push_back(newVec);
 }

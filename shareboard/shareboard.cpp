@@ -9,6 +9,10 @@
 #include "cStartServerDiag.h"
 #include "cClient.h"
 #include "qtcolorpicker.h"
+#include "cEngine.h"
+
+//global evilness
+cEngine *engine = new cEngine();
 
 int main(int argc, char **argv)
 {

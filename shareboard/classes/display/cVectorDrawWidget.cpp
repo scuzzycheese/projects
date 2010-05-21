@@ -9,7 +9,6 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent), dOperat
 	dScrolling = false;
 	dCurrentPenWidth = 1;
 	dCurrentPenColour = Qt::black;
-	dTempLine = NULL;
 	dScale = 1.0f;
 }
 
@@ -53,7 +52,7 @@ void cVectorDrawWidget::setPenWidth(int newWidth)
 
 void cVectorDrawWidget::clearImage()
 {
-	dLines.clear();
+	engine->mClear();
 	dImage.fill(qRgb(255, 255, 255));
 	update();
 }
@@ -82,10 +81,11 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 		//Set up the matrix to draw to, this is because
 		//our world matrix could be rotated or moved or scaled.
 		dInvertedWorldMatrix = dWorldMatrix.inverted();
-		//create a new vector line object
-		dTempLine = new QVecLine(dCurrentPenColour, dCurrentPenWidth);
-		//Add this vector to he current line being drawn
-		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
+
+		//TODO: Eventually the matrix inversion will take plave inside the
+		//mStartNewLine method, because the engine will be the thing controlling
+		//the matrices
+		engine->mStartNewLine(dInvertedWorldMatrix.map(event->pos()), dCurrentPenColour, dCurrentPenWidth);
 
 		dScribbling = true;
 	}
@@ -100,8 +100,7 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 {
 	if((event->buttons() & Qt::LeftButton) && dScribbling)
 	{
-		//Add this vector to he current line being drawn
-		dTempLine->mAddVector(dInvertedWorldMatrix.map(event->pos()));
+		engine->mAddVectToLine(dInvertedWorldMatrix.map(event->pos()));
 	}
 	if((event->buttons() & Qt::RightButton) && dScrolling)
 	{
@@ -115,11 +114,7 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if(event->button() == Qt::LeftButton && dScribbling)
 	{
-		//push the new line onto the deque.
-		dLines.push_back(*dTempLine);
-		//delete the old line
-		delete(dTempLine);
-		dTempLine = NULL;
+		engine->mEndNewLine();
 		//Set the scribble state to false;
 		dScribbling = false;
 	}
@@ -132,14 +127,16 @@ void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 {
 	dImage.fill(qRgb(255, 255, 255));
+
+	deque<cVecLine> *lines = engine->mGetLines();
 	//Draw the existing lines in the queue
-	for(deque<QVecLine>::iterator i = dLines.begin(); i < dLines.end(); i ++)
+	for(deque<cVecLine>::iterator i = (*lines).begin(); i < (*lines).end(); i ++)
 	{
 		(*i).mDraw(dImage, dWorldMatrix, dScale);
 	}
 
 	//Draw the lines currently being drawn
-	if(dTempLine) dTempLine->mDraw(dImage, dWorldMatrix, dScale);
+	if(engine->mGetCurrentLine()) engine->mGetCurrentLine()->mDraw(dImage, dWorldMatrix, dScale);
 
 	QPainter painter(this);
 	//painter.setMatrix(dWorldMatrix);
