@@ -2,34 +2,17 @@
 #include "cVectorDrawWidget.h"
 #include <iostream>
 
-cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent), dOperationTranslation(1, 0, 0, 1, 319, 164)
+cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
 {
 	setAttribute(Qt::WA_StaticContents);
 	dScribbling = false;
 	dScrolling = false;
 	dCurrentPenWidth = 1;
 	dCurrentPenColour = Qt::black;
-	dScale = 1.0f;
 }
 
 
 
-QMatrix *cVectorDrawWidget::mGetWorldMatrix()
-{
-	return &dWorldMatrix;
-}
-QMatrix *cVectorDrawWidget::mGetTranslationMatrix()
-{
-	return &dTranslationMatrix;
-}
-QMatrix *cVectorDrawWidget::mGetScaleMatrix()
-{
-	return &dScaleMatrix;
-}
-QMatrix *cVectorDrawWidget::mGetRotationMatrix()
-{
-	return &dRotationMatrix;
-}
 
 void cVectorDrawWidget::setPenColorSlot(const QColor &newColor)
 {
@@ -64,14 +47,8 @@ void cVectorDrawWidget::mResetMatrices()
 	QSlider *scale = nativeParentWidget()->findChild<QSlider *>("scale");	
 	scale->setValue(0);
 
-	dWorldMatrix.reset();
-	dInvertedWorldMatrix.reset();
-	dRotationMatrix.reset();
-	dTranslationMatrix.reset();
-	dScaleMatrix.reset();
-	dOperationTranslation.setMatrix(1, 0, 0, 1, 319, 164);
-	dScale = 1.0f;
-	emit mMatrixChanged();
+	engine->mResetMatrices();
+	if(engine->mMatrixChanged()) emit mMatrixChanged();
 }
 
 void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
@@ -80,12 +57,11 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 	{
 		//Set up the matrix to draw to, this is because
 		//our world matrix could be rotated or moved or scaled.
-		dInvertedWorldMatrix = dWorldMatrix.inverted();
 
 		//TODO: Eventually the matrix inversion will take plave inside the
 		//mStartNewLine method, because the engine will be the thing controlling
 		//the matrices
-		engine->mStartNewLine(dInvertedWorldMatrix.map(event->pos()), dCurrentPenColour, dCurrentPenWidth);
+		engine->mStartNewLine(event->pos(), dCurrentPenColour, dCurrentPenWidth);
 
 		dScribbling = true;
 	}
@@ -100,7 +76,7 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 {
 	if((event->buttons() & Qt::LeftButton) && dScribbling)
 	{
-		engine->mAddVectToLine(dInvertedWorldMatrix.map(event->pos()));
+		engine->mAddVectToLine(event->pos());
 	}
 	if((event->buttons() & Qt::RightButton) && dScrolling)
 	{
@@ -132,14 +108,13 @@ void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 	//Draw the existing lines in the queue
 	for(deque<cVecLine>::iterator i = (*lines).begin(); i < (*lines).end(); i ++)
 	{
-		(*i).mDraw(dImage, dWorldMatrix, dScale);
+		(*i).mDraw(dImage, engine->dWorldMatrix, engine->dScale);
 	}
 
 	//Draw the lines currently being drawn
-	if(engine->mGetCurrentLine()) engine->mGetCurrentLine()->mDraw(dImage, dWorldMatrix, dScale);
+	if(engine->mGetCurrentLine()) engine->mGetCurrentLine()->mDraw(dImage, engine->dWorldMatrix, engine->dScale);
 
 	QPainter painter(this);
-	//painter.setMatrix(dWorldMatrix);
 	painter.drawImage(QPoint(0, 0), dImage);
 	//TODO: maybe take the update line out of the drawLine function
 	update();
@@ -170,84 +145,14 @@ void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 	*image = newImage;
 }
 
-/*
-void cVectorDrawWidget::rotateSlot(const int &angle)
-{
-	double pi = 3.14159;
-	 
-	double a = pi/180 * (double)angle;
-	double sina = sin(a);
-	double cosa = cos(a);
-
-
-
-
-
-	dRotationMatrix = QMatrix(cosa, sina, -sina, cosa, 0, 0);
-	QMatrix newTrans = dOperationTranslation.inverted() * dTranslationMatrix * dRotationMatrix * dOperationTranslation;
-	QPoint transVector(newTrans.dx() - dTranslationMatrix.dx(), newTrans.dy() - dTranslationMatrix.dy());
-	translate(transVector);
-
-
-
-
-
-	dRotationMatrix = QMatrix(cosa, sina, -sina, cosa, 0, 0);
-	mDumpMatrix("dOperationTranslation", dOperationTranslation);
-	mDumpMatrix("dTranslationMatrix", dTranslationMatrix);
-	mDumpMatrix("dRotationMatrix", dRotationMatrix);
-	dTranslationMatrix = dOperationTranslation.inverted() * dTranslationMatrix * dRotationMatrix * dOperationTranslation;
-	mSetRotationToIdentity(dTranslationMatrix);
-	dWorldMatrix = dScaleMatrix * dRotationMatrix * dTranslationMatrix;
-	emit mMatrixChanged();
-
-}
-*/
-
-
 void cVectorDrawWidget::scaleSlot(const int &scale)
 {
-	dScale = 1 + ((double)scale / 10.0f);
-	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
-	dWorldMatrix = dScaleMatrix * dTranslationMatrix;
-	emit mMatrixChanged();
+	engine->mScale(scale);
+	if(engine->mMatrixChanged()) emit mMatrixChanged();
 }
-
-
 
 void cVectorDrawWidget::translate(const QPoint &transBy)
 {
-	//I think this needs to be here, because scaling performs quite complex
-	//operations on the matrix, the scale matrix has to be updated with
-	//every translation operation
-	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
-
-
-	QMatrix tempMatrix = dScaleMatrix;
-	tempMatrix.setMatrix(tempMatrix.m11(), tempMatrix.m12(), tempMatrix.m21(), tempMatrix.m22(), 0, 0);
-	QPointF tempPoint = tempMatrix.inverted().map(QPointF(transBy));
-	
-
-	dOperationTranslation.translate(-tempPoint.x(), -tempPoint.y());
-	dTranslationMatrix.translate(tempPoint.x(), tempPoint.y());
-
-	dWorldMatrix = dScaleMatrix * dTranslationMatrix;
-	emit mMatrixChanged();
-}
-
-void cVectorDrawWidget::mSetRotationToIdentity(QMatrix &mat)
-{
-	QPointF holdPoint(mat.dx(), mat.dy());
-	mat.setMatrix(1, 0, 0, 1, holdPoint.x(), holdPoint.y());
-}
-
-void cVectorDrawWidget::mDumpMatrix(string name, QMatrix &mat)
-{
-	cout << name << ": ";
-	cout << mat.m11() << ", ";
-	cout << mat.m12() << ", ";
-	cout << mat.m21() << ", ";
-	cout << mat.m22() << ", ";
-	cout << mat.dx() << ", ";
-	cout << mat.dy() << endl;
+	engine->mTranslate(transBy);
+	if(engine->mMatrixChanged()) emit mMatrixChanged();
 }

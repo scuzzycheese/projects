@@ -44,13 +44,13 @@ int main(int argc, char **argv)
 	cMatrixWidget *scaleMatrixWidget = mainWindow->findChild<cMatrixWidget *>("SM_W");
 
 	worldMatrixWidget->setTitle("dWorldMatrix");
-	worldMatrixWidget->mSetMatrix(drawArea->mGetWorldMatrix());
+	worldMatrixWidget->mSetMatrix(&(engine->dWorldMatrix));
 	rotationMatrixWidget->setTitle("dRotationMatrix");
-	rotationMatrixWidget->mSetMatrix(drawArea->mGetRotationMatrix());
+	rotationMatrixWidget->mSetMatrix(&(engine->dRotationMatrix));
 	translationMatrixWidget->setTitle("dTranslationMatrix");
-	translationMatrixWidget->mSetMatrix(drawArea->mGetTranslationMatrix());
+	translationMatrixWidget->mSetMatrix(&(engine->dTranslationMatrix));
 	scaleMatrixWidget->setTitle("dScaleMatrix");
-	scaleMatrixWidget->mSetMatrix(drawArea->mGetScaleMatrix());
+	scaleMatrixWidget->mSetMatrix(&(engine->dScaleMatrix));
 
 	
 

@@ -10,6 +10,7 @@
 
 #include "cVecLine.h"
 #include <deque>
+#include <QMatrix>
 
 class cEngine
 {
@@ -17,7 +18,20 @@ private:
 	deque<cVecLine> dLines;
 	cVecLine *newLine;
 
+	bool matrixChanged;
 
+public:
+	//This is the translation matrix that we rotate and scale around
+	QMatrix dOperationTranslation;
+
+	//Matrix related stuff
+	QMatrix dWorldMatrix;
+	QMatrix dInvertedWorldMatrix;
+
+	QMatrix dTranslationMatrix;
+	QMatrix dRotationMatrix;
+	QMatrix dScaleMatrix;
+	double dScale;
 
 public:
 	cEngine();
@@ -38,7 +52,13 @@ public:
 
 	void mClear();
 
+	//Matrix stuff
+	void mResetMatrices();
 
+	void mScale(const int &scale);
+	void mTranslate(const QPoint &transBy);
+
+	bool mMatrixChanged();
 };
 
 #endif	/* _ENGINE_H */
