@@ -11,6 +11,8 @@
 #include "cVecLine.h"
 #include <deque>
 #include <QMatrix>
+#include "cServer.h"
+#include "cClient.h"
 
 class cEngine
 {
@@ -32,6 +34,9 @@ public:
 	QMatrix dRotationMatrix;
 	QMatrix dScaleMatrix;
 	double dScale;
+
+	cServer *dServer;
+	cClient *dClient;
 
 public:
 	cEngine();
@@ -59,6 +64,11 @@ public:
 	void mTranslate(const QPoint &transBy);
 
 	bool mMatrixChanged();
+
+	bool mStartServer(QString serverName);
+	void mConnectToHost(const QString &host, quint16 port);
+
+
 };
 
 #endif	/* _ENGINE_H */

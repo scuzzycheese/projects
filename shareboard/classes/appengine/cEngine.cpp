@@ -11,6 +11,8 @@ cEngine::cEngine() : newLine(NULL), dOperationTranslation(1, 0, 0, 1, 319, 164)
 {
 	dScale = 1.0f;
 	matrixChanged = false;
+	dServer = NULL;
+	dClient = new cClient();
 }
 
 
@@ -150,3 +152,23 @@ void cVectorDrawWidget::rotateSlot(const int &angle)
 
 }
 */
+
+
+
+bool cEngine::mStartServer(QString serverName)
+{
+	if(dServer == NULL)
+	{
+		dServer = new cServer(serverName);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+void cEngine::mConnectToHost(const QString &host, quint16 port)
+{
+	dClient->mConnectToHost(host, port);
+}
+

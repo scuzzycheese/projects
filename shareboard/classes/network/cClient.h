@@ -13,14 +13,12 @@ class cClient : public QWidget
 	Q_OBJECT	
 
 	private:
-		QDialog *connectDialog;
 
 	public:
 		cClient(QWidget *parent = 0);
 		~cClient();
 
 		int mConnectToHost(const QString &host, quint16 port);
-		void mPeerList();
 
 		sNetPeer *dServer;
 

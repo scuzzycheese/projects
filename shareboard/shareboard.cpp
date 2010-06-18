@@ -12,7 +12,7 @@
 #include "cEngine.h"
 
 //global evilness
-cEngine *engine = new cEngine();
+cEngine *engine = NULL;
 
 int main(int argc, char **argv)
 {
@@ -21,6 +21,9 @@ int main(int argc, char **argv)
 	QMainWindow *mainWindow = new QMainWindow;
 	Ui::ShareBoard ui;
 	ui.setupUi(mainWindow);
+
+	//Initialise the engine AFTER the QApplication
+	engine = new cEngine();
 
 	cConnDiag *connectDialog = new cConnDiag;
 	cStartServerDiag *startServerDialog = new cStartServerDiag;
@@ -83,15 +86,6 @@ int main(int argc, char **argv)
 	 */
 	clrPkr->setStandardColors();
 
-
-	cServer *serv = NULL;
-	startServerDialog->mSetServer(serv);
-
-	cClient *cli = new cClient();
-	QObject::connect(connectDialog, SIGNAL(connectToHost(const QString &, quint16)), cli, SLOT(mConnectToHostSlot(const QString &, quint16)));
-
-
-	
 	mainWindow->show();
 
 

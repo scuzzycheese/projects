@@ -6,6 +6,9 @@
 #include <QWidget>
 #include "ui_connectDialog.h"
 #include "cServer.h"
+#include "cEngine.h"
+
+extern cEngine *engine;
 
 namespace Ui
 {
@@ -24,10 +27,6 @@ private:
 
 public slots:
 	void mHandleConnectButton();
-
-signals:
-	void connectToHost(const QString &host, quint16 port);
-
 
 
 

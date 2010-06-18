@@ -3,7 +3,6 @@
 cClient::cClient(QWidget *parent) : QWidget(parent)
 {
 	dServer = NULL;
-	connectDialog = NULL;
 }
 
 /**
