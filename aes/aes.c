@@ -16,6 +16,7 @@ enum cipherDirection
 
 char *encode(const unsigned char *input, int length);
 char *decode(unsigned char *input, int length);
+char *encodeMultiBlocks(const unsigned char *input, int length);
 
 int main()
 {
@@ -27,6 +28,24 @@ int main()
 	printf("DECODED: %s\n", decoded);
 	free(encoded);
 	free(decoded);
+}
+
+//Finish this tomorrow
+char *encodeMultiBlock(const unsigned char *input, int length)
+{
+	unsigned char *blkPtr;
+	for(int i = 0, blkPtr = input; i < length; i += 32, blkPtr += 32)
+	{
+		unsigned char *block = NULL;
+		if(length <= 32)
+		{
+			block = encode(blkPtr, length);
+		}
+		else
+		{
+			block = encode(blkPtr, 32);
+		}
+	}
 }
 
 void setCipher(BIO *bioCipher, unsigned char *keyData, int keyDataLen, enum cipherDirection direction)
@@ -63,8 +82,8 @@ char *encode(const unsigned char *input, int length)
 
 	//build the stack:
 	//bioCipher -> bioB64 -> bioMem
-	bioB64 = BIO_push(bioB64, bioMem);
-	bioCipher = BIO_push(bioCipher, bioB64);
+	//bioB64 = BIO_push(bioB64, bioMem);
+	bioCipher = BIO_push(bioCipher, bioMem);
 
 	BIO_write(bioCipher, input, length);
 	BIO_flush(bioCipher);
@@ -93,19 +112,19 @@ char *decode(unsigned char *input, int length)
 	bioCipher = BIO_new(BIO_f_cipher());
 	setCipher(bioCipher, "myAesKey12345678", 16, CIPHER_DECRYPT);
 
-	bioB64 = BIO_push(bioB64, bioMem);
-	bioCipher = BIO_push(bioCipher, bioB64);
+	//bioB64 = BIO_push(bioB64, bioMem);
+	bioCipher = BIO_push(bioCipher, bioMem);
 
 	char *outBuff = (char *)malloc(length);
 	memset(outBuff, 0x00, length);
 	int readBytes = BIO_read(bioCipher, outBuff, length);
-	ERR_print_errors(bioMem);
-	ERR_print_errors(bioB64);
+	printf("Number of bytes read: %d\n", readBytes);
+	readBytes = BIO_read(bioCipher, outBuff, length);
 	printf("Number of bytes read: %d\n", readBytes);
 	outBuff[readBytes] = '\0';
 
 
-	BIO_free_all(bioCipher);
+	//BIO_free_all(bioCipher);
 	return outBuff;
 }
 
