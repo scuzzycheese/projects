@@ -20,8 +20,8 @@ char *encodeMultiBlocks(const unsigned char *input, int length);
 
 int main()
 {
-	//unsigned char *encoded = encode("abc1234567890123456789012345678901234567890123456789012345678901", strlen("abc1234567890123456789012345678901234567890123456789012345678901"));
-	unsigned char *encoded = encode("abc12345678901234567890123456789012345678901", strlen("abc12345678901234567890123456789012345678901"));
+	unsigned char *encoded = encode("abc00005d41402abc4b2a76b9719d911017c592", strlen("abc00005d41402abc4b2a76b9719d911017c592"));
+	//unsigned char *encoded = encode("abc12345678901234567890123456789012345678901", strlen("abc12345678901234567890123456789012345678901"));
 	printf("ENCODED: %s\n", encoded);
 	printf("LENGTH: %u\n\n", strlen(encoded));
 
@@ -36,7 +36,7 @@ void setCipher(BIO *bioCipher, unsigned char *keyData, int keyDataLen, enum ciph
 	unsigned char key[32];
 	unsigned char iv[32];
 
-	int i = EVP_BytesToKey(EVP_aes_256_ecb(), EVP_sha1(), NULL, keyData, keyDataLen, 1, key, iv);
+	int i = EVP_BytesToKey(EVP_aes_256_ecb(), EVP_sha1(), NULL, keyData, keyDataLen, 14, key, iv);
 	if(i != 32)
 	{
 		printf("Key size is %d bits - should be 256 bits\n", i);
@@ -105,7 +105,7 @@ char *decode(unsigned char *input, int length)
 	outBuff[readBytes] = '\0';
 
 
-	//BIO_free_all(bioCipher);
+	BIO_free_all(bioCipher);
 	return outBuff;
 }
 
