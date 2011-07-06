@@ -21,11 +21,30 @@ int main(int argc, char *argv[])
 	Ui::lcd ui;
 	ui.setupUi(mainWindow);
 
-	mainWindow->show();
+	cVectorDrawWidget *drawArea = mainWindow->findChild<cVectorDrawWidget *>("drawPanel");
 
 	cSerialTalk lcdPort;
 	cLM6800Proxy test(&lcdPort);
-	test.setPixel(100, 20);
+	test.clearScreen();
+	drawArea->setLM6800Proxy(&test);
+
+	mainWindow->show();
+
+
+	/*
+	while(1)
+	{
+		lcdPort.write("x", 1);
+		sleep(1);
+		lcdPort.write("c", 1);
+		sleep(1);
+		lcdPort.write("b", 1);
+		sleep(1);
+		lcdPort.write("c", 1);
+	}
+	 */
+
+	//test.setPixel(100, 20);
 
 
 	// create and show your widgets here

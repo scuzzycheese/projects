@@ -13,6 +13,10 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
 	dImage.fill(qRgb(255, 255, 255));
 }
 
+void cVectorDrawWidget::setLM6800Proxy(cLM6800Proxy *prox)
+{
+	lcdProxy = prox;
+}
 void cVectorDrawWidget::setPenColorSlot(const QColor &newColor)
 {
 	setPenColor(newColor);
@@ -48,6 +52,7 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 
 void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 {
+	lcdProxy->setPixel(event->pos().x(), event->pos().y());
 	QPainter painter(&dImage);
 	painter.drawLine(dLastPos, event->pos());
 	dLastPos = event->pos();

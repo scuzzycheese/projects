@@ -8,6 +8,7 @@
 #include <QMatrix>
 #include <iostream>
 #include <deque>
+#include "cLM6800Proxy.h"
 
 
 using namespace std;
@@ -29,7 +30,14 @@ class cVectorDrawWidget : public QWidget
 		//points that are important
 		QPoint dLastPos;
 
+		cLM6800Proxy *lcdProxy;
+
+
+
 	public:
+
+		void setLM6800Proxy(cLM6800Proxy *prox);
+
 		cVectorDrawWidget(QWidget *parent = 0);
 		
 		void setPenColor(const QColor &newColor);
