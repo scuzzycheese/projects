@@ -9,7 +9,9 @@
 #include <ui_lcd.h>
 #include <QMainWindow>
 #include "cSerialTalk.h"
+#include "lcdFramework.h"
 #include "cLM6800Proxy.h"
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
@@ -28,6 +30,12 @@ int main(int argc, char *argv[])
 	cLM6800Proxy test(&lcdPort);
 	test.clearScreen();
 	drawArea->setLM6800Proxy(&test);
+
+	std::cout << "struct lcdData size: " << sizeof(struct lcdData) << std::endl;
+	struct lcdData lcdData = test.getLcdData();
+
+	std::cout << "Width: " << lcdData.width << std::endl;
+	std::cout << "Height: " << lcdData.height << std::endl;
 
 	mainWindow->show();
 

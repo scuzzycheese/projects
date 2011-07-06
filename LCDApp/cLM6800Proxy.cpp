@@ -6,6 +6,7 @@
  */
 
 #include "cLM6800Proxy.h"
+#include <string.h>
 
 cLM6800Proxy::cLM6800Proxy()
 {
@@ -69,6 +70,7 @@ struct lcdData cLM6800Proxy::getLcdData(void)
 	lcdPort->write(&tmpChar, 1);
 
 	struct lcdData retData;
+	memset(&retData, 0x00, sizeof(struct lcdData));
 	lcdPort->read((char *)(&retData), sizeof(struct lcdData));
 	return retData;
 }
