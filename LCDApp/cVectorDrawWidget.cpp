@@ -52,9 +52,17 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 
 void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 {
-	lcdProxy->setPixel(event->pos().x(), event->pos().y());
-	QPainter painter(&dImage);
-	painter.drawLine(dLastPos, event->pos());
+	int xReal = event->pos().x();
+	int yReal = event->pos().y();
+	if(xReal > 0 && xReal < 512 && yReal > 0 && yReal < 128)
+	{
+		uint8_t x = xReal >> 1;
+		uint8_t y = yReal >> 1;
+		lcdProxy->setPixel(x, y);
+		QPainter painter(&dImage);
+		painter.setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		painter.drawLine(dLastPos, event->pos());
+	}
 	dLastPos = event->pos();
 }
 

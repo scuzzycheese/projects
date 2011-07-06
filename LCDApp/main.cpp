@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 	ui.setupUi(mainWindow);
 
 	cVectorDrawWidget *drawArea = mainWindow->findChild<cVectorDrawWidget *>("drawPanel");
+	drawArea->setPenWidth(3);
 
 	cSerialTalk lcdPort;
 	cLM6800Proxy test(&lcdPort);
