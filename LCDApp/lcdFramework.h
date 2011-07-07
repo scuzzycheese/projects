@@ -5,6 +5,8 @@
  * Created on 01 July 2011, 11:11 PM
  */
 
+#include <inttypes.h>
+
 #ifndef _LCDFRAMEWORK_H
 #define	_LCDFRAMEWORK_H
 

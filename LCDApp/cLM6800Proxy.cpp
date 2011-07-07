@@ -70,8 +70,7 @@ struct lcdData cLM6800Proxy::getLcdData(void)
 	lcdPort->write(&tmpChar, 1);
 
 	struct lcdData retData;
-	memset(&retData, 0x00, sizeof(struct lcdData));
-	lcdPort->read((char *)(&retData), sizeof(struct lcdData));
+	lcdPort->read((char *)&retData, sizeof(struct lcdData));
 	return retData;
 }
 void cLM6800Proxy::init(void)

@@ -36,27 +36,20 @@ int main(int argc, char *argv[])
 
 	std::cout << "Width: " << lcdData.width << std::endl;
 	std::cout << "Height: " << lcdData.height << std::endl;
+	std::cout << "Colour: ";
+	if(lcdData.colour) std::cout << "Yes";
+	else std::cout << "No";
+	std::cout << std::endl;
+	std::cout << "BitDepth: " << (int)lcdData.bitDepth << std::endl;
+	std::cout << "Backlight: ";
+	if(lcdData.backlight) std::cout << "Yes";
+	else std::cout << "No";
+	std::cout << std::endl;
+
+
+
 
 	mainWindow->show();
-
-
-	/*
-	while(1)
-	{
-		lcdPort.write("x", 1);
-		sleep(1);
-		lcdPort.write("c", 1);
-		sleep(1);
-		lcdPort.write("b", 1);
-		sleep(1);
-		lcdPort.write("c", 1);
-	}
-	 */
-
-	//test.setPixel(100, 20);
-
-
-	// create and show your widgets here
 
 	return app.exec();
 }
