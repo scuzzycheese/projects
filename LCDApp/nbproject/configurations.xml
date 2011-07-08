@@ -13,6 +13,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>cDockMainWindow.cpp</itemPath>
+      <itemPath>cDockMainWindow.h</itemPath>
       <itemPath>cLM6800Proxy.cpp</itemPath>
       <itemPath>cLM6800Proxy.h</itemPath>
       <itemPath>cSerialTalk.cpp</itemPath>

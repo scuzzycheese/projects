@@ -1,16 +1,10 @@
-/*
- * File:   main.cpp
- * Author: scuzzy
- *
- * Created on 29 June 2011, 9:24 PM
- */
-
 #include <QtGui/QApplication>
 #include <ui_lcd.h>
 #include <QMainWindow>
 #include "cSerialTalk.h"
 #include "lcdFramework.h"
 #include "cLM6800Proxy.h"
+#include "cDockMainWindow.h"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -24,7 +18,11 @@ int main(int argc, char *argv[])
 	ui.setupUi(mainWindow);
 
 	cVectorDrawWidget *drawArea = mainWindow->findChild<cVectorDrawWidget *>("drawPanel");
-	drawArea->setPenWidth(3);
+	QWidget *realEstateTab = mainWindow->findChild<QTabWidget *>("realEstateTab");
+
+	cDockMainWindow *docker = new cDockMainWindow();
+	docker->setParent(realEstateTab, Qt::Widget);
+	docker->createDock();
 
 	cSerialTalk lcdPort;
 	cLM6800Proxy test(&lcdPort);
@@ -50,6 +48,7 @@ int main(int argc, char *argv[])
 
 
 	mainWindow->show();
+	docker->show();
 
 	return app.exec();
 }
