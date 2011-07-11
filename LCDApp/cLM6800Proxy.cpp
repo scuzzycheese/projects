@@ -17,9 +17,11 @@ cLM6800Proxy::cLM6800Proxy(cSerialTalk *lcdPoObj) : lcdPort(lcdPoObj)
 {
 }
 
+/*
 cLM6800Proxy::cLM6800Proxy(const cLM6800Proxy& orig)
 {
 }
+ */
 
 void cLM6800Proxy::setLcdPort(cSerialTalk *lcdPoObj)
 {

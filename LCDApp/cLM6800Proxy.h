@@ -43,7 +43,7 @@ public:
 	void setLcdPort(cSerialTalk *lcdPoObj);
 
 	cLM6800Proxy();
-	cLM6800Proxy(const cLM6800Proxy& orig);
+	//cLM6800Proxy(const cLM6800Proxy& orig);
 	cLM6800Proxy(cSerialTalk *lcdPoObj);
 
 	virtual ~ cLM6800Proxy();

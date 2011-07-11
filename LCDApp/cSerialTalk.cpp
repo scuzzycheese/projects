@@ -20,7 +20,7 @@ cSerialTalk::cSerialTalk()
 	fdSerialPort = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
 	if(fdSerialPort == -1)
 	{
-		std::cout << "Unable to open serial port";
+		std::cout << "Unable to open serial port" << std::endl;
 	}
 	else
 	{
@@ -38,9 +38,11 @@ int cSerialTalk::read(char *data, int dataLen)
 	return ::read(fdSerialPort, data, dataLen);
 }
 
+/*
 cSerialTalk::cSerialTalk(const cSerialTalk& orig)
 {
 }
+ */
 
 cSerialTalk::~cSerialTalk()
 {

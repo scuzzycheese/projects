@@ -3,7 +3,7 @@
 #include <iostream>
 #include "cSerialTalk.h"
 
-cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
+cDrawWidget::cDrawWidget(QWidget *parent) : QWidget(parent)
 {
 	setAttribute(Qt::WA_StaticContents);
 	dScribbling = false;
@@ -13,36 +13,36 @@ cVectorDrawWidget::cVectorDrawWidget(QWidget *parent) : QWidget(parent)
 	dImage.fill(qRgb(255, 255, 255));
 }
 
-void cVectorDrawWidget::setLM6800Proxy(cLM6800Proxy *prox)
+void cDrawWidget::setLM6800Proxy(cLM6800Proxy *prox)
 {
 	lcdProxy = prox;
 }
-void cVectorDrawWidget::setPenColorSlot(const QColor &newColor)
+void cDrawWidget::setPenColorSlot(const QColor &newColor)
 {
 	setPenColor(newColor);
 }
 
-void cVectorDrawWidget::setPenColor(const QColor &newColor)
+void cDrawWidget::setPenColor(const QColor &newColor)
 {
 	dCurrentPenColour = newColor;
 }
 
-void cVectorDrawWidget::setPenWidthSlot(int newWidth)
+void cDrawWidget::setPenWidthSlot(int newWidth)
 {
 	setPenWidth(newWidth);
 }
-void cVectorDrawWidget::setPenWidth(int newWidth)
+void cDrawWidget::setPenWidth(int newWidth)
 {
 	dCurrentPenWidth = 1 + newWidth;
 }
 
-void cVectorDrawWidget::clearImage()
+void cDrawWidget::clearImage()
 {
 	dImage.fill(qRgb(255, 255, 255));
 	update();
 }
 
-void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
+void cDrawWidget::mousePressEvent(QMouseEvent *event)
 {
 	if(event->button() == Qt::LeftButton)
 	{
@@ -50,7 +50,7 @@ void cVectorDrawWidget::mousePressEvent(QMouseEvent *event)
 	}
 }
 
-void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
+void cDrawWidget::mouseMoveEvent(QMouseEvent *event)
 {
 	int xReal = event->pos().x();
 	int yReal = event->pos().y();
@@ -66,14 +66,14 @@ void cVectorDrawWidget::mouseMoveEvent(QMouseEvent *event)
 	dLastPos = event->pos();
 }
 
-void cVectorDrawWidget::mouseReleaseEvent(QMouseEvent *event)
+void cDrawWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	QPainter painter(&dImage);
 	painter.drawLine(dLastPos, event->pos());
 	dLastPos = event->pos();
 }
 
-void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
+void cDrawWidget::paintEvent(QPaintEvent * /* event */)
 {
 	QPainter painter(this);
 	painter.drawImage(QPoint(0, 0), dImage);
@@ -81,7 +81,7 @@ void cVectorDrawWidget::paintEvent(QPaintEvent * /* event */)
 	update();
 }
 
-void cVectorDrawWidget::resizeEvent(QResizeEvent *event)
+void cDrawWidget::resizeEvent(QResizeEvent *event)
 {
 	if(width() > dImage.width() || height() > dImage.height())
 	{
@@ -95,7 +95,7 @@ void cVectorDrawWidget::resizeEvent(QResizeEvent *event)
 
 
 //TODO: refactor this to redraw with vectors instead
-void cVectorDrawWidget::resizeImage(QImage *image, const QSize &newSize)
+void cDrawWidget::resizeImage(QImage *image, const QSize &newSize)
 {
 	if(image->size() == newSize) return;
 

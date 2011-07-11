@@ -13,15 +13,15 @@ int main(int argc, char *argv[])
 	// Q_INIT_RESOURCE(resfile);
 
 	QApplication app(argc, argv);
-	QMainWindow *mainWindow = new QMainWindow;
+	QMainWindow mainWindow;
 	Ui::lcd ui;
-	ui.setupUi(mainWindow);
+	ui.setupUi(&mainWindow);
 
-	cVectorDrawWidget *drawArea = mainWindow->findChild<cVectorDrawWidget *>("drawPanel");
-	QWidget *realEstateTab = mainWindow->findChild<QTabWidget *>("realEstateTab");
+	cDrawWidget *drawArea = mainWindow.findChild<cDrawWidget *>("drawPanel");
+	QWidget *realEstateTab = mainWindow.findChild<QTabWidget *>("realEstateTab");
 
 	cDockMainWindow *docker = new cDockMainWindow();
-	docker->setParent(realEstateTab, Qt::Widget);
+	//docker->setParent(realEstateTab, Qt::Widget);
 	docker->createDock();
 
 	cSerialTalk lcdPort;
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
 
 
-	mainWindow->show();
+	mainWindow.show();
 	docker->show();
 
 	return app.exec();

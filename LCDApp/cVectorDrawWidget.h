@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class cVectorDrawWidget : public QWidget
+class cDrawWidget : public QWidget
 {
 	Q_OBJECT
 
@@ -38,7 +38,7 @@ class cVectorDrawWidget : public QWidget
 
 		void setLM6800Proxy(cLM6800Proxy *prox);
 
-		cVectorDrawWidget(QWidget *parent = 0);
+		cDrawWidget(QWidget *parent = 0);
 		
 		void setPenColor(const QColor &newColor);
 		void setPenWidth(int newWidth);

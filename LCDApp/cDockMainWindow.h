@@ -11,6 +11,7 @@
 
 #include <QMainWindow>
 #include <QDockWidget>
+#include <QtGui>
 
 class cDockMainWindow : public QMainWindow
 {
@@ -22,6 +23,8 @@ public:
 	void createDock();
 	virtual ~ cDockMainWindow();
 private:
+protected:
+	void mousePressEvent(QMouseEvent *event);
 
 };
 

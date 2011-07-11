@@ -14,7 +14,7 @@ class cSerialTalk
 {
 public:
 	cSerialTalk();
-	cSerialTalk(const cSerialTalk& orig);
+	//cSerialTalk(const cSerialTalk& orig);
 	int write(char *data, int dataLen);
 	int read(char *data, int dataLen);
 	virtual ~ cSerialTalk();
