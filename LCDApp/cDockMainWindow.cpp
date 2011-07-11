@@ -9,11 +9,12 @@
 #include <QListWidget>
 #include <QApplication>
 #include <iostream>
+#include "cLCDDockWidget.h"
+#include "cDrawWidget.h"
 
 
 cDockMainWindow::cDockMainWindow(QMainWindow *parent) : QMainWindow(parent)
 {
-	setDockOptions(QMainWindow::AnimatedDocks);
 }
 
 cDockMainWindow::cDockMainWindow()
@@ -30,7 +31,6 @@ cDockMainWindow::cDockMainWindow()
 
 void cDockMainWindow::mousePressEvent(QMouseEvent *event)
 {
-	//This floating system needs to be implemented in a custom Dock widget
 	if(event->button() == Qt::LeftButton && QApplication::keyboardModifiers() == Qt::ControlModifier)
 	{
 	}
@@ -44,6 +44,14 @@ void cDockMainWindow::createDock()
 	
 	QDockWidget *dock0 = new QDockWidget(tr("Widget 0"), this);
 	dock0->setAllowedAreas(Qt::AllDockWidgetAreas);
+
+	//cDrawWidget *draw = new cDrawWidget(dock0);
+
+	cLCDDockWidget *lcdWid1 = new cLCDDockWidget(dock0);
+
+	//dock0->setWidget(draw);
+	dock0->setWidget(lcdWid1);
+
 	addDockWidget(Qt::RightDockWidgetArea, dock0);
 
 	QDockWidget *dock1 = new QDockWidget(tr("Widget 1"), this);

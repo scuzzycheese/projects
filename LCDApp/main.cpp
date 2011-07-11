@@ -21,7 +21,6 @@ int main(int argc, char *argv[])
 	QWidget *realEstateTab = mainWindow.findChild<QTabWidget *>("realEstateTab");
 
 	cDockMainWindow *docker = new cDockMainWindow();
-	//docker->setParent(realEstateTab, Qt::Widget);
 	docker->createDock();
 
 	cSerialTalk lcdPort;

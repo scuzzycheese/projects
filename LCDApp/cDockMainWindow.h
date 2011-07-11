@@ -23,6 +23,7 @@ public:
 	void createDock();
 	virtual ~ cDockMainWindow();
 private:
+	QImage dImage;
 protected:
 	void mousePressEvent(QMouseEvent *event);
 

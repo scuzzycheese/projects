@@ -40,17 +40,7 @@ class cDrawWidget : public QWidget
 
 		cDrawWidget(QWidget *parent = 0);
 		
-		void setPenColor(const QColor &newColor);
-		void setPenWidth(int newWidth);
-	
-		QColor penColor() const { return dCurrentPenColour; }
-		int penWidth() const { return dCurrentPenWidth; }
-
-
 	public slots:
-		void clearImage();
-		void setPenColorSlot(const QColor &newColor);
-		void setPenWidthSlot(int newWidth);
 	
 	protected:
 		void mousePressEvent(QMouseEvent *event);

@@ -17,12 +17,12 @@
       <itemPath>cDockMainWindow.h</itemPath>
       <itemPath>cDrawWidget.cpp</itemPath>
       <itemPath>cDrawWidget.h</itemPath>
+      <itemPath>cLCDDockWidget.cpp</itemPath>
+      <itemPath>cLCDDockWidget.h</itemPath>
       <itemPath>cLM6800Proxy.cpp</itemPath>
       <itemPath>cLM6800Proxy.h</itemPath>
       <itemPath>cSerialTalk.cpp</itemPath>
       <itemPath>cSerialTalk.h</itemPath>
-      <itemPath>cVectorDrawWidget.cpp</itemPath>
-      <itemPath>cVectorDrawWidget.h</itemPath>
       <itemPath>lcdFramework.h</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
