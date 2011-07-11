@@ -1,5 +1,5 @@
 #include <QtGui>
-#include "cVectorDrawWidget.h"
+#include "cDrawWidget.h"
 #include <iostream>
 #include "cSerialTalk.h"
 

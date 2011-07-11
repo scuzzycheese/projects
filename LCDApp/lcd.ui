@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -64,7 +64,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="cVectorDrawWidget" name="drawPanel" native="true">
+      <widget class="cDrawWidget" name="drawPanel" native="true">
        <property name="geometry">
         <rect>
          <x>1</x>
@@ -144,9 +144,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>cVectorDrawWidget</class>
+   <class>cDrawWidget</class>
    <extends>QWidget</extends>
-   <header>cVectorDrawWidget.h</header>
+   <header>cDrawWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
