@@ -13,8 +13,10 @@ public:
 	virtual ~cLCDDockWidget();
 private:
 	QImage dImage;
+	void resizeImage(QImage *image, const QSize &newSize);
 protected:
 	void paintEvent(QPaintEvent *event);
+	void resizeEvent(QResizeEvent *event);
 
 };
 
