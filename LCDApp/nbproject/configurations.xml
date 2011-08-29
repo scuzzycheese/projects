@@ -13,6 +13,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>cCustomDockWidget.cpp</itemPath>
+      <itemPath>cCustomDockWidget.h</itemPath>
       <itemPath>cDockMainWindow.cpp</itemPath>
       <itemPath>cDockMainWindow.h</itemPath>
       <itemPath>cDrawWidget.cpp</itemPath>

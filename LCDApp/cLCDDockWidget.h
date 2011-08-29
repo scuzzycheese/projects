@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QColor>
 #include <QImage>
+#include <QLCDNumber>
 
-class cLCDDockWidget : public QWidget
+class cLCDDockWidget : public QLCDNumber
 {
 	Q_OBJECT
 public:
@@ -13,9 +14,7 @@ public:
 	virtual ~cLCDDockWidget();
 private:
 	QImage dImage;
-	void resizeImage(QImage *image, const QSize &newSize);
 protected:
-	void paintEvent(QPaintEvent *event);
 	void resizeEvent(QResizeEvent *event);
 
 };

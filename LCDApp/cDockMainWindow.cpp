@@ -11,6 +11,7 @@
 #include <iostream>
 #include "cLCDDockWidget.h"
 #include "cDrawWidget.h"
+#include "cCustomDockWidget.h"
 
 
 cDockMainWindow::cDockMainWindow(QMainWindow *parent) : QMainWindow(parent)
@@ -25,8 +26,15 @@ cDockMainWindow::cDockMainWindow()
 		"QMainWindow { border: 2px solid black; }"
 		"QMainWindow::separator { width: 2px; height: 2px; background: black; }"
 		"QDockWidget { border: 2px solid black; }"
-		"QDockWidget::title {border: 1px solid black}"
+		"QDockWidget::title {border-bottom: 1px solid black}"
 	);
+
+	setMinimumHeight(256);
+	setMaximumHeight(256);
+
+	setMinimumWidth(1024);
+	setMaximumWidth(1024);
+
 }
 
 void cDockMainWindow::mousePressEvent(QMouseEvent *event)
@@ -41,26 +49,26 @@ void cDockMainWindow::createDock()
 {
 	//for some reason, calling this in the constructor doesn't work
 	setDockNestingEnabled(true);
-	
-	QDockWidget *dock0 = new QDockWidget(tr("Widget 0"), this);
+
+
+
+	cCustomDockWidget *dock0 = new cCustomDockWidget(tr("Widget 0"), this);
 	dock0->setAllowedAreas(Qt::AllDockWidgetAreas);
-
-	//cDrawWidget *draw = new cDrawWidget(dock0);
-
-	cLCDDockWidget *lcdWid1 = new cLCDDockWidget(dock0);
-
-	//dock0->setWidget(draw);
-	dock0->setWidget(lcdWid1);
-
+	cLCDDockWidget *lcdWid0 = new cLCDDockWidget(dock0);
+	dock0->setWidget(lcdWid0);
 	addDockWidget(Qt::RightDockWidgetArea, dock0);
 
-	QDockWidget *dock1 = new QDockWidget(tr("Widget 1"), this);
+	cCustomDockWidget *dock1 = new cCustomDockWidget(tr("Widget 1"), this);
 	dock1->setAllowedAreas(Qt::AllDockWidgetAreas);
+	cLCDDockWidget *lcdWid1 = new cLCDDockWidget(dock1);
+	dock1->setWidget(lcdWid1);
 	addDockWidget(Qt::RightDockWidgetArea, dock1);
 
 
-	QDockWidget *dock2 = new QDockWidget(tr("Widget 2"), this);
+	cCustomDockWidget *dock2 = new cCustomDockWidget(tr("Widget 2"), this);
 	dock2->setAllowedAreas(Qt::AllDockWidgetAreas);
+	cLCDDockWidget *lcdWid2 = new cLCDDockWidget(dock2);
+	dock2->setWidget(lcdWid2);
 	addDockWidget(Qt::LeftDockWidgetArea, dock2);
 
 }
