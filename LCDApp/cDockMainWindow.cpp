@@ -25,8 +25,6 @@ cDockMainWindow::cDockMainWindow()
 	(
 		"QMainWindow { border: 2px solid black; }"
 		"QMainWindow::separator { width: 2px; height: 2px; background: black; }"
-		"QDockWidget { border: 2px solid black; }"
-		"QDockWidget::title {border-bottom: 1px solid black}"
 	);
 
 	setMinimumHeight(256);
@@ -34,7 +32,6 @@ cDockMainWindow::cDockMainWindow()
 
 	setMinimumWidth(1024);
 	setMaximumWidth(1024);
-
 }
 
 void cDockMainWindow::mousePressEvent(QMouseEvent *event)
