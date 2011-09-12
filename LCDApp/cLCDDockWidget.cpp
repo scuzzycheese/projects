@@ -20,33 +20,47 @@ void cLCDDockWidget::resizeEvent(QResizeEvent *event)
 {
 	cCustomDockWidget *parent = (cCustomDockWidget *)parentWidget();
 
-	QString height;
-	//height.setNum(event->size().height());
-	if(parent->size().height() < ((cDockMainWindow *)(parent->parentWidget()))->geometry().height())
+	QString sHeight;
+	QString sWidth;
+
+	int iHeight;
+	int iWidth;
+
+	iHeight = parent->size().height();
+	iWidth = parent->size().width();
+
+
+	//if(parent->geometry().topRight().x() < ((cDockMainWindow *)(parent->parentWidget()))->geometry().topRight().x())
+	if(parent->geometry().topRight().x() < parent->parentWidget()->geometry().width() - 4)
 	{
-		height.setNum(parent->size().height() + 1);
+		iWidth += 1;
 	}
-	else
+	//if(parent->geometry().bottomLeft().x() > ((cDockMainWindow *)(parent->parentWidget()))->geometry().bottomLeft().x())
+	if(parent->geometry().bottomLeft().x() > 4)
 	{
-		height.setNum(parent->size().height());
+		iWidth += 1;
 	}
 
-	QString width;
-	//width.setNum(event->size().width());
-	if(parent->size().width() < ((cDockMainWindow *)(parent->parentWidget()))->geometry().width())
+	//if(parent->geometry().topRight().y() > ((cDockMainWindow *)(parent->parentWidget()))->geometry().topRight().y())
+	if(parent->geometry().topRight().y() > 4)
 	{
-		width.setNum(parent->size().width() + 1);
+		iHeight += 1;
 	}
-	else
+	//if(parent->geometry().bottomLeft().y() < ((cDockMainWindow *)(parent->parentWidget()))->geometry().bottomLeft().y())
+	if(parent->geometry().bottomLeft().y() < 252)
 	{
-		width.setNum(parent->size().width());
+		iHeight += 1;
 	}
+
+
+	sWidth.setNum(iWidth);
+	sHeight.setNum(iHeight);
 
 
 	QString dimStr;
-	dimStr += width;
+	dimStr += sWidth;
 	dimStr += ":";
-	dimStr += height;
+	dimStr += sHeight;
 	display(dimStr);
 }
 
