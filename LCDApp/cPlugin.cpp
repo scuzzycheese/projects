@@ -13,7 +13,12 @@ cPlugin::cPlugin()
 
 QString cPlugin::getName()
 {
-	return QString("New Plugin");
+	return pluginName;
+}
+
+void cPlugin::setName(const QString &name)
+{
+	pluginName = name;
 }
 
 cPlugin::cPlugin(const cPlugin& orig)

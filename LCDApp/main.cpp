@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
 
 	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget);
 	cPlugin newPlugin;
+	newPlugin.setName("Test Plugin");
 	plugHandler->mAddPlugin(&newPlugin);
 
 

@@ -15,10 +15,13 @@ public:
 	cPlugin();
 	cPlugin(const cPlugin& orig);
 
+	void setName(const QString &name);
+
 	QString getName();
 
 	virtual ~ cPlugin();
 private:
+	QString pluginName;
 
 };
 
