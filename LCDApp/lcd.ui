@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>744</width>
-    <height>535</height>
+    <width>869</width>
+    <height>660</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,86 +30,121 @@
      <height>0</height>
     </size>
    </property>
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>741</width>
-      <height>481</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Doodle</string>
-     </attribute>
-     <widget class="QFrame" name="frame">
-      <property name="enabled">
-       <bool>true</bool>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
       </property>
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>140</y>
-        <width>514</width>
-        <height>130</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="cDrawWidget" name="drawPanel" native="true">
-       <property name="geometry">
-        <rect>
-         <x>1</x>
-         <y>1</y>
-         <width>512</width>
-         <height>128</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>4</horstretch>
-         <verstretch>1</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>4</width>
-         <height>1</height>
-        </size>
-       </property>
-       <property name="baseSize">
-        <size>
-         <width>512</width>
-         <height>128</height>
-        </size>
-       </property>
-       <property name="cursor">
-        <cursorShape>CrossCursor</cursorShape>
-       </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Doodle</string>
+       </attribute>
+       <widget class="QFrame" name="frame">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>140</y>
+          <width>514</width>
+          <height>130</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="cDrawWidget" name="drawPanel" native="true">
+         <property name="geometry">
+          <rect>
+           <x>1</x>
+           <y>1</y>
+           <width>512</width>
+           <height>128</height>
+          </rect>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>4</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>4</width>
+           <height>1</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>512</width>
+           <height>128</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>CrossCursor</cursorShape>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="realEstateTab">
+       <attribute name="title">
+        <string>Plugins</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Plugins</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QListWidget" name="pluginList"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Plugin Configuration</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QFrame" name="pluginConfig">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="realEstateTab">
-     <attribute name="title">
-      <string>Real Estate</string>
-     </attribute>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>744</width>
+     <width>869</width>
      <height>25</height>
     </rect>
    </property>
@@ -117,7 +152,7 @@
     <property name="geometry">
      <rect>
       <x>355</x>
-      <y>165</y>
+      <y>161</y>
       <width>140</width>
       <height>46</height>
      </rect>

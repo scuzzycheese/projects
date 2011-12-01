@@ -5,6 +5,7 @@
 #include "lcdFramework.h"
 #include "cLM6800Proxy.h"
 #include "cDockMainWindow.h"
+#include "cPluginHandler.h"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -19,6 +20,21 @@ int main(int argc, char *argv[])
 
 	cDrawWidget *drawArea = mainWindow.findChild<cDrawWidget *>("drawPanel");
 	QWidget *realEstateTab = mainWindow.findChild<QTabWidget *>("realEstateTab");
+	QFrame *pluginConfig = mainWindow.findChild<QFrame *>("pluginConfig");
+	QListWidget *listWidget = mainWindow.findChild<QListWidget *>("pluginList");
+
+
+
+
+
+
+	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget);
+	cPlugin newPlugin;
+	plugHandler->mAddPlugin(&newPlugin);
+
+
+
+
 
 	cDockMainWindow *docker = new cDockMainWindow();
 	docker->createDock();
