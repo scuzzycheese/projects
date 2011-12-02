@@ -12,6 +12,7 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include "cPlugin.h"
+#include <iostream>
 
 class cPluginHandler
 {
@@ -19,7 +20,8 @@ public:
 	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList);
 	cPluginHandler(const cPluginHandler& orig);
 
-	void mAddPlugin(cPlugin *plugin);
+	void addPlugin(cPlugin *plugin);
+	void setPluginActive(cPlugin *plugin);
 
 	virtual ~ cPluginHandler();
 private:
@@ -27,7 +29,8 @@ private:
 	QFrame *pluginConfigFrame;
 	QListWidget *pluginListWidget;
 
-	QList<cPlugin *> pluginList;
+	std::map<std::string, cPlugin *> pluginList;
+	std::map<std::string, cPlugin *> activePlugins;
 
 };
 

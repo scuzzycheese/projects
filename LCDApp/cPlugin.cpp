@@ -11,12 +11,12 @@ cPlugin::cPlugin()
 {
 }
 
-QString cPlugin::getName()
+std::string cPlugin::getName()
 {
 	return pluginName;
 }
 
-void cPlugin::setName(const QString &name)
+void cPlugin::setName(const std::string &name)
 {
 	pluginName = name;
 }

@@ -8,6 +8,7 @@
 #ifndef _CPLUGIN_H
 #define	_CPLUGIN_H
 #include <QString>
+#include <iostream>
 
 class cPlugin
 {
@@ -15,13 +16,12 @@ public:
 	cPlugin();
 	cPlugin(const cPlugin& orig);
 
-	void setName(const QString &name);
-
-	QString getName();
+	void setName(const std::string &name);
+	std::string getName();
 
 	virtual ~ cPlugin();
 private:
-	QString pluginName;
+	std::string pluginName;
 
 };
 

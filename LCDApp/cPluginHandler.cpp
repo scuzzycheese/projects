@@ -18,13 +18,22 @@ cPluginHandler::cPluginHandler(const cPluginHandler& orig)
 {
 }
 
-void cPluginHandler::mAddPlugin(cPlugin *plugin)
+//Adding the plugins to the lists maybe needs to be handled outside this class.
+//Haven't figured this one out yet
+void cPluginHandler::addPlugin(cPlugin *plugin)
 {
-	pluginList.append(plugin);
+	//maintain a list of plugins in memory
+	pluginList[plugin->getName()] = plugin;
 
 	QListWidgetItem *newListItem = new QListWidgetItem;
-	newListItem->setText(plugin->getName());
+	newListItem->setText(QString::fromStdString(plugin->getName()));
 	pluginListWidget->addItem(newListItem);
+}
+
+void cPluginHandler::setPluginActive(cPlugin *plugin)
+{
+	//maintain a list of active plugins
+	activePlugins[plugin->getName()] = plugin;
 }
 
 cPluginHandler::~cPluginHandler()
