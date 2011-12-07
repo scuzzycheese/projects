@@ -33,6 +33,8 @@
       <itemPath>cSerialTalk.h</itemPath>
       <itemPath>lcdFramework.h</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>plugins/testPlugin.cpp</itemPath>
+      <itemPath>plugins/testPlugin.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

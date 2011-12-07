@@ -13,15 +13,25 @@
 #include <QListWidgetItem>
 #include "cPlugin.h"
 #include <iostream>
+#include <inttypes.h>
+
+#include "cLM6800Proxy.h"
 
 class cPluginHandler
 {
 public:
 	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList);
-	cPluginHandler(const cPluginHandler& orig);
 
 	void addPlugin(cPlugin *plugin);
 	void setPluginActive(cPlugin *plugin);
+	//TODO: maybe make the proxy a base class so it's proxy type ignorant
+	void setProxy(cLM6800Proxy *proxy);
+	uint16_t crc16(uint16_t crc, uint8_t a);
+	void flush();
+	void incFlushFlag();
+	void deIncFlushFlag();
+
+	void run();
 
 	virtual ~ cPluginHandler();
 private:
@@ -31,6 +41,15 @@ private:
 
 	std::map<std::string, cPlugin *> pluginList;
 	std::map<std::string, cPlugin *> activePlugins;
+
+
+
+	char gfxBuffer[4][8][64];
+	uint16_t CRC[4][8];
+
+	cLM6800Proxy *proxy;
+
+	int flushNow;
 
 };
 

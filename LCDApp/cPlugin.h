@@ -10,6 +10,9 @@
 #include <QString>
 #include <iostream>
 
+//nasty forward declaration
+class cPluginHandler;
+
 class cPlugin
 {
 public:
@@ -19,9 +22,28 @@ public:
 	void setName(const std::string &name);
 	std::string getName();
 
-	virtual ~ cPlugin();
+	void setPixel(int x, int y);
+	void clearPixel(int x, int y);
+
+	virtual void run() = 0;
+
+	void flushNow();
+
+	virtual ~cPlugin();
+
 private:
+	friend class cPluginHandler;
+
 	std::string pluginName;
+
+	int maxX;
+	int maxY;
+	int startX;
+	int startY;
+
+	char *gfxBuff;
+
+	cPluginHandler *master;
 
 };
 

@@ -6,7 +6,10 @@
 #include "cLM6800Proxy.h"
 #include "cDockMainWindow.h"
 #include "cPluginHandler.h"
+#include "cPlugin.h"
 #include <iostream>
+
+#include "plugins/testPlugin.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,14 +28,25 @@ int main(int argc, char *argv[])
 
 
 
+	cSerialTalk lcdPort;
+	cLM6800Proxy test(&lcdPort);
+	test.clearScreen();
 
 
 
 	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget);
-	cPlugin newPlugin;
-	newPlugin.setName("Test Plugin");
-	plugHandler->addPlugin(&newPlugin);
+	plugHandler->setProxy(&test);
 
+
+	cPlugin *newPlugin = getPluginInstance();
+	newPlugin->setName("Test Plugin");
+	plugHandler->addPlugin(newPlugin);
+
+	//TODO: this concept needs to be tought out properly
+	//plugHandler->setPluginActive(newPlugin);
+
+
+	plugHandler->run();
 
 
 
@@ -40,8 +54,6 @@ int main(int argc, char *argv[])
 	cDockMainWindow *docker = new cDockMainWindow();
 	docker->createDock();
 
-	cSerialTalk lcdPort;
-	cLM6800Proxy test(&lcdPort);
 	test.clearScreen();
 	drawArea->setLM6800Proxy(&test);
 
