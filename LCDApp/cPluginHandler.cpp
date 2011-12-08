@@ -6,6 +6,7 @@
  */
 
 #include "cPluginHandler.h"
+#include <iostream>
 
 cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList) : 
 	pluginConfigFrame(plgCnfFrm),
@@ -77,6 +78,7 @@ void cPluginHandler::flush()
 			}
 			if(CRC[x][y] != pageCRC)
 			{
+				//std::cout << "Writing Block: X - " << x << " Y - " << y << std::endl;
 				proxy->writeBlock(x, y, gfxBuffer[x][y]);
 				CRC[x][y] = pageCRC;
 			}
