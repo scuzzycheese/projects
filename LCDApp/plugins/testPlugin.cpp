@@ -14,7 +14,23 @@ testPlugin::testPlugin()
 
 void testPlugin::run()
 {
+
+	setPixel(10, 0);
+	setPixel(10, 2);
+	setPixel(10, 4);
+	setPixel(10, 6);
+	setPixel(10, 8);
 	setPixel(10, 10);
+
+
+
+	setPixel(0, 10);
+	setPixel(2, 10);
+	setPixel(4, 10);
+	setPixel(6, 10);
+	setPixel(8, 10);
+	setPixel(0, 10);
+
 	flushNow();
 }
 
