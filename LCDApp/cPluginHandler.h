@@ -14,11 +14,14 @@
 #include "cPlugin.h"
 #include <iostream>
 #include <inttypes.h>
+#include <QThread>
 
 #include "cLM6800Proxy.h"
 
-class cPluginHandler
+class cPluginHandler : public QThread
 {
+	Q_OBJECT
+
 public:
 	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList);
 
@@ -31,9 +34,11 @@ public:
 	void incFlushFlag();
 	void deIncFlushFlag();
 
+
+
+protected:
 	void run();
 
-	virtual ~ cPluginHandler();
 private:
 
 	QFrame *pluginConfigFrame;

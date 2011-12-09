@@ -70,10 +70,6 @@ void cPlugin::flushNow()
 	master->incFlushFlag();
 }
 
-cPlugin::cPlugin(const cPlugin& orig)
-{
-}
-
 cPlugin::~cPlugin()
 {
 }

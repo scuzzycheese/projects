@@ -33,18 +33,18 @@ void cPluginHandler::addPlugin(cPlugin *plugin)
 	//add a pointer to the graphics buffer to the plugin
 	plugin->gfxBuff = (char *)gfxBuffer;
 	plugin->master = this;
-
-	//set some fake limits for the plugin
-	plugin->maxX = 256;
-	plugin->maxY = 64;
-	//NOTE: This is just a fake run, this will need to be handles when the thread starts
-	plugin->run();
 }
 
 void cPluginHandler::setPluginActive(cPlugin *plugin)
 {
 	//maintain a list of active plugins
 	activePlugins[plugin->getName()] = plugin;
+
+	//set some fake limits for the plugin
+	plugin->maxX = 256;
+	plugin->maxY = 64;
+
+	plugin->start();
 }
 
 void cPluginHandler::setProxy(cLM6800Proxy *proxy)
@@ -105,6 +105,14 @@ void cPluginHandler::deIncFlushFlag()
  */
 void cPluginHandler::run()
 {
+	std::cout << "Starting Plugin Handler" << std::endl;
+	//activate plugins
+	std::map<std::string, cPlugin *>::iterator activePlugin;
+	for(activePlugin = activePlugins.begin(); activePlugin != activePlugins.end(); activePlugin ++)
+	{
+		activePlugin->second->start();
+	}
+
 	while(1)
 	{
 		if(flushNow)
@@ -114,19 +122,3 @@ void cPluginHandler::run()
 		}
 	}
 }
-
-
-
-/*
- * for(uint32_t Address = 0; Address < FLASHEND; Address++)
- * {
- * 	FlashCRC = CRC16(FlashCRC, pgm_read_byte_far(Address));
- * }
- */
-
-
-
-cPluginHandler::~cPluginHandler()
-{
-}
-

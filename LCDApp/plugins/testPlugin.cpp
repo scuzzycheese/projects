@@ -6,10 +6,10 @@
  */
 
 #include "testPlugin.h"
-#include "cPlugin.h"
 
 testPlugin::testPlugin()
 {
+	setName("Test Plugin");
 }
 
 void testPlugin::run()

@@ -15,9 +15,11 @@ class testPlugin : public cPlugin
 public:
 	testPlugin();
 
+	virtual ~ testPlugin();
+
 	void run();
 
-	virtual ~ testPlugin();
+
 private:
 
 };

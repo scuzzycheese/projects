@@ -9,17 +9,17 @@
 #define	_CPLUGIN_H
 #include <QString>
 #include <iostream>
+#include <QThread>
 
 //nasty forward declaration
 class cPluginHandler;
 
-class cPlugin
+class cPlugin : public QThread
 {
 public:
 	cPlugin();
 	cPlugin(const cPlugin& orig);
 
-	void setName(const std::string &name);
 	std::string getName();
 
 	void setPixel(int x, int y);
@@ -30,6 +30,10 @@ public:
 	void flushNow();
 
 	virtual ~cPlugin();
+
+protected:
+
+	void setName(const std::string &name);
 
 private:
 	friend class cPluginHandler;

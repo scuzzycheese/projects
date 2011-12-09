@@ -39,14 +39,13 @@ int main(int argc, char *argv[])
 
 
 	cPlugin *newPlugin = getPluginInstance();
-	newPlugin->setName("Test Plugin");
 	plugHandler->addPlugin(newPlugin);
 
 	//TODO: this concept needs to be tought out properly
 	//plugHandler->setPluginActive(newPlugin);
 
 
-	plugHandler->run();
+	plugHandler->start();
 
 
 
@@ -54,7 +53,7 @@ int main(int argc, char *argv[])
 	cDockMainWindow *docker = new cDockMainWindow();
 	docker->createDock();
 
-	test.clearScreen();
+	//test.clearScreen();
 	drawArea->setLM6800Proxy(&test);
 
 	std::cout << "struct lcdData size: " << sizeof(struct lcdData) << std::endl;
