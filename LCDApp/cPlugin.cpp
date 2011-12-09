@@ -37,21 +37,21 @@ void cPlugin::setPixel(int x, int y)
 	y += startY;
 	if(x >= startX && x <= maxX && y >= startY && y <= maxY)
 	{
-
-		/*
+/*
 		int Py = y >> 3;
 		int PX = 64;
+		int PY = 512;
 		int Px = x >> 6;
 
 		int X = x & 63;
 		int Y = y & 7;
 
-		int res = Py * PX + Px * PX + X;
+		int res = (Px * PY) + (Py * PX) + X;
 
 		gfxBuff[res] |= (1 << (Y));
-		 */
+ */
 
-		gfxBuff[(y >> 3) * 64 + (x >> 6) * 64 + (x & 63)] |= (1 << (y & 7));
+		gfxBuff[((x >> 6) * 512) + ((y >> 3) * 64) + (x & 63)] |= (1 << (y & 7));
 	}
 }
 
@@ -61,7 +61,7 @@ void cPlugin::clearPixel(int x, int y)
 	y += startY;
 	if(x >= startX && x <= maxX && y >= startY && y <= maxY)
 	{
-		gfxBuff[(y >> 3) * 64 + (x >> 6) * 64 + (x & 63)] &= ~(1 << (y & 7));
+		gfxBuff[((x >> 6) * 512) + ((y >> 3) * 64) + (x & 63)] &= ~(1 << (y & 7));
 	}
 }
 

@@ -15,6 +15,16 @@ testPlugin::testPlugin()
 void testPlugin::run()
 {
 
+	for(int i = 0; i < 256; i += 2)
+	{
+		setPixel(i, 0);
+	}
+
+	for(int i = 0; i < 64; i += 2)
+	{
+		setPixel(255, i);
+	}
+
 	setPixel(10, 0);
 	setPixel(10, 2);
 	setPixel(10, 4);
@@ -30,6 +40,12 @@ void testPlugin::run()
 	setPixel(6, 10);
 	setPixel(8, 10);
 	setPixel(0, 10);
+
+
+	setPixel(255, 0);
+	setPixel(255, 63);
+	setPixel(0, 63);
+	setPixel(0, 0);
 
 	flushNow();
 }
