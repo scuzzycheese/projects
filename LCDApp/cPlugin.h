@@ -16,6 +16,9 @@ class cPluginHandler;
 
 class cPlugin : public QThread
 {
+
+	Q_OBJECT
+
 public:
 	cPlugin();
 	cPlugin(const cPlugin& orig);
