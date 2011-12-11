@@ -28,13 +28,14 @@ public:
 	void setPixel(int x, int y);
 	void clearPixel(int x, int y);
 
-	virtual void run() = 0;
 
 	void flushNow();
 
 	virtual ~cPlugin();
 
 protected:
+
+	virtual void run() = 0;
 
 	void setName(const std::string &name);
 

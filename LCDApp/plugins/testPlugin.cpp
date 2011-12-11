@@ -14,6 +14,7 @@ testPlugin::testPlugin()
 
 void testPlugin::run()
 {
+	std::cout << "running test plugin" << std::endl;
 
 	for(int i = 0; i < 256; i += 2)
 	{

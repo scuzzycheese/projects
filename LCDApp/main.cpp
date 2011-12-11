@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	plugHandler->addPlugin(newPlugin);
 
 	//TODO: this concept needs to be tought out properly
-	//plugHandler->setPluginActive(newPlugin);
+	plugHandler->setPluginActive(newPlugin);
 
 
 	plugHandler->start();
