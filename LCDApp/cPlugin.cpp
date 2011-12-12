@@ -67,7 +67,7 @@ void cPlugin::clearPixel(int x, int y)
 void cPlugin::flushNow()
 {
 	cMessage mess;
-	mess.setFlag(10);
+	mess.setMessageType(cMessage::MESSAGE_FLUSH);
 	queue->enqueue(mess);
 }
 

@@ -11,12 +11,22 @@
 class cMessage
 {
 public:
+	enum messageType
+	{
+		MESSAGE_NONE,
+		MESSAGE_FLUSH
+	};
+
 	cMessage();
+	cMessage(messageType mt);
 	virtual ~ cMessage();
-	void setFlag(int flag);
-	int getFlag() const;
+	void setMessageType(messageType mt);
+	int getMessageType() const;
+
+
+
 private:
-	int flag;
+	messageType messageTypeVal;
 
 };
 

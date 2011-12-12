@@ -16,7 +16,7 @@ void cQueue::enqueue(const cMessage &mess)
 {
 	lockFifo.lock();
 
-	std::cout << "Adding Message to the Queue: " << mess.getFlag() << std::endl;
+	std::cout << "Adding Message to the Queue: " << mess.getMessageType() << std::endl;
 	fifo.push(mess);
 	messageInFifo.wakeAll();
 
@@ -33,7 +33,7 @@ void cQueue::dequeue(cMessage &mess)
 	}
 	mess = fifo.front();
 	std::cout << "Queue size: " << fifo.size() << std::endl;
-	std::cout << "Pulling Message off the queue: " << mess.getFlag() << std::endl;
+	std::cout << "Pulling Message off the queue: " << mess.getMessageType() << std::endl;
 	fifo.pop();
 
 	fifoEmpty.unlock();

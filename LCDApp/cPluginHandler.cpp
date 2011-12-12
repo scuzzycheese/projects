@@ -106,10 +106,10 @@ void cPluginHandler::run()
 	while(1)
 	{
 		cMessage mess;
-		std::cout << "Message Before: " << mess.getFlag() << std::endl;
+		std::cout << "Message Before: " << mess.getMessageType() << std::endl;
 		queue->dequeue(mess);
-		std::cout << "Message After: " << mess.getFlag() << std::endl;
-		if(mess.getFlag() == 10)
+		std::cout << "Message After: " << mess.getMessageType() << std::endl;
+		if(mess.getMessageType() == cMessage::MESSAGE_FLUSH)
 		{
 			flush();
 		}

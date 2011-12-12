@@ -47,12 +47,13 @@ private:
 
 	std::string pluginName;
 
+	char *gfxBuff;
+
 	int maxX;
 	int maxY;
 	int startX;
 	int startY;
 
-	char *gfxBuff;
 
 
 };

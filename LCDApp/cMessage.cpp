@@ -7,18 +7,22 @@
 
 #include "cMessage.h"
 
-cMessage::cMessage() : flag(0)
+cMessage::cMessage() : messageTypeVal(MESSAGE_NONE)
 {
 }
 
-void cMessage::setFlag(int flag)
+void cMessage::setMessageType(messageType mt)
 {
-	this->flag = flag;
+	this->messageTypeVal = mt;
 }
 
-int cMessage::getFlag() const
+int cMessage::getMessageType() const
 {
-	return flag;
+	return messageTypeVal;
+}
+
+cMessage::cMessage(messageType mt) : messageTypeVal(mt)
+{
 }
 
 cMessage::~cMessage()
