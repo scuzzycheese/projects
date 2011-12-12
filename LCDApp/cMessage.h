@@ -12,7 +12,6 @@ class cMessage
 {
 public:
 	cMessage();
-	cMessage(const cMessage& orig);
 	virtual ~ cMessage();
 	void setFlag(int flag);
 	int getFlag() const;

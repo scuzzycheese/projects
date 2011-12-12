@@ -13,7 +13,6 @@
 
 cPlugin::cPlugin() : 
 	gfxBuff(NULL),
-	master(NULL),
 	maxX(0),
 	maxY(0),
 	startX(0),

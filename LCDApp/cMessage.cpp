@@ -21,10 +21,6 @@ int cMessage::getFlag() const
 	return flag;
 }
 
-cMessage::cMessage(const cMessage& orig)
-{
-}
-
 cMessage::~cMessage()
 {
 }

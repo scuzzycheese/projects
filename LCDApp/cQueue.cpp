@@ -32,6 +32,7 @@ void cQueue::dequeue(cMessage &mess)
 		messageInFifo.wait(&fifoEmpty);
 	}
 	mess = fifo.front();
+	std::cout << "Queue size: " << fifo.size() << std::endl;
 	std::cout << "Pulling Message off the queue: " << mess.getFlag() << std::endl;
 	fifo.pop();
 
