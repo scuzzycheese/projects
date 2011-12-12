@@ -78,7 +78,7 @@ void cPluginHandler::flush()
 			}
 			if(CRC[x][y] != pageCRC)
 			{
-				std::cout << "Writing Block: X - " << x << " Y - " << y << std::endl;
+				//std::cout << "Writing Block: X - " << x << " Y - " << y << std::endl;
 				proxy->writeBlock(x, y, gfxBuffer[x][y]);
 				CRC[x][y] = pageCRC;
 			}
@@ -94,21 +94,19 @@ void cPluginHandler::flush()
  */
 void cPluginHandler::run()
 {
-	std::cout << "Starting Plugin Handler" << std::endl;
+	//std::cout << "Starting Plugin Handler" << std::endl;
 	//activate plugins
 	std::map<std::string, cPlugin *>::iterator activePlugin;
 	for(activePlugin = activePlugins.begin(); activePlugin != activePlugins.end(); activePlugin ++)
 	{
-		std::cout << "starting plugin" << activePlugin->first << std::endl;
+		//std::cout << "starting plugin" << activePlugin->first << std::endl;
 		activePlugin->second->start();
 	}
 
 	while(1)
 	{
 		cMessage mess;
-		std::cout << "Message Before: " << mess.getMessageType() << std::endl;
 		queue->dequeue(mess);
-		std::cout << "Message After: " << mess.getMessageType() << std::endl;
 		if(mess.getMessageType() == cMessage::MESSAGE_FLUSH)
 		{
 			flush();

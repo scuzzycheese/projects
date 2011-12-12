@@ -28,7 +28,6 @@ public:
 	void setPixel(int x, int y);
 	void clearPixel(int x, int y);
 
-	void setQueue(cQueue *q);
 
 	void flushNow();
 
@@ -44,6 +43,8 @@ protected:
 
 private:
 	friend class cPluginHandler;
+
+	void setQueue(cQueue *q);
 
 	std::string pluginName;
 

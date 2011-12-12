@@ -49,10 +49,11 @@ void testPlugin::run()
 	setPixel(0, 0);
 
 
-	flushNow();
 
 	while(true)
 	{
+		//flush changes from the buffer to the device
+		flushNow();
 		sleep(10);
 	}
 
