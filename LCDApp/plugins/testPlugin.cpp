@@ -48,7 +48,14 @@ void testPlugin::run()
 	setPixel(0, 63);
 	setPixel(0, 0);
 
+
 	flushNow();
+
+	while(true)
+	{
+		sleep(10);
+	}
+
 }
 
 

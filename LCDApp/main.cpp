@@ -7,6 +7,7 @@
 #include "cDockMainWindow.h"
 #include "cPluginHandler.h"
 #include "cPlugin.h"
+#include "cQueue.h"
 #include <iostream>
 
 #include "plugins/testPlugin.h"
@@ -34,7 +35,14 @@ int main(int argc, char *argv[])
 
 
 
-	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget);
+
+
+
+
+
+	cQueue queue;
+
+	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget, &queue);
 	plugHandler->setProxy(&test);
 
 
@@ -46,6 +54,11 @@ int main(int argc, char *argv[])
 
 
 	plugHandler->start();
+
+
+
+
+
 
 
 

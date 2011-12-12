@@ -8,11 +8,11 @@
 #include "cPluginHandler.h"
 #include <iostream>
 
-cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList) : 
+cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q) :
 	pluginConfigFrame(plgCnfFrm),
 	pluginListWidget(plgList),
-	flushNow(0),
-	proxy(NULL)
+	proxy(NULL),
+	queue(q)
 {
 	memset((char *)gfxBuffer, 0x00, 2048);
 	memset((char *)CRC, 0x00, 64);
@@ -32,7 +32,7 @@ void cPluginHandler::addPlugin(cPlugin *plugin)
 
 	//add a pointer to the graphics buffer to the plugin
 	plugin->gfxBuff = (char *)gfxBuffer;
-	plugin->master = this;
+	plugin->setQueue(queue);
 }
 
 void cPluginHandler::setPluginActive(cPlugin *plugin)
@@ -88,17 +88,6 @@ void cPluginHandler::flush()
 }
 
 
-/*
- * TODO: These 2 methods below need to be mutex locked
- */
-void cPluginHandler::incFlushFlag()
-{
-	flushNow += 1;
-}
-void cPluginHandler::deIncFlushFlag()
-{
-	flushNow -= 1;
-}
 
 /*
  * TODO: This has concurancy issues
@@ -116,10 +105,13 @@ void cPluginHandler::run()
 
 	while(1)
 	{
-		if(flushNow)
+		cMessage mess;
+		std::cout << "Message Before: " << mess.getFlag() << std::endl;
+		queue->dequeue(mess);
+		std::cout << "Message After: " << mess.getFlag() << std::endl;
+		if(mess.getFlag() == 10)
 		{
 			flush();
-			deIncFlushFlag();
 		}
 	}
 }

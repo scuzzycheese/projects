@@ -25,10 +25,14 @@
       <itemPath>cLCDDockWidget.h</itemPath>
       <itemPath>cLM6800Proxy.cpp</itemPath>
       <itemPath>cLM6800Proxy.h</itemPath>
+      <itemPath>cMessage.cpp</itemPath>
+      <itemPath>cMessage.h</itemPath>
       <itemPath>cPlugin.cpp</itemPath>
       <itemPath>cPlugin.h</itemPath>
       <itemPath>cPluginHandler.cpp</itemPath>
       <itemPath>cPluginHandler.h</itemPath>
+      <itemPath>cQueue.cpp</itemPath>
+      <itemPath>cQueue.h</itemPath>
       <itemPath>cSerialTalk.cpp</itemPath>
       <itemPath>cSerialTalk.h</itemPath>
       <itemPath>lcdFramework.h</itemPath>

@@ -67,7 +67,14 @@ void cPlugin::clearPixel(int x, int y)
 
 void cPlugin::flushNow()
 {
-	master->incFlushFlag();
+	cMessage mess;
+	mess.setFlag(10);
+	queue->enqueue(mess);
+}
+
+void cPlugin::setQueue(cQueue *q)
+{
+	queue = q;
 }
 
 cPlugin::~cPlugin()

@@ -17,13 +17,14 @@
 #include <QThread>
 
 #include "cLM6800Proxy.h"
+#include "cQueue.h"
 
 class cPluginHandler : public QThread
 {
 	Q_OBJECT
 
 public:
-	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList);
+	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q);
 
 	void addPlugin(cPlugin *plugin);
 	void setPluginActive(cPlugin *plugin);
@@ -31,9 +32,6 @@ public:
 	void setProxy(cLM6800Proxy *proxy);
 	uint16_t crc16(uint16_t crc, uint8_t a);
 	void flush();
-	void incFlushFlag();
-	void deIncFlushFlag();
-
 
 
 protected:
@@ -54,7 +52,7 @@ private:
 
 	cLM6800Proxy *proxy;
 
-	int flushNow;
+	cQueue *queue;
 
 };
 

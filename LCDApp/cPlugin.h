@@ -10,6 +10,7 @@
 #include <QString>
 #include <iostream>
 #include <QThread>
+#include "cQueue.h"
 
 //nasty forward declaration
 class cPluginHandler;
@@ -21,13 +22,13 @@ class cPlugin : public QThread
 
 public:
 	cPlugin();
-	cPlugin(const cPlugin& orig);
 
 	std::string getName();
 
 	void setPixel(int x, int y);
 	void clearPixel(int x, int y);
 
+	void setQueue(cQueue *q);
 
 	void flushNow();
 
@@ -38,6 +39,8 @@ protected:
 	virtual void run() = 0;
 
 	void setName(const std::string &name);
+
+	cQueue *queue;
 
 private:
 	friend class cPluginHandler;
@@ -51,7 +54,6 @@ private:
 
 	char *gfxBuff;
 
-	cPluginHandler *master;
 
 };
 
