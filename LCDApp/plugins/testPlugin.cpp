@@ -9,7 +9,7 @@
 
 testPlugin::testPlugin()
 {
-	setName("Test Plugin");
+	setName(getPluginName());
 }
 
 void testPlugin::run()
@@ -64,6 +64,10 @@ testPlugin::~testPlugin()
 {
 }
 
+QString getPluginName()
+{
+	return QString("Test Plugin");
+}
 
 cPlugin *getPluginInstance()
 {

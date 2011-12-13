@@ -27,7 +27,7 @@ class cPluginHandler : public QThread
 public:
 	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q, cDockMainWindow *dock);
 
-	void addPlugin(cPlugin *plugin);
+	void addPlugin(cPlugin *(*pluginFactory)(), QString name);
 	void setPluginActive(cPlugin *plugin);
 	//TODO: maybe make the proxy a base class so it's proxy type ignorant
 	void setProxy(cLM6800Proxy *proxy);
@@ -44,8 +44,8 @@ private:
 	QListWidget *pluginListWidget;
 	cDockMainWindow *dockWindow;
 
-	std::map<std::string, cPlugin *> pluginList;
-	std::map<std::string, cPlugin *> activePlugins;
+	std::map<QString, cPlugin *(*)()> pluginList;
+	std::map<QString, cPlugin *> activePlugins;
 
 
 

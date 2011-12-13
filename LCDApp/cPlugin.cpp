@@ -20,12 +20,12 @@ cPlugin::cPlugin() :
 {
 }
 
-std::string cPlugin::getName()
+QString cPlugin::getName()
 {
 	return pluginName;
 }
 
-void cPlugin::setName(const std::string &name)
+void cPlugin::setName(QString name)
 {
 	pluginName = name;
 }

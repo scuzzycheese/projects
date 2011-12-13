@@ -25,6 +25,7 @@ private:
 };
 
 
+QString getPluginName();
 cPlugin *getPluginInstance();
 
 #endif	/* _TESTPLUGIN_H */

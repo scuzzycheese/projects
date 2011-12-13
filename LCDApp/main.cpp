@@ -50,11 +50,11 @@ int main(int argc, char *argv[])
 	plugHandler->setProxy(&test);
 
 
-	cPlugin *newPlugin = getPluginInstance();
-	plugHandler->addPlugin(newPlugin);
+	//cPlugin *newPlugin = getPluginInstance();
+	plugHandler->addPlugin(getPluginInstance, getPluginName());
 
 	//TODO: this concept needs to be tought out properly
-	plugHandler->setPluginActive(newPlugin);
+	//plugHandler->setPluginActive(newPlugin);
 
 
 	plugHandler->start();

@@ -22,18 +22,14 @@ cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *
 
 //Adding the plugins to the lists maybe needs to be handled outside this class.
 //Haven't figured this one out yet
-void cPluginHandler::addPlugin(cPlugin *plugin)
+void cPluginHandler::addPlugin(cPlugin *(*pluginFactory)(), QString name)
 {
 	//maintain a list of plugins in memory
-	pluginList[plugin->getName()] = plugin;
+	pluginList[name] = pluginFactory;
 
 	QListWidgetItem *newListItem = new QListWidgetItem;
-	newListItem->setText(QString::fromStdString(plugin->getName()));
+	newListItem->setText(name);
 	pluginListWidget->addItem(newListItem);
-
-	//add a pointer to the graphics buffer to the plugin
-	plugin->gfxBuff = (char *)gfxBuffer;
-	plugin->setQueue(queue);
 }
 
 void cPluginHandler::setPluginActive(cPlugin *plugin)
@@ -44,6 +40,9 @@ void cPluginHandler::setPluginActive(cPlugin *plugin)
 	//set some fake limits for the plugin
 	plugin->maxX = 256;
 	plugin->maxY = 64;
+
+	plugin->gfxBuff = (char *)gfxBuffer;
+	plugin->setQueue(queue);
 
 	plugin->start();
 }
@@ -97,7 +96,7 @@ void cPluginHandler::run()
 {
 	//std::cout << "Starting Plugin Handler" << std::endl;
 	//activate plugins
-	std::map<std::string, cPlugin *>::iterator activePlugin;
+	std::map<QString, cPlugin *>::iterator activePlugin;
 	for(activePlugin = activePlugins.begin(); activePlugin != activePlugins.end(); activePlugin ++)
 	{
 		//std::cout << "starting plugin" << activePlugin->first << std::endl;
@@ -122,7 +121,11 @@ void cPluginHandler::addPluginToDock()
 	for(int i = 0; i < selectedPlugins.size(); ++ i)
 	{
 		QListWidgetItem *selectedPlugin = selectedPlugins.at(i);
-		cPlugin *plugin = pluginList[selectedPlugin->text().toStdString()];
+
+		//Instantiate a plugin object
+		//TODO: make this more safe
+		cPlugin *plugin = pluginList[selectedPlugin->text()]();
+
 		if(plugin)
 		{
 			dockWindow->addPluginToDock(plugin);

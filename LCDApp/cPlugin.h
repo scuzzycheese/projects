@@ -23,7 +23,8 @@ class cPlugin : public QThread
 public:
 	cPlugin();
 
-	std::string getName();
+	QString getName();
+	void setName(QString name);
 
 	void setPixel(int x, int y);
 	void clearPixel(int x, int y);
@@ -33,11 +34,10 @@ public:
 
 	virtual ~cPlugin();
 
+
 protected:
 
 	virtual void run() = 0;
-
-	void setName(const std::string &name);
 
 	cQueue *queue;
 
@@ -46,7 +46,7 @@ private:
 
 	void setQueue(cQueue *q);
 
-	std::string pluginName;
+	QString pluginName;
 
 	char *gfxBuff;
 
@@ -58,6 +58,8 @@ private:
 
 
 };
+
+
 
 #endif	/* _CPLUGIN_H */
 
