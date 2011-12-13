@@ -29,6 +29,13 @@ cCustomDockWidget::cCustomDockWidget(QString title, cDockMainWindow *mainWindow)
 	//setTitleBarWidget(titleBar);
 }
 
+/*
+bool cCustomDockWidget::event(QEvent *e)
+{
+	std::cout << "EVENT: " << e->type() << std::endl;
+	return QWidget::event(e);
+}
+ */
 
 cCustomDockWidget::~cCustomDockWidget()
 {

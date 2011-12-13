@@ -5,6 +5,7 @@
 #include <QColor>
 #include <QImage>
 #include <QLCDNumber>
+#include <QEvent>
 
 class cLCDDockWidget : public QLCDNumber
 {
@@ -12,10 +13,14 @@ class cLCDDockWidget : public QLCDNumber
 public:
 	cLCDDockWidget(QWidget *parent = 0);
 	virtual ~cLCDDockWidget();
+	//bool event(QEvent *e);
 private:
 	QImage dImage;
 protected:
 	void resizeEvent(QResizeEvent *event);
+signals:
+	void sizeChanged(int x, int y);
+
 
 };
 

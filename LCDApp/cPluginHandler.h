@@ -18,13 +18,14 @@
 
 #include "cLM6800Proxy.h"
 #include "cQueue.h"
+#include "cDockMainWindow.h"
 
 class cPluginHandler : public QThread
 {
 	Q_OBJECT
 
 public:
-	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q);
+	cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q, cDockMainWindow *dock);
 
 	void addPlugin(cPlugin *plugin);
 	void setPluginActive(cPlugin *plugin);
@@ -41,6 +42,7 @@ private:
 
 	QFrame *pluginConfigFrame;
 	QListWidget *pluginListWidget;
+	cDockMainWindow *dockWindow;
 
 	std::map<std::string, cPlugin *> pluginList;
 	std::map<std::string, cPlugin *> activePlugins;
@@ -53,6 +55,10 @@ private:
 	cLM6800Proxy *proxy;
 
 	cQueue *queue;
+
+public slots:
+
+	void addPluginToDock();
 
 };
 

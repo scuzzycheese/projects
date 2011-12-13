@@ -14,6 +14,13 @@ cLCDDockWidget::cLCDDockWidget(QWidget *parent) : QLCDNumber(parent)
 	setDigitCount(7);
 	display("100:100");
 }
+/*
+bool cLCDDockWidget::event(QEvent *e)
+{
+	std::cout << "EVENT: " << e->type() << std::endl;
+	return QWidget::event(e);
+}
+ */
 
 //TODO: maybe work this out, so that the painter doesn't kill the borders
 void cLCDDockWidget::resizeEvent(QResizeEvent *event)
@@ -31,23 +38,23 @@ void cLCDDockWidget::resizeEvent(QResizeEvent *event)
 
 
 	//if(parent->geometry().topRight().x() < ((cDockMainWindow *)(parent->parentWidget()))->geometry().topRight().x())
-	if(parent->geometry().topRight().x() < parent->parentWidget()->geometry().width() - 4)
+	if(parent->geometry().topRight().x() < parent->parentWidget()->geometry().width() - 2)
 	{
 		iWidth += 1;
 	}
 	//if(parent->geometry().bottomLeft().x() > ((cDockMainWindow *)(parent->parentWidget()))->geometry().bottomLeft().x())
-	if(parent->geometry().bottomLeft().x() > 4)
+	if(parent->geometry().bottomLeft().x() > 2)
 	{
 		iWidth += 1;
 	}
 
 	//if(parent->geometry().topRight().y() > ((cDockMainWindow *)(parent->parentWidget()))->geometry().topRight().y())
-	if(parent->geometry().topRight().y() > 4)
+	if(parent->geometry().topRight().y() > 2)
 	{
 		iHeight += 1;
 	}
 	//if(parent->geometry().bottomLeft().y() < ((cDockMainWindow *)(parent->parentWidget()))->geometry().bottomLeft().y())
-	if(parent->geometry().bottomLeft().y() < 252)
+	if(parent->geometry().bottomLeft().y() < 126)
 	{
 		iHeight += 1;
 	}

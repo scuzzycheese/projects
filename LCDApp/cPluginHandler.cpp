@@ -8,9 +8,10 @@
 #include "cPluginHandler.h"
 #include <iostream>
 
-cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q) :
+cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q, cDockMainWindow *dock) :
 	pluginConfigFrame(plgCnfFrm),
 	pluginListWidget(plgList),
+	dockWindow(dock),
 	proxy(NULL),
 	queue(q)
 {
@@ -110,6 +111,22 @@ void cPluginHandler::run()
 		if(mess.getMessageType() == cMessage::MESSAGE_FLUSH)
 		{
 			flush();
+		}
+	}
+}
+
+void cPluginHandler::addPluginToDock()
+{
+	QList<QListWidgetItem *> selectedPlugins = pluginListWidget->selectedItems();
+
+	for(int i = 0; i < selectedPlugins.size(); ++ i)
+	{
+		QListWidgetItem *selectedPlugin = selectedPlugins.at(i);
+		cPlugin *plugin = pluginList[selectedPlugin->text().toStdString()];
+		if(plugin)
+		{
+			dockWindow->addPluginToDock(plugin);
+			setPluginActive(plugin);
 		}
 	}
 }

@@ -27,12 +27,16 @@ int main(int argc, char *argv[])
 	QFrame *pluginConfig = mainWindow.findChild<QFrame *>("pluginConfig");
 	QListWidget *listWidget = mainWindow.findChild<QListWidget *>("pluginList");
 
+	QPushButton *addPluginButton = mainWindow.findChild<QPushButton *>("addPluginToList");
+
 
 
 	cSerialTalk lcdPort;
 	cLM6800Proxy test(&lcdPort);
 	test.clearScreen();
 
+	cDockMainWindow *docker = new cDockMainWindow();
+	docker->createDock();
 
 
 
@@ -42,7 +46,7 @@ int main(int argc, char *argv[])
 
 	cQueue queue;
 
-	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget, &queue);
+	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget, &queue, docker);
 	plugHandler->setProxy(&test);
 
 
@@ -59,12 +63,15 @@ int main(int argc, char *argv[])
 
 
 
+	QObject::connect(addPluginButton, SIGNAL(clicked()), plugHandler, SLOT(addPluginToDock()));
 
 
 
 
-	cDockMainWindow *docker = new cDockMainWindow();
-	docker->createDock();
+
+
+
+
 
 	//test.clearScreen();
 	drawArea->setLM6800Proxy(&test);

@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QDockWidget>
 #include <QtGui>
+#include "cPlugin.h"
 
 class cDockMainWindow : public QMainWindow
 {
@@ -22,10 +23,13 @@ public:
 	cDockMainWindow(QMainWindow *parent);
 	void createDock();
 	virtual ~ cDockMainWindow();
+	//bool event(QEvent *e);
+	void addPluginToDock(cPlugin *plugin);
 private:
 	QImage dImage;
 protected:
 	void mousePressEvent(QMouseEvent *event);
+
 
 };
 
