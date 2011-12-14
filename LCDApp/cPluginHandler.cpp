@@ -97,12 +97,16 @@ void cPluginHandler::run()
 {
 	//std::cout << "Starting Plugin Handler" << std::endl;
 	//activate plugins
+	//NOTE:THIS CODE DOESN'T DO ANYTHING YET
 	std::map<QString, cPlugin *>::iterator activePlugin;
 	for(activePlugin = activePlugins.begin(); activePlugin != activePlugins.end(); activePlugin ++)
 	{
 		//std::cout << "starting plugin" << activePlugin->first << std::endl;
 		activePlugin->second->start();
 	}
+
+
+
 
 	while(1)
 	{
@@ -125,9 +129,14 @@ void cPluginHandler::addPluginToDock()
 
 		//Instantiate a plugin object
 		//TODO: make this more safe
+		//cPlugin *plugin = pluginList[selectedPlugin->text()]();
 		cPlugin *(*pluginFactory)() = pluginList[selectedPlugin->text()];
 		cPlugin *plugin = NULL;
-		plugin = pluginFactory();
+		if(pluginFactory)
+		{
+			plugin = pluginFactory();
+		}
+
 
 		if(plugin)
 		{

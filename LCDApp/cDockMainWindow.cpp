@@ -88,7 +88,7 @@ void cDockMainWindow::addPluginToDock(cPlugin *plugin)
 	cCustomDockWidget *dock = new cCustomDockWidget(plugin->getName(), this);
 	dock->setAllowedAreas(Qt::AllDockWidgetAreas);
 
-	cLCDDockWidget *lcdWid = new cLCDDockWidget(dock);
+	cLCDDockWidget *lcdWid = new cLCDDockWidget(dock, plugin);
 	dock->setWidget(lcdWid);
 
 	addDockWidget(Qt::RightDockWidgetArea, dock);

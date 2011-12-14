@@ -9,52 +9,27 @@
 
 testPlugin::testPlugin()
 {
-	setName("Test Plugin");
+	setName(getPluginName());
 }
 
 void testPlugin::run()
 {
 	std::cout << "running test plugin" << std::endl;
 
-	for(int i = 0; i < 256; i += 2)
-	{
-		setPixel(i, 0);
-	}
-
-	for(int i = 0; i < 64; i += 2)
-	{
-		setPixel(255, i);
-	}
-
-	setPixel(10, 0);
-	setPixel(10, 2);
-	setPixel(10, 4);
-	setPixel(10, 6);
-	setPixel(10, 8);
-	setPixel(10, 10);
-
-
-
-	setPixel(0, 10);
-	setPixel(2, 10);
-	setPixel(4, 10);
-	setPixel(6, 10);
-	setPixel(8, 10);
-	setPixel(0, 10);
-
-
-	setPixel(255, 0);
-	setPixel(255, 63);
-	setPixel(0, 63);
-	setPixel(0, 0);
-
-
-
 	while(true)
 	{
+		for(int i = 0; i < maxX; i += 2)
+		{
+			setPixel(i, 0);
+		}
+
+		for(int i = 0; i < maxY; i += 2)
+		{
+			setPixel(maxX - 1, i);
+		}
 		//flush changes from the buffer to the device
 		flushNow();
-		sleep(10);
+		sleep(1);
 	}
 
 }

@@ -6,16 +6,18 @@
 #include <QImage>
 #include <QLCDNumber>
 #include <QEvent>
+#include "cPlugin.h"
 
 class cLCDDockWidget : public QLCDNumber
 {
 	Q_OBJECT
 public:
-	cLCDDockWidget(QWidget *parent = 0);
+	cLCDDockWidget(QWidget *parent = 0, cPlugin *plug = NULL);
 	virtual ~cLCDDockWidget();
 	//bool event(QEvent *e);
 private:
 	QImage dImage;
+	cPlugin *plugin;
 protected:
 	void resizeEvent(QResizeEvent *event);
 signals:

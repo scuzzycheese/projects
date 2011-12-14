@@ -76,6 +76,27 @@ void cPlugin::setQueue(cQueue *q)
 	queue = q;
 }
 
+void cPlugin::setMaxX(int x)
+{
+	std::cout << "maxX: " << x << std::endl;
+	maxX = x;
+}
+void cPlugin::setMaxY(int y)
+{
+	std::cout << "maxX: " << y << std::endl;
+	maxY = y;
+}
+void cPlugin::setStartX(int x)
+{
+	std::cout << "maxX: " << x << std::endl;
+	startX =x;
+}
+void cPlugin::setStartY(int y)
+{
+	std::cout << "maxX: " << y << std::endl;
+	startY = y;
+}
+
 cPlugin::~cPlugin()
 {
 }

@@ -3,7 +3,7 @@
 #include <iostream>
 #include "cCustomDockWidget.h"
 
-cLCDDockWidget::cLCDDockWidget(QWidget *parent) : QLCDNumber(parent)
+cLCDDockWidget::cLCDDockWidget(QWidget *parent, cPlugin *plug) : QLCDNumber(parent), plugin(plug)
 {
 	/*
 	setStyleSheet
@@ -63,6 +63,10 @@ void cLCDDockWidget::resizeEvent(QResizeEvent *event)
 	sWidth.setNum(iWidth);
 	sHeight.setNum(iHeight);
 
+	plugin->setStartX(parent->geometry().topLeft().x() >> 1);
+	plugin->setStartY(parent->geometry().topLeft().y() >> 1);
+	plugin->setMaxX((parent->geometry().topLeft().x() + iWidth) >> 1);
+	plugin->setMaxY((parent->geometry().topLeft().y() + iHeight) >> 1);
 
 	QString dimStr;
 	dimStr += sWidth;

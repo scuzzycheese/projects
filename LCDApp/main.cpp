@@ -49,7 +49,6 @@ int main(int argc, char *argv[])
 	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget, &queue, docker);
 	plugHandler->setProxy(&test);
 
-	//cPlugin *newPlugin = getPluginInstance();
 	plugHandler->addPlugin(getPluginInstance, getPluginName());
 
 	//TODO: this concept needs to be tought out properly

@@ -34,12 +34,22 @@ public:
 
 	virtual ~cPlugin();
 
+	void setMaxX(int x);
+	void setMaxY(int y);
+	void setStartX(int x);
+	void setStartY(int y);
+
 
 protected:
 
 	virtual void run() = 0;
 
 	cQueue *queue;
+
+	int maxX;
+	int maxY;
+	int startX;
+	int startY;
 
 private:
 	friend class cPluginHandler;
@@ -50,10 +60,6 @@ private:
 
 	char *gfxBuff;
 
-	int maxX;
-	int maxY;
-	int startX;
-	int startY;
 
 
 
