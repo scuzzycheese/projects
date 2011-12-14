@@ -40,6 +40,8 @@ protected:
 
 private:
 
+	void cleanBuffer();
+
 	QFrame *pluginConfigFrame;
 	QListWidget *pluginListWidget;
 	cDockMainWindow *dockWindow;

@@ -14,7 +14,8 @@ public:
 	enum messageType
 	{
 		MESSAGE_NONE,
-		MESSAGE_FLUSH
+		MESSAGE_FLUSH,
+		MESSAGE_CLR_BUFFER
 	};
 
 	cMessage();

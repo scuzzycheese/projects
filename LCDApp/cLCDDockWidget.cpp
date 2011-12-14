@@ -63,10 +63,18 @@ void cLCDDockWidget::resizeEvent(QResizeEvent *event)
 	sWidth.setNum(iWidth);
 	sHeight.setNum(iHeight);
 
-	plugin->setStartX(parent->geometry().topLeft().x() >> 1);
-	plugin->setStartY(parent->geometry().topLeft().y() >> 1);
-	plugin->setMaxX((parent->geometry().topLeft().x() + iWidth) >> 1);
-	plugin->setMaxY((parent->geometry().topLeft().y() + iHeight) >> 1);
+	//Only ask the plugins to update, if the dock isn't floating
+	//TODO: fix the numbers
+	if(!parent->isFloating())
+	{
+		plugin->setStartX(parent->geometry().topLeft().x() >> 1);
+		plugin->setStartY(parent->geometry().topLeft().y() >> 1);
+		plugin->setMaxX((parent->geometry().topLeft().x() + iWidth) >> 1);
+		plugin->setMaxY((parent->geometry().topLeft().y() + iHeight) >> 1);
+
+		plugin->clrScreen();
+		plugin->reDraw();
+	}
 
 	QString dimStr;
 	dimStr += sWidth;

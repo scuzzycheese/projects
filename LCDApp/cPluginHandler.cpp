@@ -88,6 +88,11 @@ void cPluginHandler::flush()
 
 }
 
+void cPluginHandler::cleanBuffer()
+{
+	memset((char *)gfxBuffer, 0x00, 2048);
+}
+
 
 
 /*
@@ -112,9 +117,19 @@ void cPluginHandler::run()
 	{
 		cMessage mess;
 		queue->dequeue(mess);
-		if(mess.getMessageType() == cMessage::MESSAGE_FLUSH)
+
+		switch(mess.getMessageType())
 		{
-			flush();
+			case cMessage::MESSAGE_FLUSH:
+			{
+				flush();
+				break;
+			}
+			case cMessage::MESSAGE_CLR_BUFFER:
+			{
+				cleanBuffer();
+				break;
+			}
 		}
 	}
 }

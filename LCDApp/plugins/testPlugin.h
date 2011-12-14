@@ -19,6 +19,8 @@ public:
 
 	void run();
 
+	void reDraw();
+
 
 private:
 

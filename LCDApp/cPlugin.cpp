@@ -12,11 +12,11 @@
 
 
 cPlugin::cPlugin() : 
-	gfxBuff(NULL),
 	maxX(0),
 	maxY(0),
 	startX(0),
-	startY(0)
+	startY(0),
+	gfxBuff(NULL)
 {
 }
 
@@ -64,8 +64,21 @@ void cPlugin::clearPixel(int x, int y)
 	}
 }
 
+//TODO: Optimise
+void cPlugin::clrScreen()
+{
+	for(int x = 0; x < maxX; ++ x)
+	{
+		for(int y = 0; y < maxY; ++y)
+		{
+			clearPixel(x, y);
+		}
+	}
+}
+
 void cPlugin::flushNow()
 {
+	std::cout << "cPlugin flushing buffer now" << std::endl;
 	cMessage mess;
 	mess.setMessageType(cMessage::MESSAGE_FLUSH);
 	queue->enqueue(mess);
@@ -83,17 +96,17 @@ void cPlugin::setMaxX(int x)
 }
 void cPlugin::setMaxY(int y)
 {
-	std::cout << "maxX: " << y << std::endl;
+	std::cout << "maxY: " << y << std::endl;
 	maxY = y;
 }
 void cPlugin::setStartX(int x)
 {
-	std::cout << "maxX: " << x << std::endl;
+	std::cout << "startX: " << x << std::endl;
 	startX =x;
 }
 void cPlugin::setStartY(int y)
 {
-	std::cout << "maxX: " << y << std::endl;
+	std::cout << "startY: " << y << std::endl;
 	startY = y;
 }
 

@@ -35,8 +35,6 @@ int main(int argc, char *argv[])
 	cLM6800Proxy test(&lcdPort);
 	test.clearScreen();
 
-	cDockMainWindow *docker = new cDockMainWindow();
-	docker->createDock();
 
 
 
@@ -45,6 +43,9 @@ int main(int argc, char *argv[])
 
 
 	cQueue queue;
+
+	cDockMainWindow *docker = new cDockMainWindow();
+	docker->createDock();
 
 	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget, &queue, docker);
 	plugHandler->setProxy(&test);

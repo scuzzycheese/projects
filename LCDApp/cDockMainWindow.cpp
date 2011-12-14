@@ -94,6 +94,7 @@ void cDockMainWindow::addPluginToDock(cPlugin *plugin)
 	addDockWidget(Qt::RightDockWidgetArea, dock);
 }
 
+
 cDockMainWindow::~cDockMainWindow()
 {
 }

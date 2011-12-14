@@ -32,6 +32,8 @@ public:
 
 	void flushNow();
 
+	void clrScreen();
+
 	virtual ~cPlugin();
 
 	void setMaxX(int x);
@@ -39,6 +41,7 @@ public:
 	void setStartX(int x);
 	void setStartY(int y);
 
+	virtual void reDraw() = 0;
 
 protected:
 
@@ -48,13 +51,14 @@ protected:
 
 	int maxX;
 	int maxY;
-	int startX;
-	int startY;
 
 private:
 	friend class cPluginHandler;
 
 	void setQueue(cQueue *q);
+
+	int startX;
+	int startY;
 
 	QString pluginName;
 
