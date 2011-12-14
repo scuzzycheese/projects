@@ -40,6 +40,8 @@ public:
 	void setMaxY(int y);
 	void setStartX(int x);
 	void setStartY(int y);
+	void setWidth(int x);
+	void setHeight(int y);
 
 	virtual void reDraw() = 0;
 
@@ -49,14 +51,16 @@ protected:
 
 	cQueue *queue;
 
-	int maxX;
-	int maxY;
+	int width;
+	int height;
 
 private:
 	friend class cPluginHandler;
 
 	void setQueue(cQueue *q);
 
+	int maxX;
+	int maxY;
 	int startX;
 	int startY;
 

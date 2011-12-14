@@ -71,6 +71,8 @@ void cLCDDockWidget::resizeEvent(QResizeEvent *event)
 		plugin->setStartY(parent->geometry().topLeft().y() >> 1);
 		plugin->setMaxX((parent->geometry().topLeft().x() + iWidth) >> 1);
 		plugin->setMaxY((parent->geometry().topLeft().y() + iHeight) >> 1);
+		plugin->setWidth(iWidth >> 1);
+		plugin->setHeight(iHeight >> 1);
 
 		plugin->clrScreen();
 		plugin->reDraw();

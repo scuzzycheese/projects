@@ -18,22 +18,22 @@ void testPlugin::run()
 
 	while(true)
 	{
-		for(int i = 0; i < maxX; i ++)
+		for(int i = 0; i < width; i ++)
 		{
 			setPixel(i, 0);
 		}
-		for(int i = 0; i < maxX; i ++)
+		for(int i = 0; i < width; i ++)
 		{
-			setPixel(i, maxY - 1);
+			setPixel(i, height - 1);
 		}
 
-		for(int i = 0; i < maxY; i ++)
+		for(int i = 0; i < height; i ++)
 		{
 			setPixel(0, i);
 		}
-		for(int i = 0; i < maxY; i ++)
+		for(int i = 0; i < height; i ++)
 		{
-			setPixel(maxX - 1, i);
+			setPixel(width - 1, i);
 		}
 
 		//flush changes from the buffer to the device
@@ -45,22 +45,22 @@ void testPlugin::run()
 
 void testPlugin::reDraw()
 {
-		for(int i = 0; i < maxX; i ++)
+		for(int i = 0; i < width; i ++)
 		{
 			setPixel(i, 0);
 		}
-		for(int i = 0; i < maxX; i ++)
+		for(int i = 0; i < width; i ++)
 		{
-			setPixel(i, maxY - 1);
+			setPixel(i, height - 1);
 		}
 
-		for(int i = 0; i < maxY; i ++)
+		for(int i = 0; i < height; i ++)
 		{
 			setPixel(0, i);
 		}
-		for(int i = 0; i < maxY; i ++)
+		for(int i = 0; i < height; i ++)
 		{
-			setPixel(maxX - 1, i);
+			setPixel(width - 1, i);
 		}
 		flushNow();
 }

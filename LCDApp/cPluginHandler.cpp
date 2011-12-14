@@ -39,8 +39,8 @@ void cPluginHandler::setPluginActive(cPlugin *plugin)
 	activePlugins[plugin->getName()] = plugin;
 
 	//set some fake limits for the plugin
-	plugin->maxX = 256;
-	plugin->maxY = 64;
+	//plugin->maxX = 256;
+	//plugin->maxY = 64;
 
 	plugin->gfxBuff = (char *)gfxBuffer;
 	plugin->setQueue(queue);

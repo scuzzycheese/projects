@@ -11,7 +11,9 @@
 
 
 
-cPlugin::cPlugin() : 
+cPlugin::cPlugin() :
+	width(0),
+	height(0),
 	maxX(0),
 	maxY(0),
 	startX(0),
@@ -67,9 +69,9 @@ void cPlugin::clearPixel(int x, int y)
 //TODO: Optimise
 void cPlugin::clrScreen()
 {
-	for(int x = 0; x < maxX; ++ x)
+	for(int x = 0; x < width; ++ x)
 	{
-		for(int y = 0; y < maxY; ++y)
+		for(int y = 0; y < height; ++y)
 		{
 			clearPixel(x, y);
 		}
@@ -108,6 +110,16 @@ void cPlugin::setStartY(int y)
 {
 	std::cout << "startY: " << y << std::endl;
 	startY = y;
+}
+
+void cPlugin::setWidth(int x)
+{
+	width = x;
+}
+
+void cPlugin::setHeight(int y)
+{
+	height = y;
 }
 
 cPlugin::~cPlugin()
