@@ -85,7 +85,7 @@ void cDockMainWindow::createDock()
 void cDockMainWindow::addPluginToDock(cPlugin *plugin)
 {
 	std::cout << "adding plugin to dock" << std::endl;
-	cCustomDockWidget *dock = new cCustomDockWidget(QString::fromStdString(plugin->getName()), this);
+	cCustomDockWidget *dock = new cCustomDockWidget(plugin->getName(), this);
 	dock->setAllowedAreas(Qt::AllDockWidgetAreas);
 
 	cLCDDockWidget *lcdWid = new cLCDDockWidget(dock);

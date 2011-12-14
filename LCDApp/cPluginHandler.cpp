@@ -8,6 +8,7 @@
 #include "cPluginHandler.h"
 #include <iostream>
 
+
 cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q, cDockMainWindow *dock) :
 	pluginConfigFrame(plgCnfFrm),
 	pluginListWidget(plgList),
@@ -124,7 +125,9 @@ void cPluginHandler::addPluginToDock()
 
 		//Instantiate a plugin object
 		//TODO: make this more safe
-		cPlugin *plugin = pluginList[selectedPlugin->text()]();
+		cPlugin *(*pluginFactory)() = pluginList[selectedPlugin->text()];
+		cPlugin *plugin = NULL;
+		plugin = pluginFactory();
 
 		if(plugin)
 		{
