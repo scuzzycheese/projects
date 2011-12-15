@@ -80,7 +80,7 @@ void cPlugin::clrScreen()
 
 void cPlugin::flushNow()
 {
-	std::cout << "cPlugin flushing buffer now" << std::endl;
+	//std::cout << "cPlugin flushing buffer now" << std::endl;
 	cMessage mess;
 	mess.setMessageType(cMessage::MESSAGE_FLUSH);
 	queue->enqueue(mess);
@@ -93,23 +93,23 @@ void cPlugin::setQueue(cQueue *q)
 
 void cPlugin::setMaxX(int x)
 {
-	std::cout << "maxX: " << x << std::endl;
-	maxX = x;
+	maxX = (x <= 255) ? x : 255;
+	std::cout << "maxX: " << maxX << std::endl;
 }
 void cPlugin::setMaxY(int y)
 {
-	std::cout << "maxY: " << y << std::endl;
-	maxY = y;
+	maxY = (y <= 63) ? y : 63;
+	std::cout << "maxY: " << maxY << std::endl;
 }
 void cPlugin::setStartX(int x)
 {
+	startX = x;
 	std::cout << "startX: " << x << std::endl;
-	startX =x;
 }
 void cPlugin::setStartY(int y)
 {
-	std::cout << "startY: " << y << std::endl;
 	startY = y;
+	std::cout << "startY: " << y << std::endl;
 }
 
 void cPlugin::setWidth(int x)

@@ -12,8 +12,24 @@
 cCustomDockWidget::cCustomDockWidget(QWidget *parent) : QDockWidget(parent)
 {
 }
-cCustomDockWidget::cCustomDockWidget(QString title, cDockMainWindow *mainWindow)
+cCustomDockWidget::cCustomDockWidget(QString title, cDockMainWindow *mainWindow) : QDockWidget(title, mainWindow)
 {
+
+	setStyleSheet
+	(
+		"QDockWidget::close-button, QDockWidget::float-button"
+		"{"
+			"icon-size: 8px;"
+			"padding: 0px;"
+			"border: 0px;"
+		"}"
+		"QDockWidget::title"
+		"{"
+			"padding: 0px;"
+			"border: 0px;"
+			"font-size: 5px;"
+		"}"
+	);
 /*
 	setStyleSheet
 	(
@@ -22,7 +38,7 @@ cCustomDockWidget::cCustomDockWidget(QString title, cDockMainWindow *mainWindow)
 	);
  */
 
-	QDockWidget(title, mainWindow);
+	//QDockWidget(title, mainWindow);
 
 	//Remove the title bar
 	//cCustomDockTitle *titleBar = new cCustomDockTitle(this);

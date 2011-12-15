@@ -17,6 +17,13 @@
 
 cSerialTalk::cSerialTalk()
 {
+	connect();
+}
+
+
+void cSerialTalk::connect()
+{
+	std::cout << "connecting serial port" << std::endl;
 	fdSerialPort = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
 	if(fdSerialPort == -1)
 	{
@@ -26,6 +33,12 @@ cSerialTalk::cSerialTalk()
 	{
 		fcntl(fdSerialPort, F_SETFL, 0);
 	}
+}
+
+void cSerialTalk::disconnect()
+{
+	close(fdSerialPort);
+	std::cout << "disconnecting serial port" << std::endl;
 }
 
 int cSerialTalk::write(char *data, int dataLen)

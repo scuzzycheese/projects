@@ -74,6 +74,7 @@ void cLCDDockWidget::resizeEvent(QResizeEvent *event)
 		plugin->setWidth(iWidth >> 1);
 		plugin->setHeight(iHeight >> 1);
 
+		//Maybe the clrScreen should be inside the reDraw method, not sure.
 		plugin->clrScreen();
 		plugin->reDraw();
 	}

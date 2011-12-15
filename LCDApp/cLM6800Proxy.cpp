@@ -15,6 +15,7 @@ cLM6800Proxy::cLM6800Proxy()
 
 cLM6800Proxy::cLM6800Proxy(cSerialTalk *lcdPoObj) : lcdPort(lcdPoObj)
 {
+	init();
 }
 
 /*
@@ -77,7 +78,15 @@ struct lcdData cLM6800Proxy::getLcdData(void)
 }
 void cLM6800Proxy::init(void)
 {
-	char tmpChar = 0b00000000;
+	//This Tells the device to exit bootloader and enter
+	//normal operation
+	char tmpChar = 'E';
+	lcdPort->write(&tmpChar, 1);
+	lcdPort->disconnect();
+	sleep(2);
+	lcdPort->connect();
+
+	tmpChar = 0b00000000;
 	lcdPort->write(&tmpChar, 1);
 }
 void cLM6800Proxy::reset(void)

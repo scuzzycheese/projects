@@ -16,8 +16,13 @@ void testPlugin::run()
 {
 	std::cout << "running test plugin" << std::endl;
 
+	int x = 0;
+	int incX = 1;
+	int y = 0;
+	int incY = 1;
 	while(true)
 	{
+		clrScreen();
 		for(int i = 0; i < width; i ++)
 		{
 			setPixel(i, 0);
@@ -36,9 +41,28 @@ void testPlugin::run()
 			setPixel(width - 1, i);
 		}
 
+
+		setPixel(x, y);
+		setPixel(x + 1, y);
+		setPixel(x + 1, y + 1);
+		setPixel(x, y + 1);
+		setPixel(x - 1, y);
+		setPixel(x - 1, y - 1);
+		setPixel(x, y - 1);
+		setPixel(x - 1, y + 1);
+		setPixel(x + 1, y - 1);
+
+		if(x >= width) incX = -1;
+		if(y >= height) incY = -1;
+		if(x <= 0) incX = 1;
+		if(y <= 0) incY = 1;
+
+		x += incX;
+		y += incY;
+
 		//flush changes from the buffer to the device
 		flushNow();
-		sleep(10);
+		msleep(25);
 	}
 
 }
