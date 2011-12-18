@@ -35,6 +35,8 @@
       <itemPath>cQueue.h</itemPath>
       <itemPath>cSerialTalk.cpp</itemPath>
       <itemPath>cSerialTalk.h</itemPath>
+      <itemPath>cUdev.cpp</itemPath>
+      <itemPath>cUdev.h</itemPath>
       <itemPath>lcdFramework.h</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>plugins/testPlugin.cpp</itemPath>
@@ -65,6 +67,7 @@
         </ccTool>
         <linkerTool>
           <linkerLibItems>
+            <linkerLibLibItem>udev</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

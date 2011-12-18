@@ -9,6 +9,7 @@
 #include "cPlugin.h"
 #include "cQueue.h"
 #include <iostream>
+#include "cUdev.h"
 
 #include "plugins/testPlugin.h"
 
@@ -28,6 +29,14 @@ int main(int argc, char *argv[])
 	QListWidget *listWidget = mainWindow.findChild<QListWidget *>("pluginList");
 
 	QPushButton *addPluginButton = mainWindow.findChild<QPushButton *>("addPluginToList");
+
+
+
+
+
+	cUdev usb;
+
+
 
 
 
