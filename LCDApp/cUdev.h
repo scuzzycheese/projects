@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <list>
 #include <iostream>
+#include <map>
 
 
 class cUdev
@@ -23,11 +24,13 @@ public:
 	cUdev();
 	virtual ~ cUdev();
 
+	std::list<std::string> getLCDDevices(std::map<std::string, udev_device *> devices);
+	std::list<std::string> getBootloaderDevices(std::map<std::string, udev_device *> devices);
 
 
 private:
 
-	std::list<std::string> findDevices(std::string mnfturer);
+	std::map<std::string, udev_device *> findDevices();
 
 	std::list<std::string> devices;
 

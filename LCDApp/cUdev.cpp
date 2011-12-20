@@ -10,25 +10,27 @@
 cUdev::cUdev()
 {
 
-	std::list<std::string>::iterator it;
-
-	std::list<std::string> devices = findDevices("Reverseorder");
-
-	std::cout << "DEVICES: " << devices.size() << std::endl;
-
-	for(it = devices.begin(); it != devices.end(); it ++)
+	std::list<std::string> devices = getLCDDevices(findDevices());
+	for(std::list<std::string>::iterator it = devices.begin(); it != devices.end(); it ++)
 	{
-		std::cout << "DEVICE: " << *it << std::endl;
+		std::cout << "LCD DEVICE: " << *it << std::endl;
+	}
+
+	devices = getBootloaderDevices(findDevices());
+	for(std::list<std::string>::iterator it = devices.begin(); it != devices.end(); it ++)
+	{
+		std::cout << "BOOTLOADER DEVICE: " << *it << std::endl;
 	}
 }
-std::list<std::string> cUdev::findDevices(std::string mnfturer)
+
+std::map<std::string, udev_device *> cUdev::findDevices()
 {
 	struct udev *udev;
 	struct udev_enumerate *enumerate;
 	struct udev_list_entry *devices, *dev_list_entry;
 	struct udev_device *dev;
 
-	std::list<std::string> devs;
+	std::map<std::string, udev_device *> ttyDevs;
 
 	udev = udev_new();
 	if(!udev)
@@ -56,32 +58,63 @@ std::list<std::string> cUdev::findDevices(std::string mnfturer)
 
 		if(dev)
 		{
-			std::string manufacturer(udev_device_get_sysattr_value(dev, "manufacturer"));
-			std::cout << "Manufacturer: " << manufacturer << std::endl;
-			std::cout << "Device PATH: " << deviceNodePath << std::endl;
-			if(manufacturer.compare(mnfturer) == 0)
-			{
-				devs.push_front(deviceNodePath);
-			}
+			ttyDevs[deviceNodePath] = dev;
 		}
 
-		/*
-		printf("  VID/PID: %s %s\n",
-				  udev_device_get_sysattr_value(dev, "idVendor"),
-				  udev_device_get_sysattr_value(dev, "idProduct"));
-		printf("  %s\n  %s\n",
-				  udev_device_get_sysattr_value(dev, "manufacturer"),
-				  udev_device_get_sysattr_value(dev, "product"));
-		printf("  serial: %s\n",
-				  udev_device_get_sysattr_value(dev, "serial"));
-		 */
-		udev_device_unref(dev);
 	}
 
 	udev_enumerate_unref(enumerate);
 
 	udev_unref(udev);
 
+	return ttyDevs;
+}
+
+std::list<std::string> cUdev::getLCDDevices(std::map<std::string, udev_device *> devices)
+{
+
+	std::list<std::string> devs;
+
+	for(std::map<std::string, udev_device *>::iterator device = devices.begin(); device != devices.end(); device ++)
+	{
+
+		const char *devManufacturer = udev_device_get_sysattr_value(device->second, "manufacturer");
+		if(devManufacturer)
+		{
+			std::string manufacturer(devManufacturer);
+			std::cout << "Manufacturer: " << manufacturer << std::endl;
+			std::cout << "Device PATH: " << device->first << std::endl;
+			if(manufacturer.compare("Reverseorder") == 0)
+			{
+				devs.push_front(device->first);
+			}
+		}
+
+		udev_device_unref(device->second);
+	}
+	return devs;
+}
+
+std::list<std::string> cUdev::getBootloaderDevices(std::map<std::string, udev_device *> devices)
+{
+	std::list<std::string> devs;
+
+	for(std::map<std::string, udev_device *>::iterator device = devices.begin(); device != devices.end(); device ++)
+	{
+
+		const char *devId = udev_device_get_sysattr_value(device->second, "idProduct");
+		if(devId)
+		{
+			std::string productID(devId);
+			std::cout << "Product ID: " << productID << std::endl;
+			std::cout << "Device PATH: " << device->first << std::endl;
+			if(productID.compare("204a") == 0)
+			{
+				devs.push_front(device->first);
+			}
+		}
+		udev_device_unref(device->second);
+	}
 	return devs;
 }
 
