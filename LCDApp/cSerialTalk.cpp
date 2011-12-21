@@ -15,24 +15,26 @@
 #include <termios.h> /* POSIX terminal control definitions */
 
 
-cSerialTalk::cSerialTalk()
+cSerialTalk::cSerialTalk(std::string dev) : device(dev)
 {
 	connect();
 }
 
 
-void cSerialTalk::connect()
+bool cSerialTalk::connect()
 {
 	std::cout << "connecting serial port" << std::endl;
-	fdSerialPort = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
+	fdSerialPort = open(device.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
 	if(fdSerialPort == -1)
 	{
-		std::cout << "Unable to open serial port" << std::endl;
+		std::cout << "Unable to open serial port " << device << std::endl;
+		return false;
 	}
 	else
 	{
 		fcntl(fdSerialPort, F_SETFL, 0);
 	}
+	return true;
 }
 
 void cSerialTalk::disconnect()

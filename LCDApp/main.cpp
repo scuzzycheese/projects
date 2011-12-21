@@ -30,17 +30,40 @@ int main(int argc, char *argv[])
 
 	QPushButton *addPluginButton = mainWindow.findChild<QPushButton *>("addPluginToList");
 
+	QComboBox *pluginsDeviceSelection = mainWindow.findChild<QComboBox *>("pluginsDeviceSelection");
+
 
 
 
 
 	cUdev usb;
 
+	//This bit of code reboots any devices sitting in bootloader mode
+	std::list<std::string> BLDevs = usb.getBootloaderDevices();
+	if(BLDevs.size() > 0)
+	{
+		for(std::list<std::string>::iterator dev = BLDevs.begin(); dev != BLDevs.end(); dev ++)
+		{
+			std::cout << "Rebooting " << *dev << " ... ";
+			cSerialTalk BLPort(*dev);
+			char tmpChar = 'E';
+			BLPort.write(&tmpChar, 1);
+			std::cout << "Done!" << std::endl;
+		}
+		sleep(2);
+	}
+
+	//This population should really be done elsewhere
+	std::list<std::string> LCDDevs = usb.getLCDDevices();
+	for(std::list<std::string>::iterator dev = LCDDevs.begin(); dev != LCDDevs.end(); dev ++)
+	{
+		pluginsDeviceSelection->addItem(dev->c_str());
+	}
 
 
 
 
-	cSerialTalk lcdPort;
+	cSerialTalk lcdPort(LCDDevs.front());
 	cLM6800Proxy test(&lcdPort);
 	test.clearScreen();
 

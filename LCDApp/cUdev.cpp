@@ -10,17 +10,19 @@
 cUdev::cUdev()
 {
 
-	std::list<std::string> devices = getLCDDevices(findDevices());
+	/*
+	std::list<std::string> devices = getLCDDevices();
 	for(std::list<std::string>::iterator it = devices.begin(); it != devices.end(); it ++)
 	{
 		std::cout << "LCD DEVICE: " << *it << std::endl;
 	}
 
-	devices = getBootloaderDevices(findDevices());
+	devices = getBootloaderDevices();
 	for(std::list<std::string>::iterator it = devices.begin(); it != devices.end(); it ++)
 	{
 		std::cout << "BOOTLOADER DEVICE: " << *it << std::endl;
 	}
+	 */
 }
 
 std::map<std::string, udev_device *> cUdev::findDevices()
@@ -70,8 +72,9 @@ std::map<std::string, udev_device *> cUdev::findDevices()
 	return ttyDevs;
 }
 
-std::list<std::string> cUdev::getLCDDevices(std::map<std::string, udev_device *> devices)
+std::list<std::string> cUdev::getLCDDevices()
 {
+	std::map<std::string, udev_device *> devices = findDevices();
 
 	std::list<std::string> devs;
 
@@ -95,8 +98,10 @@ std::list<std::string> cUdev::getLCDDevices(std::map<std::string, udev_device *>
 	return devs;
 }
 
-std::list<std::string> cUdev::getBootloaderDevices(std::map<std::string, udev_device *> devices)
+std::list<std::string> cUdev::getBootloaderDevices()
 {
+	std::map<std::string, udev_device *> devices = findDevices();
+
 	std::list<std::string> devs;
 
 	for(std::map<std::string, udev_device *>::iterator device = devices.begin(); device != devices.end(); device ++)

@@ -24,8 +24,8 @@ public:
 	cUdev();
 	virtual ~ cUdev();
 
-	std::list<std::string> getLCDDevices(std::map<std::string, udev_device *> devices);
-	std::list<std::string> getBootloaderDevices(std::map<std::string, udev_device *> devices);
+	std::list<std::string> getLCDDevices();
+	std::list<std::string> getBootloaderDevices();
 
 
 private:

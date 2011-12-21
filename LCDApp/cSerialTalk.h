@@ -13,15 +13,16 @@
 class cSerialTalk
 {
 public:
-	cSerialTalk();
+	cSerialTalk(std::string dev);
 	//cSerialTalk(const cSerialTalk& orig);
-	void connect();
+	bool connect();
 	void disconnect();
 	int write(char *data, int dataLen);
 	int read(char *data, int dataLen);
 	virtual ~ cSerialTalk();
 private:
 	int fdSerialPort;
+	std::string device;
 
 };
 
