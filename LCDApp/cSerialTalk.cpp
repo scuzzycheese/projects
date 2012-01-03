@@ -45,6 +45,7 @@ void cSerialTalk::disconnect()
 
 int cSerialTalk::write(char *data, int dataLen)
 {
+	if(fdSerialPort == -1) return 0;
 	return ::write(fdSerialPort, data, dataLen);
 }
 

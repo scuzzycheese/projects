@@ -62,8 +62,7 @@ int main(int argc, char *argv[])
 
 
 
-
-	cSerialTalk lcdPort(LCDDevs.front());
+	cSerialTalk lcdPort(LCDDevs.size() > 0 ? LCDDevs.front() : "");
 	cLM6800Proxy test(&lcdPort);
 	test.clearScreen();
 
