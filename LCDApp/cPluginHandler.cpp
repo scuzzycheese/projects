@@ -9,28 +9,27 @@
 #include <iostream>
 
 
-cPluginHandler::cPluginHandler(QFrame *plgCnfFrm, QListWidget *plgList, cQueue *q, cDockMainWindow *dock) :
-	pluginConfigFrame(plgCnfFrm),
-	pluginListWidget(plgList),
-	dockWindow(dock),
-	proxy(NULL),
-	queue(q)
+cPluginHandler::cPluginHandler() :
+	proxy(NULL)
 {
 	memset((char *)gfxBuffer, 0x00, 2048);
 	memset((char *)CRC, 0x00, 64);
+	//instantiate a new queue for us to use
+	queue = new cQueue;
+}
+
+cPluginHandler::~cPluginHandler()
+{
+	delete(queue);
 }
 
 
 //Adding the plugins to the lists maybe needs to be handled outside this class.
 //Haven't figured this one out yet
-void cPluginHandler::addPlugin(cPlugin *(*pluginFactory)(), QString name)
+void cPluginHandler::addPlugin(cPlugin *(*pluginFactory)(), std::string name)
 {
 	//maintain a list of plugins in memory
 	pluginList[name] = pluginFactory;
-
-	QListWidgetItem *newListItem = new QListWidgetItem;
-	newListItem->setText(name);
-	pluginListWidget->addItem(newListItem);
 }
 
 void cPluginHandler::setPluginActive(cPlugin *plugin)
@@ -103,7 +102,7 @@ void cPluginHandler::run()
 	//std::cout << "Starting Plugin Handler" << std::endl;
 	//activate plugins
 	//NOTE:THIS CODE DOESN'T DO ANYTHING YET
-	std::map<QString, cPlugin *>::iterator activePlugin;
+	std::map<std::string, cPlugin *>::iterator activePlugin;
 	for(activePlugin = activePlugins.begin(); activePlugin != activePlugins.end(); activePlugin ++)
 	{
 		//std::cout << "starting plugin" << activePlugin->first << std::endl;
@@ -134,29 +133,18 @@ void cPluginHandler::run()
 	}
 }
 
-void cPluginHandler::addPluginToDock()
+//NOTE: this is explicitly linked to an outside QWidget...
+cPlugin *cPluginHandler::addPluginInstance(std::string pluginName)
 {
-	QList<QListWidgetItem *> selectedPlugins = pluginListWidget->selectedItems();
-
-	for(int i = 0; i < selectedPlugins.size(); ++ i)
+	cPlugin *(*pluginFactory)() = pluginList[pluginName];
+	cPlugin *plugin = NULL;
+	if(pluginFactory)
 	{
-		QListWidgetItem *selectedPlugin = selectedPlugins.at(i);
+		plugin = pluginFactory();
+	}
 
-		//Instantiate a plugin object
-		//TODO: make this more safe
-		//cPlugin *plugin = pluginList[selectedPlugin->text()]();
-		cPlugin *(*pluginFactory)() = pluginList[selectedPlugin->text()];
-		cPlugin *plugin = NULL;
-		if(pluginFactory)
-		{
-			plugin = pluginFactory();
-		}
-
-
-		if(plugin)
-		{
-			dockWindow->addPluginToDock(plugin);
-			setPluginActive(plugin);
-		}
+	if(plugin)
+	{
+		setPluginActive(plugin);
 	}
 }

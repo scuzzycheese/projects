@@ -10,8 +10,11 @@
 #include "cQueue.h"
 #include <iostream>
 #include "cUdev.h"
+#include "cQPluginHelper.h"
 
 #include "plugins/testPlugin.h"
+
+void dumpLCDDate(struct lcdData lcdData);
 
 int main(int argc, char *argv[])
 {
@@ -35,7 +38,6 @@ int main(int argc, char *argv[])
 
 
 
-
 	cUdev usb;
 
 	//This bit of code reboots any devices sitting in bootloader mode
@@ -53,62 +55,79 @@ int main(int argc, char *argv[])
 		sleep(2);
 	}
 
+
+
+	mainWindow.show();
+
+
+	std::list<cPluginHandler *> pluginHandlers;
+
+
+	cQPluginHelper *plugHelper = new cQPluginHelper(listWidget);
+
 	//This population should really be done elsewhere
 	std::list<std::string> LCDDevs = usb.getLCDDevices();
 	for(std::list<std::string>::iterator dev = LCDDevs.begin(); dev != LCDDevs.end(); dev ++)
 	{
 		pluginsDeviceSelection->addItem(dev->c_str());
+
+
+
+
+		cSerialTalk lcdPort(*dev);
+		cLM6800Proxy lcdProxy(&lcdPort);
+		lcdProxy.clearScreen();
+
+
+
+		dumpLCDDate(lcdProxy.getLcdData());
+
+
+
+
+		cQueue queue;
+
+		cDockMainWindow *docker = new cDockMainWindow();
+		docker->createDock();
+
+		cPluginHandler *plugHandler = new cPluginHandler();
+		plugHandler->setProxy(&lcdProxy);
+
+		plugHelper->addPluginHandlerAndDock(plugHandler, docker, *dev);
+
+		plugHandler->addPlugin(getPluginInstance, getPluginName());
+		plugHelper->addPlugin(getPluginName());
+
+
+		plugHandler->start();
+
+		docker->show();
+
 	}
 
-
-
-	cSerialTalk lcdPort(LCDDevs.size() > 0 ? LCDDevs.front() : "");
-	cLM6800Proxy test(&lcdPort);
-	test.clearScreen();
-
-
-
-
-
-
-
-
-	cQueue queue;
-
-	cDockMainWindow *docker = new cDockMainWindow();
-	docker->createDock();
-
-	cPluginHandler *plugHandler = new cPluginHandler(pluginConfig, listWidget, &queue, docker);
-	plugHandler->setProxy(&test);
-
-	plugHandler->addPlugin(getPluginInstance, getPluginName());
-
-	//TODO: this concept needs to be tought out properly
-	//plugHandler->setPluginActive(newPlugin);
-
-
-	plugHandler->start();
-
-
-
-
-
-	QObject::connect(addPluginButton, SIGNAL(clicked()), plugHandler, SLOT(addPluginToDock()));
-
-
-
-
+	/**
+	 * NOTE: I think I need one pluginHelper. The plugin helper, selects which plugin Handler to use (by means of
+	 * maybe a list of pluginHandlers associated by device name). Thereby when a plugin is added it can decide WHICH
+	 * device to add it to as well as handling the tie ups between pluginHandler and dock window.
+	 */
+	QObject::connect(addPluginButton, SIGNAL(clicked()), plugHelper, SLOT(addPluginToDock()));
 
 
 
 
 
 	//test.clearScreen();
-	drawArea->setLM6800Proxy(&test);
+	//drawArea->setLM6800Proxy(&test);
 
-	std::cout << "struct lcdData size: " << sizeof(struct lcdData) << std::endl;
-	struct lcdData lcdData = test.getLcdData();
 
+	//docker->show();
+
+	return app.exec();
+}
+
+
+void dumpLCDDate(struct lcdData lcdData)
+{
 	std::cout << "Width: " << lcdData.width << std::endl;
 	std::cout << "Height: " << lcdData.height << std::endl;
 	std::cout << "Colour: ";
@@ -120,12 +139,4 @@ int main(int argc, char *argv[])
 	if(lcdData.backlight) std::cout << "Yes";
 	else std::cout << "No";
 	std::cout << std::endl;
-
-
-
-
-	mainWindow.show();
-	docker->show();
-
-	return app.exec();
 }

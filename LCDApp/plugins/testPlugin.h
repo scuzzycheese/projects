@@ -27,7 +27,7 @@ private:
 };
 
 
-QString getPluginName();
+std::string getPluginName();
 cPlugin *getPluginInstance();
 
 #endif	/* _TESTPLUGIN_H */

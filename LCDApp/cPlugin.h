@@ -7,7 +7,6 @@
 
 #ifndef _CPLUGIN_H
 #define	_CPLUGIN_H
-#include <QString>
 #include <iostream>
 #include <QThread>
 #include "cQueue.h"
@@ -23,8 +22,8 @@ class cPlugin : public QThread
 public:
 	cPlugin();
 
-	QString getName();
-	void setName(QString name);
+	std::string getName();
+	void setName(std::string name);
 
 	void setPixel(int x, int y);
 	void clearPixel(int x, int y);
@@ -64,7 +63,7 @@ private:
 	int startX;
 	int startY;
 
-	QString pluginName;
+	std::string pluginName;
 
 	char *gfxBuff;
 

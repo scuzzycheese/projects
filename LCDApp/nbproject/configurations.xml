@@ -31,6 +31,8 @@
       <itemPath>cPlugin.h</itemPath>
       <itemPath>cPluginHandler.cpp</itemPath>
       <itemPath>cPluginHandler.h</itemPath>
+      <itemPath>cQPluginHelper.cpp</itemPath>
+      <itemPath>cQPluginHelper.h</itemPath>
       <itemPath>cQueue.cpp</itemPath>
       <itemPath>cQueue.h</itemPath>
       <itemPath>cSerialTalk.cpp</itemPath>

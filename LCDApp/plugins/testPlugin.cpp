@@ -94,9 +94,9 @@ testPlugin::~testPlugin()
 {
 }
 
-QString getPluginName()
+std::string getPluginName()
 {
-	return QString("Test Plugin");
+	return std::string("Test Plugin");
 }
 
 cPlugin *getPluginInstance()
