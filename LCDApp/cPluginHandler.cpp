@@ -78,7 +78,7 @@ void cPluginHandler::flush()
 			}
 			if(CRC[x][y] != pageCRC)
 			{
-				//std::cout << "Writing Block: X - " << x << " Y - " << y << std::endl;
+				std::cout << "Writing Block: X - " << x << " Y - " << y << std::endl;
 				proxy->writeBlock(x, y, gfxBuffer[x][y]);
 				CRC[x][y] = pageCRC;
 			}
@@ -147,4 +147,5 @@ cPlugin *cPluginHandler::addPluginInstance(std::string pluginName)
 	{
 		setPluginActive(plugin);
 	}
+	return plugin;
 }

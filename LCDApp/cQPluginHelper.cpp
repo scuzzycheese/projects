@@ -7,22 +7,24 @@
 
 #include "cQPluginHelper.h"
 
-cQPluginHelper::cQPluginHelper(QListWidget *plgList) : pluginListWidget(plgList)
+cQPluginHelper::cQPluginHelper(QListWidget *plgList, QComboBox *devComboBox) :
+	pluginListWidget(plgList),
+	deviceComboBox(devComboBox)
 {
 }
 
-void cQPluginHelper::addPluginToDock()
+void cQPluginHelper::activatePlugin()
 {
 	QList<QListWidgetItem *> selectedPlugins = pluginListWidget->selectedItems();
 	for(int i = 0; i < selectedPlugins.size(); ++ i)
 	{
 		QListWidgetItem *selectedPlugin = selectedPlugins.at(i);
 
-		cPlugin *plugin = pluginHandlers[selectedPlugin->text().toStdString()]->addPluginInstance(selectedPlugin->text().toStdString());
+		cPlugin *plugin = pluginHandlers[deviceComboBox->currentText().toStdString()]->addPluginInstance(selectedPlugin->text().toStdString());
 
 		if(plugin)
 		{
-			dockWindows[selectedPlugin->text().toStdString()]->addPluginToDock(plugin);
+			dockWindows[deviceComboBox->currentText().toStdString()]->addPluginToDock(plugin);
 		}
 	}
 }

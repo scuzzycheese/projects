@@ -63,7 +63,8 @@ int main(int argc, char *argv[])
 	std::list<cPluginHandler *> pluginHandlers;
 
 
-	cQPluginHelper *plugHelper = new cQPluginHelper(listWidget);
+	cQPluginHelper *plugHelper = new cQPluginHelper(listWidget, pluginsDeviceSelection);
+
 
 	//This population should really be done elsewhere
 	std::list<std::string> LCDDevs = usb.getLCDDevices();
@@ -110,7 +111,7 @@ int main(int argc, char *argv[])
 	 * maybe a list of pluginHandlers associated by device name). Thereby when a plugin is added it can decide WHICH
 	 * device to add it to as well as handling the tie ups between pluginHandler and dock window.
 	 */
-	QObject::connect(addPluginButton, SIGNAL(clicked()), plugHelper, SLOT(addPluginToDock()));
+	QObject::connect(addPluginButton, SIGNAL(clicked()), plugHelper, SLOT(activatePlugin()));
 
 
 

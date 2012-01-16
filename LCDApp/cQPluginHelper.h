@@ -17,7 +17,7 @@ class cQPluginHelper : public QObject
 	Q_OBJECT
 
 public:
-	cQPluginHelper(QListWidget *plgList);
+	cQPluginHelper(QListWidget *plgList, QComboBox *devComboBox);
 	void addPlugin(std::string name);
 	void addPluginHandlerAndDock(cPluginHandler *plgHandler, cDockMainWindow *dock, std::string deviceName);
 	virtual ~cQPluginHelper();
@@ -25,9 +25,11 @@ private:
 	std::map<std::string, cPluginHandler *>pluginHandlers;
 	std::map<std::string, cDockMainWindow *>dockWindows;
 	QListWidget *pluginListWidget;
+	QComboBox *deviceComboBox;
+
 
 public slots:
-	void addPluginToDock();
+	void activatePlugin();
 
 
 };
