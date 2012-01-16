@@ -75,24 +75,21 @@ int main(int argc, char *argv[])
 
 
 
-		cSerialTalk lcdPort(*dev);
-		cLM6800Proxy lcdProxy(&lcdPort);
-		lcdProxy.clearScreen();
+		cSerialTalk *lcdPort = new cSerialTalk(*dev);
+		cLM6800Proxy *lcdProxy = new cLM6800Proxy(lcdPort);
+		lcdProxy->clearScreen();
 
 
 
-		dumpLCDDate(lcdProxy.getLcdData());
+		dumpLCDDate(lcdProxy->getLcdData());
 
 
-
-
-		cQueue queue;
 
 		cDockMainWindow *docker = new cDockMainWindow();
 		docker->createDock();
 
 		cPluginHandler *plugHandler = new cPluginHandler();
-		plugHandler->setProxy(&lcdProxy);
+		plugHandler->setProxy(lcdProxy);
 
 		plugHelper->addPluginHandlerAndDock(plugHandler, docker, *dev);
 
