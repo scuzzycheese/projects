@@ -1,0 +1,282 @@
+Tstand
+v7
+r0
+t349051998.589334
+cCheck dependencies
+cProcessInfoPlistFile /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/Info.plist stand-Info.plist
+cCompileXIB /Users/scuzzy/Documents/stand/MainWindow.xib
+cProcessPCH /var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch.gch stand_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/main.o /Users/scuzzy/Documents/stand/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/standAppDelegate.o /Users/scuzzy/Documents/stand/Classes/standAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/FirstViewController.o /Users/scuzzy/Documents/stand/Classes/FirstViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand normal i386
+cGenerateDSYMFile /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app.dSYM /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand
+cTouch /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk
+c000000004D5C9B4E0000000000000110
+t1297914702
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004D54CFFA00000000002999B0
+t1297403898
+s2726320
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004D54CFE5000000000029DA70
+t1297403877
+s2742896
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004D54CFB80000000000001466
+t1297403832
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004D5615B40000000000000AA1
+t1297487284
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004D5616030000000000766870
+t1297487363
+s7759984
+
+N/Users/scuzzy/Documents/stand/Classes/FirstViewController.h
+c000000004F1DE3920000000000000107
+t1327358866
+s263
+i<UIKit/UIKit.h>
+
+N/Users/scuzzy/Documents/stand/Classes/FirstViewController.m
+c000000004F1DE4D30000000000000411
+t1327359187
+s1041
+i"FirstViewController.h"
+
+N/Users/scuzzy/Documents/stand/Classes/SecondViewController.h
+c000000004F1DE33400000000000000E7
+t1327358772
+s231
+i<UIKit/UIKit.h>
+
+N/Users/scuzzy/Documents/stand/Classes/SecondViewController.m
+c000000004F1DE3350000000000000399
+t1327358773
+s921
+i"SecondViewController.h"
+
+N/Users/scuzzy/Documents/stand/Classes/standAppDelegate.h
+c000000004F1DE33500000000000001D0
+t1327358773
+s464
+i<UIKit/UIKit.h>
+
+N/Users/scuzzy/Documents/stand/Classes/standAppDelegate.m
+c000000004F1DE335000000000000092B
+t1327358773
+s2347
+i"standAppDelegate.h"
+
+N/Users/scuzzy/Documents/stand/FirstView.xib
+c000000004F1DE335000000000000561B
+t1327358773
+s22043
+
+N/Users/scuzzy/Documents/stand/MainWindow.xib
+c000000004F1DE43500000000000069C6
+t1327359029
+s27078
+
+N/Users/scuzzy/Documents/stand/SecondView.xib
+c000000004F1DE3350000000000005C47
+t1327358773
+s23623
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app
+t1327359198
+s204
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app.dSYM
+t1327359198
+s102
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/FirstView.nib
+t2
+s0
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/Info.plist
+t1327359190
+s790
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/MainWindow.nib
+t1327359193
+s3396
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/PkgInfo
+t1327359190
+s8
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/SecondView.nib
+t2
+s0
+
+N/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand
+t1327359198
+s17232
+
+N/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/FirstViewController.o
+t1327359197
+s40908
+
+N/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/SecondViewController.o
+t2
+s0
+
+N/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/main.o
+t1327359196
+s6292
+
+N/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/stand.LinkFileList
+c000000004F1DE4D60000000000000162
+t1327359190
+s354
+
+N/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/standAppDelegate.o
+t1327359197
+s53856
+
+N/Users/scuzzy/Documents/stand/main.m
+c000000004F1DE3350000000000000160
+t1327358773
+s352
+i<UIKit/UIKit.h>
+
+N/Users/scuzzy/Documents/stand/stand_Prefix.pch
+c000000004F1DE33500000000000000B3
+t1327358773
+s179
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch.gch
+t1327359195
+s10626972
+
+Nstand-Info.plist
+c000000004F1DE33500000000000004D6
+t1327358773
+s1238
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies349051989#349051990#0(0"0(0#1#0"2542993952#0"0#
+
+CCompileC build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/FirstViewController.o /Users/scuzzy/Documents/stand/Classes/FirstViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s349051997.204653
+e349051998.014787
+r1
+xCompileC
+xbuild/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/FirstViewController.o
+x/Users/scuzzy/Documents/stand/Classes/FirstViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/scuzzy/Documents/stand/Classes/FirstViewController.m349051997#349051998#0(0"0(0#0#59"/Users/scuzzy/Documents/stand/Classes/FirstViewController.m2542993952#1813"    cd /Users/scuzzy/Documents/stand    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-generated-files.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-own-target-headers.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-all-target-headers.hmap -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-project-headers.hmap -F/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator -I/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/include -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources/i386 -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources -include /var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch -c /Users/scuzzy/Documents/stand/Classes/FirstViewController.m -o /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/FirstViewController.o0#
+
+CCompileC build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/SecondViewController.o /Users/scuzzy/Documents/stand/Classes/SecondViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/main.o /Users/scuzzy/Documents/stand/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s349051995.695327
+e349051996.327965
+r1
+xCompileC
+xbuild/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/main.o
+x/Users/scuzzy/Documents/stand/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@44"Compile /Users/scuzzy/Documents/stand/main.m349051995#349051996#0(0"0(0#0#36"/Users/scuzzy/Documents/stand/main.m2542993952#1775"    cd /Users/scuzzy/Documents/stand    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-generated-files.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-own-target-headers.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-all-target-headers.hmap -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-project-headers.hmap -F/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator -I/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/include -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources/i386 -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources -include /var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch -c /Users/scuzzy/Documents/stand/main.m -o /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/main.o0#
+
+CCompileC build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/standAppDelegate.o /Users/scuzzy/Documents/stand/Classes/standAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s349051996.328197
+e349051997.204004
+r1
+xCompileC
+xbuild/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/standAppDelegate.o
+x/Users/scuzzy/Documents/stand/Classes/standAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@64"Compile /Users/scuzzy/Documents/stand/Classes/standAppDelegate.m349051996#349051997#0(0"0(0#0#56"/Users/scuzzy/Documents/stand/Classes/standAppDelegate.m2542993952#1807"    cd /Users/scuzzy/Documents/stand    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-generated-files.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-own-target-headers.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-all-target-headers.hmap -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-project-headers.hmap -F/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator -I/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/include -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources/i386 -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources -include /var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch -c /Users/scuzzy/Documents/stand/Classes/standAppDelegate.m -o /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/standAppDelegate.o0#
+
+CCompileXIB /Users/scuzzy/Documents/stand/FirstView.xib
+r0
+
+CCompileXIB /Users/scuzzy/Documents/stand/MainWindow.xib
+s349051990.195802
+e349051993.742501
+r1
+xCompileXIB
+x/Users/scuzzy/Documents/stand/MainWindow.xib
+o/* com.apple.ibtool.document.warnings */
+o/Users/scuzzy/Documents/stand/MainWindow.xib:9: warning: 'Selected First View Controller (First)' has both its 'View' and 'NIB Name' properties set. This configuration is not supported.
+lSLF07#2@25"CompileXIB MainWindow.xib349051990#349051993#0(227"/* com.apple.ibtool.document.warnings *//Users/scuzzy/Documents/stand/MainWindow.xib:9: warning: 'Selected First View Controller (First)' has both its 'View' and 'NIB Name' properties set. This configuration is not supported.1(22@128"'Selected First View Controller (First)' has both its 'View' and 'NIB Name' properties set. This configuration is not supported.349051993#4294967295#0#0(6@44"/Users/scuzzy/Documents/stand/MainWindow.xib349051829#9#0#9#0#0"0(0#0#44"/Users/scuzzy/Documents/stand/MainWindow.xib2542993952#541"    cd /Users/scuzzy/Documents/stand    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/MainWindow.nib /Users/scuzzy/Documents/stand/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCompileXIB /Users/scuzzy/Documents/stand/SecondView.xib
+r0
+
+CGenerateDSYMFile /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app.dSYM /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand
+s349051998.418207
+e349051998.538816
+r1
+xGenerateDSYMFile
+x/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app.dSYM
+x/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand
+lSLF07#2@103"GenerateDSYMFile build/Debug-iphonesimulator/stand.app.dSYM build/Debug-iphonesimulator/stand.app/stand349051998#349051998#0(0"0(0#0#73"/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand2542993952#350"    cd /Users/scuzzy/Documents/stand    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand -o /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app.dSYM0#
+
+CLd /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand normal i386
+s349051998.015129
+e349051998.418064
+r1
+xLd
+x/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand
+xnormal
+xi386
+lSLF07#2@78"Link /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand349051998#349051998#0(0"0(0#0#0"2542993952#845"    cd /Users/scuzzy/Documents/stand    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -L/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator -F/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator -filelist /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/stand.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -o /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/stand0#
+
+CProcessInfoPlistFile /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/Info.plist stand-Info.plist
+s349051990.128257
+e349051990.195069
+r1
+xProcessInfoPlistFile
+x/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/Info.plist
+xstand-Info.plist
+lSLF07#2@24"Process stand-Info.plist349051990#349051990#0(0"0(0#0#46"/Users/scuzzy/Documents/stand/stand-Info.plist2542993952#446"    cd /Users/scuzzy/Documents/stand    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility stand-Info.plist -genpkginfo /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/Info.plist0#
+
+CProcessPCH /var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch.gch stand_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s349051993.742927
+e349051995.694937
+r1
+xProcessPCH
+x/var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch.gch
+xstand_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@27"Precompile stand_Prefix.pch349051993#349051995#0(0"0(0#0#46"/Users/scuzzy/Documents/stand/stand_Prefix.pch2542993952#1678"    cd /Users/scuzzy/Documents/stand    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-generated-files.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-own-target-headers.hmap -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-all-target-headers.hmap -iquote /Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand-project-headers.hmap -F/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator -I/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/include -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources/i386 -I/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/DerivedSources -c /Users/scuzzy/Documents/stand/stand_Prefix.pch -o /var/folders/RV/RVJQ4qT-GUuHVN-CSeDS9U+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/stand_Prefix-cldqowtsoxhicnhbcrtytcnckqgp/stand_Prefix.pch.gch0#
+
+CTouch /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app
+s349051998.538971
+e349051998.589233
+r1
+xTouch
+x/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app
+lSLF07#2@73"Touch /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app349051998#349051998#0(0"0(0#0#0"2542993952#258"    cd /Users/scuzzy/Documents/stand    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app0#
+
