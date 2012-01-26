@@ -7,16 +7,16 @@
 
 #include "cLine.h"
 
-cLine::cLine()
+cLine::cLine() : start(0, 0), end(0, 0)
 {
 }
 
-cLine::cLine(cVector point0, cVector point1, cVector point2, cVector point3)
+cLine::cLine(cVector start, cVector end) : start(start), end(end)
 {
-	points.push_back(point0);
-	points.push_back(point1);
-	points.push_back(point2);
-	points.push_back(point3);
+}
+
+cLine::cLine(int x1, int y1, int x2, int y2) : start(x1, y1), end(x2, y2)
+{
 }
 
 cLine::~cLine()

@@ -1,6 +1,12 @@
 #include <iostream>
 
+#include <fstream>
+#include <sstream>
+#include "cParser.h"
+
 int main()
 {
-	std::cout << "moo" << std::endl;
+
+	cParser par("shapes.txt");
+
 }

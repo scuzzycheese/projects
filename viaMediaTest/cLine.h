@@ -9,16 +9,17 @@
 #define	_CLINE_H
 
 #include "cVector.h"
-#include <list>
 
 class cLine
 {
 public:
 	cLine();
-	cLine(cVector point0, cVector point1, cVector point2, cVector point3);
+	cLine(cVector start, cVector end);
+	cLine(int x1, int y1, int x2, int y2);
 	virtual ~ cLine();
 private:
-	std::list<cVector> points;
+	cVector start;
+	cVector end;
 };
 
 #endif	/* _CLINE_H */
