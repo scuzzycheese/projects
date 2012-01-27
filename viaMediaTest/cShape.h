@@ -19,6 +19,7 @@ public:
 	virtual ~cShape();
 	void addVector(cVector vector);
 	void addVector(int vecNumber, cVector vector);
+	cVector getVector(int vecNumber);
 	void setName(std::string name);
 	std::string getName();
 protected:

@@ -20,6 +20,10 @@ void cShape::addVector(int vecNumber, cVector vector)
 	vectors[vecNumber] = vector;
 }
 
+cVector cShape::getVector(int vecNumber)
+{
+	return vectors[vecNumber];
+}
 
 void cShape::setName(std::string name)
 {
