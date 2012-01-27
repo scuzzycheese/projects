@@ -1,21 +1,18 @@
-all: cVector cLine cShape cParser cRectangle
-	g++ -o lapper lapper.cpp cVector.o cShape.o cLine.o cParser.o cRectangle.o
+CC = g++
+CARGS = -g
+COBJ = -c
 
-cVector: cVector.h cVector.cpp
-	g++ -c -o cVector.o cVector.cpp
+CCBUILD = $(CC) $(CARGS)
+CCBUILDOBJ = $(CCBUILD) $(COBJ)
 
-cLine: cLine.h cLine.cpp
-	g++ -c -o cLine.o cLine.cpp
+OBJECTS = cVector.o cLine.o cShape.o cParser.o cRectangle.o
 
-cShape: cShape.h cShape.cpp
-	g++ -c -o cShape.o cShape.cpp
+all: $(OBJECTS)
+	$(CCBUILD) -o lapper lapper.cpp cVector.o cShape.o cLine.o cParser.o cRectangle.o
 
-cParser: cParser.h cParser.cpp
-	c++ -c -o cParser.o cParser.cpp
-
-cRectangle: cRectangle.h cRectangle.cpp
-	c++ -c -o cRectangle.o cRectangle.cpp
-
+%.o: %.h %.cpp
+	$(CCBUILDOBJ) -o $*.o $*.cpp
 
 clean:
 	rm -Rf lapper
+	rm -Rf $(OBJECTS)
