@@ -9,7 +9,7 @@
 #define	_CSHAPE_H
 
 #include "cLine.h"
-#include <vector>
+#include <map>
 #include <iostream>
 
 class cShape
@@ -23,7 +23,7 @@ public:
 	void setName(std::string name);
 	std::string getName();
 protected:
-	std::vector<cLine> lines;
+	std::map<int, cLine> lines;
 	std::string name;
 
 };

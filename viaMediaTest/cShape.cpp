@@ -12,7 +12,7 @@ cShape::cShape()
 }
 void cShape::addLine(cLine line)
 {
-	lines.push_back(line);
+	lines[(lines.size() > 0) ? lines.end()->first + 1 : 0] = line;
 }
 
 void cShape::addLine(int lineNumber, cLine line)

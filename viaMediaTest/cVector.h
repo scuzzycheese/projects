@@ -19,9 +19,15 @@ public:
 	void setX(int xIn);
 	void setY(int yIn);
 private:
-	int x;
-	int y;
-
+	union
+	{
+		int vec[2];
+		struct
+		{
+			int x;
+			int y;
+		};
+	};
 };
 
 #endif	/* _CVECTOR_H */
