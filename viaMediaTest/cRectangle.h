@@ -20,6 +20,9 @@ public:
 	bool contains(cRectangle &rec);
 	bool touches(cRectangle &rec);
 
+	cVector getBottomLeft();
+	cVector getTopRight();
+
 	virtual ~ cRectangle();
 	enum
 	{

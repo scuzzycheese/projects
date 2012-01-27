@@ -2,11 +2,37 @@
 
 #include <fstream>
 #include <sstream>
-#include "cParser.h"
+#include "cParserFromFile.h"
+#include "cRectangle.h"
 
 int main()
 {
 
-	cParser par("shapes.txt");
+	cParseFromFile par("shapes.txt");
+	std::vector<cShape *> shapes;
+	std::vector<cLineRep> lines = par.fetchLines();
+	for(std::vector<cLineRep>::iterator linIt = lines.begin(); linIt < lines.end(); linIt ++)
+	{
+		cShape *shape = new cShape(*linIt);
+		shapes.push_back(shape);
+	}
+	for(std::vector<cShape *>::iterator shapeIt = shapes.begin(); shapeIt < shapes.end(); shapeIt ++)
+	{
+		cRectangle *rec = (cRectangle *)*shapeIt;
+		std::cout << rec->getName() << std::endl;
+		for(std::vector<cShape *>::iterator shapeTest = shapes.begin(); shapeTest < shapes.end(); shapeTest ++)
+		{
+			cRectangle *recTest = (cRectangle *)*shapeTest;
+			if(rec != recTest)
+			{
+				if(rec->collide(*recTest))
+				{
+					std::cout << "collides with - " << recTest->getName() << std::endl;
+				}
+			}
+		}
+		std::cout << std::endl;
+	}
+
 
 }

@@ -11,16 +11,18 @@
 #include <iostream>
 #include <vector>
 #include "cShape.h"
-#include "cRectangle.h"
+#include "cLineRep.h"
+#include "cParse.h"
 
-class cParser
+class cParseFromFile : public cParse
 {
 public:
-	cParser();
-	cParser(std::string file);
-	virtual ~ cParser();
+	cParseFromFile();
+	cParseFromFile(std::string file);
+	std::vector<cLineRep> fetchLines();
+	virtual ~cParseFromFile();
 private:
-	std::vector<cRectangle> rectangles;
+	void parse(std::string file);
 
 };
 

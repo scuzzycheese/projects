@@ -5,7 +5,7 @@ COBJ = -c
 CCBUILD = $(CC) $(CARGS)
 CCBUILDOBJ = $(CCBUILD) $(COBJ)
 
-OBJECTS = cVector.o cShape.o cParser.o cRectangle.o
+OBJECTS = cVector.o cShape.o cParserFromFile.o cParse.o cRectangle.o cLineRep.o
 
 all: $(OBJECTS)
 	$(CCBUILD) -o lapper lapper.cpp $(OBJECTS)

@@ -9,6 +9,7 @@
 #define	_CSHAPE_H
 
 #include "cVector.h"
+#include "cLineRep.h"
 #include <map>
 #include <iostream>
 
@@ -16,6 +17,8 @@ class cShape
 {
 public:
 	cShape();
+	cShape(cLineRep line);
+	void buildFromLineRep(cLineRep line);
 	virtual ~cShape();
 	void addVector(cVector vector);
 	void addVector(int vecNumber, cVector vector);

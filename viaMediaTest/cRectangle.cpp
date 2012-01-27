@@ -18,6 +18,15 @@ void cRectangle::build(int x1, int y1, int x2, int y2)
 	addVector(TOP_RIGHT, cVector(x2, y2));
 }
 
+cVector cRectangle::getBottomLeft()
+{
+	return getVector(BOTTOM_LEFT);
+}
+cVector cRectangle::getTopRight()
+{
+	return getVector(TOP_RIGHT);
+}
+
 bool cRectangle::collide(cRectangle &rec)
 {
 	bool xOverlap = (getVector(BOTTOM_LEFT).getX() <= rec.getVector(TOP_RIGHT).getX()) && (getVector(TOP_RIGHT).getX() >= rec.getVector(BOTTOM_LEFT).getX());

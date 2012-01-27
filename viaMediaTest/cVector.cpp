@@ -11,7 +11,7 @@ cVector::cVector() : x(0), y(0)
 {
 }
 
-cVector::cVector(int xIn, int yIn) : x(xIn), y(xIn)
+cVector::cVector(int xIn, int yIn) : x(xIn), y(yIn)
 {
 }
 
