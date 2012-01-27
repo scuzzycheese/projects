@@ -10,24 +10,16 @@
 cShape::cShape()
 {
 }
-void cShape::addLine(cLine line)
+void cShape::addVector(cVector vector)
 {
-	lines[(lines.size() > 0) ? lines.end()->first + 1 : 0] = line;
+	vectors[(vectors.size() > 0) ? vectors.end()->first + 1 : 0] = vector;
 }
 
-void cShape::addLine(int lineNumber, cLine line)
+void cShape::addVector(int vecNumber, cVector vector)
 {
-	lines[lineNumber] = line;
+	vectors[vecNumber] = vector;
 }
 
-cLine cShape::getLine(int lineNumber)
-{
-	/**
-	 * TODO: check this isn't going to cause problems
-	 * when fetching a non existant line
-	 */
-	return lines[lineNumber];
-}
 
 void cShape::setName(std::string name)
 {

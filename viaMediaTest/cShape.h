@@ -8,7 +8,7 @@
 #ifndef _CSHAPE_H
 #define	_CSHAPE_H
 
-#include "cLine.h"
+#include "cVector.h"
 #include <map>
 #include <iostream>
 
@@ -17,13 +17,12 @@ class cShape
 public:
 	cShape();
 	virtual ~cShape();
-	void addLine(cLine line);
-	void addLine(int lineNumber, cLine line);
-	cLine getLine(int lineNumber);
+	void addVector(cVector vector);
+	void addVector(int vecNumber, cVector vector);
 	void setName(std::string name);
 	std::string getName();
 protected:
-	std::map<int, cLine> lines;
+	std::map<int, cVector> vectors;
 	std::string name;
 
 };

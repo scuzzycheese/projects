@@ -15,26 +15,15 @@ class cRectangle : public cShape
 {
 public:
 	cRectangle(int x1, int y1, int x2, int y2);
-	cLine getLeftLine();
-	cLine getTopLine();
-	cLine getRightLine();
-	cLine getBottomLine();
 
-	void setLeftLine(cLine leftLine);
-	void setTopLine(cLine topLine);
-	void setRightLine(cLine rightLine);
-	void setBottomLine(cLine bottomLine);
-
-	void build(int x1, int y1, int x2, int y2);
 	virtual ~ cRectangle();
 	enum
 	{
-		LEFT_LINE = 0,
-		TOP_LINE,
-		RIGHT_LINE,
-		BOTTOM_LINE
+		BOTTOM_LEFT = 0,
+		TOP_RIGHT
 	};
 private:
+	void build(int x1, int y1, int x2, int y2);
 
 };
 

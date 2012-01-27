@@ -20,7 +20,7 @@ public:
 	cParser(std::string file);
 	virtual ~ cParser();
 private:
-	std::vector<cRectangle> shapes;
+	std::vector<cRectangle> rectangles;
 
 };
 

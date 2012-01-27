@@ -41,8 +41,7 @@ if(shapeFile.is_open())
 
 			//for lack of a simpler way
 			//TODO: find a better way
-			int tmp = atoi(token.c_str());
-			coOrds.push_back(tmp);
+			coOrds.push_back(atoi(token.c_str()));
 
 			std::cout << token << " ";
 		}
@@ -52,7 +51,11 @@ if(shapeFile.is_open())
 		{
 			cRectangle rec(coOrds[0], coOrds[1], coOrds[2], coOrds[3]);
 			rec.setName(name);
-			shapes.push_back(rec);
+			rectangles.push_back(rec);
+		}
+		else
+		{
+			std::cout << "Error parsing file, incorrect number of values per line" << std::endl;
 		}
 	}
 	shapeFile.close();
