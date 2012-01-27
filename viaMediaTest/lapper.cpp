@@ -19,7 +19,7 @@ int main()
 	for(std::vector<cShape *>::iterator shapeIt = shapes.begin(); shapeIt < shapes.end(); shapeIt ++)
 	{
 		cRectangle *rec = (cRectangle *)*shapeIt;
-		std::cout << rec->getName() << std::endl;
+		std::cout << rec->getName() << "-" << std::endl;
 		for(std::vector<cShape *>::iterator shapeTest = shapes.begin(); shapeTest < shapes.end(); shapeTest ++)
 		{
 			cRectangle *recTest = (cRectangle *)*shapeTest;
@@ -27,7 +27,15 @@ int main()
 			{
 				if(rec->collide(*recTest))
 				{
-					std::cout << "collides with - " << recTest->getName() << std::endl;
+					std::cout << recTest->getName() << std::endl;
+				}
+				if(rec->contains(*recTest))
+				{
+					std::cout << recTest->getName() << std::endl;
+				}
+				if(rec->touches(*recTest))
+				{
+					std::cout << recTest->getName() << std::endl;
 				}
 			}
 		}

@@ -12,7 +12,6 @@ cShape::cShape()
 }
 void cShape::addVector(cVector vector)
 {
-	if(vectors.size() > 0)
 	vectors[(vectors.size() > 0) ? vectors.end()->first : 0] = vector;
 }
 
