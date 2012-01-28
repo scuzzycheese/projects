@@ -1,0 +1,48 @@
+This small application performs the required tests on the given set
+of rectangle definitions from a file.
+
+BULIDING
+========
+
+on a linux machine equipped with a standard C++ environment
+simple type make. This should build the application called
+lapper.
+
+USAGE
+=====
+$ ./lapper <rectangle definition file>
+
+
+PROCESS
+=======
+I started off with basics. I first created a vector class, which
+gave me a basis of operation to build on. From that I created an
+abstract shape class. This Shape class was to become the parent
+to the rectangle class. The idea behind this was that if could
+be extended to other shapes in the future if nessesary. 
+Once I had those things in place, I implemented the colision,
+containing and touching methods which detect and store events.
+After that I wrote the parsing mechanism which, which takes
+each line, and build a lineRep object from it, which is just a
+name and a series of integers. The shape and rectangle classes
+can construct themselves from these lineRep objects, and each
+one is responsible for handling any spurious issues that may
+arrise from it.
+I then build a list of these rectangle objects, and test them
+against each other. They keep an internal record of who they 
+colide with, touch, contain or are contained by. This list is
+then iterated over and displayed to the user in the defined
+fashion. 
+
+
+
+IDEAS
+=====
+Better error handling.
+
+Possibly, exclude colission, containing and touching tests if it's
+a duplicate test in reverse, however I was in two minds about whether
+this would actually be of perfomance improvement due to the
+lookup mechanisms in the STL storage classes, since the testing
+code is relatively short and simple.
+
