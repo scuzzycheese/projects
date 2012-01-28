@@ -29,16 +29,28 @@ cVector cRectangle::getTopRight()
 
 bool cRectangle::collide(cRectangle &rec)
 {
-	bool xOverlap = (getVector(BOTTOM_LEFT).getX() <= rec.getVector(TOP_RIGHT).getX()) && (getVector(TOP_RIGHT).getX() >= rec.getVector(BOTTOM_LEFT).getX());
-	bool yOverlap = (getVector(BOTTOM_LEFT).getY() <= rec.getVector(TOP_RIGHT).getY()) && (getVector(TOP_RIGHT).getY() >= rec.getVector(BOTTOM_LEFT).getY());
-	return xOverlap && yOverlap;
+	bool xOverlap = (getVector(BOTTOM_LEFT).getX() < rec.getVector(TOP_RIGHT).getX()) && (getVector(TOP_RIGHT).getX() > rec.getVector(BOTTOM_LEFT).getX());
+	bool yOverlap = (getVector(BOTTOM_LEFT).getY() < rec.getVector(TOP_RIGHT).getY()) && (getVector(TOP_RIGHT).getY() > rec.getVector(BOTTOM_LEFT).getY());
+	if(xOverlap && yOverlap)
+	{
+		mCollidesWith[rec.getName()] = &rec;
+		rec.mCollidesWith[getName()] = this;
+		return true;
+	}
+	else return false;
 }
 
 bool cRectangle::contains(cRectangle &rec)
 {
 	bool xContains = (rec.getVector(BOTTOM_LEFT).getX() >= getVector(BOTTOM_LEFT).getX()) && (rec.getVector(TOP_RIGHT).getX() <= getVector(TOP_RIGHT).getX());
 	bool yContains = (rec.getVector(BOTTOM_LEFT).getY() >= getVector(BOTTOM_LEFT).getY()) && (rec.getVector(TOP_RIGHT).getY() <= getVector(TOP_RIGHT).getY());
-	return xContains && yContains;
+	if(xContains && yContains)
+	{
+		mContains[rec.getName()] = &rec;
+		rec.mContainedBy[getName()] = this;
+		return true;
+	}
+	else return false;
 }
 
 bool cRectangle::touches(cRectangle &rec)
@@ -49,7 +61,13 @@ bool cRectangle::touches(cRectangle &rec)
 	bool yOverlap = (getVector(BOTTOM_LEFT).getY() <= rec.getVector(TOP_RIGHT).getY()) && (getVector(TOP_RIGHT).getY() >= rec.getVector(BOTTOM_LEFT).getY());
 	bool xTouches = (getVector(BOTTOM_LEFT).getX() == rec.getVector(TOP_RIGHT).getX()) || (getVector(TOP_RIGHT).getX() == rec.getVector(BOTTOM_LEFT).getX());
 
-	return (xOverlap && yTouches) || (yOverlap && xTouches);
+	if((xOverlap && yTouches) || (yOverlap && xTouches))
+	{
+		mTouches[rec.getName()] = &rec;
+		rec.mTouches[getName()] = this;
+		return true;
+	}
+	else return false;
 }
 
 

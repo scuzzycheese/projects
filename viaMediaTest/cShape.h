@@ -25,6 +25,14 @@ public:
 	cVector getVector(int vecNumber);
 	void setName(std::string name);
 	std::string getName();
+
+	/**
+	 * TODO: provide accessors
+	 */
+	std::map<std::string, cShape *>mCollidesWith;
+	std::map<std::string, cShape *>mContains;
+	std::map<std::string, cShape *>mContainedBy;
+	std::map<std::string, cShape *>mTouches;
 protected:
 	std::map<int, cVector> vectors;
 	std::string name;
