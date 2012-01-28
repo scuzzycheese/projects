@@ -30,15 +30,15 @@ void cRectangle::buildFromLineRep(cLineRep line)
 	std::vector<int> values = line.getValues();
 	if(values.size() == 4)
 	{
-		setName(line.getName());
 		if((values[0] < values[2]) && (values[1] < values[3]))
 		{
+			setName(line.getName());
 			addVector(cVector(values[0], values[1]));
 			addVector(cVector(values[2], values[3]));
 		}
 		else
 		{
-			std::cout << "Error, rectangle definition incorrect" << std::endl;
+			std::cout << "Error, rectangle definition incorrect for - " << line.getName() << std::endl;
 		}
 	}
 	else
