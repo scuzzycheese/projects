@@ -46,3 +46,11 @@ this would actually be of perfomance improvement due to the
 lookup mechanisms in the STL storage classes, since the testing
 code is relatively short and simple.
 
+MISC
+====
+Upon adding the testing code, my application spat our an error
+with your given example. The definition for rectangle C is
+wrong, and not representitive of the diagram given, nor is it
+valid. I don't know if this is a typo, or something thrown in 
+there to deliberatly trip up the application but I thought it
+worth mentioning.
