@@ -13,7 +13,8 @@ int main()
 	std::vector<cLineRep> lines = par.fetchLines();
 	for(std::vector<cLineRep>::iterator linIt = lines.begin(); linIt < lines.end(); linIt ++)
 	{
-		cShape *shape = new cShape(*linIt);
+		cShape *shape = new cRectangle;
+		shape->buildFromLineRep(*linIt);
 		shapes.push_back(shape);
 	}
 	for(std::vector<cShape *>::iterator shapeIt = shapes.begin(); shapeIt < shapes.end(); shapeIt ++)
@@ -80,6 +81,7 @@ int main()
 		std::cout << std::endl;
 
 		std::cout << std::endl;
+		delete(*shapeIt);
 	}
 
 
