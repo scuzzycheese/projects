@@ -18,9 +18,35 @@ cRectangle::cRectangle(int x1, int y1, int x2, int y2)
 
 void cRectangle::build(int x1, int y1, int x2, int y2)
 {
-	addVector(BOTTOM_LEFT, cVector(x1, y1));
-	addVector(TOP_RIGHT, cVector(x2, y2));
+	if(x1 < x2 && y1 < y2)
+	{
+		addVector(BOTTOM_LEFT, cVector(x1, y1));
+		addVector(TOP_RIGHT, cVector(x2, y2));
+	}
 }
+
+void cRectangle::buildFromLineRep(cLineRep line)
+{
+	std::vector<int> values = line.getValues();
+	if(values.size() == 4)
+	{
+		setName(line.getName());
+		if((values[0] < values[2]) && (values[1] < values[3]))
+		{
+			addVector(cVector(values[0], values[1]));
+			addVector(cVector(values[2], values[3]));
+		}
+		else
+		{
+			std::cout << "Error, rectangle definition incorrect" << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "Error building cRectangle from cLineRep, wrong number of values" << std::endl;
+	}
+}
+
 
 cVector cRectangle::getBottomLeft()
 {

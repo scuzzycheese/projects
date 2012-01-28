@@ -4,11 +4,17 @@
 #include <sstream>
 #include "cParserFromFile.h"
 #include "cRectangle.h"
+#include <stdlib.h>
 
-int main()
+int main(int argc, char **argv)
 {
+	if(argc != 2)
+	{
+		std::cout << "Usage: ./lapper <rectangle file>" << std::endl;
+		exit(EXIT_FAILURE);
+	}
 
-	cParseFromFile par("shapes.txt");
+	cParseFromFile par(argv[1]);
 	std::vector<cShape *> shapes;
 	std::vector<cLineRep> lines = par.fetchLines();
 	for(std::vector<cLineRep>::iterator linIt = lines.begin(); linIt < lines.end(); linIt ++)

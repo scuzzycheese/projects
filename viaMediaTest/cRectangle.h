@@ -17,6 +17,8 @@ public:
 	cRectangle();
 	cRectangle(int x1, int y1, int x2, int y2);
 
+	void buildFromLineRep(cLineRep line);
+
 	bool collide(cRectangle &rec);
 	bool contains(cRectangle &rec);
 	bool touches(cRectangle &rec);
@@ -24,7 +26,7 @@ public:
 	cVector getBottomLeft();
 	cVector getTopRight();
 
-	virtual ~ cRectangle();
+	virtual ~cRectangle();
 	enum
 	{
 		BOTTOM_LEFT = 0,

@@ -18,7 +18,7 @@ class cShape
 public:
 	cShape();
 	cShape(cLineRep line);
-	void buildFromLineRep(cLineRep line);
+	virtual void buildFromLineRep(cLineRep line);
 	virtual ~cShape();
 	void addVector(cVector vector);
 	void addVector(int vecNumber, cVector vector);

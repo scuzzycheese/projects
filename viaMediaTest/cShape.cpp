@@ -38,6 +38,7 @@ cShape::cShape(cLineRep line)
 {
 	buildFromLineRep(line);
 }
+
 void cShape::buildFromLineRep(cLineRep line)
 {
 	std::vector<int> values = line.getValues();
