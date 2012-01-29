@@ -15,6 +15,8 @@
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		2F2041F714CE1F5B007A206E /* CTICCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2041F614CE1F5B007A206E /* CTICCViewController.m */; };
+		2F20427D14D0A910007A206E /* orderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427C14D0A910007A206E /* orderViewController.m */; };
+		2F20428014D5D255007A206E /* standsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427F14D5D255007A206E /* standsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F2041F514CE1F5B007A206E /* CTICCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTICCViewController.h; sourceTree = "<group>"; };
 		2F2041F614CE1F5B007A206E /* CTICCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTICCViewController.m; sourceTree = "<group>"; };
+		2F20427B14D0A910007A206E /* orderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderViewController.h; sourceTree = "<group>"; };
+		2F20427C14D0A910007A206E /* orderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderViewController.m; sourceTree = "<group>"; };
+		2F20427E14D5D255007A206E /* standsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = standsViewController.h; sourceTree = "<group>"; };
+		2F20427F14D5D255007A206E /* standsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = standsViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* stand-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "stand-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +63,10 @@
 				28216C960DB411BC00E5133A /* ThreeDCapeViewController.m */,
 				2F2041F514CE1F5B007A206E /* CTICCViewController.h */,
 				2F2041F614CE1F5B007A206E /* CTICCViewController.m */,
+				2F20427B14D0A910007A206E /* orderViewController.h */,
+				2F20427C14D0A910007A206E /* orderViewController.m */,
+				2F20427E14D5D255007A206E /* standsViewController.h */,
+				2F20427F14D5D255007A206E /* standsViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -173,6 +183,8 @@
 				1D3623260D0F684500981E51 /* standAppDelegate.m in Sources */,
 				28216C970DB411BC00E5133A /* ThreeDCapeViewController.m in Sources */,
 				2F2041F714CE1F5B007A206E /* CTICCViewController.m in Sources */,
+				2F20427D14D0A910007A206E /* orderViewController.m in Sources */,
+				2F20428014D5D255007A206E /* standsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
