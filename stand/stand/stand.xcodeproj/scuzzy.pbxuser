@@ -92,26 +92,26 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 349560115;
-			PBXWorkspaceStateSaveDate = 349560115;
+			PBXPerProjectTemplateStateSaveDate = 349565036;
+			PBXWorkspaceStateSaveDate = 349565036;
 		};
 		perUserProjectItems = {
 			2F20426914D0A375007A206E = 2F20426914D0A375007A206E /* PBXTextBookmark */;
-			2F80D89214D5EC40002FDABB /* PBXBookmark */ = 2F80D89214D5EC40002FDABB /* PBXBookmark */;
-			2F80D89314D5EC40002FDABB /* PBXTextBookmark */ = 2F80D89314D5EC40002FDABB /* PBXTextBookmark */;
-			2F80D8A814D5EDB0002FDABB /* PBXTextBookmark */ = 2F80D8A814D5EDB0002FDABB /* PBXTextBookmark */;
-			2F80D8B014D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B014D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8B114D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B114D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8B214D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B214D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8B414D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B414D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8B614D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B614D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8B814D5EDCD002FDABB /* PlistBookmark */ = 2F80D8B814D5EDCD002FDABB /* PlistBookmark */;
-			2F80D8BA14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BA14D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8BB14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BB14D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8BC14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BC14D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8BD14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BD14D5EDCD002FDABB /* PBXTextBookmark */;
-			2F80D8C214D5EDE3002FDABB /* PBXTextBookmark */ = 2F80D8C214D5EDE3002FDABB /* PBXTextBookmark */;
-			2F80D8C514D5EDEF002FDABB /* PBXTextBookmark */ = 2F80D8C514D5EDEF002FDABB /* PBXTextBookmark */;
+			2F80D89214D5EC40002FDABB = 2F80D89214D5EC40002FDABB /* PBXBookmark */;
+			2F80D89314D5EC40002FDABB = 2F80D89314D5EC40002FDABB /* PBXTextBookmark */;
+			2F80D8A814D5EDB0002FDABB = 2F80D8A814D5EDB0002FDABB /* PBXTextBookmark */;
+			2F80D8B014D5EDCD002FDABB = 2F80D8B014D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B114D5EDCD002FDABB = 2F80D8B114D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B214D5EDCD002FDABB = 2F80D8B214D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B414D5EDCD002FDABB = 2F80D8B414D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B614D5EDCD002FDABB = 2F80D8B614D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B814D5EDCD002FDABB = 2F80D8B814D5EDCD002FDABB /* PlistBookmark */;
+			2F80D8BA14D5EDCD002FDABB = 2F80D8BA14D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8BB14D5EDCD002FDABB = 2F80D8BB14D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8BC14D5EDCD002FDABB = 2F80D8BC14D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8BD14D5EDCD002FDABB = 2F80D8BD14D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8C214D5EDE3002FDABB = 2F80D8C214D5EDE3002FDABB /* PBXTextBookmark */;
+			2F80D8C514D5EDEF002FDABB = 2F80D8C514D5EDEF002FDABB /* PBXTextBookmark */;
 			2F82221514CE1F07006C27B1 = 2F82221514CE1F07006C27B1 /* PBXTextBookmark */;
 			2F84F9DE14CE1D96003A643B = 2F84F9DE14CE1D96003A643B /* PBXTextBookmark */;
 			2F84F9DF14CE1D96003A643B = 2F84F9DF14CE1D96003A643B /* PBXTextBookmark */;
@@ -229,6 +229,7 @@
 	};
 	2F80D8B314D5EDCD002FDABB /* build-state.dat */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = file;
 		name = "build-state.dat";
 		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/build-state.dat";
 		sourceTree = "<absolute>";
@@ -245,6 +246,7 @@
 	};
 	2F80D8B514D5EDCD002FDABB /* stand.dep */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = file;
 		name = stand.dep;
 		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand.dep";
 		sourceTree = "<absolute>";
@@ -261,6 +263,7 @@
 	};
 	2F80D8B714D5EDCD002FDABB /* stand.LinkFileList */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = file;
 		name = stand.LinkFileList;
 		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/stand.LinkFileList";
 		sourceTree = "<absolute>";
@@ -278,6 +281,7 @@
 	};
 	2F80D8B914D5EDCD002FDABB /* MainWindow.nib */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = wrapper.nib;
 		name = MainWindow.nib;
 		path = "/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/MainWindow.nib";
 		sourceTree = "<absolute>";
