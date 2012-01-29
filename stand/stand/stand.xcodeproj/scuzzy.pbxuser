@@ -99,6 +99,17 @@
 			2F20426914D0A375007A206E = 2F20426914D0A375007A206E /* PBXTextBookmark */;
 			2F80D89214D5EC40002FDABB /* PBXBookmark */ = 2F80D89214D5EC40002FDABB /* PBXBookmark */;
 			2F80D89314D5EC40002FDABB /* PBXTextBookmark */ = 2F80D89314D5EC40002FDABB /* PBXTextBookmark */;
+			2F80D8A814D5EDB0002FDABB /* PBXTextBookmark */ = 2F80D8A814D5EDB0002FDABB /* PBXTextBookmark */;
+			2F80D8B014D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B014D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B114D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B114D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B214D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B214D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B414D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B414D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B614D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8B614D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8B814D5EDCD002FDABB /* PlistBookmark */ = 2F80D8B814D5EDCD002FDABB /* PlistBookmark */;
+			2F80D8BA14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BA14D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8BB14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BB14D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8BC14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BC14D5EDCD002FDABB /* PBXTextBookmark */;
+			2F80D8BD14D5EDCD002FDABB /* PBXTextBookmark */ = 2F80D8BD14D5EDCD002FDABB /* PBXTextBookmark */;
 			2F82221514CE1F07006C27B1 = 2F82221514CE1F07006C27B1 /* PBXTextBookmark */;
 			2F84F9DE14CE1D96003A643B = 2F84F9DE14CE1D96003A643B /* PBXTextBookmark */;
 			2F84F9DF14CE1D96003A643B = 2F84F9DF14CE1D96003A643B /* PBXTextBookmark */;
@@ -172,6 +183,141 @@
 		rLoc = 0;
 		rType = 0;
 		vrLen = 167;
+		vrLoc = 0;
+	};
+	2F80D8A814D5EDB0002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427E14D5D255007A206E /* standsViewController.h */;
+		name = "standsViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 231;
+		vrLoc = 0;
+	};
+	2F80D8B014D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28216C960DB411BC00E5133A /* ThreeDCapeViewController.m */;
+		name = "ThreeDCapeViewController.m: 19";
+		rLen = 0;
+		rLoc = 281;
+		rType = 0;
+		vrLen = 1311;
+		vrLoc = 0;
+	};
+	2F80D8B114D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427B14D0A910007A206E /* orderViewController.h */;
+		name = "orderViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 229;
+		vrLoc = 0;
+	};
+	2F80D8B214D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F80D8B314D5EDCD002FDABB /* build-state.dat */;
+		name = "build-state.dat: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 3305;
+		vrLoc = 0;
+	};
+	2F80D8B314D5EDCD002FDABB /* build-state.dat */ = {
+		isa = PBXFileReference;
+		name = "build-state.dat";
+		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/build-state.dat";
+		sourceTree = "<absolute>";
+	};
+	2F80D8B414D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F80D8B514D5EDCD002FDABB /* stand.dep */;
+		name = "stand.dep: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 3524;
+		vrLoc = 0;
+	};
+	2F80D8B514D5EDCD002FDABB /* stand.dep */ = {
+		isa = PBXFileReference;
+		name = stand.dep;
+		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand.dep";
+		sourceTree = "<absolute>";
+	};
+	2F80D8B614D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F80D8B714D5EDCD002FDABB /* stand.LinkFileList */;
+		name = "stand.LinkFileList: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 732;
+		vrLoc = 0;
+	};
+	2F80D8B714D5EDCD002FDABB /* stand.LinkFileList */ = {
+		isa = PBXFileReference;
+		name = stand.LinkFileList;
+		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/stand.LinkFileList";
+		sourceTree = "<absolute>";
+	};
+	2F80D8B814D5EDCD002FDABB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2F80D8B914D5EDCD002FDABB /* MainWindow.nib */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/MainWindow.nib";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2F80D8B914D5EDCD002FDABB /* MainWindow.nib */ = {
+		isa = PBXFileReference;
+		name = MainWindow.nib;
+		path = "/Users/scuzzy/Documents/stand/build/Debug-iphonesimulator/stand.app/MainWindow.nib";
+		sourceTree = "<absolute>";
+	};
+	2F80D8BA14D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427C14D0A910007A206E /* orderViewController.m */;
+		name = "orderViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1242;
+		vrLoc = 0;
+	};
+	2F80D8BB14D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427E14D5D255007A206E /* standsViewController.h */;
+		name = "standsViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 231;
+		vrLoc = 0;
+	};
+	2F80D8BC14D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427F14D5D255007A206E /* standsViewController.m */;
+		name = "standsViewController.m: 20";
+		rLen = 0;
+		rLoc = 475;
+		rType = 0;
+		vrLen = 1384;
+		vrLoc = 0;
+	};
+	2F80D8BD14D5EDCD002FDABB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427F14D5D255007A206E /* standsViewController.m */;
+		name = "standsViewController.m: 20";
+		rLen = 0;
+		rLoc = 475;
+		rType = 0;
+		vrLen = 1384;
 		vrLoc = 0;
 	};
 	2F82221514CE1F07006C27B1 /* PBXTextBookmark */ = {
