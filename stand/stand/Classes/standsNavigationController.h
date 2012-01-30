@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface standsViewController : UIViewController {
+@interface standsNavigationController : UINavigationController <UINavigationBarDelegate, UINavigationControllerDelegate> {
 
+
+	
 }
+
+- (IBAction) swapView:(id)sender;
+
 
 @end

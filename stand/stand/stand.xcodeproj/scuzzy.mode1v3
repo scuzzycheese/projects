@@ -273,6 +273,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>14</integer>
+									<integer>13</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -341,14 +343,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1072, 699}}</string>
+								<string>{{0, 0}, {1072, 694}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>699pt</string>
+							<string>694pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -361,14 +363,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 704}, {1072, 198}}</string>
+								<string>{{0, 699}, {1072, 203}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>198pt</string>
+							<string>203pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -387,9 +389,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2F80D8DB14D5F086002FDABB</string>
+				<string>2F8106C714D6D105000847DD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2F80D8DC14D5F086002FDABB</string>
+				<string>2F8106C814D6D105000847DD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -527,8 +529,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2F84F9E514CE1D96003A643B</string>
 		<string>/Users/scuzzy/Documents/stand/stand.xcodeproj</string>
 	</array>
@@ -610,7 +610,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2F84F9E514CE1D96003A643B</string>
-				<string>2F80D8DD14D5F086002FDABB</string>
+				<string>2F8106C914D6D105000847DD</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

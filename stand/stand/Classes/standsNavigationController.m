@@ -6,19 +6,22 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "standsViewController.h"
+#import "standsNavigationController.h"
 
 
-@implementation standsViewController
+@implementation standsNavigationController
+
 
 
 - (void)awakeFromNib
 {
+	/*
 	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	//[button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
 	[button setTitle:@"Show View" forState:UIControlStateNormal];
 	button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
 	[self.view addSubview:button];
+	 */
 }
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -64,6 +67,19 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+
+- (IBAction) swapView:(id)sender
+{
+	
+	
+	UIViewController *myNewView = [[UIViewController alloc] init];
+	myNewView .title = @"My new View";
+	
+	
+	
+	[self.navigationController pushViewController:myNewView animated:YES];
 }
 
 

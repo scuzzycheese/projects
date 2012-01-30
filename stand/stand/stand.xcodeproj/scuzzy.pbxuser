@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* standAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1965, 1131}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1965, 1118}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1528}";
+			sepNavVisRange = "{0, 1526}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* stand */ = {
@@ -22,7 +22,7 @@
 	};
 	28216C950DB411BC00E5133A /* ThreeDCapeViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 676}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 662}}";
 			sepNavSelRange = "{266, 0}";
 			sepNavVisRange = "{0, 382}";
 		};
@@ -31,7 +31,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1011, 754}}";
 			sepNavSelRange = "{281, 0}";
-			sepNavVisRange = "{0, 1311}";
+			sepNavVisRange = "{0, 1309}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -92,8 +92,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 349565036;
-			PBXWorkspaceStateSaveDate = 349565036;
+			PBXPerProjectTemplateStateSaveDate = 349622522;
+			PBXWorkspaceStateSaveDate = 349622521;
 		};
 		perUserProjectItems = {
 			2F20426914D0A375007A206E = 2F20426914D0A375007A206E /* PBXTextBookmark */;
@@ -123,7 +123,7 @@
 	};
 	2F2041F514CE1F5B007A206E /* CTICCViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 676}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 662}}";
 			sepNavSelRange = "{257, 0}";
 			sepNavVisRange = "{0, 367}";
 		};
@@ -147,7 +147,7 @@
 	};
 	2F20427B14D0A910007A206E /* orderViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 672}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 662}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 229}";
 		};
@@ -156,30 +156,30 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1146, 806}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1242}";
+			sepNavVisRange = "{0, 1241}";
 		};
 	};
-	2F20427E14D5D255007A206E /* standsViewController.h */ = {
+	2F20427E14D5D255007A206E /* standsNavigationController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {934, 323}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 231}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 662}}";
+			sepNavSelRange = "{196, 0}";
+			sepNavVisRange = "{0, 305}";
 		};
 	};
-	2F20427F14D5D255007A206E /* standsViewController.m */ = {
+	2F20427F14D5D255007A206E /* standsNavigationController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 936}}";
-			sepNavSelRange = "{475, 0}";
-			sepNavVisRange = "{0, 1384}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 975}}";
+			sepNavSelRange = "{213, 0}";
+			sepNavVisRange = "{47, 1359}";
 		};
 	};
 	2F80D89214D5EC40002FDABB /* PBXBookmark */ = {
 		isa = PBXBookmark;
-		fRef = 2F20427E14D5D255007A206E /* standsViewController.h */;
+		fRef = 2F20427E14D5D255007A206E /* standsNavigationController.h */;
 	};
 	2F80D89314D5EC40002FDABB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2F20427E14D5D255007A206E /* standsViewController.h */;
+		fRef = 2F20427E14D5D255007A206E /* standsNavigationController.h */;
 		name = "standsViewController.h: 1";
 		rLen = 0;
 		rLoc = 0;
@@ -189,7 +189,7 @@
 	};
 	2F80D8A814D5EDB0002FDABB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2F20427E14D5D255007A206E /* standsViewController.h */;
+		fRef = 2F20427E14D5D255007A206E /* standsNavigationController.h */;
 		name = "standsViewController.h: 1";
 		rLen = 0;
 		rLoc = 0;
@@ -229,7 +229,7 @@
 	};
 	2F80D8B314D5EDCD002FDABB /* build-state.dat */ = {
 		isa = PBXFileReference;
-		lastKnownFileType = file;
+		lastKnownFileType = text;
 		name = "build-state.dat";
 		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/build-state.dat";
 		sourceTree = "<absolute>";
@@ -246,7 +246,7 @@
 	};
 	2F80D8B514D5EDCD002FDABB /* stand.dep */ = {
 		isa = PBXFileReference;
-		lastKnownFileType = file;
+		lastKnownFileType = text;
 		name = stand.dep;
 		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/stand.dep";
 		sourceTree = "<absolute>";
@@ -263,7 +263,7 @@
 	};
 	2F80D8B714D5EDCD002FDABB /* stand.LinkFileList */ = {
 		isa = PBXFileReference;
-		lastKnownFileType = file;
+		lastKnownFileType = text;
 		name = stand.LinkFileList;
 		path = "/Users/scuzzy/Documents/stand/build/stand.build/Debug-iphonesimulator/stand.build/Objects-normal/i386/stand.LinkFileList";
 		sourceTree = "<absolute>";
@@ -298,7 +298,7 @@
 	};
 	2F80D8BB14D5EDCD002FDABB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2F20427E14D5D255007A206E /* standsViewController.h */;
+		fRef = 2F20427E14D5D255007A206E /* standsNavigationController.h */;
 		name = "standsViewController.h: 1";
 		rLen = 0;
 		rLoc = 0;
@@ -308,27 +308,27 @@
 	};
 	2F80D8BC14D5EDCD002FDABB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2F20427F14D5D255007A206E /* standsViewController.m */;
+		fRef = 2F20427F14D5D255007A206E /* standsNavigationController.m */;
 		name = "standsViewController.m: 20";
 		rLen = 0;
-		rLoc = 475;
+		rLoc = 492;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 0;
 	};
 	2F80D8BD14D5EDCD002FDABB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2F20427F14D5D255007A206E /* standsViewController.m */;
+		fRef = 2F20427F14D5D255007A206E /* standsNavigationController.m */;
 		name = "standsViewController.m: 20";
 		rLen = 0;
-		rLoc = 475;
+		rLoc = 492;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 0;
 	};
 	2F80D8C214D5EDE3002FDABB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2F20427E14D5D255007A206E /* standsViewController.h */;
+		fRef = 2F20427E14D5D255007A206E /* standsNavigationController.h */;
 		name = "standsViewController.h: 1";
 		rLen = 0;
 		rLoc = 0;
@@ -338,10 +338,10 @@
 	};
 	2F80D8C514D5EDEF002FDABB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2F20427F14D5D255007A206E /* standsViewController.m */;
+		fRef = 2F20427F14D5D255007A206E /* standsNavigationController.m */;
 		name = "standsViewController.m: 20";
 		rLen = 0;
-		rLoc = 475;
+		rLoc = 492;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 0;
