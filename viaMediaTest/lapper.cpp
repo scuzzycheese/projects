@@ -17,12 +17,16 @@ int main(int argc, char **argv)
 	cParseFromFile par(argv[1]);
 	std::vector<cShape *> shapes;
 	std::vector<cLineRep> lines = par.fetchLines();
+
+	//build shapes out of the files
 	for(std::vector<cLineRep>::iterator linIt = lines.begin(); linIt < lines.end(); linIt ++)
 	{
 		cShape *shape = new cRectangle;
 		shape->buildFromLineRep(*linIt);
 		shapes.push_back(shape);
 	}
+
+	//test colisions and such against the the shapes
 	for(std::vector<cShape *>::iterator shapeIt = shapes.begin(); shapeIt < shapes.end(); shapeIt ++)
 	{
 		cRectangle *rec = (cRectangle *)*shapeIt;
@@ -37,6 +41,9 @@ int main(int argc, char **argv)
 			}
 		}
 	}
+
+
+	//iterate over all the shapes and their associations
 	for(std::vector<cShape *>::iterator shapeIt = shapes.begin(); shapeIt < shapes.end(); shapeIt ++)
 	{
 		cRectangle *rec = (cRectangle *)*shapeIt;
