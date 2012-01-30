@@ -1,6 +1,18 @@
 This small application performs the required tests on the given set
 of rectangle definitions from a file.
 
+OS
+==
+Linux 
+
+COMPILER
+========
+GCC
+
+IDE
+===
+Usually Netbeans, or just plain VIM.
+
 BULIDING
 ========
 
