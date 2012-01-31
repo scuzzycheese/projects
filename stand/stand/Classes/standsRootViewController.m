@@ -1,28 +1,27 @@
     //
-//  standsViewController.m
+//  standsRootViewController.m
 //  stand
 //
-//  Created by scuzzy on 2012/01/29.
+//  Created by scuzzy on 2012/01/30.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "standsNavigationController.h"
+#import "standsRootViewController.h"
 
 
-@implementation standsNavigationController
+@implementation standsRootViewController
 
 
-
-- (void)awakeFromNib
+- (IBAction) swapViewController:(id)sender
 {
-	/*
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	//[button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
-	[button setTitle:@"Show View" forState:UIControlStateNormal];
-	button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-	[self.view addSubview:button];
-	 */
+	
+	UIViewController *testView = [[UIViewController alloc] init];
+	
+	[self.navigationController pushViewController:testView animated:YES];
+	
+	
 }
+
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -67,19 +66,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-
-- (IBAction) swapView:(id)sender
-{ 
-
-	
-	
-	
-	
-	
-	
-	
 }
 
 
