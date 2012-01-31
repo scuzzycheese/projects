@@ -35,18 +35,30 @@
 }
 */
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
 
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
 /*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView 
+{
+
 }
-*/
+ */
+
+
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad 
+{
+	[super viewDidLoad];
+ 
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+ 
+	button.frame = CGRectMake(10, 10, 100, 100);
+ 
+	[self.view addSubview:button];
+ 
+}
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

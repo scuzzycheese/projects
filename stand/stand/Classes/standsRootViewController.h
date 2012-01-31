@@ -12,6 +12,7 @@
 @interface standsRootViewController : UIViewController {
 	
 	
+	//NSArray 
 
 }
 
