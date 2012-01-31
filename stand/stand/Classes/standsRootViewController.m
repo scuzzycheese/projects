@@ -19,6 +19,7 @@
 	
 	[self.navigationController pushViewController:testView animated:YES];
 	
+	[testView release];	
 	
 }
 
