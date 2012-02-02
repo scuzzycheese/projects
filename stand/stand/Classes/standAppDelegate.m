@@ -46,10 +46,10 @@
     NSString *documentsFolderPath = [documentPaths objectAtIndex:0];
 	
 	
-	NSString *fileToDownload = [documentsFolderPath stringByAppendingString:@"/test.jpg"];
+	NSString *fileToDownload = [documentsFolderPath stringByAppendingString:@"/update.tar.gz"];
 	//NSLog(@"File to download:%@", fileToDownload);
 	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://static.adzerk.net_/Advertisers/bd294ce7ff4c43b6aad4aa4169fb819b.jpg"]];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.2/downloads/update.tar.gz"]];
 	[request setDownloadDestinationPath:fileToDownload];
 	[request setDelegate:self];
 	[request startAsynchronous];
