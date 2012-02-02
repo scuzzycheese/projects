@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="74"/>
+			<integer value="7"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -670,6 +670,14 @@
 					</object>
 					<int key="connectionID">133</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">standPicture</string>
+						<reference key="source" ref="598090045"/>
+						<reference key="destination" ref="921765667"/>
+					</object>
+					<int key="connectionID">157</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1186,7 +1194,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{381, 173}, {1024, 768}}</string>
+					<string>{{256, 170}, {1024, 768}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>orderViewController</string>
@@ -1211,7 +1219,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">155</int>
+			<int key="maxID">157</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1287,6 +1295,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">orderViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">standPicture</string>
+						<string key="NS.object.0">UIImageView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">standPicture</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">standPicture</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/orderViewController.h</string>
