@@ -30,10 +30,7 @@
 	NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(workerThread) object:nil];
 	[myThread start];
 	
-	
-	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com/index.html"]];
-	[request setDownloadDestinationPath:@"~/Documents/blah.txt"];
+
 	
     
     return YES;
@@ -41,6 +38,24 @@
 
 - (void) workerThread
 {
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
+	//NSString *appFolderPath = [[NSBundle mainBundle] resourceURL];
+	
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *appFolderPath = [documentPaths objectAtIndex:0];
+	
+	NSFileManager *fileManager = [NSFileManager defaultManager];  
+	NSLog(@"App Directory is: %@", appFolderPath);
+	NSLog(@"Directory Contents:\n%@", [fileManager directoryContentsAtPath: appFolderPath]);
+	
+	NSString *fileToDownload = [appFolderPath stringByAppendingString:@"/test.jpg"];
+	NSLog(@"File to download:%@", fileToDownload);
+	
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://static.adzerk.net/Advertisers/bd294ce7ff4c43b6aad4aa4169fb819b.jpg"]];
+	[request setDownloadDestinationPath:fileToDownload];
+	[request startSynchronous];
+	
 	while(1)
 	{
 		/*
@@ -55,6 +70,7 @@
 		
 		sleep(10);
 	}
+	[pool release];
 }
 
 
