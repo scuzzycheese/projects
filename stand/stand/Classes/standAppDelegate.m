@@ -32,7 +32,7 @@
 	
 	
 	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com/index.html"]];
 	[request setDownloadDestinationPath:@"~/Documents/blah.txt"];
 	
     
