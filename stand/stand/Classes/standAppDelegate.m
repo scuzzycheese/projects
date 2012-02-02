@@ -7,6 +7,7 @@
 //
 
 #import "standAppDelegate.h"
+#include "ASIHTTPRequest.h"
 
 
 @implementation standAppDelegate
@@ -25,8 +26,35 @@
 	// Set the tab bar controller as the window's root view controller and display.
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+	
+	NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(workerThread) object:nil];
+	[myThread start];
+	
+	
+	
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
+	[request setDownloadDestinationPath:@"~/Documents/blah.txt"];
+	
     
     return YES;
+}
+
+- (void) workerThread
+{
+	while(1)
+	{
+		/*
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
+														message:@"You must be connected to the internet to use this app." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		 */
+		
+		sleep(10);
+	}
 }
 
 

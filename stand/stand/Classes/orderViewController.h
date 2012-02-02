@@ -10,7 +10,10 @@
 
 
 @interface orderViewController : UIViewController {
+	
+	IBOutlet UIImageView *standPicture;
 
 }
+@property (nonatomic, retain) IBOutlet UIImageView *standPicture;
 
 @end
