@@ -275,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
+									<integer>18</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -329,14 +329,13 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2F39291C14DB213C0059C832</string>
+										<string>2F39294514DB2D5C0059C832</string>
 										<key>history</key>
 										<array>
 											<string>2F8106EF14D7E0AC000847DD</string>
 											<string>2F8106F114D7E0AC000847DD</string>
 											<string>2F81074B14D7E149000847DD</string>
 											<string>2F81074D14D7E149000847DD</string>
-											<string>2F2285D614D95AD000A1595A</string>
 											<string>2F39283B14DADC6A0059C832</string>
 											<string>2F39283C14DADC6A0059C832</string>
 											<string>2F39283D14DADC6A0059C832</string>
@@ -348,10 +347,10 @@
 											<string>2F39288314DADEE40059C832</string>
 											<string>2F3928CD14DAE4230059C832</string>
 											<string>2F3928CE14DAE4230059C832</string>
-											<string>2F39290E14DB1F8F0059C832</string>
 											<string>2F39290F14DB1F8F0059C832</string>
 											<string>2F39291614DB20F70059C832</string>
-											<string>2F39291714DB20F70059C832</string>
+											<string>2F39293214DB2ADE0059C832</string>
+											<string>2F39294414DB2D5C0059C832</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -549,11 +548,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2F81070414D7E0AC000847DD</string>
 		<string>2F39291914DB20F70059C832</string>
 		<string>2F39291314DB1F8F0059C832</string>
 		<string>2F84F9E514CE1D96003A643B</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/scuzzy/Documents/stand/stand.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -1435,7 +1435,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2F81070414D7E0AC000847DD</string>
-				<string>2F81070514D7E0AC000847DD</string>
+				<string>2F39291E14DB28440059C832</string>
 				<string>2F81070314D7E0AC000847DD</string>
 			</array>
 			<key>WindowString</key>

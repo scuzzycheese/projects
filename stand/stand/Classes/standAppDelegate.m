@@ -7,7 +7,7 @@
 //
 
 #import "standAppDelegate.h"
-#include "ASIHTTPRequest.h"
+
 
 
 @implementation standAppDelegate
@@ -43,18 +43,16 @@
 	//NSString *appFolderPath = [[NSBundle mainBundle] resourceURL];
 	
 	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *appFolderPath = [documentPaths objectAtIndex:0];
+    NSString *documentsFolderPath = [documentPaths objectAtIndex:0];
 	
-	NSFileManager *fileManager = [NSFileManager defaultManager];  
-	NSLog(@"App Directory is: %@", appFolderPath);
-	NSLog(@"Directory Contents:\n%@", [fileManager directoryContentsAtPath: appFolderPath]);
 	
-	NSString *fileToDownload = [appFolderPath stringByAppendingString:@"/test.jpg"];
-	NSLog(@"File to download:%@", fileToDownload);
+	NSString *fileToDownload = [documentsFolderPath stringByAppendingString:@"/test.jpg"];
+	//NSLog(@"File to download:%@", fileToDownload);
 	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://static.adzerk.net/Advertisers/bd294ce7ff4c43b6aad4aa4169fb819b.jpg"]];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://static.adzerk.net_/Advertisers/bd294ce7ff4c43b6aad4aa4169fb819b.jpg"]];
 	[request setDownloadDestinationPath:fileToDownload];
-	[request startSynchronous];
+	[request setDelegate:self];
+	[request startAsynchronous];
 	
 	while(1)
 	{
@@ -71,6 +69,25 @@
 		sleep(10);
 	}
 	[pool release];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	NSLog(@"Successfully downloaded the update file.\n");
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	NSError *error = [request error];
+	NSLog(@"Failed to download the update file: %@\n", [error description]);
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download failed" 
+													message:[error localizedDescription]
+												   delegate:nil 
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 

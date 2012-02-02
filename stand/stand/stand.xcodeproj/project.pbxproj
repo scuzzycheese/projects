@@ -16,7 +16,6 @@
 		2F2041F714CE1F5B007A206E /* CTICCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2041F614CE1F5B007A206E /* CTICCViewController.m */; };
 		2F20427D14D0A910007A206E /* orderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427C14D0A910007A206E /* orderViewController.m */; };
 		2F20428014D5D255007A206E /* standsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427F14D5D255007A206E /* standsNavigationController.m */; };
-		2F2285CE14D9543D00A1595A /* stands.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2F2285CD14D9543D00A1595A /* stands.xml */; };
 		2F39281314DA90910059C832 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F39281214DA90910059C832 /* Foundation.framework */; };
 		2F39286714DADD780059C832 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F39286614DADD780059C832 /* CFNetwork.framework */; };
 		2F39286914DADD780059C832 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F39286814DADD780059C832 /* MobileCoreServices.framework */; };
@@ -52,7 +51,6 @@
 		2F20427C14D0A910007A206E /* orderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderViewController.m; sourceTree = "<group>"; };
 		2F20427E14D5D255007A206E /* standsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = standsNavigationController.h; sourceTree = "<group>"; };
 		2F20427F14D5D255007A206E /* standsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = standsNavigationController.m; sourceTree = "<group>"; };
-		2F2285CD14D9543D00A1595A /* stands.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = stands.xml; path = ../../Desktop/stands.xml; sourceTree = SOURCE_ROOT; };
 		2F39281214DA90910059C832 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F39286614DADD780059C832 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2F39286814DADD780059C832 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -156,8 +154,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2F39281814DA93A00059C832 /* stands */,
-				2F2285CD14D9543D00A1595A /* stands.xml */,
 				2F8106D714D6E1C4000847DD /* 3dCapeLogo.png */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* stand-Info.plist */,
@@ -177,13 +173,6 @@
 				2F39286C14DADD780059C832 /* libz.dylib */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2F39281814DA93A00059C832 /* stands */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = stands;
 			sourceTree = "<group>";
 		};
 		2F39289C14DAE2920059C832 /* ASIHTTPRequest */ = {
@@ -266,7 +255,6 @@
 			files = (
 				28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */,
 				2F8106D814D6E1C4000847DD /* 3dCapeLogo.png in Resources */,
-				2F2285CE14D9543D00A1595A /* stands.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
