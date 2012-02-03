@@ -7,7 +7,8 @@
 //
 
 #import "standAppDelegate.h"
-#include "ZipArchive.h"
+#include "XMLParser.h"
+
 
 
 
@@ -80,8 +81,14 @@
 	
 	[ziper UnzipOpenFile:updateZipFile];
 	[ziper UnzipFileTo:documentsFolderPath overWrite:YES];
-	
+
 	[ziper release];
+	
+	NSString *standsXMLFile = [documentsFolderPath stringByAppendingString:@"/stands.xml"];
+	
+	XMLParser *parser = [[XMLParser alloc] initWithFilename:standsXMLFile];
+	
+	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -96,6 +103,13 @@
 										  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+}
+
+
+//Have to test this still
+- (void)ErrorMessage:(NSString *)msg
+{
+	NSLog(@"Error unziping file: %@\n", msg);
 }
 
 
@@ -149,8 +163,10 @@
 - (void)dealloc {
     [tabBarController release];
     [window release];
+
     [super dealloc];
 }
+	 
 
 @end
 

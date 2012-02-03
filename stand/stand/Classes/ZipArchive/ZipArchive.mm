@@ -175,7 +175,7 @@
 	int ret = unzGoToFirstFile( _unzFile );
 	unsigned char		buffer[4096] = {0};
 	NSFileManager* fman = [NSFileManager defaultManager];
-	if( ret!=UNZ_OK )
+	if( ret!=UNZ_OK )	
 	{
 		[self OutputErrorMessage:@"Failed"];
 	}
