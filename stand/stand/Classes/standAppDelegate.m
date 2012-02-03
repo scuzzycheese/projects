@@ -7,6 +7,7 @@
 //
 
 #import "standAppDelegate.h"
+#include "ZipArchive.h"
 
 
 
@@ -43,14 +44,14 @@
 	//NSString *appFolderPath = [[NSBundle mainBundle] resourceURL];
 	
 	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsFolderPath = [documentPaths objectAtIndex:0];
+    documentsFolderPath = [documentPaths objectAtIndex:0];
 	
 	
-	NSString *fileToDownload = [documentsFolderPath stringByAppendingString:@"/update.tar.gz"];
+	updateZipFile = [documentsFolderPath stringByAppendingString:@"/update.zip"];
 	//NSLog(@"File to download:%@", fileToDownload);
 	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.2/downloads/update.tar.gz"]];
-	[request setDownloadDestinationPath:fileToDownload];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.2/downloads/update.zip"]];
+	[request setDownloadDestinationPath:updateZipFile];
 	[request setDelegate:self];
 	[request startAsynchronous];
 	
@@ -74,6 +75,13 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	NSLog(@"Successfully downloaded the update file.\n");
+	
+	ZipArchive *ziper = [[ZipArchive alloc] init];
+	
+	[ziper UnzipOpenFile:updateZipFile];
+	[ziper UnzipFileTo:documentsFolderPath overWrite:YES];
+	
+	[ziper release];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

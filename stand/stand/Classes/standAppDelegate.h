@@ -12,6 +12,8 @@
 @interface standAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, ASIHTTPRequestDelegate> {
     UIWindow *window;
     UITabBarController *tabBarController;
+	NSString *documentsFolderPath;
+	NSString *updateZipFile;
 }
 
 - (void) workerThread;
