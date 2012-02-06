@@ -11,17 +11,11 @@
 
 @implementation standsNavigationController
 
+@synthesize XMLParser;
 
 
 - (void)awakeFromNib
 {
-	/*
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	//[button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
-	[button setTitle:@"Show View" forState:UIControlStateNormal];
-	button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-	[self.view addSubview:button];
-	 */
 }
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -41,12 +35,95 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(workerThread) object:nil];
+	[myThread start];
+
 }
-*/
+
+
+- (void) workerThread
+{
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
+	//NSString *appFolderPath = [[NSBundle mainBundle] resourceURL];
+	
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsFolderPath = [documentPaths objectAtIndex:0];
+	
+	
+	updateZipFile = [documentsFolderPath stringByAppendingString:@"/update.zip"];
+	//NSLog(@"File to download:%@", fileToDownload);
+	
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.3/downloads/update.zip"]];
+	[request setDownloadDestinationPath:updateZipFile];
+	[request setDelegate:self];
+	[request startAsynchronous];
+	
+	while(1)
+	{
+		/*
+		 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
+		 message:@"You must be connected to the internet to use this app." 
+		 delegate:nil 
+		 cancelButtonTitle:@"OK"
+		 otherButtonTitles:nil];
+		 [alert show];
+		 [alert release];
+		 */
+		
+		sleep(10);
+	}
+	[pool release];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	NSLog(@"Successfully downloaded the update file.\n");
+	
+	ZipArchive *ziper = [[ZipArchive alloc] init];
+	
+	[ziper UnzipOpenFile:updateZipFile];
+	[ziper UnzipFileTo:documentsFolderPath overWrite:YES];
+	
+	[ziper release];
+	
+	NSString *standsXMLFile = [documentsFolderPath stringByAppendingString:@"/stands.xml"];
+	
+	self.XMLParser = [[XMLParser alloc] initWithFilename:standsXMLFile];
+	
+	
+	standsRootViewController *rootVC = [self.viewControllers objectAtIndex:0];
+	[rootVC setXMLParser:self.XMLParser];
+	[rootVC launchNavigation];
+	
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	NSError *error = [request error];
+	NSLog(@"Failed to download the update file: %@\n", [error description]);
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download failed" 
+													message:[error localizedDescription]
+												   delegate:nil 
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+
+//Have to test this still
+- (void)ErrorMessage:(NSString *)msg
+{
+	NSLog(@"Error unziping file: %@\n", msg);
+}
+
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

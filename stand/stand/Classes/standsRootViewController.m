@@ -11,6 +11,9 @@
 
 @implementation standsRootViewController
 
+@synthesize node;
+@synthesize XMLParser;
+
 
 - (IBAction) swapViewController:(id)sender
 {
@@ -56,7 +59,18 @@
 	button.frame = CGRectMake(10, 10, 100, 100);
  
 	[self.view addSubview:button];
+	
+
  
+}
+
+- (void)launchNavigation
+{
+	 
+	 //Testing something here
+	 while(![XMLParser dataAvailable]);
+	 NSLog(@"XML Data is Available!!!!!\n");
+	 
 }
 
 

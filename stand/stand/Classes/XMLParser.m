@@ -11,28 +11,37 @@
 
 @implementation XMLParser
 
+@synthesize node;
+@synthesize dom;
+@synthesize dataAvailable;
 
 - (id) initWithFilename:(NSString *)filename
 {
 	self = [super init];
 
 	
-	xmlDoc *dom = xmlReadFile([filename cString], NULL, 0);
-	xmlNode *docElement = xmlDocGetRootElement(dom);
-
-	xmlNode *tmpNode = docElement;
-	for(tmpNode = docElement; tmpNode; tmpNode = tmpNode->next)
+	self.dom = xmlReadFile([filename cString], NULL, 0);
+	
+	xmlErrorPtr error = xmlGetLastError();
+	if(error)
 	{
-		if(tmpNode->type == XML_ELEMENT_NODE)
-		{
-		}
+		NSLog(@"Error parsing stands.xml: %@", error->message);
 	}
+	
+	self.node = xmlDocGetRootElement(dom);
+	
+	self.dataAvailable = YES;
+	
 	return self;
 }
 
+
+ 
 - (void)dealloc
 {	
     [super dealloc];
+	xmlFreeDoc(dom);
+	xmlCleanupParser();
 }
 
 @end

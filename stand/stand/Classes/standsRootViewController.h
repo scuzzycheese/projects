@@ -7,16 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#include <libxml2/libxml/parser.h>
+#include <libxml2/libxml/tree.h>
+#include "standsNavigationController.h"
 
 @interface standsRootViewController : UIViewController {
 	
 	
-	//NSArray 
+	xmlNode *node;
+	XMLParser *XMLParser;
 
 }
 
 - (IBAction) swapViewController:(id)sender;
+- (void)launchNavigation;
+@property (nonatomic) xmlNode *node;
+@property (nonatomic, retain) XMLParser *XMLParser;
 
 
 @end

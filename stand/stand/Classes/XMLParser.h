@@ -12,12 +12,18 @@
 
 
 
-@interface XMLParser : NSObject {
-	
-	
-
+@interface XMLParser : NSObject
+{
+	bool dataAvailable;
+	xmlNode *node;
+	xmlDoc *dom;
 }
 
+
 - (id) initWithFilename:(NSString *)filename;
+
+@property (nonatomic) xmlNode *node;
+@property (nonatomic) xmlDoc *dom;
+@property (nonatomic) bool dataAvailable;
 
 @end
