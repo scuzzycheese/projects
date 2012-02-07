@@ -6,10 +6,10 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "standsRootViewController.h"
+#import "standsButtonsViewController.h"
 
 
-@implementation standsRootViewController
+@implementation standsButtonsViewController
 
 @synthesize node;
 @synthesize XMLParser;
@@ -64,14 +64,6 @@
  
 }
 
-- (void)launchNavigation
-{
-	 
-	 //Testing something here
-	 while(![XMLParser dataAvailable]);
-	 NSLog(@"XML Data is Available!!!!!\n");
-	 
-}
 
 
 

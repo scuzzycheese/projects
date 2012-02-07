@@ -7,8 +7,6 @@
 //
 
 #import "standAppDelegate.h"
-#include "XMLParser.h"
-
 
 
 
@@ -16,6 +14,7 @@
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize XMLParser;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -27,9 +26,95 @@
 	// Set the tab bar controller as the window's root view controller and display.
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+	
+	
+	NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(workerThread) object:nil];
+	[myThread start];
 
     return YES;
 }
+
+
+
+
+- (void) workerThread
+{
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
+	//NSString *appFolderPath = [[NSBundle mainBundle] resourceURL];
+	
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsFolderPath = [documentPaths objectAtIndex:0];
+	
+	
+	updateZipFile = [documentsFolderPath stringByAppendingString:@"/update.zip"];
+	//NSLog(@"File to download:%@", fileToDownload);
+	
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.3/downloads/update.zip"]];
+	[request setDownloadDestinationPath:updateZipFile];
+	[request setDelegate:self];
+	[request startAsynchronous];
+	
+	while(1)
+	{
+		/*
+		 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
+		 message:@"You must be connected to the internet to use this app." 
+		 delegate:nil 
+		 cancelButtonTitle:@"OK"
+		 otherButtonTitles:nil];
+		 [alert show];
+		 [alert release];
+		 */
+		
+		sleep(10);
+	}
+	[pool release];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	NSLog(@"Successfully downloaded the update file.\n");
+	
+	ZipArchive *ziper = [[ZipArchive alloc] init];
+	
+	[ziper UnzipOpenFile:updateZipFile];
+	[ziper UnzipFileTo:documentsFolderPath overWrite:YES];
+	
+	[ziper release];
+	
+	NSString *standsXMLFile = [documentsFolderPath stringByAppendingString:@"/stands.xml"];
+	
+	self.XMLParser = [[XMLParser alloc] initWithFilename:standsXMLFile];
+	
+
+	
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	NSError *error = [request error];
+	NSLog(@"Failed to download the update file: %@\n", [error description]);
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download failed" 
+													message:[error localizedDescription]
+												   delegate:nil 
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+
+//Have to test this still
+- (void)ErrorMessage:(NSString *)msg
+{
+	NSLog(@"Error unziping file: %@\n", msg);
+}
+
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*

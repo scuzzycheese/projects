@@ -7,28 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "ASIHTTPRequest.h"
-#include "ZipArchive.h"
-#include "XMLParser.h"
-#include "standsRootViewController.h"
+
+#include "standAppDelegate.h"
+#include "standsButtonsViewController.h"
 
 
-@interface standsNavigationController : UINavigationController <UINavigationBarDelegate, UINavigationControllerDelegate, ASIHTTPRequestDelegate, ZipArchiveDelegate> {
-
-	NSString *documentsFolderPath;
-	NSString *updateZipFile;
-	
-	XMLParser *XMLParser;
-	
+@interface standsNavigationController : UINavigationController <UINavigationBarDelegate, UINavigationControllerDelegate>
+{	
+	XMLParser *XMLParser;	
 }
 
 - (IBAction) swapView:(id)sender;
 
 - (void) workerThread;
-- (void)requestFinished:(ASIHTTPRequest *)request;
-- (void)requestFailed:(ASIHTTPRequest *)request;
-- (void)ErrorMessage:(NSString *)msg;
-
 
 @property (nonatomic, retain) XMLParser *XMLParser;
 

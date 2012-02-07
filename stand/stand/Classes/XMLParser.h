@@ -14,7 +14,7 @@
 
 @interface XMLParser : NSObject
 {
-	bool dataAvailable;
+	BOOL dataAvailable;
 	xmlNode *node;
 	xmlDoc *dom;
 }
@@ -22,8 +22,8 @@
 
 - (id) initWithFilename:(NSString *)filename;
 
-@property (nonatomic) xmlNode *node;
-@property (nonatomic) xmlDoc *dom;
-@property (nonatomic) bool dataAvailable;
+@property (nonatomic, assign) xmlNode *node;
+@property (nonatomic, assign) xmlDoc *dom;
+@property (nonatomic, assign) BOOL dataAvailable;
 
 @end

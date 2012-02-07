@@ -11,7 +11,7 @@
 #include <libxml2/libxml/tree.h>
 #include "standsNavigationController.h"
 
-@interface standsRootViewController : UIViewController {
+@interface standsButtonsViewController : UIViewController {
 	
 	
 	xmlNode *node;
@@ -20,7 +20,7 @@
 }
 
 - (IBAction) swapViewController:(id)sender;
-- (void)launchNavigation;
+
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;
 
