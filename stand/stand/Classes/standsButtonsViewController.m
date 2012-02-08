@@ -36,7 +36,8 @@
 		{
 			
 			//TODO: break this into it's own method
-			xmlNode *picNode = tmpNode->children;
+			xmlNode *standNodeKids = tmpNode->children;
+			/*
 			while(picNode)
 			{
 				if(picNode->type == XML_ELEMENT_NODE && strcmp(picNode->name, "picture") == 0)
@@ -46,29 +47,72 @@
 				picNode = picNode->next;
 			}
 			NSString *picPath = [NSString stringWithCString:picNode->children->content];
-			
+			 */
+			NSString *picPath = [self findNodeValue:standNodeKids :@"picture"];
+			NSString *standName = [self findNodeValue:standNodeKids :@"name"];
 			
 			
 			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 			
-			NSString *wholePicPath = [documentsFolderPath stringByAppendingString:picPath];
 			UIImage	*btnImage = [UIImage imageWithContentsOfFile:[documentsFolderPath stringByAppendingString:picPath]];
 			
 			[button setBackgroundImage:btnImage forState:UIControlStateNormal];
 			
-			[button setTitle:[NSString stringWithCString:tmpNode->name] forState:UIControlStateNormal];
+			[button setTitle:standName forState:UIControlStateNormal];
 			
 			//Testing button
+			/*
 			button.frame = CGRectMake(10, 10, 100, 100);
 			[self.view addSubview:button];
-			
+			*/
 			
 		
 			[buttons addObject:button];
 		}
 		tmpNode = tmpNode->next;
-	}	
+	}
+	
+	[self arrangeButtons];
+	
+}
+
+- (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
+{
+	while(inNode)
+	{
+		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName cString]) == 0)
+		{
+			break;
+		}
+		inNode = inNode->next;
+	}
+	return [NSString stringWithCString:inNode->children->content];
+}
+
+- (void) arrangeButtons
+{
+	int btnNum = 0;
+	int numBtns = [buttons count];
+	for(UIButton *button in buttons)
+	{
+		
+		CGFloat w, h, x, y;
+		/*
+		w = button.frame.size.width;
+		h = button.frame.size.height;
+		 */
+		w = 250;
+		h = 250;
+		x = self.view.frame.size.width / numBtns * btnNum;
+		y = self.view.frame.size.height / 2 - h / 2;
+		button.frame = CGRectMake(x, y, w, h);
+		[self.view addSubview:button];
+		btnNum++;
+		
+		//button.frame = CGRectMake(10, 10, 200, 200);
+		///[self.view addSubview:button];
+	}
 }
 
 

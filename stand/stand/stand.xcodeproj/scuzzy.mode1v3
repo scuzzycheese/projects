@@ -299,7 +299,7 @@
 							<real>241</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-5 57 1280 943 0 0 1280 1002 </string>
+						<string>-1 57 1280 943 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2F0B575314E2848B00E761E1</string>
+										<string>2F0B578314E2C51A00E761E1</string>
 										<key>history</key>
 										<array>
 											<string>2F8106F114D7E0AC000847DD</string>
@@ -352,10 +352,10 @@
 											<string>2F0B56F814E2688700E761E1</string>
 											<string>2F0B56FA14E2688700E761E1</string>
 											<string>2F0B571A14E27C2E00E761E1</string>
-											<string>2F0B571B14E27C2E00E761E1</string>
 											<string>2F0B571D14E27C2E00E761E1</string>
-											<string>2F0B574F14E2842600E761E1</string>
-											<string>2F0B575014E2842600E761E1</string>
+											<string>2F0B577414E2C43A00E761E1</string>
+											<string>2F0B577514E2C43A00E761E1</string>
+											<string>2F0B578214E2C51A00E761E1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -369,7 +369,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1017, 679}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-5 57 1280 943 0 0 1280 1002 </string>
+								<string>-1 57 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -389,7 +389,7 @@
 								<key>Frame</key>
 								<string>{{0, 684}, {1017, 218}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-5 57 1280 943 0 0 1280 1002 </string>
+								<string>-1 57 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -557,12 +557,12 @@
 		<string>2F0B551F14DBF4D500E761E1</string>
 		<string>2F81070414D7E0AC000847DD</string>
 		<string>2F84F9E514CE1D96003A643B</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/scuzzy/Documents/stand/stand.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-5 57 1280 943 0 0 1280 1002 </string>
+	<string>-1 57 1280 943 0 0 1280 1002 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

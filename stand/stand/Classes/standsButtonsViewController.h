@@ -25,6 +25,8 @@
 
 - (id)initWithXMLNode:(xmlNode *)inNode;
 - (void) loopNodes:(xmlNode *)inNode;
+- (void) arrangeButtons;
+- (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
 
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;
