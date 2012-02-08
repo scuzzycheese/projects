@@ -16,6 +16,8 @@
 	
 	xmlNode *node;
 	XMLParser *XMLParser;
+	NSMutableArray *buttons;
+	NSString *documentsFolderPath;
 
 }
 

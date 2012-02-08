@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* standAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1010, 2301}}";
-			sepNavSelRange = "{867, 61}";
-			sepNavVisRange = "{695, 1327}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 2301}}";
+			sepNavSelRange = "{1000, 164}";
+			sepNavVisRange = "{695, 1279}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* stand */ = {
@@ -43,6 +43,8 @@
 			1D6058900D05DD3D006BFB54 /* stand */,
 		);
 		breakpoints = (
+			2F0B573014E2815200E761E1 /* standsButtonsViewController.m:40 */,
+			2F0B574314E2837A00E761E1 /* standsButtonsViewController.m:55 */,
 		);
 		codeSenseManager = 2F84F9D814CE1AC6003A643B /* Code sense */;
 		executables = (
@@ -54,7 +56,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					832,
+					778,
 					20,
 					48,
 					43,
@@ -375,6 +377,32 @@
 			2F0B571014E2722A00E761E1 /* PBXTextBookmark */ = 2F0B571014E2722A00E761E1 /* PBXTextBookmark */;
 			2F0B571114E2722A00E761E1 /* PBXTextBookmark */ = 2F0B571114E2722A00E761E1 /* PBXTextBookmark */;
 			2F0B571214E2722A00E761E1 /* PBXTextBookmark */ = 2F0B571214E2722A00E761E1 /* PBXTextBookmark */;
+			2F0B571314E2764300E761E1 /* PBXTextBookmark */ = 2F0B571314E2764300E761E1 /* PBXTextBookmark */;
+			2F0B571414E2764300E761E1 /* PBXTextBookmark */ = 2F0B571414E2764300E761E1 /* PBXTextBookmark */;
+			2F0B571514E2764300E761E1 /* PBXTextBookmark */ = 2F0B571514E2764300E761E1 /* PBXTextBookmark */;
+			2F0B571614E276A300E761E1 /* PBXTextBookmark */ = 2F0B571614E276A300E761E1 /* PBXTextBookmark */;
+			2F0B571714E2783300E761E1 /* PBXTextBookmark */ = 2F0B571714E2783300E761E1 /* PBXTextBookmark */;
+			2F0B571A14E27C2E00E761E1 /* PBXTextBookmark */ = 2F0B571A14E27C2E00E761E1 /* PBXTextBookmark */;
+			2F0B571B14E27C2E00E761E1 /* PBXTextBookmark */ = 2F0B571B14E27C2E00E761E1 /* PBXTextBookmark */;
+			2F0B571C14E27C2E00E761E1 /* PBXTextBookmark */ = 2F0B571C14E27C2E00E761E1 /* PBXTextBookmark */;
+			2F0B571D14E27C2E00E761E1 /* PBXTextBookmark */ = 2F0B571D14E27C2E00E761E1 /* PBXTextBookmark */;
+			2F0B571E14E27C2E00E761E1 /* PBXTextBookmark */ = 2F0B571E14E27C2E00E761E1 /* PBXTextBookmark */;
+			2F0B571F14E27C2E00E761E1 /* PBXTextBookmark */ = 2F0B571F14E27C2E00E761E1 /* PBXTextBookmark */;
+			2F0B572414E27C6600E761E1 /* PBXTextBookmark */ = 2F0B572414E27C6600E761E1 /* PBXTextBookmark */;
+			2F0B572514E27C6600E761E1 /* PBXTextBookmark */ = 2F0B572514E27C6600E761E1 /* PBXTextBookmark */;
+			2F0B572D14E2808300E761E1 /* PBXTextBookmark */ = 2F0B572D14E2808300E761E1 /* PBXTextBookmark */;
+			2F0B572E14E2808300E761E1 /* PBXTextBookmark */ = 2F0B572E14E2808300E761E1 /* PBXTextBookmark */;
+			2F0B572F14E2808300E761E1 /* PBXTextBookmark */ = 2F0B572F14E2808300E761E1 /* PBXTextBookmark */;
+			2F0B573614E2817000E761E1 /* PBXTextBookmark */ = 2F0B573614E2817000E761E1 /* PBXTextBookmark */;
+			2F0B573714E2817000E761E1 /* PBXTextBookmark */ = 2F0B573714E2817000E761E1 /* PBXTextBookmark */;
+			2F0B573B14E281E900E761E1 /* PBXTextBookmark */ = 2F0B573B14E281E900E761E1 /* PBXTextBookmark */;
+			2F0B574014E282FE00E761E1 /* PBXTextBookmark */ = 2F0B574014E282FE00E761E1 /* PBXTextBookmark */;
+			2F0B574914E2839400E761E1 /* PBXTextBookmark */ = 2F0B574914E2839400E761E1 /* PBXTextBookmark */;
+			2F0B574A14E2839400E761E1 /* PBXTextBookmark */ = 2F0B574A14E2839400E761E1 /* PBXTextBookmark */;
+			2F0B574F14E2842600E761E1 /* PBXTextBookmark */ = 2F0B574F14E2842600E761E1 /* PBXTextBookmark */;
+			2F0B575014E2842600E761E1 /* PBXTextBookmark */ = 2F0B575014E2842600E761E1 /* PBXTextBookmark */;
+			2F0B575114E2842600E761E1 /* PBXTextBookmark */ = 2F0B575114E2842600E761E1 /* PBXTextBookmark */;
+			2F0B575314E2848B00E761E1 /* PBXTextBookmark */ = 2F0B575314E2848B00E761E1 /* PBXTextBookmark */;
 			2F2285C714D951B000A1595A = 2F2285C714D951B000A1595A /* PBXTextBookmark */;
 			2F2285CC14D952B000A1595A = 2F2285CC14D952B000A1595A /* PBXTextBookmark */;
 			2F2285D614D95AD000A1595A = 2F2285D614D95AD000A1595A /* PBXTextBookmark */;
@@ -831,7 +859,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 67";
 		rLen = 0;
-		rLoc = 1676;
+		rLoc = 2933;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 150;
@@ -981,7 +1009,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 383;
+		rLoc = 441;
 		rType = 0;
 		vrLen = 409;
 		vrLoc = 0;
@@ -1131,7 +1159,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 24";
 		rLen = 0;
-		rLoc = 600;
+		rLoc = 658;
 		rType = 0;
 		vrLen = 516;
 		vrLoc = 0;
@@ -1141,7 +1169,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 24";
 		rLen = 0;
-		rLoc = 600;
+		rLoc = 658;
 		rType = 0;
 		vrLen = 516;
 		vrLoc = 0;
@@ -1171,7 +1199,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 24";
 		rLen = 0;
-		rLoc = 600;
+		rLoc = 658;
 		rType = 0;
 		vrLen = 516;
 		vrLoc = 0;
@@ -1181,7 +1209,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 65";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 1002;
@@ -1291,7 +1319,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 24";
 		rLen = 0;
-		rLoc = 600;
+		rLoc = 658;
 		rType = 0;
 		vrLen = 516;
 		vrLoc = 0;
@@ -1301,7 +1329,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 65";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 1014;
 		vrLoc = 484;
@@ -1311,7 +1339,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 65";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 1027;
 		vrLoc = 484;
@@ -1381,7 +1409,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 68";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 474;
 		vrLoc = 1009;
@@ -1450,7 +1478,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 66";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 842;
 		vrLoc = 1002;
@@ -1580,7 +1608,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -1590,7 +1618,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 16";
 		rLen = 0;
-		rLoc = 632;
+		rLoc = 1607;
 		rType = 0;
 		vrLen = 1006;
 		vrLoc = 0;
@@ -1660,7 +1688,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -1740,7 +1768,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 16";
 		rLen = 0;
-		rLoc = 632;
+		rLoc = 1607;
 		rType = 0;
 		vrLen = 1006;
 		vrLoc = 0;
@@ -1750,7 +1778,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 70";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 847;
 		vrLoc = 999;
@@ -1760,7 +1788,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 70";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 849;
 		vrLoc = 999;
@@ -1820,7 +1848,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 65";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 847;
 		vrLoc = 1000;
@@ -1830,7 +1858,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 65";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 847;
 		vrLoc = 1000;
@@ -1840,7 +1868,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 65";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 847;
 		vrLoc = 1000;
@@ -1860,7 +1888,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -1880,7 +1908,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 64";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 1008;
@@ -1890,7 +1918,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 64";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 1009;
@@ -1900,7 +1928,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 64";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 1009;
@@ -1950,7 +1978,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 64";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 923;
 		vrLoc = 1006;
@@ -1960,7 +1988,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -2000,7 +2028,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 67";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 829;
 		vrLoc = 997;
@@ -2010,7 +2038,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -2040,7 +2068,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -2070,7 +2098,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 77";
 		rLen = 0;
-		rLoc = 1666;
+		rLoc = 2923;
 		rType = 0;
 		vrLen = 849;
 		vrLoc = 976;
@@ -2080,7 +2108,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 63";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 2921;
 		rType = 0;
 		vrLen = 845;
 		vrLoc = 979;
@@ -2090,7 +2118,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -2100,7 +2128,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 68";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 2926;
 		rType = 0;
 		vrLen = 732;
 		vrLoc = 979;
@@ -2130,7 +2158,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 69";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 2926;
 		rType = 0;
 		vrLen = 766;
 		vrLoc = 979;
@@ -2140,7 +2168,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 21";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -2207,7 +2235,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 23";
 		rLen = 0;
-		rLoc = 511;
+		rLoc = 569;
 		rType = 0;
 		vrLen = 550;
 		vrLoc = 0;
@@ -2217,7 +2245,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 67";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 2926;
 		rType = 0;
 		vrLen = 732;
 		vrLoc = 976;
@@ -2287,7 +2315,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 67";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 2926;
 		rType = 0;
 		vrLen = 732;
 		vrLoc = 976;
@@ -2297,7 +2325,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsButtonsViewController.h: 29";
 		rLen = 0;
-		rLoc = 608;
+		rLoc = 666;
 		rType = 0;
 		vrLen = 553;
 		vrLoc = 0;
@@ -2307,7 +2335,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsButtonsViewController.h: 29";
 		rLen = 0;
-		rLoc = 608;
+		rLoc = 666;
 		rType = 0;
 		vrLen = 553;
 		vrLoc = 0;
@@ -2347,7 +2375,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsButtonsViewController.m: 59";
 		rLen = 29;
-		rLoc = 1598;
+		rLoc = 2855;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 490;
@@ -2477,7 +2505,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsButtonsViewController.m: 66";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 2926;
 		rType = 0;
 		vrLen = 745;
 		vrLoc = 1130;
@@ -2507,7 +2535,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsButtonsViewController.h: 23";
 		rLen = 0;
-		rLoc = 511;
+		rLoc = 569;
 		rType = 0;
 		vrLen = 528;
 		vrLoc = 0;
@@ -2637,7 +2665,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsButtonsViewController.m: 102";
 		rLen = 0;
-		rLoc = 2228;
+		rLoc = 3505;
 		rType = 0;
 		vrLen = 425;
 		vrLoc = 894;
@@ -2736,7 +2764,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsButtonsViewController.h: 25";
 		rLen = 0;
-		rLoc = 506;
+		rLoc = 564;
 		rType = 0;
 		vrLen = 608;
 		vrLoc = 0;
@@ -2766,7 +2794,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsButtonsViewController.m: 41";
 		rLen = 0;
-		rLoc = 680;
+		rLoc = 1655;
 		rType = 0;
 		vrLen = 955;
 		vrLoc = 237;
@@ -2786,7 +2814,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsButtonsViewController.m: 40";
 		rLen = 0;
-		rLoc = 678;
+		rLoc = 1653;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 238;
@@ -2856,7 +2884,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsButtonsViewController.h: 25";
 		rLen = 0;
-		rLoc = 506;
+		rLoc = 564;
 		rType = 0;
 		vrLen = 608;
 		vrLoc = 0;
@@ -2866,10 +2894,306 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsButtonsViewController.m: 36";
 		rLen = 0;
-		rLoc = 598;
+		rLoc = 1573;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 256;
+	};
+	2F0B571314E2764300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
+		name = "standsButtonsViewController.h: 19";
+		rLen = 0;
+		rLoc = 440;
+		rType = 0;
+		vrLen = 634;
+		vrLoc = 0;
+	};
+	2F0B571414E2764300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 36";
+		rLen = 0;
+		rLoc = 1573;
+		rType = 0;
+		vrLen = 922;
+		vrLoc = 88;
+	};
+	2F0B571514E2764300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 36";
+		rLen = 0;
+		rLoc = 1573;
+		rType = 0;
+		vrLen = 759;
+		vrLoc = 88;
+	};
+	2F0B571614E276A300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 38";
+		rLen = 0;
+		rLoc = 1569;
+		rType = 0;
+		vrLen = 1009;
+		vrLoc = 256;
+	};
+	2F0B571714E2783300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 40";
+		rLen = 0;
+		rLoc = 1569;
+		rType = 0;
+		vrLen = 1131;
+		vrLoc = 325;
+	};
+	2F0B571A14E27C2E00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427E14D5D255007A206E /* standsNavigationController.h */;
+		name = "standsNavigationController.h: 24";
+		rLen = 0;
+		rLoc = 451;
+		rType = 0;
+		vrLen = 512;
+		vrLoc = 0;
+	};
+	2F0B571B14E27C2E00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427F14D5D255007A206E /* standsNavigationController.m */;
+		name = "standsNavigationController.m: 100";
+		rLen = 0;
+		rLoc = 2081;
+		rType = 0;
+		vrLen = 942;
+		vrLoc = 1719;
+	};
+	2F0B571C14E27C2E00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
+		name = "standsButtonsViewController.h: 20";
+		rLen = 0;
+		rLoc = 440;
+		rType = 0;
+		vrLen = 666;
+		vrLoc = 0;
+	};
+	2F0B571D14E27C2E00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* standAppDelegate.m */;
+		name = "standAppDelegate.m: 46";
+		rLen = 164;
+		rLoc = 1000;
+		rType = 0;
+		vrLen = 1279;
+		vrLoc = 695;
+	};
+	2F0B571E14E27C2E00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 54";
+		rLen = 0;
+		rLoc = 1214;
+		rType = 0;
+		vrLen = 1025;
+		vrLoc = 474;
+	};
+	2F0B571F14E27C2E00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 61";
+		rLen = 0;
+		rLoc = 1493;
+		rType = 0;
+		vrLen = 1314;
+		vrLoc = 788;
+	};
+	2F0B572414E27C6600E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 61";
+		rLen = 0;
+		rLoc = 1493;
+		rType = 0;
+		vrLen = 1121;
+		vrLoc = 373;
+	};
+	2F0B572514E27C6600E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 61";
+		rLen = 0;
+		rLoc = 1493;
+		rType = 0;
+		vrLen = 1106;
+		vrLoc = 387;
+	};
+	2F0B572D14E2808300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
+		name = "standsButtonsViewController.h: 26";
+		rLen = 0;
+		rLoc = 530;
+		rType = 0;
+		vrLen = 666;
+		vrLoc = 0;
+	};
+	2F0B572E14E2808300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 62";
+		rLen = 0;
+		rLoc = 1527;
+		rType = 0;
+		vrLen = 1121;
+		vrLoc = 373;
+	};
+	2F0B572F14E2808300E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 41";
+		rLen = 0;
+		rLoc = 668;
+		rType = 0;
+		vrLen = 1099;
+		vrLoc = 387;
+	};
+	2F0B573014E2815200E761E1 /* standsButtonsViewController.m:40 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		functionName = "-loopNodes:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 40;
+		location = stand;
+		modificationTime = 350389291.497487;
+		originalNumberOfMultipleMatches = 1;
+		state = 2;
+	};
+	2F0B573614E2817000E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 41";
+		rLen = 0;
+		rLoc = 668;
+		rType = 0;
+		vrLen = 1099;
+		vrLoc = 387;
+	};
+	2F0B573714E2817000E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 41";
+		rLen = 0;
+		rLoc = 668;
+		rType = 0;
+		vrLen = 1098;
+		vrLoc = 389;
+	};
+	2F0B573B14E281E900E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 46";
+		rLen = 0;
+		rLoc = 804;
+		rType = 0;
+		vrLen = 1168;
+		vrLoc = 391;
+	};
+	2F0B574014E282FE00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 46";
+		rLen = 0;
+		rLoc = 804;
+		rType = 0;
+		vrLen = 1171;
+		vrLoc = 467;
+	};
+	2F0B574314E2837A00E761E1 /* standsButtonsViewController.m:55 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		functionName = "-loopNodes:";
+		hitCount = 2;
+		ignoreCount = 0;
+		lineNumber = 55;
+		location = stand;
+		modificationTime = 350389360.139347;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	2F0B574914E2839400E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 55";
+		rLen = 0;
+		rLoc = 1135;
+		rType = 0;
+		vrLen = 1253;
+		vrLoc = 467;
+	};
+	2F0B574A14E2839400E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 55";
+		rLen = 0;
+		rLoc = 1066;
+		rType = 0;
+		vrLen = 1226;
+		vrLoc = 495;
+	};
+	2F0B574F14E2842600E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
+		name = "standsButtonsViewController.h: 26";
+		rLen = 0;
+		rLoc = 530;
+		rType = 0;
+		vrLen = 666;
+		vrLoc = 0;
+	};
+	2F0B575014E2842600E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 118";
+		rLen = 0;
+		rLoc = 2748;
+		rType = 0;
+		vrLen = 1098;
+		vrLoc = 1820;
+	};
+	2F0B575114E2842600E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 118";
+		rLen = 0;
+		rLoc = 2757;
+		rType = 0;
+		vrLen = 1393;
+		vrLoc = 805;
+	};
+	2F0B575314E2848B00E761E1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
+		name = "standsButtonsViewController.m: 62";
+		rLen = 0;
+		rLoc = 1445;
+		rType = 0;
+		vrLen = 1412;
+		vrLoc = 805;
 	};
 	2F2041F514CE1F5B007A206E /* CTICCViewController.h */ = {
 		uiCtxt = {
@@ -2901,16 +3225,16 @@
 	};
 	2F20427E14D5D255007A206E /* standsNavigationController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1010, 622}}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 622}}";
 			sepNavSelRange = "{451, 0}";
 			sepNavVisRange = "{0, 512}";
 		};
 	};
 	2F20427F14D5D255007A206E /* standsNavigationController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 1768}}";
-			sepNavSelRange = "{2081, 0}";
-			sepNavVisRange = "{1327, 940}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 2093}}";
+			sepNavSelRange = "{2715, 0}";
+			sepNavVisRange = "{2612, 98}";
 		};
 	};
 	2F2285C714D951B000A1595A /* PBXTextBookmark */ = {
@@ -2918,7 +3242,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 26";
 		rLen = 0;
-		rLoc = 846;
+		rLoc = 1821;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 345;
@@ -2928,7 +3252,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 26";
 		rLen = 0;
-		rLoc = 846;
+		rLoc = 1821;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 345;
@@ -2956,7 +3280,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 65";
 		rLen = 0;
-		rLoc = 1671;
+		rLoc = 2928;
 		rType = 0;
 		vrLen = 886;
 		vrLoc = 937;
@@ -2976,7 +3300,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 22";
 		rLen = 0;
-		rLoc = 601;
+		rLoc = 659;
 		rType = 0;
 		vrLen = 301;
 		vrLoc = 0;
@@ -2986,7 +3310,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 22";
 		rLen = 0;
-		rLoc = 601;
+		rLoc = 659;
 		rType = 0;
 		vrLen = 301;
 		vrLoc = 0;
@@ -2996,7 +3320,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 22";
 		rLen = 0;
-		rLoc = 601;
+		rLoc = 659;
 		rType = 0;
 		vrLen = 301;
 		vrLoc = 0;
@@ -3026,7 +3350,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 67";
 		rLen = 0;
-		rLoc = 1676;
+		rLoc = 2933;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 960;
@@ -3036,7 +3360,7 @@
 		fRef = 2F8106E814D6F48C000847DD /* standsButtonsViewController.h */;
 		name = "standsRootViewController.h: 20";
 		rLen = 0;
-		rLoc = 601;
+		rLoc = 659;
 		rType = 0;
 		vrLen = 301;
 		vrLoc = 0;
@@ -3743,16 +4067,16 @@
 	};
 	2F8106E814D6F48C000847DD /* standsButtonsViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1010, 622}}";
-			sepNavSelRange = "{506, 0}";
-			sepNavVisRange = "{0, 608}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 622}}";
+			sepNavSelRange = "{530, 0}";
+			sepNavVisRange = "{0, 666}";
 		};
 	};
 	2F8106E914D6F48C000847DD /* standsButtonsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 1521}}";
-			sepNavSelRange = "{598, 0}";
-			sepNavVisRange = "{256, 984}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 2080}}";
+			sepNavSelRange = "{1445, 0}";
+			sepNavVisRange = "{805, 1412}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};
@@ -3899,7 +4223,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 47";
 		rLen = 0;
-		rLoc = 1366;
+		rLoc = 2341;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 345;
@@ -3909,7 +4233,7 @@
 		fRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */;
 		name = "standsRootViewController.m: 26";
 		rLen = 0;
-		rLoc = 846;
+		rLoc = 1821;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 345;
@@ -3921,7 +4245,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;

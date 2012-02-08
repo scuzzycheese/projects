@@ -27,12 +27,45 @@
 
 - (void) loopNodes:(xmlNode *)inNode
 {
+	buttons = [NSMutableArray array];
+	
 	xmlNode *tmpNode = inNode;
 	while(tmpNode)
 	{
 		if(tmpNode->type == XML_ELEMENT_NODE)
 		{
+			
+			//TODO: break this into it's own method
+			xmlNode *picNode = tmpNode->children;
+			while(picNode)
+			{
+				if(picNode->type == XML_ELEMENT_NODE && strcmp(picNode->name, "picture") == 0)
+				{
+					break;
+				}
+				picNode = picNode->next;
+			}
+			NSString *picPath = [NSString stringWithCString:picNode->children->content];
+			
+			
+			
 			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			
+			NSString *wholePicPath = [documentsFolderPath stringByAppendingString:picPath];
+			UIImage	*btnImage = [UIImage imageWithContentsOfFile:[documentsFolderPath stringByAppendingString:picPath]];
+			
+			[button setBackgroundImage:btnImage forState:UIControlStateNormal];
+			
+			[button setTitle:[NSString stringWithCString:tmpNode->name] forState:UIControlStateNormal];
+			
+			//Testing button
+			button.frame = CGRectMake(10, 10, 100, 100);
+			[self.view addSubview:button];
+			
+			
+		
+			[buttons addObject:button];
 		}
 		tmpNode = tmpNode->next;
 	}	
@@ -77,6 +110,15 @@
 - (void)viewDidLoad 
 {
 	[super viewDidLoad];
+	
+	
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsFolderPath = [documentPaths objectAtIndex:0];
+	documentsFolderPath = [documentsFolderPath stringByAppendingString:@"/"];
+	[documentsFolderPath retain];
+	
+	
+	
  
 	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
  
@@ -119,6 +161,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	[buttons release];
 }
 
 
