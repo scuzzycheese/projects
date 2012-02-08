@@ -73,7 +73,7 @@
 		tmpNode = tmpNode->next;
 	}
 	
-	[self arrangeButtons];
+	[self arrangeButtons:3];
 	
 }
 
@@ -90,25 +90,29 @@
 	return [NSString stringWithCString:inNode->children->content];
 }
 
-- (void) arrangeButtons
+- (void) arrangeButtons:(int)width
 {
-	int btnNum = 0;
-	int numBtns = [buttons count];
-	for(UIButton *button in buttons)
+	int numberButtons = [buttons count];
+	for(int i = 0; i < numberButtons; i ++)
 	{
+		int btnWStart = (self.view.frame.size.width / width) * (i % width);
+		int btnHStart = (i / width) * (self.view.frame.size.width / width);
+		int btnCentOffset = (self.view.frame.size.width / width) / 2;
 		
-		CGFloat w, h, x, y;
-		/*
-		w = button.frame.size.width;
-		h = button.frame.size.height;
-		 */
-		w = 250;
-		h = 250;
-		x = self.view.frame.size.width / numBtns * btnNum;
-		y = self.view.frame.size.height / 2 - h / 2;
-		button.frame = CGRectMake(x, y, w, h);
+		
+		UIButton *button = [buttons objectAtIndex:i];
+		
+		button.frame = CGRectMake(0, 0, 200, 200);
+		button.center = CGPointMake(btnWStart + btnCentOffset, btnHStart + btnCentOffset);
+		
+
+		
+		
+		
+		//button.frame = CGRectMake(x, y, w, h);
 		[self.view addSubview:button];
-		btnNum++;
+		 
+	
 		
 		//button.frame = CGRectMake(10, 10, 200, 200);
 		///[self.view addSubview:button];
@@ -162,13 +166,6 @@
 	[documentsFolderPath retain];
 	
 	
-	
- 
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
- 
-	button.frame = CGRectMake(10, 10, 100, 100);
- 
-	[self.view addSubview:button];
 	
 
  

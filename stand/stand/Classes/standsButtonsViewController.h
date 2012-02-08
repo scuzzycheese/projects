@@ -25,7 +25,7 @@
 
 - (id)initWithXMLNode:(xmlNode *)inNode;
 - (void) loopNodes:(xmlNode *)inNode;
-- (void) arrangeButtons;
+- (void) arrangeButtons:(int)width;
 - (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
 
 @property (nonatomic) xmlNode *node;
