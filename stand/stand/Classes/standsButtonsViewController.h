@@ -21,6 +21,9 @@
 
 - (IBAction) swapViewController:(id)sender;
 
+- (id)initWithXMLNode:(xmlNode *)inNode;
+- (void) loopNodes:(xmlNode *)inNode;
+
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;
 

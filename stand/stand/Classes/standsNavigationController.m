@@ -15,6 +15,11 @@
 @synthesize XMLParser;
 
 
+
+
+
+
+
 /*
 - (void)awakeFromNib
 {
@@ -66,6 +71,8 @@
 
 - (void) workerThread
 {
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
 	
 	standAppDelegate *appDel = [UIApplication sharedApplication].delegate;
 	while(!appDel.XMLParser)
@@ -79,6 +86,10 @@
 	{
 		NSLog(@"XML Data is parsed...\n");
 	}
+	
+	[((standsButtonsViewController *)[self.viewControllers objectAtIndex:0]) loopNodes:self.XMLParser.node];
+	
+	[pool release];
 	
 }
 

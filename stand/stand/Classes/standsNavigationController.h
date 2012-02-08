@@ -21,6 +21,8 @@
 
 - (void) workerThread;
 
+
+
 @property (nonatomic, retain) XMLParser *XMLParser;
 
 

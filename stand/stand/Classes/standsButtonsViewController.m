@@ -15,6 +15,27 @@
 @synthesize XMLParser;
 
 
+
+
+- (id)initWithXMLNode:(xmlNode *)inNode
+{
+	self = [super init];
+	[self loopNodes:inNode];
+	return self;
+}
+
+
+- (void) loopNodes:(xmlNode *)inNode
+{
+	xmlNode *tmpNode = inNode;
+	while(tmpNode)
+	{
+		NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+		tmpNode = tmpNode->next;
+	}	
+}
+
+
 - (IBAction) swapViewController:(id)sender
 {
 	
