@@ -87,7 +87,17 @@
 		NSLog(@"XML Data is parsed...\n");
 	}
 	
-	[((standsButtonsViewController *)[self.viewControllers objectAtIndex:0]) loopNodes:self.XMLParser.node];
+	xmlNode *standGroupsNode = self.XMLParser.node->children;
+	while(standGroupsNode)
+	{
+		if(standGroupsNode->type == XML_ELEMENT_NODE && strcmp(standGroupsNode->name, "standGroups") == 0)
+		{
+			break;
+		}
+		standGroupsNode = standGroupsNode->next;
+	}
+	
+	[((standsButtonsViewController *)[self.viewControllers objectAtIndex:0]) loopNodes:standGroupsNode->children];
 	
 	[pool release];
 	

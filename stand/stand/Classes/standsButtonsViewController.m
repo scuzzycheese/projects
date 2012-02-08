@@ -30,7 +30,10 @@
 	xmlNode *tmpNode = inNode;
 	while(tmpNode)
 	{
-		NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+		if(tmpNode->type == XML_ELEMENT_NODE)
+		{
+			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+		}
 		tmpNode = tmpNode->next;
 	}	
 }
