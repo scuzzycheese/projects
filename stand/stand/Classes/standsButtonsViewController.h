@@ -18,6 +18,7 @@
 	XMLParser *XMLParser;
 	NSMutableArray *buttons;
 	NSString *documentsFolderPath;
+	UIScrollView *scrollView;
 
 }
 
@@ -26,6 +27,8 @@
 - (id)initWithXMLNode:(xmlNode *)inNode;
 - (void) loopNodes:(xmlNode *)inNode;
 - (void) arrangeButtons:(int)width;
+- (void) showButtons;
+- (void) sizeButtonsWidth:(int)width height:(int)height;
 - (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
 
 @property (nonatomic) xmlNode *node;

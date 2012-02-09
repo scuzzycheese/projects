@@ -28,6 +28,7 @@
 - (void) loopNodes:(xmlNode *)inNode
 {
 	buttons = [NSMutableArray array];
+	[buttons retain];
 	
 	xmlNode *tmpNode = inNode;
 	while(tmpNode)
@@ -73,7 +74,21 @@
 		tmpNode = tmpNode->next;
 	}
 	
-	[self arrangeButtons:3];
+	//scrollView.frame = [self.view bounds];
+	
+	[self sizeButtonsWidth:200 height:200];
+	
+	if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+	{
+		[self arrangeButtons:4];
+	}
+	else
+	{
+		[self arrangeButtons:3];
+	}
+	
+	
+	[self showButtons];
 	
 }
 
@@ -90,35 +105,69 @@
 	return [NSString stringWithCString:inNode->children->content];
 }
 
+- (void) sizeButtonsWidth:(int)width height:(int)height
+{	
+	int numberButtons = [buttons count];
+	for(int i = 0; i < numberButtons; i ++)
+	{
+		UIButton *button = [buttons objectAtIndex:i];
+		button.frame = CGRectMake(0, 0, width, height);
+	}
+}
+
 - (void) arrangeButtons:(int)width
+{
+	scrollView.frame = [self.view bounds];
+	
+	int numberButtons = [buttons count];
+	for(int i = 0; i < numberButtons; i ++)
+	{
+		int btnWStart = (scrollView.frame.size.width / width) * (i % width);
+		int btnHStart = (i / width) * (scrollView.frame.size.width / width);
+		int btnCentOffset = (scrollView.frame.size.width / width) / 2;
+				
+		UIButton *button = [buttons objectAtIndex:i];
+		
+		//button.frame = CGRectMake(0, 0, 200, 200);
+		button.center = CGPointMake(btnWStart + btnCentOffset, btnHStart + btnCentOffset);
+	}
+}
+
+- (void) showButtons
 {
 	int numberButtons = [buttons count];
 	for(int i = 0; i < numberButtons; i ++)
 	{
-		int btnWStart = (self.view.frame.size.width / width) * (i % width);
-		int btnHStart = (i / width) * (self.view.frame.size.width / width);
-		int btnCentOffset = (self.view.frame.size.width / width) / 2;
-		
-		
 		UIButton *button = [buttons objectAtIndex:i];
-		
-		button.frame = CGRectMake(0, 0, 200, 200);
-		button.center = CGPointMake(btnWStart + btnCentOffset, btnHStart + btnCentOffset);
-		
-
-		
-		
-		
-		//button.frame = CGRectMake(x, y, w, h);
-		[self.view addSubview:button];
-		 
-	
-		
-		//button.frame = CGRectMake(10, 10, 200, 200);
-		///[self.view addSubview:button];
+		//[self.view addSubview:button];
+		[scrollView addSubview:button];		
 	}
 }
 
+//- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationDelay:1.0];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+	
+	if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+	{
+		[self arrangeButtons:4];
+	}
+	else
+	{
+		[self arrangeButtons:3];
+	}
+
+
+
+
+	
+	[UIView commitAnimations];
+	
+}
 
 - (IBAction) swapViewController:(id)sender
 {
@@ -166,6 +215,11 @@
 	[documentsFolderPath retain];
 	
 	
+	scrollView = [[UIScrollView alloc] initWithFrame:[self.view bounds]];
+	[scrollView setDelegate:self];
+	[scrollView setBouncesZoom:YES];
+	
+	[self.view addSubview:scrollView];
 	
 
  
@@ -203,7 +257,5 @@
 - (void)dealloc {
     [super dealloc];
 	[buttons release];
+	[scrollView release];
 }
-
-
-@end
