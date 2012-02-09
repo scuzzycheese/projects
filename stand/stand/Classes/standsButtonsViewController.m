@@ -38,17 +38,7 @@
 			
 			//TODO: break this into it's own method
 			xmlNode *standNodeKids = tmpNode->children;
-			/*
-			while(picNode)
-			{
-				if(picNode->type == XML_ELEMENT_NODE && strcmp(picNode->name, "picture") == 0)
-				{
-					break;
-				}
-				picNode = picNode->next;
-			}
-			NSString *picPath = [NSString stringWithCString:picNode->children->content];
-			 */
+
 			NSString *picPath = [self findNodeValue:standNodeKids :@"picture"];
 			NSString *standName = [self findNodeValue:standNodeKids :@"name"];
 			
@@ -60,14 +50,7 @@
 			
 			[button setBackgroundImage:btnImage forState:UIControlStateNormal];
 			
-			[button setTitle:standName forState:UIControlStateNormal];
-			
-			//Testing button
-			/*
-			button.frame = CGRectMake(10, 10, 100, 100);
-			[self.view addSubview:button];
-			*/
-			
+			[button setTitle:standName forState:UIControlStateNormal];			
 		
 			[buttons addObject:button];
 		}
@@ -118,6 +101,11 @@
 - (void) arrangeButtons:(int)width
 {
 	scrollView.frame = [self.view bounds];
+	
+	int maxFrameHeight = (scrollView.frame.size.width / width) * (([buttons count] / width) + 1);
+	
+	//scrollView.frame = CGRectMake(0, 0, scrollView.frame.size.width, maxFrameHeight);
+	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, maxFrameHeight)];
 	
 	int numberButtons = [buttons count];
 	for(int i = 0; i < numberButtons; i ++)
