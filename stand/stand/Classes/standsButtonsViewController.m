@@ -33,14 +33,12 @@
 	xmlNode *tmpNode = inNode;
 	while(tmpNode)
 	{
-		if(tmpNode->type == XML_ELEMENT_NODE)
+		if(tmpNode->type == XML_ELEMENT_NODE && strcmp(tmpNode->name, "standGroup") == 0)
 		{
-			
-			//TODO: break this into it's own method
-			xmlNode *standNodeKids = tmpNode->children;
+			xmlNode *standNodeKid = tmpNode->children;
 
-			NSString *picPath = [self findNodeValue:standNodeKids :@"picture"];
-			NSString *standName = [self findNodeValue:standNodeKids :@"name"];
+			NSString *picPath = [self findNodeValue:standNodeKid :@"picture"];
+			NSString *standName = [self findNodeValue:standNodeKid :@"name"];
 			
 			
 			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
@@ -53,6 +51,36 @@
 			[button setTitle:standName forState:UIControlStateNormal];			
 		
 			[buttons addObject:button];
+		}
+		if(tmpNode->type == XML_ELEMENT_NODE && strcmp(tmpNode->name, "stand") == 0)
+		{
+			xmlNode *standNodeKid = tmpNode->children;
+			NSString *standName = [self findNodeValue:standNodeKid :@"name"];
+			NSString *picPath = NULL;
+			
+			while(standNodeKid)
+			{
+				if(standNodeKid->type == XML_ELEMENT_NODE && strcmp(standNodeKid->name, "pictures") == 0)
+				{
+					picPath = [self findNodeValue:standNodeKid->children :@"picture"];
+					//xmlNode *pictureNode = standNodeKid->children;
+				}
+				standNodeKid = standNodeKid->next;
+			}
+			
+			
+			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			
+			UIImage	*btnImage = [UIImage imageWithContentsOfFile:[documentsFolderPath stringByAppendingString:picPath]];
+			
+			[button setBackgroundImage:btnImage forState:UIControlStateNormal];
+			
+			[button setTitle:standName forState:UIControlStateNormal];			
+			
+			[buttons addObject:button];
+			
+			
 		}
 		tmpNode = tmpNode->next;
 	}
@@ -104,7 +132,7 @@
 	scrollView.frame = [self.view bounds];
 	
 	//work out how long we need the scroll to scroll to
-	int maxFrameHeight = (scrollView.frame.size.width / width) * ([buttons count] / width);
+	int maxFrameHeight = (scrollView.frame.size.width / width) * (([buttons count] / width) + 1);
 	
 	//scrollView.frame = CGRectMake(0, 0, scrollView.frame.size.width, maxFrameHeight);
 	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, maxFrameHeight)];
