@@ -100,9 +100,11 @@
 
 - (void) arrangeButtons:(int)width
 {
+	//Set the scroll frame to the same size as the view frame
 	scrollView.frame = [self.view bounds];
 	
-	int maxFrameHeight = (scrollView.frame.size.width / width) * (([buttons count] / width) + 1);
+	//work out how long we need the scroll to scroll to
+	int maxFrameHeight = (scrollView.frame.size.width / width) * ([buttons count] / width);
 	
 	//scrollView.frame = CGRectMake(0, 0, scrollView.frame.size.width, maxFrameHeight);
 	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, maxFrameHeight)];
