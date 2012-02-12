@@ -12,10 +12,9 @@
 
 @implementation standsButtonsViewController
 
+
 @synthesize node;
 @synthesize XMLParser;
-
-
 
 
 - (id)initWithXMLNode:(xmlNode *)inNode
