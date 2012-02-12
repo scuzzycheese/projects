@@ -57,16 +57,7 @@
 	
 	while(1)
 	{
-		/*
-		 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
-		 message:@"You must be connected to the internet to use this app." 
-		 delegate:nil 
-		 cancelButtonTitle:@"OK"
-		 otherButtonTitles:nil];
-		 [alert show];
-		 [alert release];
-		 */
-		
+		//Implement updates for new conent here
 		sleep(10);
 	}
 	[pool release];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ThreeDCapeViewController : UIViewController {
+@interface ThreeDCapeViewController : UIViewController <UIWebViewDelegate> {
 	
 	IBOutlet UIWebView *threeDCapeWebView;
 

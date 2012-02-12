@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CTICCViewController : UIViewController {
+@interface CTICCViewController : UIViewController <UIWebViewDelegate> {
 
 	IBOutlet UIWebView *CTICCWebView;
 	

@@ -7,6 +7,7 @@
 //
 
 #import "standsNavigationController.h"
+#include <string.h>
 
 
 
@@ -74,7 +75,7 @@
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
 	
-	standAppDelegate *appDel = [UIApplication sharedApplication].delegate;
+	standAppDelegate *appDel = (standAppDelegate *)[UIApplication sharedApplication].delegate;
 	while(!appDel.XMLParser)
 	{
 		NSLog(@"Waiting for the XML Parser to exist...\n");

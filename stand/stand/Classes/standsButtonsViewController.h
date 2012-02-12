@@ -12,7 +12,7 @@
 #include "standsNavigationController.h"
 #include "myButton.h"
 
-@interface standsButtonsViewController : UIViewController {
+@interface standsButtonsViewController : UIViewController <UIScrollViewDelegate> {
 	
 	
 	xmlNode *node;

@@ -7,6 +7,7 @@
 //
 
 #import "standsButtonsViewController.h"
+#include <string.h>
 
 
 @implementation standsButtonsViewController
@@ -46,7 +47,7 @@
 			NSString *standName = [self findNodeValue:standsNodeKid :@"name"];
 			
 			
-			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name encoding:NSUTF8StringEncoding]);
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 			
 			[button setNode:tmpNode];
@@ -76,7 +77,7 @@
 			}
 			
 			
-			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name encoding:NSUTF8StringEncoding]);
 			NSLog(@"PIC PATH: %@\n", [documentsFolderPath stringByAppendingString:picPath]);
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 			[button setNode:tmpNode];
@@ -118,20 +119,20 @@
 {
 	while(inNode)
 	{
-		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName cString]) == 0)
+		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName UTF8String]) == 0)
 		{
 			break;
 		}
 		inNode = inNode->next;
 	}
-	return [NSString stringWithCString:inNode->children->content];
+	return [NSString stringWithCString:inNode->children->content encoding:NSUTF8StringEncoding];
 }
 
 - (xmlNode *) findNode:(xmlNode *)inNode :(NSString *)nodeName
 {
 	while(inNode)
 	{
-		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName cString]) == 0)
+		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName UTF8String]) == 0)
 		{
 			break;
 		}
@@ -327,3 +328,5 @@
 	[buttons release];
 	[scrollView release];
 }
+
+@end
