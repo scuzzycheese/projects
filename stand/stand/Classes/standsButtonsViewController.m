@@ -27,22 +27,30 @@
 
 - (void) loopNodes:(xmlNode *)inNode
 {
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsFolderPath = [documentPaths objectAtIndex:0];
+	documentsFolderPath = [documentsFolderPath stringByAppendingString:@"/"];
+	[documentsFolderPath retain];
+	
 	buttons = [NSMutableArray array];
 	[buttons retain];
 	
-	xmlNode *tmpNode = inNode;
+	xmlNode *tmpNode = inNode->children;
 	while(tmpNode)
 	{
-		if(tmpNode->type == XML_ELEMENT_NODE && strcmp(tmpNode->name, "standGroup") == 0)
+		if(tmpNode->type == XML_ELEMENT_NODE && strcmp(tmpNode->name, "stands") == 0)
 		{
-			xmlNode *standNodeKid = tmpNode->children;
+			xmlNode *standsNodeKid = tmpNode->children;
 
-			NSString *picPath = [self findNodeValue:standNodeKid :@"picture"];
-			NSString *standName = [self findNodeValue:standNodeKid :@"name"];
+			NSString *picPath = [self findNodeValue:standsNodeKid :@"picture"];
+			NSString *standName = [self findNodeValue:standsNodeKid :@"name"];
 			
 			
 			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			
+			[button setNode:tmpNode];
+			[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 			
 			UIImage	*btnImage = [UIImage imageWithContentsOfFile:[documentsFolderPath stringByAppendingString:picPath]];
 			
@@ -63,14 +71,17 @@
 				if(standNodeKid->type == XML_ELEMENT_NODE && strcmp(standNodeKid->name, "pictures") == 0)
 				{
 					picPath = [self findNodeValue:standNodeKid->children :@"picture"];
-					//xmlNode *pictureNode = standNodeKid->children;
 				}
 				standNodeKid = standNodeKid->next;
 			}
 			
 			
 			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name]);
+			NSLog(@"PIC PATH: %@\n", [documentsFolderPath stringByAppendingString:picPath]);
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			[button setNode:tmpNode];
+			[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
 			
 			UIImage	*btnImage = [UIImage imageWithContentsOfFile:[documentsFolderPath stringByAppendingString:picPath]];
 			
@@ -103,7 +114,7 @@
 	
 }
 
-- (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
+- (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName
 {
 	while(inNode)
 	{
@@ -115,6 +126,44 @@
 	}
 	return [NSString stringWithCString:inNode->children->content];
 }
+
+- (xmlNode *) findNode:(xmlNode *)inNode :(NSString *)nodeName
+{
+	while(inNode)
+	{
+		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName cString]) == 0)
+		{
+			break;
+		}
+		inNode = inNode->next;
+	}
+	return inNode;
+}
+
+
+
+
+- (void) buttonPressed:(id)sender
+{
+	UIButton *button = (UIButton *)sender;
+	NSLog(@"button pressed\n");
+	
+	xmlNode *buttonNode = [button node];
+	
+	if(buttonNode->type == XML_ELEMENT_NODE && strcmp(buttonNode->name, "stands") == 0)
+	{
+		standsButtonsViewController *testView = [[standsButtonsViewController alloc] initWithXMLNode:buttonNode];
+		
+		[self.navigationController pushViewController:testView animated:YES];
+		
+		[testView release];	
+		
+	}
+	
+}
+
+
+
 
 - (void) sizeButtonsWidth:(int)width height:(int)height
 {	
@@ -227,10 +276,7 @@
 	[super viewDidLoad];
 	
 	
-	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    documentsFolderPath = [documentPaths objectAtIndex:0];
-	documentsFolderPath = [documentsFolderPath stringByAppendingString:@"/"];
-	[documentsFolderPath retain];
+
 	
 	
 	scrollView = [[UIScrollView alloc] initWithFrame:[self.view bounds]];

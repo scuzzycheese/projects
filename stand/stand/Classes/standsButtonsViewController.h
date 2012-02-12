@@ -10,6 +10,7 @@
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
 #include "standsNavigationController.h"
+#include "myButton.h"
 
 @interface standsButtonsViewController : UIViewController {
 	
@@ -30,6 +31,8 @@
 - (void) showButtons;
 - (void) sizeButtonsWidth:(int)width height:(int)height;
 - (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
+- (xmlNode *) findNode:(xmlNode *)inNode :(NSString *)nodeName;
+- (void) buttonPressed:(id)sender;
 
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;

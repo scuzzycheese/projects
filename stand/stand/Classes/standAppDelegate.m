@@ -50,7 +50,7 @@
 	updateZipFile = [documentsFolderPath stringByAppendingString:@"/update.zip"];
 	//NSLog(@"File to download:%@", fileToDownload);
 	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.3/downloads/update.zip"]];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.2/downloads/update.zip"]];
 	[request setDownloadDestinationPath:updateZipFile];
 	[request setDelegate:self];
 	[request startAsynchronous];

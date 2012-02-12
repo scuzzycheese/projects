@@ -87,17 +87,17 @@
 		NSLog(@"XML Data is parsed...\n");
 	}
 	
-	xmlNode *standGroupsNode = self.XMLParser.node->children;
-	while(standGroupsNode)
+	xmlNode *menuDataNode = self.XMLParser.node->children;
+	while(menuDataNode)
 	{
-		if(standGroupsNode->type == XML_ELEMENT_NODE && strcmp(standGroupsNode->name, "standGroups") == 0)
+		if(menuDataNode->type == XML_ELEMENT_NODE && strcmp(menuDataNode->name, "menuData") == 0)
 		{
 			break;
 		}
-		standGroupsNode = standGroupsNode->next;
+		menuDataNode = menuDataNode->next;
 	}
 	
-	[((standsButtonsViewController *)[self.viewControllers objectAtIndex:0]) loopNodes:standGroupsNode->children];
+	[((standsButtonsViewController *)[self.viewControllers objectAtIndex:0]) loopNodes:menuDataNode];
 	
 	[pool release];
 	
