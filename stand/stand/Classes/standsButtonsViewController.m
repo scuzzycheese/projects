@@ -152,11 +152,15 @@
 	
 	if(buttonNode->type == XML_ELEMENT_NODE && strcmp(buttonNode->name, "stands") == 0)
 	{
-		standsButtonsViewController *testView = [[standsButtonsViewController alloc] initWithXMLNode:buttonNode];
+		standsButtonsViewController *newStandsMenu = [[standsButtonsViewController alloc] initWithXMLNode:buttonNode];
 		
-		[self.navigationController pushViewController:testView animated:YES];
+		NSString *itemName = [self findNodeValue:buttonNode->children :@"name"];
 		
-		[testView release];	
+		[newStandsMenu setTitle:itemName];
+		
+		[self.navigationController pushViewController:newStandsMenu animated:YES];
+		
+		[newStandsMenu release];	
 		
 	}
 	
