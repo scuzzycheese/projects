@@ -20,7 +20,7 @@
 	self = [super init];
 
 	
-	self.dom = xmlReadFile([filename cString], NULL, 0);
+	self.dom = xmlReadFile([filename UTF8String], NULL, 0);
 	
 	xmlErrorPtr error = xmlGetLastError();
 	if(error)

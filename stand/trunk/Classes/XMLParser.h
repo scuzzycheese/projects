@@ -10,6 +10,8 @@
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
 
+#ifndef XMLPARSER_H
+#define XMLPARSER_H
 
 
 @interface XMLParser : NSObject
@@ -27,3 +29,5 @@
 @property (nonatomic, assign) BOOL dataAvailable;
 
 @end
+
+#endif

@@ -12,6 +12,14 @@
 #include "standsNavigationController.h"
 #include "myButton.h"
 
+
+
+/*
+ TODO: There is a bug, that when orientation changes while this view
+		conroller is not active, the buttons don't change around
+ */
+
+
 @interface standsButtonsViewController : UIViewController <UIScrollViewDelegate> {
 	
 	

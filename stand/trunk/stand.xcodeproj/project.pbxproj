@@ -18,6 +18,7 @@
 		2F2041F714CE1F5B007A206E /* CTICCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2041F614CE1F5B007A206E /* CTICCViewController.m */; };
 		2F20427D14D0A910007A206E /* orderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427C14D0A910007A206E /* orderViewController.m */; };
 		2F20428014D5D255007A206E /* standsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427F14D5D255007A206E /* standsNavigationController.m */; };
+		2F28B92C14E85DF5009C3EB3 /* standsDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */; };
 		2F39281314DA90910059C832 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F39281214DA90910059C832 /* Foundation.framework */; };
 		2F39286714DADD780059C832 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F39286614DADD780059C832 /* CFNetwork.framework */; };
 		2F39286914DADD780059C832 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F39286814DADD780059C832 /* MobileCoreServices.framework */; };
@@ -62,6 +63,8 @@
 		2F20427C14D0A910007A206E /* orderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderViewController.m; sourceTree = "<group>"; };
 		2F20427E14D5D255007A206E /* standsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = standsNavigationController.h; sourceTree = "<group>"; };
 		2F20427F14D5D255007A206E /* standsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = standsNavigationController.m; sourceTree = "<group>"; };
+		2F28B92A14E85DF5009C3EB3 /* standsDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = standsDisplayViewController.h; sourceTree = "<group>"; };
+		2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = standsDisplayViewController.m; sourceTree = "<group>"; };
 		2F39281214DA90910059C832 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F39286614DADD780059C832 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2F39286814DADD780059C832 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				2F0B54E314DBE95400E761E1 /* XMLParser.m */,
 				2F57AA6F14E53FF800686C81 /* myButton.h */,
 				2F57AA7014E53FF800686C81 /* myButton.m */,
+				2F28B92A14E85DF5009C3EB3 /* standsDisplayViewController.h */,
+				2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				2F39296914DB391A0059C832 /* ZipArchive.mm in Sources */,
 				2F0B54E414DBE95400E761E1 /* XMLParser.m in Sources */,
 				2F57AA7114E53FF800686C81 /* myButton.m in Sources */,
+				2F28B92C14E85DF5009C3EB3 /* standsDisplayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

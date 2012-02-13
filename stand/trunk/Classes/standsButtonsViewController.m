@@ -8,6 +8,7 @@
 
 #import "standsButtonsViewController.h"
 #include <string.h>
+#include "standsDisplayViewController.h"
 
 
 @implementation standsButtonsViewController
@@ -163,6 +164,20 @@
 		[newStandsMenu release];	
 		
 	}
+	if(buttonNode->type == XML_ELEMENT_NODE && strcmp(buttonNode->name, "stand") == 0)
+	{
+		standsDisplayViewController *newStandVC = [[standsDisplayViewController alloc] initWithXMLNode:buttonNode];
+		
+		NSString *itemName = [self findNodeValue:buttonNode->children :@"name"];
+		
+		[newStandVC setTitle:itemName];
+		
+		[self.navigationController pushViewController:newStandVC animated:YES];
+		
+		[newStandVC release];	
+		
+	}
+	
 	
 }
 
@@ -231,13 +246,8 @@
 	{
 		[self arrangeButtons:3];
 	}
-
-
-
-
 	
 	[UIView commitAnimations];
-	
 }
 
 - (IBAction) swapViewController:(id)sender
