@@ -37,7 +37,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 2F84F9D214CE1AB5003A643B /* stand */;
-		activeSDKPreference = iphonesimulator4.3;
+		activeSDKPreference = iphoneos4.3;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* stand */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* stand */,
@@ -3935,9 +3935,9 @@
 	};
 	2F20427F14D5D255007A206E /* standsNavigationController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 1937}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 1807}}";
 			sepNavSelRange = "{1917, 0}";
-			sepNavVisRange = "{1450, 1209}";
+			sepNavVisRange = "{830, 1161}";
 		};
 	};
 	2F2285C714D951B000A1595A /* PBXTextBookmark */ = {
@@ -5535,9 +5535,9 @@
 	};
 	2F8106E914D6F48C000847DD /* standsButtonsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 4641}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 4459}}";
 			sepNavSelRange = "{6955, 0}";
-			sepNavVisRange = "{7692, 931}";
+			sepNavVisRange = "{3728, 1237}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};
