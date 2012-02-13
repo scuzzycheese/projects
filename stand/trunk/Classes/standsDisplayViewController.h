@@ -10,6 +10,7 @@
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
 #include "XMLParser.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface standsDisplayViewController : UIViewController <UIGestureRecognizerDelegate>{
 
@@ -35,6 +36,10 @@
 - (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
 - (xmlNode *) findNode:(xmlNode *)inNode :(NSString *)nodeName;
 
-- (void)swapViewAt:(int)index;
+
+
+
+- (void)slideSwapView:(UIView *)newView direction:(NSInteger)dir;
+- (void)flipView:(UIView *)newView direction:(NSInteger)dir;
 
 @end

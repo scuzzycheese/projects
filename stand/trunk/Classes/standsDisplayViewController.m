@@ -67,7 +67,7 @@
 		currentViewIndex = 0;
 	}
 	
-	[self swapViewAt:currentViewIndex];
+	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
 	
 	NSLog(@"Swipe Right\n");
 }
@@ -75,64 +75,76 @@
 - (void)handleSwipeLeft
 {
 	currentViewIndex --;
-	if(currentViewIndex <= 0)
+	if(currentViewIndex < 0)
 	{
 		currentViewIndex = [pictureViews count] - 1;
 	}
 	
-	[self swapViewAt:currentViewIndex];
+	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromRight];
 	
 	NSLog(@"Swipe Left\n");	
 }
 
-- (void)swapViewAt:(int)index
+/*
+- (void)swapViewSlide
+{
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1.0];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFl ipFromLeft forView:window cache:YES];
+	
+	[[mainScreenController view] removeFromSuperview];
+	[window addSubview:[myNextScreenController view]];
+	[UIView commitAnimations];
+}
+ */
+
+
+- (void)slideSwapView:(UIView *)newView direction:(NSInteger)dir
+{
+	UIView *tempContainer = self.view;
+
+	UIView *topSubView = [[tempContainer subviews] objectAtIndex:0];
+	if(topSubView)
+	{
+		[topSubView removeFromSuperview]; 
+	}
+	[tempContainer addSubview:newView];
+
+	CATransition *animation = [CATransition animation];
+	[animation setDuration:0.5];
+	[animation setType:kCATransitionPush];
+	[animation setSubtype:kCATransitionFromLeft];
+	[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+	
+	[[[self.view superview] layer] addAnimation:animation forKey:@"SwitchToView1"];
+}
+
+- (void)flipView:(UIView *)newView direction:(NSInteger)dir
 {
 	
 	UIView *tempContainer = self.view;
 	
-	UIImageView *newImageView = [pictureViews objectAtIndex:index];
-	
-	
-	if(newImageView)
-	{
-		/*
-		NSArray *subViews = [tempContainer subviews];
-		if(subViews)
-		{
-		
-			UIView *topSubView = [subViews objectAtIndex:0];
-			if(topSubView)
+
+	[UIView transitionWithView:tempContainer
+			duration:1
+			options:dir
+			animations:^
 			{
-				[[[tempContainer subviews] objectAtIndex:0] removeFromSuperview]; 
-			}
-			[tempContainer addSubview:newImageView];
-		
-			[tempContainer release]; 
-		}
-		*/
-		
-	
-		[UIView transitionWithView:tempContainer
-				duration:2
-				options:UIViewAnimationOptionTransitionFlipFromRight
-				animations:^
+				UIView *topSubView = [[tempContainer subviews] objectAtIndex:0];
+				if(topSubView)
 				{
-					UIView *topSubView = [[tempContainer subviews] objectAtIndex:0];
-					if(topSubView)
-					{
-						[[[tempContainer subviews] objectAtIndex:0] removeFromSuperview]; 
-					}
-					[tempContainer addSubview:newImageView];
-					//CGAffineTransform transform = CGAffineTransformMakeScale(4.0, 4.0);
-					//tempContainer.transform = transform;
-				} 
-				completion:^(BOOL finished)
-				{
-					[tempContainer release]; 
+					[topSubView removeFromSuperview]; 
 				}
-		 ];
-		 
-	}
+				[tempContainer addSubview:newView];
+				//CGAffineTransform transform = CGAffineTransformMakeScale(4.0, 4.0);
+				//tempContainer.transform = transform;
+			} 
+			completion:^(BOOL finished)
+			{
+				//[tempContainer release]; 
+			}
+	 ];
+	
 }
 
 
