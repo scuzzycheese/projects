@@ -67,7 +67,8 @@
 		currentViewIndex = 0;
 	}
 	
-	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
+	//[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
+	[self slideSwapView:[pictureViews objectAtIndex:currentViewIndex] direction:1];
 	
 	NSLog(@"Swipe Right\n");
 }
@@ -80,7 +81,8 @@
 		currentViewIndex = [pictureViews count] - 1;
 	}
 	
-	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromRight];
+	//[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromRight];
+	[self slideSwapView:[pictureViews objectAtIndex:currentViewIndex] direction:2];
 	
 	NSLog(@"Swipe Left\n");	
 }
@@ -113,7 +115,8 @@
 	CATransition *animation = [CATransition animation];
 	[animation setDuration:0.5];
 	[animation setType:kCATransitionPush];
-	[animation setSubtype:kCATransitionFromLeft];
+	if(dir == 1) [animation setSubtype:kCATransitionFromLeft];
+	else [animation setSubtype:kCATransitionFromRight];
 	[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 	
 	[[[self.view superview] layer] addAnimation:animation forKey:@"SwitchToView1"];
@@ -239,6 +242,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	[pictureViews release];
 }
 
 
