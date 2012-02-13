@@ -289,8 +289,26 @@
 {
 	[super viewDidLoad];
 	
-	
+	/*
+	UIViewAutoresizing mask = (1 & !UIViewAutoresizingFlexibleTopMargin);
+	self.view.autoresizingMask = mask;
+	*/
 
+	/*
+	 NOTICE: This is nasty and hacky apple! Why???
+	 */
+	UIView *baseView;
+	if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+	{
+		baseView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+	}
+	else
+	{
+		baseView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024)];
+	}
+	[baseView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+	[self setView:baseView];
+	[baseView release];
 	
 	
 	scrollView = [[UIScrollView alloc] initWithFrame:[self.view bounds]];
