@@ -66,20 +66,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	NSLog(@"Successfully downloaded the update file.\n");
-	
-	ZipArchive *ziper = [[ZipArchive alloc] init];
-	
-	[ziper UnzipOpenFile:updateZipFile];
-	[ziper UnzipFileTo:documentsFolderPath overWrite:YES];
-	
-	[ziper release];
-	
-	NSString *standsXMLFile = [documentsFolderPath stringByAppendingString:@"/stands.xml"];
-	
-	self.XMLParser = [[XMLParser alloc] initWithFilename:standsXMLFile];
-	
-
-	
+	[self initialiseXML];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -94,8 +81,26 @@
 										  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+	
+	//Try initialise XML even if we couldn't download an update
+	//NOTE: This all needs work.
+	[self initialiseXML];
 }
 
+
+- (void)initialiseXML
+{	
+	ZipArchive *ziper = [[ZipArchive alloc] init];
+	
+	[ziper UnzipOpenFile:updateZipFile];
+	[ziper UnzipFileTo:documentsFolderPath overWrite:YES];
+	
+	[ziper release];
+	
+	NSString *standsXMLFile = [documentsFolderPath stringByAppendingString:@"/stands.xml"];
+	
+	self.XMLParser = [[XMLParser alloc] initWithFilename:standsXMLFile];
+}
 
 //Have to test this still
 - (void)ErrorMessage:(NSString *)msg

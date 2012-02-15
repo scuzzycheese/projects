@@ -31,5 +31,6 @@
 - (void)requestFinished:(ASIHTTPRequest *)request;
 - (void)requestFailed:(ASIHTTPRequest *)request;
 - (void)ErrorMessage:(NSString *)msg;
+- (void)initialiseXML;
 
 @end

@@ -274,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>15</integer>
+									<integer>5</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -299,7 +299,7 @@
 							<real>241</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>4 59 1280 943 0 0 1280 1002 </string>
+						<string>2 59 1280 943 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -317,7 +317,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>standsButtonsViewController.m</string>
+								<string>standAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>standsButtonsViewController.m</string>
+										<string>standAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2FAAC62D14E9B8B200546213</string>
+										<string>2FAAC64914EC4C7400546213</string>
 										<key>history</key>
 										<array>
 											<string>2F8106F114D7E0AC000847DD</string>
@@ -346,7 +346,6 @@
 											<string>2F0B581314E4129500E761E1</string>
 											<string>2F57AA8014E547B600686C81</string>
 											<string>2F57AA8114E547B600686C81</string>
-											<string>2F28B90314E7F33A009C3EB3</string>
 											<string>2F28B90414E7F33A009C3EB3</string>
 											<string>2F28B90514E7F33A009C3EB3</string>
 											<string>2F28B90614E7F33A009C3EB3</string>
@@ -357,11 +356,12 @@
 											<string>2F28B95214E8705B009C3EB3</string>
 											<string>2FAAC5A514E9584E00546213</string>
 											<string>2FAAC5A814E9584E00546213</string>
-											<string>2FAAC5DE14E96BA300546213</string>
 											<string>2FAAC5DF14E96BA300546213</string>
 											<string>2FAAC5F514E9ABE800546213</string>
 											<string>2FAAC60A14E9B53B00546213</string>
-											<string>2FAAC62B14E9B89600546213</string>
+											<string>2FAAC64614EC4C7400546213</string>
+											<string>2FAAC64714EC4C7400546213</string>
+											<string>2FAAC64814EC4C7400546213</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -375,7 +375,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1017, 758}}</string>
 								<key>RubberWindowFrame</key>
-								<string>4 59 1280 943 0 0 1280 1002 </string>
+								<string>2 59 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -395,7 +395,7 @@
 								<key>Frame</key>
 								<string>{{0, 763}, {1017, 139}}</string>
 								<key>RubberWindowFrame</key>
-								<string>4 59 1280 943 0 0 1280 1002 </string>
+								<string>2 59 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -567,7 +567,7 @@
 		<string>/Users/scuzzy/Documents/stand/stand.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>4 59 1280 943 0 0 1280 1002 </string>
+	<string>2 59 1280 943 0 0 1280 1002 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
