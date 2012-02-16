@@ -205,6 +205,9 @@
 	//scrollView.frame = CGRectMake(0, 0, scrollView.frame.size.width, maxFrameHeight);
 	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, maxFrameHeight)];
 	
+	NSLog(@"WIDTH: %d\n", (int)scrollView.frame.size.width);
+	NSLog(@"HEIGHT: %d\n", (int)scrollView.frame.size.height);
+	
 	int numberButtons = [buttons count];
 	for(int i = 0; i < numberButtons; i ++)
 	{

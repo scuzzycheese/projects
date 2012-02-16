@@ -39,7 +39,8 @@
 		2F39296814DB391A0059C832 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F39296114DB391A0059C832 /* zip.c */; };
 		2F39296914DB391A0059C832 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F39296414DB391A0059C832 /* ZipArchive.mm */; };
 		2F57AA7114E53FF800686C81 /* myButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F57AA7014E53FF800686C81 /* myButton.m */; };
-		2F8106D814D6E1C4000847DD /* 3dCapeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F8106D714D6E1C4000847DD /* 3dCapeLogo.png */; };
+		2F76E9B114ED4CBD00761573 /* 3dcapeLogo_bar_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F76E9B014ED4CBD00761573 /* 3dcapeLogo_bar_small.png */; };
+		2F76E9B514ED4FB700761573 /* CTICC_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F76E9B414ED4FB700761573 /* CTICC_small.png */; };
 		2F8106EA14D6F48C000847DD /* standsButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8106E914D6F48C000847DD /* standsButtonsViewController.m */; };
 		2FAAC58514E952DE00546213 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FAAC58414E952DE00546213 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -106,7 +107,8 @@
 		2F39296414DB391A0059C832 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		2F57AA6F14E53FF800686C81 /* myButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myButton.h; sourceTree = "<group>"; };
 		2F57AA7014E53FF800686C81 /* myButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myButton.m; sourceTree = "<group>"; };
-		2F8106D714D6E1C4000847DD /* 3dCapeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3dCapeLogo.png; path = ../3dCapeLogo.png; sourceTree = SOURCE_ROOT; };
+		2F76E9B014ED4CBD00761573 /* 3dcapeLogo_bar_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3dcapeLogo_bar_small.png; sourceTree = "<group>"; };
+		2F76E9B414ED4FB700761573 /* CTICC_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CTICC_small.png; sourceTree = "<group>"; };
 		2F8106E814D6F48C000847DD /* standsButtonsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = standsButtonsViewController.h; sourceTree = "<group>"; };
 		2F8106E914D6F48C000847DD /* standsButtonsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = standsButtonsViewController.m; sourceTree = "<group>"; };
 		2FAAC58414E952DE00546213 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -183,6 +185,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2F76E9B414ED4FB700761573 /* CTICC_small.png */,
+				2F76E9B014ED4CBD00761573 /* 3dcapeLogo_bar_small.png */,
 				28A0AB4B0D9B1048005BE974 /* stand_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -192,7 +196,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2F8106D714D6E1C4000847DD /* 3dCapeLogo.png */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* stand-Info.plist */,
 			);
@@ -320,7 +323,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */,
-				2F8106D814D6E1C4000847DD /* 3dCapeLogo.png in Resources */,
+				2F76E9B114ED4CBD00761573 /* 3dcapeLogo_bar_small.png in Resources */,
+				2F76E9B514ED4FB700761573 /* CTICC_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
