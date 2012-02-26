@@ -22,6 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after app launch.
+	[window setBackgroundColor:[UIColor blackColor]];
     
 	// Set the tab bar controller as the window's root view controller and display.
     self.window.rootViewController = self.tabBarController;
