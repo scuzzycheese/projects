@@ -10,6 +10,7 @@
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
 #include "XMLParser.h"
+#include "orderViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface standsDisplayViewController : UIViewController <UIGestureRecognizerDelegate>{
@@ -25,6 +26,10 @@
 	UIButton *rightButton;
 	
 	UIButton *leftButton;
+	
+	UIButton *orderButton;
+	
+	orderViewController *orderForm;
 	
 }
 
@@ -51,5 +56,7 @@
 
 - (void)slideSwapView:(UIView *)newView direction:(NSInteger)dir;
 - (void)flipView:(UIView *)newView direction:(NSInteger)dir;
+
+- (void)orderButtonPressed:(id)sender;
 
 @end

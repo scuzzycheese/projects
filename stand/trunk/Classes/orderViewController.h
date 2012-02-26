@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "standsDisplayViewController.h"
 
 
 @interface orderViewController : UIViewController {
 	
 	IBOutlet UIImageView *standPicture;
+	standsDisplayViewController *standsController;
+	
 
 }
 @property (nonatomic, retain) IBOutlet UIImageView *standPicture;
+@property (nonatomic, retain) standsDisplayViewController *standsController;
 
 @end

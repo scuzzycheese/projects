@@ -74,7 +74,8 @@
 	
 	[self.view setBackgroundColor:[UIColor blackColor]];
 	
-
+	orderForm = [[orderViewController alloc] initWithNibName:@"orderForm" bundle:nil];
+	[orderForm setStandsController:self];
 }
 
 - (void)addLeftRightButtonsToView:(UIView *)view
@@ -195,6 +196,13 @@
 	
 }
 
+- (void)orderButtonPressed:(id)sender
+{
+	
+	
+	
+}
+
 
 - (void) loopNodes:(xmlNode *)inNode
 {
@@ -220,6 +228,13 @@
 	[leftButton setImage:leftButtonImage forState:UIControlStateNormal];
 	[leftButton setContentMode:UIViewContentModeCenter];
 	[leftButton retain];
+	
+	
+	//BUSI adding this button to swap to the order form
+	orderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[orderButton addTarget:self action:@selector(orderButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+	orderButton.frame = CGRectMake(100, self.view.frame.size.height - 50, 100, 50);
+	[orderButton setTitle:@"Order" forState:UIControlStateNormal];
 	
 
 	pictureViews = [NSMutableArray array];
