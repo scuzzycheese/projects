@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "standsDisplayViewController.h"
 
+
+@class standsDisplayViewController;
 
 @interface orderViewController : UIViewController {
 	

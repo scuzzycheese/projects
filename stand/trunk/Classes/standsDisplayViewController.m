@@ -76,6 +76,7 @@
 	
 	orderForm = [[orderViewController alloc] initWithNibName:@"orderForm" bundle:nil];
 	[orderForm setStandsController:self];
+	[orderForm retain];
 }
 
 - (void)addLeftRightButtonsToView:(UIView *)view
@@ -85,6 +86,9 @@
 	[view addSubview:rightButton];
 	[view bringSubviewToFront:rightButton];
 	
+	[view addSubview:orderButton];
+	[view bringSubviewToFront:orderButton];
+	
 	[view setUserInteractionEnabled:YES];
 }
 
@@ -92,6 +96,7 @@
 {
 	[leftButton removeFromSuperview];
 	[rightButton removeFromSuperview];
+	[orderForm removeFromSuperview];
 }
 
 - (void)handleSwipeRight
@@ -197,10 +202,9 @@
 }
 
 - (void)orderButtonPressed:(id)sender
-{
-	
-	
-	
+{	
+	[self flipView:orderForm.view direction:1];
+	NSLog(@"Order button pressed\n");	
 }
 
 
@@ -235,6 +239,7 @@
 	[orderButton addTarget:self action:@selector(orderButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	orderButton.frame = CGRectMake(100, self.view.frame.size.height - 50, 100, 50);
 	[orderButton setTitle:@"Order" forState:UIControlStateNormal];
+	[orderButton retain];
 	
 
 	pictureViews = [NSMutableArray array];
@@ -325,6 +330,7 @@
 - (void)dealloc {
     [super dealloc];
 	[pictureViews release];
+	[orderForm release];
 	
 	///NOTE: I think these get released automatically, but I need to double check
 	//I get an error when I release them

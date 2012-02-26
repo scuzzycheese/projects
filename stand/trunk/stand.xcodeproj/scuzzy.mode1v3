@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2F0E3E3914FA7E9700C203F5</string>
+						<string>2F0E3E4F14FAB42A00C203F5</string>
 						<key>history</key>
 						<array>
 							<string>2F0E3E1414FA6E5500C203F5</string>
@@ -370,7 +370,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2F0E3E3814FA7E9700C203F5</string>
+										<string>2F0E3E4E14FAB42A00C203F5</string>
 										<key>history</key>
 										<array>
 											<string>2F81074B14D7E149000847DD</string>
@@ -399,10 +399,10 @@
 											<string>2F0E3E1D14FA701600C203F5</string>
 											<string>2F0E3E1E14FA701600C203F5</string>
 											<string>2F0E3E1F14FA701600C203F5</string>
-											<string>2F0E3E3414FA7E9700C203F5</string>
-											<string>2F0E3E3514FA7E9700C203F5</string>
-											<string>2F0E3E3614FA7E9700C203F5</string>
-											<string>2F0E3E3714FA7E9700C203F5</string>
+											<string>2F0E3E4A14FAB42A00C203F5</string>
+											<string>2F0E3E4B14FAB42A00C203F5</string>
+											<string>2F0E3E4C14FAB42A00C203F5</string>
+											<string>2F0E3E4D14FAB42A00C203F5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -603,9 +603,9 @@
 		<string>2F0E3DA014FA345C00C203F5</string>
 		<string>2F0E3DA114FA345C00C203F5</string>
 		<string>2F84F9E514CE1D96003A643B</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2F0E3E1214FA6E5500C203F5</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/scuzzy/Documents/stand/stand.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -630,7 +630,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>standsDisplayViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -647,6 +647,8 @@
 							<string>379pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -699,7 +701,7 @@
 			<key>WindowToolGUID</key>
 			<string>2F84F9E514CE1D96003A643B</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
