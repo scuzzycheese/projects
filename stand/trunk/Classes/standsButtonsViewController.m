@@ -49,6 +49,7 @@
 			
 			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name encoding:NSUTF8StringEncoding]);
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			//[button setBackgroundColor:[UIColor blackColor]];
 			
 			[button setNode:tmpNode];
 			[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -80,6 +81,8 @@
 			NSLog(@"NODE NAME: %@\n", [NSString stringWithCString:tmpNode->name encoding:NSUTF8StringEncoding]);
 			NSLog(@"PIC PATH: %@\n", [documentsFolderPath stringByAppendingString:picPath]);
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			//[button setBackgroundColor:[UIColor blackColor]];
+			
 			[button setNode:tmpNode];
 			[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -99,15 +102,15 @@
 	
 	//scrollView.frame = [self.view bounds];
 	
-	[self sizeButtonsWidth:200 height:200];
+	[self sizeButtonsWidth:340 height:216];
 	
 	if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
 	{
-		[self arrangeButtons:4];
+		[self arrangeButtons:3];
 	}
 	else
 	{
-		[self arrangeButtons:3];
+		[self arrangeButtons:2];
 	}
 	
 	
@@ -167,6 +170,7 @@
 	if(buttonNode->type == XML_ELEMENT_NODE && strcmp(buttonNode->name, "stand") == 0)
 	{
 		standsDisplayViewController *newStandVC = [[standsDisplayViewController alloc] initWithXMLNode:buttonNode];
+		[newStandVC.view setBackgroundColor:[UIColor blackColor]];
 		
 		NSString *itemName = [self findNodeValue:buttonNode->children :@"name"];
 		
@@ -202,7 +206,6 @@
 	//work out how long we need the scroll to scroll to
 	int maxFrameHeight = (scrollView.frame.size.width / width) * (([buttons count] / width) + 1);
 	
-	//scrollView.frame = CGRectMake(0, 0, scrollView.frame.size.width, maxFrameHeight);
 	[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, maxFrameHeight)];
 	
 	NSLog(@"WIDTH: %d\n", (int)scrollView.frame.size.width);
@@ -216,8 +219,7 @@
 		int btnCentOffset = (scrollView.frame.size.width / width) / 2;
 				
 		UIButton *button = [buttons objectAtIndex:i];
-		
-		//button.frame = CGRectMake(0, 0, 200, 200);
+
 		button.center = CGPointMake(btnWStart + btnCentOffset, btnHStart + btnCentOffset);
 	}
 }
@@ -243,11 +245,11 @@
 	
 	if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
 	{
-		[self arrangeButtons:4];
+		[self arrangeButtons:3];
 	}
 	else
 	{
-		[self arrangeButtons:3];
+		[self arrangeButtons:2];
 	}
 	
 	[UIView commitAnimations];
@@ -319,6 +321,8 @@
 	[scrollView setBouncesZoom:YES];
 	
 	[self.view addSubview:scrollView];
+	
+	[self.view setBackgroundColor:[UIColor blackColor]];
 	
 
  

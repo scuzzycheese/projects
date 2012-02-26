@@ -197,7 +197,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>2F0E3E1214FA6E5500C203F5</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>standsDisplayViewController.m</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>2F0E3E1314FA6E5500C203F5</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>standsDisplayViewController.m</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>2F0E3E1514FA6E5500C203F5</string>
+						<key>history</key>
+						<array>
+							<string>2F0E3E1414FA6E5500C203F5</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {750, 461}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>15 495 750 502 0 0 1280 1002 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -329,7 +370,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2F0E3DD214FA4F6F00C203F5</string>
+										<string>2F0E3E1114FA6E5500C203F5</string>
 										<key>history</key>
 										<array>
 											<string>2F81074B14D7E149000847DD</string>
@@ -358,10 +399,10 @@
 											<string>2F76E9B614ED4FBD00761573</string>
 											<string>2F76E9CF14EFCD1300761573</string>
 											<string>2F0E3DCD14FA4F6F00C203F5</string>
-											<string>2F0E3DCE14FA4F6F00C203F5</string>
 											<string>2F0E3DCF14FA4F6F00C203F5</string>
-											<string>2F0E3DD014FA4F6F00C203F5</string>
-											<string>2F0E3DD114FA4F6F00C203F5</string>
+											<string>2F0E3E0E14FA6E5500C203F5</string>
+											<string>2F0E3E0F14FA6E5500C203F5</string>
+											<string>2F0E3E1014FA6E5500C203F5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -562,8 +603,9 @@
 		<string>2F0E3DA014FA345C00C203F5</string>
 		<string>2F0E3DA114FA345C00C203F5</string>
 		<string>2F84F9E514CE1D96003A643B</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>2F0E3E1214FA6E5500C203F5</string>
 		<string>/Users/scuzzy/Documents/stand/stand.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -740,10 +782,10 @@
 									<key>Frame</key>
 									<string>{{473, 0}, {564, 416}}</string>
 									<key>RubberWindowFrame</key>
-									<string>105 42 1037 821 0 0 1280 1002 </string>
+									<string>126 135 1037 821 0 0 1280 1002 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>105 42 1037 821 0 0 1280 1002 </string>
+								<string>126 135 1037 821 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -777,7 +819,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>105 42 1037 821 0 0 1280 1002 </string>
+			<string>126 135 1037 821 0 0 1280 1002 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>

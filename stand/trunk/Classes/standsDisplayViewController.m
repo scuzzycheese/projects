@@ -72,13 +72,19 @@
 	[swipeRight release];
 	[swipeLeft release];
 	
+	[self.view setBackgroundColor:[UIColor blackColor]];
+	
 
 }
 
 - (void)addLeftRightButtonsToView:(UIView *)view
 {
 	[view addSubview:leftButton];
+	[view bringSubviewToFront:leftButton];
 	[view addSubview:rightButton];
+	[view bringSubviewToFront:rightButton];
+	
+	[view setUserInteractionEnabled:YES];
 }
 
 - (void)removeLeftRightButtonsFromCurrentView
@@ -198,16 +204,22 @@
 	documentsFolderPath = [documentsFolderPath stringByAppendingString:@"/"];
 	[documentsFolderPath retain];
 
+	UIImage *leftButtonImage = [[UIImage imageNamed:@"left_arrow"] stretchableImageWithLeftCapWidth:100 topCapHeight:90];
+	UIImage *rightButtonImage = [[UIImage imageNamed:@"right_arrow"] stretchableImageWithLeftCapWidth:100 topCapHeight:90];
 	
-	rightButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[rightButton addTarget:self action:@selector(buttonSwipeRight:) forControlEvents:UIControlEventTouchUpInside];
-	rightButton.frame = CGRectMake(self.view.frame.size.width - 100, 0, self.view.frame.size.width, self.view.frame.size.height);
-	//[rightButton retain];
+	rightButton.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, self.view.frame.size.height);
+	[rightButton setImage:rightButtonImage forState:UIControlStateNormal];
+	[rightButton setContentMode:UIViewContentModeCenter];
+	[rightButton retain];
 	
-	leftButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[leftButton addTarget:self action:@selector(buttonSwipeLeft:) forControlEvents:UIControlEventTouchUpInside];
 	leftButton.frame = CGRectMake(0, 0, 100, self.view.frame.size.height);
-	//[leftButton retain];
+	[leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+	[leftButton setContentMode:UIViewContentModeCenter];
+	[leftButton retain];
 	
 
 	pictureViews = [NSMutableArray array];
@@ -226,8 +238,7 @@
 			if(image != nil)
 			{
 				UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-			
-				//[self addLeftRightButtonsToView:imageView];
+				[imageView setBackgroundColor:[UIColor blackColor]];
 			
 				[pictureViews addObject: imageView];
 			
@@ -236,16 +247,15 @@
 			else
 			{
 				NSLog(@"Could not load image: %@\n", picturePath);
-			}
+			}
 
 		}
 
 
 		picturesNode = picturesNode->next;
 	}
+	[self addLeftRightButtonsToView:[pictureViews objectAtIndex:0]];
 	[self.view addSubview:[pictureViews objectAtIndex:0]];
-	//[self swapViewAt:0];
-	
 }
 
 
