@@ -34,7 +34,20 @@
 - (id)initWithXMLNode:(xmlNode *)inNode
 {
 	self = [super init];
+		
+	//Again a nasty hack
+	if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+	{
+		self.view.frame = CGRectMake(0, 0, 1024, 655);
+	}
+	else
+	{
+		self.view.frame = CGRectMake(0, 0, 768, 914);
+	}
+	//[newStandVC.view setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+	
 	[self loopNodes:inNode];
+	
 	return self;
 }
 
@@ -42,6 +55,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	NSLog(@"Loaded new View\n");
 	
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
 	swipeRight.numberOfTouchesRequired = 1;
@@ -56,8 +71,21 @@
 
 	[swipeRight release];
 	[swipeLeft release];
+	
+
 }
 
+- (void)addLeftRightButtonsToView:(UIView *)view
+{
+	[view addSubview:leftButton];
+	[view addSubview:rightButton];
+}
+
+- (void)removeLeftRightButtonsFromCurrentView
+{
+	[leftButton removeFromSuperview];
+	[rightButton removeFromSuperview];
+}
 
 - (void)handleSwipeRight
 {
@@ -72,6 +100,10 @@
 	
 	NSLog(@"Swipe Right\n");
 }
+- (void)buttonSwipeRight:(id)sender
+{
+	[self handleSwipeRight];
+}
 
 - (void)handleSwipeLeft
 {
@@ -85,6 +117,10 @@
 	[self slideSwapView:[pictureViews objectAtIndex:currentViewIndex] direction:2];
 	
 	NSLog(@"Swipe Left\n");	
+}
+- (void)buttonSwipeLeft:(id)sender
+{
+	[self handleSwipeLeft];
 }
 
 /*
@@ -103,6 +139,9 @@
 
 - (void)slideSwapView:(UIView *)newView direction:(NSInteger)dir
 {
+	[self removeLeftRightButtonsFromCurrentView];
+	[self addLeftRightButtonsToView:newView];
+	
 	UIView *tempContainer = self.view;
 
 	UIView *topSubView = [[tempContainer subviews] objectAtIndex:0];
@@ -153,12 +192,24 @@
 
 - (void) loopNodes:(xmlNode *)inNode
 {
+	
 	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     documentsFolderPath = [documentPaths objectAtIndex:0];
 	documentsFolderPath = [documentsFolderPath stringByAppendingString:@"/"];
 	[documentsFolderPath retain];
 
 	
+	rightButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[rightButton addTarget:self action:@selector(buttonSwipeRight:) forControlEvents:UIControlEventTouchUpInside];
+	rightButton.frame = CGRectMake(self.view.frame.size.width - 100, 0, self.view.frame.size.width, self.view.frame.size.height);
+	//[rightButton retain];
+	
+	leftButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[leftButton addTarget:self action:@selector(buttonSwipeLeft:) forControlEvents:UIControlEventTouchUpInside];
+	leftButton.frame = CGRectMake(0, 0, 100, self.view.frame.size.height);
+	//[leftButton retain];
+	
+
 	pictureViews = [NSMutableArray array];
 	[pictureViews retain];
 	
@@ -172,18 +223,24 @@
 			NSString *picturePath = [NSString stringWithCString:picturesNode->children->content encoding:NSUTF8StringEncoding];
 			UIImage	*image = [UIImage imageWithContentsOfFile:[documentsFolderPath stringByAppendingString:picturePath]];
 			
-			UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+			if(image != nil)
+			{
+				UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
 			
-			[pictureViews addObject: imageView];
+				//[self addLeftRightButtonsToView:imageView];
 			
-			//[self.view addSubview:imageView];
-									
+				[pictureViews addObject: imageView];
 			
-			[imageView release];
-			
-			//This break is just for testing, we actually have to load all the pictures into separate views
-			//break;
+				[imageView release];
+			}
+			else
+			{
+				NSLog(@"Could not load image: %@\n", picturePath);
+			}
+
 		}
+
+
 		picturesNode = picturesNode->next;
 	}
 	[self.view addSubview:[pictureViews objectAtIndex:0]];
@@ -243,6 +300,11 @@
 - (void)dealloc {
     [super dealloc];
 	[pictureViews release];
+	
+	///NOTE: I think these get released automatically, but I need to double check
+	//I get an error when I release them
+	//[rightButton release];
+	//[leftButton release];
 }
 
 

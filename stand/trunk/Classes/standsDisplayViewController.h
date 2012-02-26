@@ -22,12 +22,20 @@
 	
 	int currentViewIndex;
 	
+	UIButton *rightButton;
+	
+	UIButton *leftButton;
+	
 }
 
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;
 
 - (void)handleSwipeRight;
+- (void)buttonSwipeRight:(id)sender;
+
+- (void)handleSwipeLeft;
+- (void)buttonSwipeLeft:(id)sender;
 
 - (id)initWithXMLNode:(xmlNode *)inNode;
 
@@ -35,6 +43,8 @@
 
 - (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
 - (xmlNode *) findNode:(xmlNode *)inNode :(NSString *)nodeName;
+- (void)addLeftRightButtonsToView:(UIView *)view;
+- (void)removeLeftRightButtonsFromCurrentView;
 
 
 
