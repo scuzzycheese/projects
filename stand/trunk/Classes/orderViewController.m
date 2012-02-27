@@ -71,7 +71,7 @@
 
 - (void)dealloc {
     [super dealloc];
-	[standPicture release];
+	//[standPicture release];
 }
 
 
