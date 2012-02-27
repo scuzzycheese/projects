@@ -96,7 +96,7 @@
 {
 	[leftButton removeFromSuperview];
 	[rightButton removeFromSuperview];
-	[orderForm removeFromSuperview];
+	[orderButton removeFromSuperview];
 }
 
 - (void)handleSwipeRight
@@ -203,8 +203,8 @@
 
 - (void)orderButtonPressed:(id)sender
 {	
-	[self flipView:orderForm.view direction:1];
 	NSLog(@"Order button pressed\n");	
+	[self flipView:orderForm.view direction:UIViewAnimationOptionTransitionFlipFromRight];
 }
 
 
