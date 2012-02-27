@@ -44,7 +44,7 @@
 		);
 		breakpoints = (
 			2F0E3EDC14FBCF9700C203F5 /* standsDisplayViewController.m:215 */,
-			2F0E3F3114FC287C00C203F5 /* SMTP.m:67 */,
+			2F0E3F3114FC287C00C203F5 /* SMTP.m:70 */,
 		);
 		codeSenseManager = 2F84F9D814CE1AC6003A643B /* Code sense */;
 		executables = (
@@ -272,6 +272,11 @@
 			2F0E3F3F14FC292B00C203F5 /* PBXTextBookmark */ = 2F0E3F3F14FC292B00C203F5 /* PBXTextBookmark */;
 			2F0E3F4014FC292B00C203F5 /* PBXTextBookmark */ = 2F0E3F4014FC292B00C203F5 /* PBXTextBookmark */;
 			2F0E3F4114FC292B00C203F5 /* PBXTextBookmark */ = 2F0E3F4114FC292B00C203F5 /* PBXTextBookmark */;
+			2F0E3F5114FC324A00C203F5 /* PBXTextBookmark */ = 2F0E3F5114FC324A00C203F5 /* PBXTextBookmark */;
+			2F0E3F5214FC324A00C203F5 /* PBXTextBookmark */ = 2F0E3F5214FC324A00C203F5 /* PBXTextBookmark */;
+			2F0E3F5314FC324A00C203F5 /* PBXTextBookmark */ = 2F0E3F5314FC324A00C203F5 /* PBXTextBookmark */;
+			2F0E3F5414FC324A00C203F5 /* XCBuildMessageTextBookmark */ = 2F0E3F5414FC324A00C203F5 /* XCBuildMessageTextBookmark */;
+			2F0E3F5514FC324A00C203F5 /* PBXTextBookmark */ = 2F0E3F5514FC324A00C203F5 /* PBXTextBookmark */;
 			2F28B90414E7F33A009C3EB3 = 2F28B90414E7F33A009C3EB3 /* PBXTextBookmark */;
 			2F28B90514E7F33A009C3EB3 = 2F28B90514E7F33A009C3EB3 /* PBXTextBookmark */;
 			2F28B90614E7F33A009C3EB3 = 2F28B90614E7F33A009C3EB3 /* PBXTextBookmark */;
@@ -1415,19 +1420,19 @@
 	};
 	2F0E3F1C14FC1ACD00C203F5 /* SMTP.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 695}}";
-			sepNavSelRange = "{441, 0}";
-			sepNavVisRange = "{0, 448}";
+			sepNavIntBoundsRect = "{{0, 0}, {813, 325}}";
+			sepNavSelRange = "{278, 0}";
+			sepNavVisRange = "{0, 520}";
 		};
 	};
 	2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 695}}";
-			sepNavSelRange = "{452, 0}";
-			sepNavVisRange = "{0, 1132}";
+			sepNavIntBoundsRect = "{{0, 0}, {1090, 1586}}";
+			sepNavSelRange = "{1816, 0}";
+			sepNavVisRange = "{1148, 2238}";
 		};
 	};
-	2F0E3F3114FC287C00C203F5 /* SMTP.m:67 */ = {
+	2F0E3F3114FC287C00C203F5 /* SMTP.m:70 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1439,7 +1444,7 @@
 		functionName = "-openSocketTo:port:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 67;
+		lineNumber = 70;
 		location = stand;
 		modificationTime = 352069901.436957;
 		originalNumberOfMultipleMatches = 1;
@@ -1510,7 +1515,7 @@
 		fRef = 2F0E3F1C14FC1ACD00C203F5 /* SMTP.h */;
 		name = "SMTP.h: 21";
 		rLen = 0;
-		rLoc = 441;
+		rLoc = 513;
 		rType = 0;
 		vrLen = 448;
 		vrLoc = 0;
@@ -1529,7 +1534,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */;
 		rLen = 0;
-		rLoc = 70;
+		rLoc = 73;
 		rType = 1;
 	};
 	2F0E3F4014FC292B00C203F5 /* PBXTextBookmark */ = {
@@ -1537,7 +1542,7 @@
 		fRef = 2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */;
 		name = "SMTP.m: 29";
 		rLen = 0;
-		rLoc = 1225;
+		rLoc = 1216;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 0;
@@ -1551,6 +1556,55 @@
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 4223;
+	};
+	2F0E3F5114FC324A00C203F5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F20427B14D0A910007A206E /* orderViewController.h */;
+		name = "orderViewController.h: 14";
+		rLen = 0;
+		rLoc = 223;
+		rType = 0;
+		vrLen = 498;
+		vrLoc = 0;
+	};
+	2F0E3F5214FC324A00C203F5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F28B92A14E85DF5009C3EB3 /* standsDisplayViewController.h */;
+		name = "standsDisplayViewController.h: 32";
+		rLen = 0;
+		rLoc = 630;
+		rType = 0;
+		vrLen = 486;
+		vrLoc = 441;
+	};
+	2F0E3F5314FC324A00C203F5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
+		name = "standsDisplayViewController.m: 78";
+		rLen = 0;
+		rLoc = 2142;
+		rType = 0;
+		vrLen = 1015;
+		vrLoc = 1711;
+	};
+	2F0E3F5414FC324A00C203F5 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Expected identifier before ';' token";
+		fRef = 2F0E3F1C14FC1ACD00C203F5 /* SMTP.h */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 21;
+		rType = 1;
+	};
+	2F0E3F5514FC324A00C203F5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F0E3F1C14FC1ACD00C203F5 /* SMTP.h */;
+		name = "SMTP.h: 20";
+		rLen = 0;
+		rLoc = 278;
+		rType = 0;
+		vrLen = 520;
+		vrLoc = 0;
 	};
 	2F2041F514CE1F5B007A206E /* CTICCViewController.h */ = {
 		uiCtxt = {
@@ -1577,7 +1631,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1146, 1183}}";
 			sepNavSelRange = "{1951, 0}";
-			sepNavVisRange = "{915, 1073}";
+			sepNavVisRange = "{917, 1071}";
 		};
 	};
 	2F20427E14D5D255007A206E /* standsNavigationController.h */ = {

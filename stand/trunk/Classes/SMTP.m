@@ -17,6 +17,22 @@
 	self = [super init];
 }
 
+
+- (int)readBytesFromSocketInto:(char *)buffer buffSize:(int)bufferSize
+{
+	int len = 0;
+	while([inputStream hasBytesAvailable])
+	{
+		len = [inputStream read:buffer maxLength:bufferSize];
+		if(len > 0)
+		{
+			buffer[len] = '\0';
+			NSLog(@"server said: %s\n", buffer);
+		}
+	}
+	return len;
+}
+
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode
 {
 	
@@ -34,21 +50,8 @@
 				uint8_t buffer[1024];
 				int len;
 				
-				while([inputStream hasBytesAvailable])
-				{
-					len = [inputStream read:buffer maxLength:sizeof(buffer)];
-					if(len > 0)
-					{
-						
-						NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
-						
-						if(nil != output)
-						{
-							NSLog(@"server said: %@", output);
-						}
-						[output release];
-					}
-				}
+				//len = [self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)];
+	
 			}
 			break;			
 			
@@ -85,8 +88,33 @@
 
 - (void)sendEmailTo:(NSString *)emailAddress subject:(NSString *)subject contents:(NSString *)contents
 {
+	char buffer[1024];
+	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
 	
 	[outputStream write:"HELO Stand\r\n" maxLength:strlen("HELO Stand\r\n")];
+	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+	
+	[outputStream write:"MAIL FROM:IPad<scuzzy@mweb.co.za>\r\n" maxLength:strlen("MAIL FROM:IPad<scuzzy@mweb.co.za>\r\n")];
+	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+	
+	[outputStream write:"RCPT TO:<" maxLength:strlen("RCPT TO:<")];
+	[outputStream write:[emailAddress dataUsingEncoding:NSUTF8StringEncoding] maxLength:[[emailAddress dataUsingEncoding:NSUTF8StringEncoding] length]];
+	[outputStream write:">\r\n" maxLength:strlen(">\r\n")];
+	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+	
+	[outputStream write:"DATA\r\n" maxLength:strlen("DATA\r\n")];
+	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+	
+	[outputStream write:"Subject: " maxLength:strlen("Subject: ")];
+	[outputStream write:[subject dataUsingEncoding:NSUTF8StringEncoding] maxLength:[[subject dataUsingEncoding:NSUTF8StringEncoding] length]];
+	[outputStream write:"\r\n\r\n" maxLength:strlen("\r\n\r\n")];
+	[outputStream write:[contents dataUsingEncoding:NSUTF8StringEncoding] maxLength:[[contents dataUsingEncoding:NSUTF8StringEncoding] length]];
+	[outputStream write:"\r\n.\r\n" maxLength:strlen("\r\n.\r\n")];
+	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+	
+	[outputStream write:"QUIT" maxLength:strlen("QUIT")];
+	
+	
 	
 }
 

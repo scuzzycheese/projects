@@ -19,5 +19,6 @@
 
 - (void)openSocketTo:(NSString *)host port:(NSInteger)port;
 - (void)sendEmailTo:(NSString *)emailAddress subject:(NSString *)subject contents:(NSString *)contents;
+- (int)readBytesFromSocketInto:(char *)buffer buffSize:(int)bufferSize;
 
 @end
