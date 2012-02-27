@@ -14,17 +14,22 @@
 @synthesize standPicture;
 @synthesize standsController;
 
+@synthesize emailAddress;
+@synthesize name;
+@synthesize cellphoneNumber;
+@synthesize workNumber;
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
 	{
-		standPicture = [[UIImageView alloc] init];
+		smtp = [[SMTP alloc] init];
     }
     return self;
 }
- */
+ 
 
 
 /*
@@ -47,6 +52,12 @@
 	[self.standsController returnToDefaultView];
 }
 
+- (IBAction)sendEmailButtonPressed:(id)sender
+{
+	NSLog(@"Attempting to send e-mail\n");
+	[smtp openSocketTo:@"relay.mweb.co.za" port:25];
+	[smtp sendEmailTo:@"scuzzy@reverseorder.net" subject:@"moo" contents:@"test"];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Overriden to allow any orientation.
@@ -71,6 +82,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	[smtp release];
 	//[standPicture release];
 }
 

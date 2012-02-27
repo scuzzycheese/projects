@@ -18,6 +18,7 @@
 		2F0E3DE714FA5DBF00C203F5 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3DE614FA5DBE00C203F5 /* left_arrow.png */; };
 		2F0E3DE914FA5DE200C203F5 /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3DE814FA5DE200C203F5 /* right_arrow.png */; };
 		2F0E3E2514FA76C800C203F5 /* orderForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3E2414FA76C800C203F5 /* orderForm.xib */; };
+		2F0E3F1E14FC1ACD00C203F5 /* SMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */; };
 		2F2041F714CE1F5B007A206E /* CTICCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2041F614CE1F5B007A206E /* CTICCViewController.m */; };
 		2F20427D14D0A910007A206E /* orderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427C14D0A910007A206E /* orderViewController.m */; };
 		2F20428014D5D255007A206E /* standsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F20427F14D5D255007A206E /* standsNavigationController.m */; };
@@ -65,6 +66,8 @@
 		2F0E3DE614FA5DBE00C203F5 /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
 		2F0E3DE814FA5DE200C203F5 /* right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow.png; sourceTree = "<group>"; };
 		2F0E3E2414FA76C800C203F5 /* orderForm.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderForm.xib; sourceTree = "<group>"; };
+		2F0E3F1C14FC1ACD00C203F5 /* SMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTP.h; sourceTree = "<group>"; };
+		2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTP.m; sourceTree = "<group>"; };
 		2F2041F514CE1F5B007A206E /* CTICCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTICCViewController.h; sourceTree = "<group>"; };
 		2F2041F614CE1F5B007A206E /* CTICCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTICCViewController.m; sourceTree = "<group>"; };
 		2F20427B14D0A910007A206E /* orderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderViewController.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				2F57AA7014E53FF800686C81 /* myButton.m */,
 				2F28B92A14E85DF5009C3EB3 /* standsDisplayViewController.h */,
 				2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */,
+				2F0E3F1C14FC1ACD00C203F5 /* SMTP.h */,
+				2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				2F0B54E414DBE95400E761E1 /* XMLParser.m in Sources */,
 				2F57AA7114E53FF800686C81 /* myButton.m in Sources */,
 				2F28B92C14E85DF5009C3EB3 /* standsDisplayViewController.m in Sources */,
+				2F0E3F1E14FC1ACD00C203F5 /* SMTP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
