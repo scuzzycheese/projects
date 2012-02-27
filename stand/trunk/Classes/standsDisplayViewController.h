@@ -58,5 +58,9 @@
 - (void)flipView:(UIView *)newView direction:(NSInteger)dir;
 
 - (void)orderButtonPressed:(id)sender;
+- (void)returnToDefaultView;
+
+
+
 
 @end

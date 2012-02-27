@@ -21,4 +21,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView *standPicture;
 @property (nonatomic, retain) standsDisplayViewController *standsController;
 
+- (IBAction)orderCancelButtonPressed:(id)sender;
+
 @end

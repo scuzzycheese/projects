@@ -74,9 +74,20 @@
 	
 	[self.view setBackgroundColor:[UIColor blackColor]];
 	
+	
 	orderForm = [[orderViewController alloc] initWithNibName:@"orderForm" bundle:nil];
 	[orderForm setStandsController:self];
 	[orderForm retain];
+	 
+
+	/*
+	//NOTE: Trying this below to inject objects into object placeholders in the nib
+	orderForm = [[orderViewController alloc] init];
+	NSDictionary *proxyDict = [NSDictionary dictionaryWithObject:self forKey:@"standsDisplayController"];
+	NSDictionary *optionsDict = [NSDictionary dictionaryWithObject:proxyDict forKey:UINibExternalObjects];
+	[[NSBundle mainBundle] loadNibNamed:@"orderForm" owner:orderForm options:optionsDict];
+	 */
+	
 }
 
 - (void)addLeftRightButtonsToView:(UIView *)view
@@ -107,7 +118,6 @@
 		currentViewIndex = 0;
 	}
 	
-	//[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
 	[self slideSwapView:[pictureViews objectAtIndex:currentViewIndex] direction:1];
 	
 	NSLog(@"Swipe Right\n");
@@ -125,7 +135,6 @@
 		currentViewIndex = [pictureViews count] - 1;
 	}
 	
-	//[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromRight];
 	[self slideSwapView:[pictureViews objectAtIndex:currentViewIndex] direction:2];
 	
 	NSLog(@"Swipe Left\n");	
@@ -203,8 +212,15 @@
 
 - (void)orderButtonPressed:(id)sender
 {	
-	NSLog(@"Order button pressed\n");	
+	NSLog(@"Order button pressed\n");
+	[orderForm.standPicture setImage:[[pictureViews objectAtIndex:currentViewIndex] image]];
 	[self flipView:orderForm.view direction:UIViewAnimationOptionTransitionFlipFromRight];
+}
+
+- (void)returnToDefaultView
+{
+	NSLog(@"Default View Called\n");
+	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
 }
 
 
@@ -237,7 +253,7 @@
 	//BUSI adding this button to swap to the order form
 	orderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[orderButton addTarget:self action:@selector(orderButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	orderButton.frame = CGRectMake(100, self.view.frame.size.height - 50, 100, 50);
+	orderButton.frame = CGRectMake(100, self.view.frame.size.height - 35, 100, 35);
 	[orderButton setTitle:@"Order" forState:UIControlStateNormal];
 	[orderButton retain];
 	

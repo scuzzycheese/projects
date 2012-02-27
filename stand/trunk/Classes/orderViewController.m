@@ -18,12 +18,14 @@
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
+    if(self)
+	{
+		standPicture = [[UIImageView alloc] init];
     }
     return self;
 }
-*/
+ */
+
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -39,6 +41,11 @@
 }
  */
 
+
+- (IBAction)orderCancelButtonPressed:(id)sender
+{
+	[self.standsController returnToDefaultView];
+}
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -64,6 +71,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	[standPicture release];
 }
 
 
