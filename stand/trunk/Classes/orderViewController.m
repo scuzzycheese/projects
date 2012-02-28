@@ -54,10 +54,17 @@
 
 - (IBAction)sendEmailButtonPressed:(id)sender
 {
+	NSString *composer = [[NSString alloc] initWithString:@"Suite order:\r\n\r\nName: "];
+	composer = [[composer stringByAppendingString:name.text] stringByAppendingString:@"\r\nE-Mail Address: "];
+	composer = [[composer stringByAppendingString:emailAddress.text] stringByAppendingString:@"\r\nCellPhone Number: "];
+	composer = [[composer stringByAppendingString:cellphoneNumber.text] stringByAppendingString:@"\r\nWork Number: "];
+	composer = [composer stringByAppendingString:workNumber.text];
+	
+	
 	NSLog(@"Attempting to send e-mail\n");
 	[smtp openSocketTo:@"relay.mweb.co.za" port:25];
 	[smtp setFromAddress:@"iPad <scuzzy@mweb.co.za>"];
-	[smtp sendEmailTo:@"scuzzy@reverseorder.net" subject:@"moo" contents:@"test"];
+	[smtp sendEmailTo:@"scuzzy@reverseorder.net" subject:@"Order for Suite" contents:composer];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
