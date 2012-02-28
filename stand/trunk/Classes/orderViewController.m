@@ -56,6 +56,7 @@
 {
 	NSLog(@"Attempting to send e-mail\n");
 	[smtp openSocketTo:@"relay.mweb.co.za" port:25];
+	[smtp setFromAddress:@"iPad <scuzzy@mweb.co.za>"];
 	[smtp sendEmailTo:@"scuzzy@reverseorder.net" subject:@"moo" contents:@"test"];
 }
 

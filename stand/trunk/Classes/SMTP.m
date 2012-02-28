@@ -11,6 +11,9 @@
 
 @implementation SMTP
 
+@synthesize fromAddress;
+@synthesize smtpServer;
+
 
 - (id)init
 {
@@ -88,33 +91,39 @@
 
 - (void)sendEmailTo:(NSString *)emailAddress subject:(NSString *)subject contents:(NSString *)contents
 {
-	char buffer[1024];
-	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
 	
-	[outputStream write:"HELO Stand\r\n" maxLength:strlen("HELO Stand\r\n")];
-	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
-	
-	[outputStream write:"MAIL FROM:IPad<scuzzy@mweb.co.za>\r\n" maxLength:strlen("MAIL FROM:IPad<scuzzy@mweb.co.za>\r\n")];
-	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
-	
-	[outputStream write:"RCPT TO:<" maxLength:strlen("RCPT TO:<")];
-	[outputStream write:[emailAddress dataUsingEncoding:NSUTF8StringEncoding] maxLength:[[emailAddress dataUsingEncoding:NSUTF8StringEncoding] length]];
-	[outputStream write:">\r\n" maxLength:strlen(">\r\n")];
-	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
-	
-	[outputStream write:"DATA\r\n" maxLength:strlen("DATA\r\n")];
-	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
-	
-	[outputStream write:"Subject: " maxLength:strlen("Subject: ")];
-	[outputStream write:[subject dataUsingEncoding:NSUTF8StringEncoding] maxLength:[[subject dataUsingEncoding:NSUTF8StringEncoding] length]];
-	[outputStream write:"\r\n\r\n" maxLength:strlen("\r\n\r\n")];
-	[outputStream write:[contents dataUsingEncoding:NSUTF8StringEncoding] maxLength:[[contents dataUsingEncoding:NSUTF8StringEncoding] length]];
-	[outputStream write:"\r\n.\r\n" maxLength:strlen("\r\n.\r\n")];
-	while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
-	
-	[outputStream write:"QUIT" maxLength:strlen("QUIT")];
-	
-	
+	if(fromAddress != nil)
+	{
+		char buffer[1024];
+		while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+		
+		[outputStream write:"HELO Stand\r\n" maxLength:strlen("HELO Stand\r\n")];
+		while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+		
+		[outputStream write:"MAIL FROM:" maxLength:strlen("MAIL FROM:")];
+		[outputStream write:[fromAddress UTF8String] maxLength:strlen([fromAddress UTF8String])];
+		[outputStream write:"\r\n" maxLength:strlen("\r\n")];
+		while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+		
+		[outputStream write:"RCPT TO:<" maxLength:strlen("RCPT TO:<")];
+		[outputStream write:[emailAddress UTF8String] maxLength:strlen([emailAddress UTF8String])];
+		[outputStream write:">\r\n" maxLength:strlen(">\r\n")];
+		while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+		
+		[outputStream write:"DATA\r\n" maxLength:strlen("DATA\r\n")];
+		while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+		
+		[outputStream write:"From: \"iPad\" <scuzzy@mweb.co.za>\r\n" maxLength:strlen("From: \"iPad\" <scuzzy@mweb.co.za>\r\n")];
+		
+		[outputStream write:"Subject: " maxLength:strlen("Subject: ")];
+		[outputStream write:[subject UTF8String] maxLength:strlen([subject UTF8String])];
+		[outputStream write:"\r\n\r\n" maxLength:strlen("\r\n\r\n")];
+		[outputStream write:[contents UTF8String] maxLength:strlen([contents UTF8String])];
+		[outputStream write:"\r\n.\r\n" maxLength:strlen("\r\n.\r\n")];
+		while([self readBytesFromSocketInto:buffer buffSize:sizeof(buffer)] == 0);
+		
+		[outputStream write:"QUIT" maxLength:strlen("QUIT")];
+	}
 	
 }
 
