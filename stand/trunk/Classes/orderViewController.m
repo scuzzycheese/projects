@@ -19,6 +19,10 @@
 @synthesize cellphoneNumber;
 @synthesize workNumber;
 
+@synthesize busySendingEmail;
+
+@synthesize sendEmailButton;
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -54,17 +58,55 @@
 
 - (IBAction)sendEmailButtonPressed:(id)sender
 {
+	[sendEmailButton setEnabled:NO];
+	[busySendingEmail setHidden:NO];
+	[busySendingEmail startAnimating];
+	
+	
+	
+	NSLog(@"Attempting to send e-mail\n");
+	
+	/*
+	[smtp openSocketTo:@"relay.mweb.co.za" port:25];
+	[smtp setFromAddress:@"iPad <scuzzy@mweb.co.za>"];
+	[smtp sendEmailTo:@"scuzzy@reverseorder.net" subject:@"Order for Suite" contents:composer];
+	 */
+	
+	[NSThread detachNewThreadSelector:@selector(sendEmail) toTarget:self withObject:nil];
+	
+}
+
+- (void)sendEmail
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	NSString *composer = [[NSString alloc] initWithString:@"Suite order:\r\n\r\nName: "];
 	composer = [[composer stringByAppendingString:name.text] stringByAppendingString:@"\r\nE-Mail Address: "];
 	composer = [[composer stringByAppendingString:emailAddress.text] stringByAppendingString:@"\r\nCellPhone Number: "];
 	composer = [[composer stringByAppendingString:cellphoneNumber.text] stringByAppendingString:@"\r\nWork Number: "];
 	composer = [composer stringByAppendingString:workNumber.text];
 	
-	
-	NSLog(@"Attempting to send e-mail\n");
 	[smtp openSocketTo:@"relay.mweb.co.za" port:25];
 	[smtp setFromAddress:@"iPad <scuzzy@mweb.co.za>"];
 	[smtp sendEmailTo:@"scuzzy@reverseorder.net" subject:@"Order for Suite" contents:composer];
+	
+	[busySendingEmail stopAnimating];
+	[busySendingEmail setHidden:YES];
+	[sendEmailButton setEnabled:YES];
+	
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Order Sent." 
+													message:@"An order for this suite has been sent to a sales agent."
+												   delegate:nil 
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+	
+	
+	[self.standsController returnToDefaultView];
+	
+	[pool release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

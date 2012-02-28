@@ -21,6 +21,10 @@
 	IBOutlet UITextField *cellphoneNumber;
 	IBOutlet UITextField *workNumber;
 	
+	IBOutlet UIActivityIndicatorView *busySendingEmail;
+	
+	IBOutlet UIBarButtonItem *sendEmailButton;
+	
 	SMTP *smtp;
 	
 
@@ -32,8 +36,12 @@
 @property (nonatomic, retain) IBOutlet UITextField *name;
 @property (nonatomic, retain) IBOutlet UITextField *cellphoneNumber;
 @property (nonatomic, retain) IBOutlet UITextField *workNumber;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *busySendingEmail;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *sendEmailButton;
 
 - (IBAction)orderCancelButtonPressed:(id)sender;
 - (IBAction)sendEmailButtonPressed:(id)sender;
+
+- (void)sendEmail;
 
 @end
