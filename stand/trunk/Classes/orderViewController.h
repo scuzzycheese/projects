@@ -52,5 +52,6 @@
 - (void)sendEmail;
 - (void)setConfigData;
 - (xmlNode *)findXmlNode:(xmlXPathContextPtr)context with:(char *)expression;
+- (void)resetForm;
 
 @end

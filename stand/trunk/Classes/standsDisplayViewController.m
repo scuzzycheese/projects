@@ -216,6 +216,7 @@
 - (void)orderButtonPressed:(id)sender
 {	
 	NSLog(@"Order button pressed\n");
+	[orderForm resetForm];
 	[self flipView:orderForm.view direction:UIViewAnimationOptionTransitionFlipFromRight];
 	//I don't know why this works, but loading the image after the flip seems to do the trick
 	[orderForm.standPicture setImage:[[pictureViews objectAtIndex:currentViewIndex] image]];

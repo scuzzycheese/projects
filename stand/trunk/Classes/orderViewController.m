@@ -76,11 +76,20 @@
 	
 }
 
+- (void)resetForm
+{
+	name.text = nil;
+	emailAddress.text = nil;
+	cellphoneNumber.text = nil;
+	workNumber.text = nil;
+}
+
 - (void)sendEmail
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSString *composer = [[NSString alloc] initWithString:@"Suite order:\r\n\r\nName: "];
+	NSString *composer = [[NSString alloc] initWithString:@"Suite order: "];
+	composer = [[composer stringByAppendingString:standsController.title] stringByAppendingString:@"\r\n\r\nName: "];
 	composer = [[composer stringByAppendingString:name.text] stringByAppendingString:@"\r\nE-Mail Address: "];
 	composer = [[composer stringByAppendingString:emailAddress.text] stringByAppendingString:@"\r\nCellPhone Number: "];
 	composer = [[composer stringByAppendingString:cellphoneNumber.text] stringByAppendingString:@"\r\nWork Number: "];

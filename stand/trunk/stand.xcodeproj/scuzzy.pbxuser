@@ -43,7 +43,7 @@
 			1D6058900D05DD3D006BFB54 /* stand */,
 		);
 		breakpoints = (
-			2F0E3EDC14FBCF9700C203F5 /* standsDisplayViewController.m:218 */,
+			2F0E3EDC14FBCF9700C203F5 /* standsDisplayViewController.m:219 */,
 			2F0E3F3114FC287C00C203F5 /* SMTP.m:73 */,
 			2F0E3F5C14FC385A00C203F5 /* SMTP.m:97 */,
 		);
@@ -408,7 +408,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 205";
 		rLen = 0;
-		rLoc = 8740;
+		rLoc = 8764;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 4409;
@@ -418,7 +418,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 205";
 		rLen = 0;
-		rLoc = 8740;
+		rLoc = 8764;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 4409;
@@ -498,7 +498,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 210";
 		rLen = 0;
-		rLoc = 7479;
+		rLoc = 7503;
 		rType = 0;
 		vrLen = 1611;
 		vrLoc = 5179;
@@ -528,7 +528,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 259";
 		rLen = 0;
-		rLoc = 8918;
+		rLoc = 8942;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 6517;
@@ -552,7 +552,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 213";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 5114;
@@ -622,7 +622,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 213";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 5114;
@@ -672,7 +672,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 233";
 		rLen = 0;
-		rLoc = 7556;
+		rLoc = 7580;
 		rType = 0;
 		vrLen = 1997;
 		vrLoc = 5113;
@@ -682,7 +682,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 221";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1759;
 		vrLoc = 5244;
@@ -750,7 +750,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 333";
 		rLen = 0;
-		rLoc = 10072;
+		rLoc = 10096;
 		rType = 0;
 		vrLen = 1131;
 		vrLoc = 8446;
@@ -760,7 +760,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 225";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 5364;
@@ -780,7 +780,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 225";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 5366;
@@ -800,7 +800,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 225";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 5366;
@@ -886,7 +886,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 225";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 4275;
@@ -916,7 +916,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 210";
 		rLen = 0;
-		rLoc = 5948;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 2279;
 		vrLoc = 5122;
@@ -956,7 +956,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 231";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 4275;
@@ -986,7 +986,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 231";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 4275;
@@ -1026,7 +1026,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 231";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 4278;
@@ -1056,7 +1056,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 234";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 4284;
@@ -1086,7 +1086,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 245";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 941;
 		vrLoc = 4380;
@@ -1096,7 +1096,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 221";
 		rLen = 27;
-		rLoc = 5941;
+		rLoc = 5965;
 		rType = 0;
 		vrLen = 1494;
 		vrLoc = 5186;
@@ -1146,7 +1146,7 @@
 		fRef = 2F20427B14D0A910007A206E /* orderViewController.h */;
 		name = "orderViewController.h: 25";
 		rLen = 0;
-		rLoc = 1532;
+		rLoc = 1551;
 		rType = 0;
 		vrLen = 548;
 		vrLoc = 0;
@@ -1156,7 +1156,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 4398;
@@ -1166,7 +1166,7 @@
 		fRef = 2F20427B14D0A910007A206E /* orderViewController.h */;
 		name = "orderViewController.h: 25";
 		rLen = 0;
-		rLoc = 1532;
+		rLoc = 1551;
 		rType = 0;
 		vrLen = 548;
 		vrLoc = 0;
@@ -1186,7 +1186,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 217";
 		rLen = 0;
-		rLoc = 5668;
+		rLoc = 5692;
 		rType = 0;
 		vrLen = 1820;
 		vrLoc = 5289;
@@ -1196,7 +1196,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 4398;
@@ -1226,7 +1226,7 @@
 		fRef = 2F20427C14D0A910007A206E /* orderViewController.m */;
 		name = "orderViewController.m: 71";
 		rLen = 0;
-		rLoc = 4784;
+		rLoc = 4904;
 		rType = 0;
 		vrLen = 982;
 		vrLoc = 650;
@@ -1236,7 +1236,7 @@
 		fRef = 2F20427B14D0A910007A206E /* orderViewController.h */;
 		name = "orderViewController.h: 25";
 		rLen = 0;
-		rLoc = 1532;
+		rLoc = 1551;
 		rType = 0;
 		vrLen = 548;
 		vrLoc = 0;
@@ -1256,7 +1256,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 218";
 		rLen = 0;
-		rLoc = 5668;
+		rLoc = 5692;
 		rType = 0;
 		vrLen = 1564;
 		vrLoc = 5186;
@@ -1266,12 +1266,12 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 243";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 4398;
 	};
-	2F0E3EDC14FBCF9700C203F5 /* standsDisplayViewController.m:218 */ = {
+	2F0E3EDC14FBCF9700C203F5 /* standsDisplayViewController.m:219 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1283,7 +1283,7 @@
 		functionName = "-orderButtonPressed:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 218;
+		lineNumber = 219;
 		location = stand;
 		modificationTime = 352147294.950759;
 		originalNumberOfMultipleMatches = 1;
@@ -1334,7 +1334,7 @@
 		fRef = 2F20427B14D0A910007A206E /* orderViewController.h */;
 		name = "orderViewController.h: 25";
 		rLen = 0;
-		rLoc = 1532;
+		rLoc = 1551;
 		rType = 0;
 		vrLen = 548;
 		vrLoc = 0;
@@ -1354,7 +1354,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 4223;
@@ -1394,7 +1394,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 4223;
@@ -1414,7 +1414,7 @@
 		fRef = 2F20427C14D0A910007A206E /* orderViewController.m */;
 		name = "orderViewController.m: 55";
 		rLen = 0;
-		rLoc = 2954;
+		rLoc = 3074;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 799;
@@ -1424,7 +1424,7 @@
 		fRef = 2F20427C14D0A910007A206E /* orderViewController.m */;
 		name = "orderViewController.m: 57";
 		rLen = 0;
-		rLoc = 2954;
+		rLoc = 3074;
 		rType = 0;
 		vrLen = 1014;
 		vrLoc = 799;
@@ -1434,7 +1434,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 4223;
@@ -1546,7 +1546,7 @@
 		fRef = 2F20427C14D0A910007A206E /* orderViewController.m */;
 		name = "orderViewController.m: 85";
 		rLen = 0;
-		rLoc = 4757;
+		rLoc = 4877;
 		rType = 0;
 		vrLen = 1119;
 		vrLoc = 776;
@@ -1573,7 +1573,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 4223;
@@ -1747,7 +1747,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 4223;
@@ -1767,7 +1767,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 242";
 		rLen = 0;
-		rLoc = 6977;
+		rLoc = 7001;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 4223;
@@ -1788,16 +1788,16 @@
 	};
 	2F20427B14D0A910007A206E /* orderViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 741}}";
-			sepNavSelRange = "{757, 0}";
-			sepNavVisRange = "{3, 1535}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 754}}";
+			sepNavSelRange = "{1550, 0}";
+			sepNavVisRange = "{29, 1528}";
 		};
 	};
 	2F20427C14D0A910007A206E /* orderViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 2314}}";
-			sepNavSelRange = "{4041, 0}";
-			sepNavVisRange = "{2971, 1577}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 2535}}";
+			sepNavSelRange = "{1866, 0}";
+			sepNavVisRange = "{1651, 1688}";
 		};
 	};
 	2F20427E14D5D255007A206E /* standsNavigationController.h */ = {
@@ -1883,9 +1883,9 @@
 	};
 	2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {789, 4992}}";
-			sepNavSelRange = "{6977, 0}";
-			sepNavVisRange = "{4287, 915}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 4667}}";
+			sepNavSelRange = "{5681, 0}";
+			sepNavVisRange = "{5202, 2235}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};
@@ -2078,7 +2078,7 @@
 		comments = "'addLeftRightButtonsToView' undeclared (first use in this function)";
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		rLen = 1;
-		rLoc = 295;
+		rLoc = 296;
 		rType = 1;
 	};
 	2F76E9F114EFD62600761573 /* PBXTextBookmark */ = {
@@ -2086,7 +2086,7 @@
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
 		name = "standsDisplayViewController.m: 195";
 		rLen = 0;
-		rLoc = 8595;
+		rLoc = 8619;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 4441;
