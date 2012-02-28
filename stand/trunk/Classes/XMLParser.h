@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
+#include <libxml2/libxml/xpath.h>
+#include <libxml2/libxml/xpathInternals.h>
 
 #ifndef XMLPARSER_H
 #define XMLPARSER_H

@@ -42,13 +42,13 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	[self setConfigData];
 }
- */
+ 
 
 
 - (IBAction)orderCancelButtonPressed:(id)sender
@@ -86,9 +86,9 @@
 	composer = [[composer stringByAppendingString:cellphoneNumber.text] stringByAppendingString:@"\r\nWork Number: "];
 	composer = [composer stringByAppendingString:workNumber.text];
 	
-	[smtp openSocketTo:@"relay.mweb.co.za" port:25];
-	[smtp setFromAddress:@"iPad <scuzzy@mweb.co.za>"];
-	[smtp sendEmailTo:@"scuzzy@reverseorder.net" subject:@"Order for Suite" contents:composer];
+	[smtp openSocketTo:smtpServer port:smtpPort];
+	[smtp setFromAddress:fromEmail];
+	[smtp sendEmailTo:orderEmail subject:@"Order for Suite" contents:composer];
 	
 	[busySendingEmail stopAnimating];
 	[busySendingEmail setHidden:YES];
@@ -114,6 +114,45 @@
     return YES;
 }
 
+- (void)setConfigData
+{
+	
+	xmlXPathContextPtr contextPtr = xmlXPathNewContext(standsController.node->doc);
+	
+	
+	xmlNode *confNode;
+	if(confNode = [self findXmlNode:contextPtr with:"//config/orderEmail"])
+	{
+		orderEmail = [[NSString alloc] initWithCString:confNode->children->content encoding:NSUTF8StringEncoding];
+	}
+	if(confNode = [self findXmlNode:contextPtr with:"//config/fromEmail"])
+	{
+		fromEmail = [[NSString alloc] initWithCString:confNode->children->content encoding:NSUTF8StringEncoding];
+	}
+	if(confNode = [self findXmlNode:contextPtr with:"//config/watchdogEmail"])
+	{
+		watchdogEmail = [[NSString alloc] initWithCString:confNode->children->content encoding:NSUTF8StringEncoding];
+	}
+	if(confNode = [self findXmlNode:contextPtr with:"//config/smtpServer"])
+	{
+		smtpServer = [[NSString alloc] initWithCString:confNode->children->content encoding:NSUTF8StringEncoding];
+		smtpPort = atoi(xmlGetProp(confNode, "port"));
+	}
+	
+	
+	
+}
+
+- (xmlNode *)findXmlNode:(xmlXPathContextPtr)context with:(char *)expression
+{
+	xmlXPathObjectPtr objPtr = xmlXPathEvalExpression(expression, context);
+	if(objPtr->nodesetval->nodeNr > 0)
+	{
+		return objPtr->nodesetval->nodeTab[0];
+	}
+	return NULL;
+}
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -133,6 +172,8 @@
 - (void)dealloc {
     [super dealloc];
 	[smtp release];
+	
+	if(orderEmail != nil) [orderEmail release];
 	//[standPicture release];
 }
 

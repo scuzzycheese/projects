@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #include "SMTP.h"
+#include "XMLParser.h"
 
 
 @class standsDisplayViewController;
@@ -24,6 +25,12 @@
 	IBOutlet UIActivityIndicatorView *busySendingEmail;
 	
 	IBOutlet UIBarButtonItem *sendEmailButton;
+	
+	NSString *orderEmail;
+	NSString *fromEmail;
+	NSString *watchdogEmail;
+	NSString *smtpServer;
+	int smtpPort;
 	
 	SMTP *smtp;
 	
@@ -43,5 +50,7 @@
 - (IBAction)sendEmailButtonPressed:(id)sender;
 
 - (void)sendEmail;
+- (void)setConfigData;
+- (xmlNode *)findXmlNode:(xmlXPathContextPtr)context with:(char *)expression;
 
 @end

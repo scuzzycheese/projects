@@ -34,7 +34,10 @@
 - (id)initWithXMLNode:(xmlNode *)inNode
 {
 	self = [super init];
-		
+
+	//We want to keep a reference to the node
+	self.node = inNode;
+	
 	//Again a nasty hack
 	if(self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
 	{
