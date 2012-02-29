@@ -78,10 +78,10 @@
 
 - (void)resetForm
 {
-	name.text = nil;
-	emailAddress.text = nil;
-	cellphoneNumber.text = nil;
-	workNumber.text = nil;
+	name.text = @"";
+	emailAddress.text = @"";
+	cellphoneNumber.text = @"";
+	workNumber.text = @"";
 }
 
 - (void)sendEmail
