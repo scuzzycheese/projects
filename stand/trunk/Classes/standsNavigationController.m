@@ -82,11 +82,14 @@
 		sleep(1);
 	}
 	
+	//TODO: Add some validation into the XML parser perhapse?
 	self.XMLParser = appDel.XMLParser;
-	if([self.XMLParser dataAvailable])
+	while(![self.XMLParser dataAvailable])
 	{
-		NSLog(@"XML Data is parsed...\n");
+		NSLog(@"waiting for XML Data to parse...\n");
+		sleep(1);
 	}
+	NSLog(@"XML Data is finished parsing!\n");
 	
 	xmlNode *menuDataNode = self.XMLParser.node->children;
 	while(menuDataNode)

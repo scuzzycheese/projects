@@ -35,6 +35,7 @@
 
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;
+@property (nonatomic) int currentViewIndex;
 
 - (void)handleSwipeRight;
 - (void)buttonSwipeRight:(id)sender;

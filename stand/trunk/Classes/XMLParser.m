@@ -36,6 +36,33 @@
 }
 
 
++ (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName
+{
+	while(inNode)
+	{
+		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName UTF8String]) == 0)
+		{
+			break;
+		}
+		inNode = inNode->next;
+	}
+	return [NSString stringWithCString:inNode->children->content encoding:NSUTF8StringEncoding];
+}
+
++ (xmlNode *) findNode:(xmlNode *)inNode :(NSString *)nodeName
+{
+	while(inNode)
+	{
+		if(inNode->type == XML_ELEMENT_NODE && strcmp(inNode->name, [nodeName UTF8String]) == 0)
+		{
+			break;
+		}
+		inNode = inNode->next;
+	}
+	return inNode;
+}
+
+
  
 - (void)dealloc
 {	

@@ -25,6 +25,8 @@
 
 
 - (id) initWithFilename:(NSString *)filename;
++ (NSString *) findNodeValue:(xmlNode *)inNode :(NSString *)nodeName;
++ (xmlNode *) findNode:(xmlNode *)inNode :(NSString *)nodeName;
 
 @property (nonatomic, assign) xmlNode *node;
 @property (nonatomic, assign) xmlDoc *dom;
