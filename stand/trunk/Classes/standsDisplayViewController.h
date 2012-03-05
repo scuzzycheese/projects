@@ -36,6 +36,7 @@
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;
 @property (nonatomic) int currentViewIndex;
+@property (nonatomic, retain) UIButton *orderButton;
 
 - (void)handleSwipeRight;
 - (void)buttonSwipeRight:(id)sender;

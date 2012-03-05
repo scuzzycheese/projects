@@ -117,7 +117,17 @@
 		
 	[self.demoView addSubview:currentDemoViewController.view];
 	
+	//We want to stall the timer when this button is pressed
+	[currentDemoViewController.orderButton addTarget:self action:@selector(handleOrderButton) forControlEvents:UIControlEventTouchUpInside];
+	
 	[currentDemoViewController release];
+}
+
+- (IBAction) handleOrderButton
+{
+	NSLog(@"order button pressed in demo context\n");
+	//Stop the timer
+	[timer invalidate];
 }
 	   
 - (void) flipCurrentViewPage

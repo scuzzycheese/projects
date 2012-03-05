@@ -33,6 +33,7 @@
 - (void) timerChange;
 - (void) swapToViewAtIndex:(int)index;
 - (void) flipCurrentViewPage;
+- (IBAction) handleOrderButton;
 
 
 @end
