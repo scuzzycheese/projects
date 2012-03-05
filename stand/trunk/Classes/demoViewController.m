@@ -45,6 +45,8 @@
 	nodeIndex = 0;
 	timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerChange) userInfo:nil repeats:YES];
 	[timer fire];
+	
+	[self.demoView setBackgroundColor:[UIColor blackColor]];
 }
 
 
@@ -104,6 +106,15 @@
 	
 	[self.toolBarButton setTitle:itemName];
 	
+	//Delete the old view
+	if([self.demoView subviews])
+	{
+		for(int i = 0; i < [[self.demoView subviews] count]; ++ i)
+		{
+			[[[self.demoView subviews] objectAtIndex:i] removeFromSuperview];
+		}
+	}
+		
 	[self.demoView addSubview:currentDemoViewController.view];
 	
 	[currentDemoViewController release];

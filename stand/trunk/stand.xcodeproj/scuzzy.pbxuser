@@ -37,7 +37,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 2F84F9D214CE1AB5003A643B /* stand */;
-		activeSDKPreference = iphonesimulator4.3;
+		activeSDKPreference = iphoneos4.3;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* stand */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* stand */,
@@ -562,15 +562,15 @@
 	2F059C9F150172E6007517C5 /* demoViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {956, 689}}";
-			sepNavSelRange = "{455, 0}";
-			sepNavVisRange = "{0, 864}";
+			sepNavSelRange = "{799, 0}";
+			sepNavVisRange = "{0, 898}";
 		};
 	};
 	2F059CA0150172E6007517C5 /* demoViewController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1146, 1872}}";
-			sepNavSelRange = "{2158, 0}";
-			sepNavVisRange = "{1783, 1281}";
+			sepNavSelRange = "{2018, 0}";
+			sepNavVisRange = "{1138, 1177}";
 		};
 	};
 	2F059CAA15040A7E007517C5 /* PBXTextBookmark */ = {
@@ -608,7 +608,7 @@
 		fRef = 2F059C9F150172E6007517C5 /* demoViewController.h */;
 		name = "demoViewController.h: 23";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 891;
 		rType = 0;
 		vrLen = 414;
 		vrLoc = 0;
@@ -648,7 +648,7 @@
 		fRef = 2F059CA0150172E6007517C5 /* demoViewController.m */;
 		name = "demoViewController.m: 41";
 		rLen = 21;
-		rLoc = 1164;
+		rLoc = 1317;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 875;
@@ -658,7 +658,7 @@
 		fRef = 2F059CA0150172E6007517C5 /* demoViewController.m */;
 		name = "demoViewController.m: 75";
 		rLen = 0;
-		rLoc = 1864;
+		rLoc = 2027;
 		rType = 0;
 		vrLen = 1097;
 		vrLoc = 903;
@@ -738,7 +738,7 @@
 		fRef = 2F059CA0150172E6007517C5 /* demoViewController.m */;
 		name = "demoViewController.m: 69";
 		rLen = 10;
-		rLoc = 1784;
+		rLoc = 1937;
 		rType = 0;
 		vrLen = 1214;
 		vrLoc = 1082;
@@ -748,7 +748,7 @@
 		fRef = 2F059CA0150172E6007517C5 /* demoViewController.m */;
 		name = "demoViewController.m: 69";
 		rLen = 0;
-		rLoc = 1784;
+		rLoc = 1937;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 1082;
@@ -768,7 +768,7 @@
 		fRef = 2F059CA0150172E6007517C5 /* demoViewController.m */;
 		name = "demoViewController.m: 69";
 		rLen = 0;
-		rLoc = 1784;
+		rLoc = 1937;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 1082;
@@ -818,7 +818,7 @@
 		fRef = 2F059C9F150172E6007517C5 /* demoViewController.h */;
 		name = "demoViewController.h: 23";
 		rLen = 0;
-		rLoc = 623;
+		rLoc = 607;
 		rType = 0;
 		vrLen = 631;
 		vrLoc = 0;
@@ -828,7 +828,7 @@
 		fRef = 2F059C9F150172E6007517C5 /* demoViewController.h */;
 		name = "demoViewController.h: 30";
 		rLen = 0;
-		rLoc = 864;
+		rLoc = 898;
 		rType = 0;
 		vrLen = 631;
 		vrLoc = 0;
@@ -2375,14 +2375,14 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {956, 884}}";
 			sepNavSelRange = "{783, 16}";
-			sepNavVisRange = "{242, 1200}";
+			sepNavVisRange = "{209, 1232}";
 		};
 	};
 	2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 4875}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 4888}}";
 			sepNavSelRange = "{311, 0}";
-			sepNavVisRange = "{0, 1374}";
+			sepNavVisRange = "{2383, 1341}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};
