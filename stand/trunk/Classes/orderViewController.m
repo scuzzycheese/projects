@@ -55,6 +55,10 @@
 - (IBAction)orderCancelButtonPressed:(id)sender
 {
 	[self.standsController returnToDefaultView];
+	if(self.standsController.cancelNotifyObject && self.standsController.cancelNotifyMethod)
+	{
+		[self.standsController.cancelNotifyObject performSelector:self.standsController.cancelNotifyMethod withObject:self];
+	}
 }
 
 - (IBAction)sendEmailButtonPressed:(id)sender
@@ -114,6 +118,10 @@
 	[alert release];
 	
 	
+	if(self.standsController.emailSentNotifyObject && self.standsController.emailSentNotifyMethod)
+	{
+		[self.standsController.emailSentNotifyObject performSelector:self.standsController.emailSentNotifyMethod withObject:self];
+	}
 	[self.standsController returnToDefaultView];
 	
 	[pool release];

@@ -16,6 +16,11 @@
 @synthesize currentViewIndex;
 @synthesize orderButton;
 
+@synthesize cancelNotifyObject;
+@synthesize cancelNotifyMethod;
+@synthesize emailSentNotifyObject;
+@synthesize emailSentNotifyMethod;
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -327,6 +332,19 @@
 		inNode = inNode->next;
 	}
 	return inNode;
+}
+
+
+- (void)notifyCancel:(id)object withSelector:(SEL)selector
+{
+	cancelNotifyObject = object;
+	cancelNotifyMethod = selector;
+}
+
+- (void)notifyEmailSent:(id)object withSelector:(SEL)selector
+{
+	emailSentNotifyObject = object;
+	emailSentNotifyMethod = selector;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

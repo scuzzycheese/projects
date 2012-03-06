@@ -34,6 +34,7 @@
 - (void) swapToViewAtIndex:(int)index;
 - (void) flipCurrentViewPage;
 - (IBAction) handleOrderButton;
+- (void)notifyTimerRestart;
 
 
 @end

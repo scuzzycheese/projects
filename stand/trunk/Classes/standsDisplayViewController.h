@@ -31,12 +31,22 @@
 	
 	orderViewController *orderForm;
 	
+	id cancelNotifyObject;
+	SEL cancelNotifyMethod;
+	id emailSentNotifyObject;
+	SEL emailSentNotifyMethod;
+	
 }
 
 @property (nonatomic) xmlNode *node;
 @property (nonatomic, retain) XMLParser *XMLParser;
 @property (nonatomic) int currentViewIndex;
 @property (nonatomic, retain) UIButton *orderButton;
+
+@property (nonatomic, retain) id cancelNotifyObject;
+@property (nonatomic) SEL cancelNotifyMethod;
+@property (nonatomic, retain) id emailSentNotifyObject;
+@property (nonatomic) SEL emailSentNotifyMethod;
 
 - (void)handleSwipeRight;
 - (void)buttonSwipeRight:(id)sender;
@@ -61,6 +71,9 @@
 
 - (void)orderButtonPressed:(id)sender;
 - (void)returnToDefaultView;
+
+- (void)notifyCancel:(id)object withSelector:(SEL)selector;
+- (void)notifyEmailSent:(id)object withSelector:(SEL)selector;
 
 
 

@@ -93,12 +93,16 @@
 		}
 	}
 }
-
+		
 - (void) swapToViewAtIndex:(int)index
 {
 	
 	currentDemoViewController = [[standsDisplayViewController alloc] initWithXMLNode:standNodes->nodeTab[index]];
 	[currentDemoViewController.view setBackgroundColor:[UIColor blackColor]];
+	
+	//install the notifiers
+	[currentDemoViewController notifyCancel:self withSelector:@selector(notifyTimerRestart)];
+	[currentDemoViewController notifyEmailSent:self withSelector:@selector(notifyTimerRestart)];
 	
 	NSString *itemName = [XMLParser findNodeValue:standNodes->nodeTab[index]->children :@"name"];
 	
@@ -127,7 +131,14 @@
 {
 	NSLog(@"order button pressed in demo context\n");
 	//Stop the timer
-	[timer invalidate];
+	[timer setFireDate:[NSDate distantFuture]];
+	NSLog(@"Timer paused\n");
+}
+
+- (void)notifyTimerRestart
+{
+	[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:5]];
+	NSLog(@"Timer restart notified\n");
 }
 	   
 - (void) flipCurrentViewPage
