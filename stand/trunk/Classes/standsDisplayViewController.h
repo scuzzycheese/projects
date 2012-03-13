@@ -31,6 +31,10 @@
 	
 	orderViewController *orderForm;
 	
+	UISwipeGestureRecognizer *swipeRight;
+	
+	UISwipeGestureRecognizer *swipeLeft;
+	
 	id cancelNotifyObject;
 	SEL cancelNotifyMethod;
 	id emailSentNotifyObject;
@@ -74,6 +78,10 @@
 
 - (void)notifyCancel:(id)object withSelector:(SEL)selector;
 - (void)notifyEmailSent:(id)object withSelector:(SEL)selector;
+
+- (void) buildGestureRecognizers;
+- (void) installGestureRecognizers;
+- (void) removeGestureRecognizers;
 
 
 

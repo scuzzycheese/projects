@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2F0D98B3150605E100381223</string>
+						<string>2F0D98C41508A5CB00381223</string>
 						<key>history</key>
 						<array>
 							<string>2F059CC515041161007517C5</string>
@@ -315,7 +315,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>25</integer>
+									<integer>21</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -358,7 +358,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>demoViewController.m</string>
+								<string>standsDisplayViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -366,11 +366,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>demoViewController.m</string>
+										<string>standsDisplayViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2F0D98B2150605E100381223</string>
+										<string>2F0D98C31508A5CB00381223</string>
 										<key>history</key>
 										<array>
 											<string>2F81074B14D7E149000847DD</string>
@@ -402,11 +402,11 @@
 											<string>2F0D98771504B9F300381223</string>
 											<string>2F0D989E150601B500381223</string>
 											<string>2F0D989F150601B500381223</string>
-											<string>2F0D98A0150601B500381223</string>
-											<string>2F0D98A1150601B500381223</string>
 											<string>2F0D98A2150601B500381223</string>
 											<string>2F0D98A3150601B500381223</string>
-											<string>2F0D98A4150601B500381223</string>
+											<string>2F0D98BA1508A50E00381223</string>
+											<string>2F0D98BB1508A50E00381223</string>
+											<string>2F0D98BC1508A50E00381223</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

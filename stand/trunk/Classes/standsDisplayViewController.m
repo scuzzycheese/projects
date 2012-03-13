@@ -62,25 +62,41 @@
 }
 
 
+- (void) buildGestureRecognizers
+{
+	swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
+	swipeRight.numberOfTouchesRequired = 1;
+	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+	
+	swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeft)];
+	swipeLeft.numberOfTouchesRequired = 1;
+	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+	
+	[swipeLeft retain];
+	[swipeRight retain];
+}
+
+- (void) installGestureRecognizers
+{
+	[self.view addGestureRecognizer:swipeRight];
+	[self.view addGestureRecognizer:swipeLeft];
+}
+
+- (void) removeGestureRecognizers
+{
+	[self.view removeGestureRecognizer:swipeLeft];
+	[self.view removeGestureRecognizer:swipeRight];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
 	NSLog(@"Loaded new View\n");
 	
-	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
-	swipeRight.numberOfTouchesRequired = 1;
-	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-
-	UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeft)];
-	swipeLeft.numberOfTouchesRequired = 1;
-	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+	[self buildGestureRecognizers];
+	[self installGestureRecognizers];
 	
-	[self.view addGestureRecognizer:swipeRight];
-	[self.view addGestureRecognizer:swipeLeft];
-
-	[swipeRight release];
-	[swipeLeft release];
 	
 	[self.view setBackgroundColor:[UIColor blackColor]];
 	
@@ -223,6 +239,7 @@
 - (void)orderButtonPressed:(id)sender
 {	
 	NSLog(@"Order button pressed\n");
+	[self removeGestureRecognizers];
 	[orderForm resetForm];
 	[self flipView:orderForm.view direction:UIViewAnimationOptionTransitionFlipFromRight];
 	//I don't know why this works, but loading the image after the flip seems to do the trick
@@ -231,6 +248,7 @@
 
 - (void)returnToDefaultView
 {
+	[self installGestureRecognizers];
 	NSLog(@"Default View Called\n");
 	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
 }
@@ -372,6 +390,9 @@
     [super dealloc];
 	[pictureViews release];
 	[orderForm release];
+	
+	[swipeRight release];
+	[swipeLeft release];
 	
 	///NOTE: I think these get released automatically, but I need to double check
 	//I get an error when I release them
