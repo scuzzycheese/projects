@@ -16,6 +16,7 @@
 	standsDisplayViewController *currentStand;
 	IBOutlet UIBarButtonItem *toolBarButton;
 	xmlNodeSet *standNodes;
+	xmlXPathObjectPtr xpathObj;
 	IBOutlet UIView *demoView;
 	standsDisplayViewController *currentDemoViewController;
 	

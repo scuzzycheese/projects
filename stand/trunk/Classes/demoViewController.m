@@ -72,8 +72,8 @@
 	NSLog(@"DEMO - XML Data is finished parsing!\n");
 	
 	xmlXPathContextPtr contextPtr = xmlXPathNewContext(XMLParser.dom);
-	
 	standNodes = [self findXmlNodes:contextPtr with:"//stand"];
+	xmlXPathFreeContext(contextPtr);
 	[self swapToViewAtIndex:0];
 	
 	[pool release];
@@ -148,7 +148,13 @@
 
 - (xmlNode *)findXmlNodes:(xmlXPathContextPtr)context with:(char *)expression
 {
-	return xmlXPathEvalExpression(expression, context)->nodesetval;
+	if(xpathObj)
+	{
+		xmlXPathFreeObject(xpathObj);
+		xpathObj = NULL;
+	}
+	xpathObj = xmlXPathEvalExpression(expression, context);
+	return xpathObj->nodesetval;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -174,6 +180,11 @@
 
 - (void)dealloc {
     [super dealloc];
+	if(xpathObj)
+	{
+		xmlXPathFreeObject(xpathObj);
+		xpathObj = NULL;
+	}
 }
 
 
