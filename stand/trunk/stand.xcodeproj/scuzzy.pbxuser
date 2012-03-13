@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* standAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 2262}}";
-			sepNavSelRange = "{1975, 260}";
-			sepNavVisRange = "{918, 1609}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 2327}}";
+			sepNavSelRange = "{329, 0}";
+			sepNavVisRange = "{0, 1351}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* stand */ = {
@@ -423,8 +423,8 @@
 	};
 	29B97316FDCFA39411CA2CEA /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 622}}";
-			sepNavSelRange = "{191, 60}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 689}}";
+			sepNavSelRange = "{122, 4}";
 			sepNavVisRange = "{0, 352}";
 		};
 	};
@@ -2754,9 +2754,9 @@
 	};
 	2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {789, 5356}}";
-			sepNavSelRange = "{7490, 0}";
-			sepNavVisRange = "{4502, 990}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 5278}}";
+			sepNavSelRange = "{6050, 0}";
+			sepNavVisRange = "{5532, 1725}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};

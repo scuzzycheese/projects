@@ -16,6 +16,7 @@
 		2F059CA1150172E6007517C5 /* demoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F059CA0150172E6007517C5 /* demoViewController.m */; };
 		2F0B54D614DBE6BB00E761E1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0B54D514DBE6BB00E761E1 /* libxml2.dylib */; };
 		2F0B54E414DBE95400E761E1 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0B54E314DBE95400E761E1 /* XMLParser.m */; };
+		2F0D98C8150F35EA00381223 /* myUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D98C7150F35EA00381223 /* myUI.m */; };
 		2F0E3DE714FA5DBF00C203F5 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3DE614FA5DBE00C203F5 /* left_arrow.png */; };
 		2F0E3DE914FA5DE200C203F5 /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3DE814FA5DE200C203F5 /* right_arrow.png */; };
 		2F0E3E2514FA76C800C203F5 /* orderForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3E2414FA76C800C203F5 /* orderForm.xib */; };
@@ -66,6 +67,8 @@
 		2F0B54D514DBE6BB00E761E1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		2F0B54E214DBE95400E761E1 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		2F0B54E314DBE95400E761E1 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		2F0D98C6150F35EA00381223 /* myUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myUI.h; sourceTree = "<group>"; };
+		2F0D98C7150F35EA00381223 /* myUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myUI.m; sourceTree = "<group>"; };
 		2F0E3DE614FA5DBE00C203F5 /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
 		2F0E3DE814FA5DE200C203F5 /* right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow.png; sourceTree = "<group>"; };
 		2F0E3E2414FA76C800C203F5 /* orderForm.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderForm.xib; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */,
 				2F059C9F150172E6007517C5 /* demoViewController.h */,
 				2F059CA0150172E6007517C5 /* demoViewController.m */,
+				2F0D98C6150F35EA00381223 /* myUI.h */,
+				2F0D98C7150F35EA00381223 /* myUI.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				2F28B92C14E85DF5009C3EB3 /* standsDisplayViewController.m in Sources */,
 				2F0E3F1E14FC1ACD00C203F5 /* SMTP.m in Sources */,
 				2F059CA1150172E6007517C5 /* demoViewController.m in Sources */,
+				2F0D98C8150F35EA00381223 /* myUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
