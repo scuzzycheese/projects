@@ -11,6 +11,13 @@
 
 @interface myUI : UIApplication {
 
+	UITabBarController *tabBarController;
+	NSTimer *timer;
+	
 }
+@property (nonatomic, retain) UITabBarController *tabBarController;
+
+- (void)configureTimer;
+- (void)handleTimer;
 
 @end

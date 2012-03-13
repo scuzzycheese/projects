@@ -7,6 +7,7 @@
 //
 
 #import "standAppDelegate.h"
+#import "myUI.h"
 
 
 
@@ -27,6 +28,10 @@
 	// Set the tab bar controller as the window's root view controller and display.
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+	//Give the main UI access to the tabBar application
+	[(myUI *)[myUI sharedApplication] setTabBarController:self.tabBarController];
+	//Start the timer
+	[(myUI *)[myUI sharedApplication] configureTimer];
 	
 	
 	NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(workerThread) object:nil];
