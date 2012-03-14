@@ -33,10 +33,12 @@
 	//Start the timer
 	[(myUI *)[myUI sharedApplication] configureTimer];
 	
-	
+	[NSThread detachNewThreadSelector:@selector(workerThread) toTarget:self withObject:nil];
+	/*
 	NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(workerThread) object:nil];
 	[myThread start];
-
+	 */
+	 
     return YES;
 }
 
@@ -100,7 +102,8 @@
 	
 	[ziper UnzipOpenFile:updateZipFile];
 	[ziper UnzipFileTo:documentsFolderPath overWrite:YES];
-	
+
+	[ziper UnzipCloseFile];
 	[ziper release];
 	
 	NSString *standsXMLFile = [documentsFolderPath stringByAppendingString:@"/stands.xml"];

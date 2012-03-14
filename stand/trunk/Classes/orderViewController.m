@@ -157,16 +157,23 @@
 		smtpPort = atoi(xmlGetProp(confNode, "port"));
 	}
 	
+	xmlXPathFreeContext(contextPtr);
+	
 	
 	
 }
 
 - (xmlNode *)findXmlNode:(xmlXPathContextPtr)context with:(char *)expression
 {
-	xmlXPathObjectPtr objPtr = xmlXPathEvalExpression(expression, context);
-	if(objPtr->nodesetval->nodeNr > 0)
+	if(xpathObj)
 	{
-		return objPtr->nodesetval->nodeTab[0];
+		xmlXPathFreeObject(xpathObj);
+		xpathObj = NULL;
+	}
+	xpathObj = xmlXPathEvalExpression(expression, context);
+	if(xpathObj->nodesetval->nodeNr > 0)
+	{
+		return xpathObj->nodesetval->nodeTab[0];
 	}
 	return NULL;
 }
@@ -192,6 +199,14 @@
 	[smtp release];
 	
 	if(orderEmail != nil) [orderEmail release];
+	if(fromEmail != nil) [fromEmail release];
+	if(watchdogEmail != nil) [watchdogEmail release];
+	if(smtpServer != nil) [smtpServer release];
+	if(xpathObj)
+	{
+		xmlXPathFreeObject(xpathObj);
+		xpathObj = NULL;
+	}
 	//[standPicture release];
 }
 

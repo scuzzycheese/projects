@@ -39,9 +39,12 @@
     [super viewDidLoad];
 	
 	//NOTE: This may not need to be a thread, we'll see
+	[NSThread detachNewThreadSelector:@selector(workerThread) toTarget:self withObject:nil];
+	/*
 	NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(workerThread) object:nil];
 	[myThread start];
-	
+	*/
+	 
 	nodeIndex = 0;
 	timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerChange) userInfo:nil repeats:YES];
 	[timer fire];
@@ -128,7 +131,7 @@
 }
 
 - (IBAction) handleOrderButton
-{
+{	
 	NSLog(@"order button pressed in demo context\n");
 	//Stop the timer
 	[timer setFireDate:[NSDate distantFuture]];

@@ -33,6 +33,8 @@
 	NSString *smtpServer;
 	int smtpPort;
 	
+	xmlXPathObjectPtr xpathObj;
+	
 	SMTP *smtp;
 	
 
