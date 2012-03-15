@@ -154,7 +154,9 @@
 	if(confNode = [self findXmlNode:contextPtr with:"//config/smtpServer"])
 	{
 		smtpServer = [[NSString alloc] initWithCString:confNode->children->content encoding:NSUTF8StringEncoding];
-		smtpPort = atoi(xmlGetProp(confNode, "port"));
+		xmlChar *portStr = xmlGetProp(confNode, "port");
+		smtpPort = atoi(portStr);
+		xmlFree(portStr);
 	}
 	
 	xmlXPathFreeContext(contextPtr);
