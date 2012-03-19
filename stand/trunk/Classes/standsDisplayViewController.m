@@ -262,8 +262,8 @@
 	documentsFolderPath = [documentsFolderPath stringByAppendingString:@"/"];
 	[documentsFolderPath retain];
 
-	UIImage *leftButtonImage = [[UIImage imageNamed:@"left_arrow"] stretchableImageWithLeftCapWidth:100 topCapHeight:90];
-	UIImage *rightButtonImage = [[UIImage imageNamed:@"right_arrow"] stretchableImageWithLeftCapWidth:100 topCapHeight:90];
+	UIImage *leftButtonImage = [[UIImage imageNamed:@"left_arrow"] stretchableImageWithLeftCapWidth:100 topCapHeight:79];
+	UIImage *rightButtonImage = [[UIImage imageNamed:@"right_arrow"] stretchableImageWithLeftCapWidth:100 topCapHeight:79];
 	
 	rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[rightButton addTarget:self action:@selector(buttonSwipeRight:) forControlEvents:UIControlEventTouchUpInside];

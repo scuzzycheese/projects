@@ -17,8 +17,8 @@
 		2F0B54D614DBE6BB00E761E1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0B54D514DBE6BB00E761E1 /* libxml2.dylib */; };
 		2F0B54E414DBE95400E761E1 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0B54E314DBE95400E761E1 /* XMLParser.m */; };
 		2F0D98C8150F35EA00381223 /* myUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D98C7150F35EA00381223 /* myUI.m */; };
-		2F0E3DE714FA5DBF00C203F5 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3DE614FA5DBE00C203F5 /* left_arrow.png */; };
-		2F0E3DE914FA5DE200C203F5 /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3DE814FA5DE200C203F5 /* right_arrow.png */; };
+		2F0D99801511E61600381223 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0D997E1511E61600381223 /* left_arrow.png */; };
+		2F0D99811511E61600381223 /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F0D997F1511E61600381223 /* right_arrow.png */; };
 		2F0E3E2514FA76C800C203F5 /* orderForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F0E3E2414FA76C800C203F5 /* orderForm.xib */; };
 		2F0E3F1E14FC1ACD00C203F5 /* SMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */; };
 		2F2041F714CE1F5B007A206E /* CTICCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2041F614CE1F5B007A206E /* CTICCViewController.m */; };
@@ -69,8 +69,8 @@
 		2F0B54E314DBE95400E761E1 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		2F0D98C6150F35EA00381223 /* myUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myUI.h; sourceTree = "<group>"; };
 		2F0D98C7150F35EA00381223 /* myUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myUI.m; sourceTree = "<group>"; };
-		2F0E3DE614FA5DBE00C203F5 /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
-		2F0E3DE814FA5DE200C203F5 /* right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow.png; sourceTree = "<group>"; };
+		2F0D997E1511E61600381223 /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
+		2F0D997F1511E61600381223 /* right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow.png; sourceTree = "<group>"; };
 		2F0E3E2414FA76C800C203F5 /* orderForm.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderForm.xib; sourceTree = "<group>"; };
 		2F0E3F1C14FC1ACD00C203F5 /* SMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTP.h; sourceTree = "<group>"; };
 		2F0E3F1D14FC1ACD00C203F5 /* SMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTP.m; sourceTree = "<group>"; };
@@ -206,10 +206,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2F0E3DE814FA5DE200C203F5 /* right_arrow.png */,
+				2F0D997E1511E61600381223 /* left_arrow.png */,
+				2F0D997F1511E61600381223 /* right_arrow.png */,
 				2F76E9B414ED4FB700761573 /* CTICC_small.png */,
 				2F76E9B014ED4CBD00761573 /* 3dcapeLogo_bar_small.png */,
-				2F0E3DE614FA5DBE00C203F5 /* left_arrow.png */,
 				28A0AB4B0D9B1048005BE974 /* stand_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -349,9 +349,9 @@
 				28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */,
 				2F76E9B114ED4CBD00761573 /* 3dcapeLogo_bar_small.png in Resources */,
 				2F76E9B514ED4FB700761573 /* CTICC_small.png in Resources */,
-				2F0E3DE714FA5DBF00C203F5 /* left_arrow.png in Resources */,
-				2F0E3DE914FA5DE200C203F5 /* right_arrow.png in Resources */,
 				2F0E3E2514FA76C800C203F5 /* orderForm.xib in Resources */,
+				2F0D99801511E61600381223 /* left_arrow.png in Resources */,
+				2F0D99811511E61600381223 /* right_arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
