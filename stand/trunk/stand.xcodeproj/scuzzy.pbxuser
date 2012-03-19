@@ -330,6 +330,9 @@
 			2F0D998B1511E67400381223 /* PBXTextBookmark */ = 2F0D998B1511E67400381223 /* PBXTextBookmark */;
 			2F0D998C1511E67400381223 /* PBXTextBookmark */ = 2F0D998C1511E67400381223 /* PBXTextBookmark */;
 			2F0D998D1511E67400381223 /* PBXTextBookmark */ = 2F0D998D1511E67400381223 /* PBXTextBookmark */;
+			2F0D999115177FAB00381223 /* PBXTextBookmark */ = 2F0D999115177FAB00381223 /* PBXTextBookmark */;
+			2F0D999215177FAB00381223 /* XCBuildMessageTextBookmark */ = 2F0D999215177FAB00381223 /* XCBuildMessageTextBookmark */;
+			2F0D999315177FAB00381223 /* PBXTextBookmark */ = 2F0D999315177FAB00381223 /* PBXTextBookmark */;
 			2F0E3D8614FA336900C203F5 = 2F0E3D8614FA336900C203F5 /* PBXTextBookmark */;
 			2F0E3D9C14FA345C00C203F5 = 2F0E3D9C14FA345C00C203F5 /* PBXTextBookmark */;
 			2F0E3D9D14FA345C00C203F5 = 2F0E3D9D14FA345C00C203F5 /* PBXTextBookmark */;
@@ -2071,6 +2074,49 @@
 		vrLen = 990;
 		vrLoc = 4502;
 	};
+	2F0D998E1511E86200381223 /* customTabBarController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {956, 689}}";
+			sepNavSelRange = "{585, 32}";
+			sepNavVisRange = "{0, 673}";
+		};
+	};
+	2F0D998F1511E86200381223 /* customTabBarController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {956, 728}}";
+			sepNavSelRange = "{791, 0}";
+			sepNavVisRange = "{0, 794}";
+		};
+	};
+	2F0D999115177FAB00381223 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2F059CA0150172E6007517C5 /* demoViewController.m */;
+		name = "demoViewController.m: 134";
+		rLen = 0;
+		rLoc = 3771;
+		rType = 0;
+		vrLen = 903;
+		vrLoc = 2593;
+	};
+	2F0D999215177FAB00381223 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Expected expression before ')' token";
+		fRef = 1D3623250D0F684500981E51 /* standAppDelegate.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 33;
+		rType = 1;
+	};
+	2F0D999315177FAB00381223 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* standAppDelegate.m */;
+		name = "standAppDelegate.m: 32";
+		rLen = 0;
+		rLoc = 812;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 272;
+	};
 	2F0E3D8614FA336900C203F5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */;
@@ -3533,9 +3579,9 @@
 	};
 	2F28B92B14E85DF5009C3EB3 /* standsDisplayViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {789, 5356}}";
-			sepNavSelRange = "{7490, 0}";
-			sepNavVisRange = "{4502, 990}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 4953}}";
+			sepNavSelRange = "{7191, 0}";
+			sepNavVisRange = "{6416, 2299}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};
