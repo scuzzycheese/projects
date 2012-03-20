@@ -243,7 +243,7 @@
 	
 	//NOTE: This may be a waste of time, since any user interaction resets the timer to 60 seconds
 	//set global timer for 5 minutes
-	[((myUI *)[myUI sharedApplication]).timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:300]];
+	//[((myUI *)[myUI sharedApplication]).timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:300]];
 	
 	[self removeGestureRecognizers];
 	[orderForm resetForm];
@@ -257,8 +257,9 @@
 	[self installGestureRecognizers];
 	NSLog(@"Default View Called\n");
 	
+	//NOTE: This may be a waste of time, since any user interaction resets the timer to 60 seconds
 	//set global timer for 60 seconds
-	[((myUI *)[myUI sharedApplication]).timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60]];
+	//[((myUI *)[myUI sharedApplication]).timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60]];
 	
 	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
 }
