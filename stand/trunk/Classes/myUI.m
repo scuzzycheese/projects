@@ -31,13 +31,14 @@
 
 - (void)configureTimer
 {
-	timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
+	timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
 	[timer fire];
 }
 
 
 - (void)handleTimer
 {
+	[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60]];
 	//We need to swap to the demo view now
 	[tabBarController selectTab:1002];
 }

@@ -241,6 +241,7 @@
 {	
 	NSLog(@"Order button pressed\n");
 	
+	//NOTE: This may be a waste of time, since any user interaction resets the timer to 60 seconds
 	//set global timer for 5 minutes
 	[((myUI *)[myUI sharedApplication]).timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:300]];
 	
