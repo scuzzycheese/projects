@@ -40,40 +40,40 @@
 - (void)addCustomButtons
 {
 	// Initialise our two images
-	UIImage *btnImage = [UIImage imageNamed:@"NavBar_01.png"];
-	UIImage *btnImageSelected = [UIImage imageNamed:@"NavBar_01_s.png"];
+	UIImage *btnImage = [UIImage imageNamed:@"3d_cape_logo_unselected"];
+	UIImage *btnImageSelected = [UIImage imageNamed:@"3d_cape_logo_selected"];
 	
 	self.threeDCapeSite = [UIButton buttonWithType:UIButtonTypeCustom]; //Setup the button
-	threeDCapeSite.frame = CGRectMake(0, 430, 80, 50); // Set the frame (size and position) of the button)
+	threeDCapeSite.frame = CGRectMake(0, 719, 51, 49); // Set the frame (size and position) of the button)
 	[threeDCapeSite setBackgroundImage:btnImage forState:UIControlStateNormal]; // Set the image for the normal state of the button
 	[threeDCapeSite setBackgroundImage:btnImageSelected forState:UIControlStateSelected]; // Set the image for the selected state of the button
 	[threeDCapeSite setTag:1000]; // Assign the button a "tag" so when our "click" event is called we know which button was pressed.
 	[threeDCapeSite setSelected:true]; // Set this button as selected (we will select the others to false as we only want Tab 1 to be selected initially
 	
 	// Now we repeat the process for the other buttons
-	btnImage = [UIImage imageNamed:@"NavBar_02.png"];
-	btnImageSelected = [UIImage imageNamed:@"NavBar_02_s.png"];
+	btnImage = [UIImage imageNamed:@"navigation_logo_unselected"];
+	btnImageSelected = [UIImage imageNamed:@"navigation_logo_selected"];
 	
 	self.navigation = [UIButton buttonWithType:UIButtonTypeCustom];
-	navigation.frame = CGRectMake(80, 430, 80, 50);
+	navigation.frame = CGRectMake(100, 719, 350, 49);
 	[navigation setBackgroundImage:btnImage forState:UIControlStateNormal];
 	[navigation setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
 	[navigation setTag:1001];
 	
-	btnImage = [UIImage imageNamed:@"NavBar_03.png"];
-	btnImageSelected = [UIImage imageNamed:@"NavBar_03_s.png"];
+	btnImage = [UIImage imageNamed:@"demo_logo_unselected"];
+	btnImageSelected = [UIImage imageNamed:@"demo_logo_selected"];
 	
 	self.demo = [UIButton buttonWithType:UIButtonTypeCustom];
-	demo.frame = CGRectMake(160, 430, 80, 50);
+	demo.frame = CGRectMake(450, 719, 135, 49);
 	[demo setBackgroundImage:btnImage forState:UIControlStateNormal];
 	[demo setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
 	[demo setTag:1002];
 	
-	btnImage = [UIImage imageNamed:@"NavBar_04.png"];
-	btnImageSelected = [UIImage imageNamed:@"NavBar_04_s.png"];
+	btnImage = [UIImage imageNamed:@"CTICC_LOGO_UNSELECTED"];
+	btnImageSelected = [UIImage imageNamed:@"CTICC_LOGO_SELECTED"];
 	
 	self.CTICCSite = [UIButton buttonWithType:UIButtonTypeCustom];
-	CTICCSite.frame = CGRectMake(240, 430, 80, 50);
+	CTICCSite.frame = CGRectMake(876, 719, 148, 49);
 	[CTICCSite setBackgroundImage:btnImage forState:UIControlStateNormal];
 	[CTICCSite setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
 	[CTICCSite setTag:1003];
@@ -121,7 +121,7 @@
 			break;
 	}	
 	
-	self.selectedIndex = tabNumber;
+	[self setSelectedIndex:tabNumber - 1000];
 }
 
 

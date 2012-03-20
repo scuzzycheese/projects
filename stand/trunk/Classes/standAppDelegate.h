@@ -10,11 +10,12 @@
 #include "ASIHTTPRequest.h"
 #include "ZipArchive.h"
 #include "XMLParser.h"
+#include "customTabBarController.h"
 
 
 @interface standAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, ASIHTTPRequestDelegate, ZipArchiveDelegate> {
     UIWindow *window;
-    UITabBarController *tabBarController;
+    customTabBarController *tabBarController;
 	
 	NSString *documentsFolderPath;
 	NSString *updateZipFile;
@@ -24,7 +25,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet customTabBarController *tabBarController;
 @property (nonatomic, retain) XMLParser *XMLParser;
 
 - (void)workerThread;

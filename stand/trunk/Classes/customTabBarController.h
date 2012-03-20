@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#ifndef CUSTOMTABBARCONTROLLER_H
+#define CUSTOMTABBARCONTROLLER_H
 
 @interface customTabBarController : UITabBarController {
 	
@@ -33,3 +35,5 @@
 - (void)tabPressed:(id)sender;
 
 @end
+
+#endif

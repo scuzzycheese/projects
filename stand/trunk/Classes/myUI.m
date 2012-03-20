@@ -38,7 +38,7 @@
 - (void)handleTimer
 {
 	//We need to swap to the demo view now
-	[tabBarController setSelectedIndex:2];
+	[tabBarController selectTab:1002];
 }
 
 @end

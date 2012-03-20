@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#include "customTabBarController.h"
 
 
 @interface myUI : UIApplication {
 
-	UITabBarController *tabBarController;
+	customTabBarController *tabBarController;
 	NSTimer *timer;
 	
 }
