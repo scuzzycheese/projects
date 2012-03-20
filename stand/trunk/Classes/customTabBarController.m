@@ -51,11 +51,11 @@
 	[threeDCapeSite setSelected:true]; // Set this button as selected (we will select the others to false as we only want Tab 1 to be selected initially
 	
 	// Now we repeat the process for the other buttons
-	btnImage = [UIImage imageNamed:@"navigation_logo_unselected"];
-	btnImageSelected = [UIImage imageNamed:@"navigation_logo_selected"];
+	btnImage = [UIImage imageNamed:@"compass_unselected"];
+	btnImageSelected = [UIImage imageNamed:@"compass_selected"];
 	
 	self.navigation = [UIButton buttonWithType:UIButtonTypeCustom];
-	navigation.frame = CGRectMake(100, 719, 350, 49);
+	navigation.frame = CGRectMake(100, 719, 46, 49);
 	[navigation setBackgroundImage:btnImage forState:UIControlStateNormal];
 	[navigation setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
 	[navigation setTag:1001];
