@@ -134,7 +134,7 @@
 {	
 	NSLog(@"order button pressed in demo context\n");
 	//Stop the timer
-	[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:300]];
+	[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60]];
 	NSLog(@"Timer paused\n");
 }
 
