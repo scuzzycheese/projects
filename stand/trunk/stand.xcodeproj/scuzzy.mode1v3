@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2F0D9A241518997100381223</string>
+						<string>2F0D9A591518C8A100381223</string>
 						<key>history</key>
 						<array>
 							<string>2F0D990D15108B0F00381223</string>
@@ -256,7 +256,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2F0D9A251518997100381223</string>
+						<string>2F0D9A5A1518C8A100381223</string>
 						<key>history</key>
 						<array>
 							<string>2F059CC515041161007517C5</string>
@@ -355,7 +355,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>30</integer>
+									<integer>21</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -379,7 +380,7 @@
 							<real>241</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-1 59 1280 943 0 0 1280 1002 </string>
+						<string>-3 59 1280 943 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -397,7 +398,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>customTabBarController.m</string>
+								<string>standsDisplayViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -405,11 +406,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>customTabBarController.m</string>
+										<string>standsDisplayViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2F0D9A231518997100381223</string>
+										<string>2F0D9A581518C8A100381223</string>
 										<key>history</key>
 										<array>
 											<string>2F81074B14D7E149000847DD</string>
@@ -438,21 +439,21 @@
 											<string>2F0D99281510949700381223</string>
 											<string>2F0D99291510949700381223</string>
 											<string>2F0D992B1510949700381223</string>
-											<string>2F0D992E1510949700381223</string>
-											<string>2F0D99371510954E00381223</string>
 											<string>2F0D99461510977400381223</string>
 											<string>2F0D99541511DE8900381223</string>
-											<string>2F0D99841511E62A00381223</string>
 											<string>2F0D99A61518875500381223</string>
 											<string>2F0D99A81518875500381223</string>
 											<string>2F0D99A91518875500381223</string>
-											<string>2F0D99AC1518875500381223</string>
 											<string>2F0D99AE1518875500381223</string>
-											<string>2F0D99BD1518887E00381223</string>
 											<string>2F0D99D215188A3C00381223</string>
 											<string>2F0D99D315188A3C00381223</string>
-											<string>2F0D99D415188A3C00381223</string>
-											<string>2F0D9A14151897D200381223</string>
+											<string>2F0D9A4115189FEA00381223</string>
+											<string>2F0D9A4F1518C87900381223</string>
+											<string>2F0D9A501518C87900381223</string>
+											<string>2F0D9A511518C87900381223</string>
+											<string>2F0D9A521518C87900381223</string>
+											<string>2F0D9A531518C87900381223</string>
+											<string>2F0D9A541518C87900381223</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -466,7 +467,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1017, 746}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1 59 1280 943 0 0 1280 1002 </string>
+								<string>-3 59 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -486,7 +487,7 @@
 								<key>Frame</key>
 								<string>{{0, 751}, {1017, 151}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1 59 1280 943 0 0 1280 1002 </string>
+								<string>-3 59 1280 943 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -661,7 +662,7 @@
 		<string>/Users/scuzzy/Documents/stand/stand.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-1 59 1280 943 0 0 1280 1002 </string>
+	<string>-3 59 1280 943 0 0 1280 1002 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

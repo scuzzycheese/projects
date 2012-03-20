@@ -17,6 +17,7 @@
 	
 }
 @property (nonatomic, retain) UITabBarController *tabBarController;
+@property (nonatomic, retain) NSTimer *timer;
 
 - (void)configureTimer;
 - (void)handleTimer;

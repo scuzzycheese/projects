@@ -7,6 +7,7 @@
 //
 
 #import "standsDisplayViewController.h"
+#include "myUI.h"
 
 
 @implementation standsDisplayViewController
@@ -239,6 +240,10 @@
 - (void)orderButtonPressed:(id)sender
 {	
 	NSLog(@"Order button pressed\n");
+	
+	//set global timer for 5 minutes
+	[((myUI *)[myUI sharedApplication]).timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:300]];
+	
 	[self removeGestureRecognizers];
 	[orderForm resetForm];
 	[self flipView:orderForm.view direction:UIViewAnimationOptionTransitionFlipFromRight];
@@ -250,6 +255,10 @@
 {
 	[self installGestureRecognizers];
 	NSLog(@"Default View Called\n");
+	
+	//set global timer for 60 seconds
+	[((myUI *)[myUI sharedApplication]).timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60]];
+	
 	[self flipView:[pictureViews objectAtIndex:currentViewIndex] direction:UIViewAnimationOptionTransitionFlipFromLeft];
 }
 

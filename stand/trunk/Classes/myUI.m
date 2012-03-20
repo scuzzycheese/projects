@@ -12,6 +12,7 @@
 @implementation myUI
 
 @synthesize tabBarController;
+@synthesize timer;
 
 - (void)sendEvent:(UIEvent *)event
 {
@@ -21,7 +22,7 @@
 		if(timer)
 		{
 			//Reset the timer if a user interacts with the syste
-			[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+			[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60]];
 		}
 	}
 	

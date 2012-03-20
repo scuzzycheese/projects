@@ -55,16 +55,16 @@
 	btnImageSelected = [UIImage imageNamed:@"compass_selected"];
 	
 	self.navigation = [UIButton buttonWithType:UIButtonTypeCustom];
-	navigation.frame = CGRectMake(100, 719, 46, 49);
+	navigation.frame = CGRectMake(256, 719, 46, 49);
 	[navigation setBackgroundImage:btnImage forState:UIControlStateNormal];
 	[navigation setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
 	[navigation setTag:1001];
 	
-	btnImage = [UIImage imageNamed:@"demo_logo_unselected"];
-	btnImageSelected = [UIImage imageNamed:@"demo_logo_selected"];
+	btnImage = [UIImage imageNamed:@"demo_cog_unselected"];
+	btnImageSelected = [UIImage imageNamed:@"demo_cog_selected"];
 	
 	self.demo = [UIButton buttonWithType:UIButtonTypeCustom];
-	demo.frame = CGRectMake(450, 719, 135, 49);
+	demo.frame = CGRectMake(512, 719, 47, 49);
 	[demo setBackgroundImage:btnImage forState:UIControlStateNormal];
 	[demo setBackgroundImage:btnImageSelected forState:UIControlStateSelected];
 	[demo setTag:1002];
