@@ -19,7 +19,6 @@ cParseFromFile::cParseFromFile(std::string filename)
 		}
 		lineFile.close();
 	}
-
 }
 
 cParseFromFile::~cParseFromFile()

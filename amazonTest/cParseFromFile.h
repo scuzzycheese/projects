@@ -16,8 +16,8 @@ public:
 	cParseFromFile();
 	cParseFromFile(std::string filename);
 	virtual ~ cParseFromFile();
-private:
 	std::vector<std::string> lines;
+private:
 
 };
 

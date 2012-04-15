@@ -5,7 +5,7 @@ COBJ = -c
 CCBUILD = $(CC) $(CARGS)
 CCBUILDOBJ = $(CCBUILD) $(COBJ)
 
-OBJECTS = cParseFromFile.o
+OBJECTS = cParseFromFile.o cLine.o
 
 all: $(OBJECTS)
 	$(CCBUILD) -o amLines main.cpp $(OBJECTS)
