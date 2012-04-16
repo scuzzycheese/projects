@@ -3,8 +3,13 @@
 
 int main(int argc, char **argv)
 {
+	if(argc != 2)
+	{
+		std::cout << "Usage: ./amLines <file>" << std::endl;
+		exit(EXIT_FAILURE);
+	}
 
-	cParseFromFile parser("lines");
+	cParseFromFile parser(argv[1]);
 
 	for(std::vector<std::string>::iterator i = parser.lines.begin(); i < parser.lines.end(); i ++)
 	{
