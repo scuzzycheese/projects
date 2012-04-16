@@ -16,10 +16,10 @@ int main(int argc, char **argv)
 		cLine line(*i);
 		if(line.validLine())
 		{
-			std::cout << "ORIGIN: " << line.origin() << std::endl;
-			std::cout << "MAX: " << line.max << std::endl;
-			std::cout << "MIN: " << line.min << std::endl;
-			std::cout << "AVG: " << line.avgValue << std::endl << std::endl;
+			std::cout << "ORIGIN: " << line.getOriginalLine() << std::endl;
+			std::cout << "MAX: " << line.getMax() << std::endl;
+			std::cout << "MIN: " << line.getMin() << std::endl;
+			std::cout << "AVG: " << line.getAvgValue() << std::endl << std::endl;
 		}
 	}
 

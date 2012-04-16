@@ -9,13 +9,21 @@ class cLine
 public:
 	cLine(std::string);
 	bool validLine();
-	std::string origin();
+	std::string getOriginalLine();
 	virtual ~ cLine();
+
+   unsigned int getAvgValue() const;
+   unsigned int getNumValues() const;
+   unsigned int getMin() const;
+   unsigned int getMax() const;
+
+   std::vector<unsigned int> getValues() const;
+
+private:
 	unsigned int max;
 	unsigned int min;
 	unsigned int numValues;
 	unsigned int avgValue;
-private:
 	std::string originalLine;
 	std::vector<unsigned int> values;
 	struct retVal

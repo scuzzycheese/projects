@@ -80,10 +80,33 @@ bool cLine::validLine()
 	else return false;
 }
 
-std::string cLine::origin()
+std::string cLine::getOriginalLine()
 {
 	return originalLine;
 }
+
+
+unsigned int cLine::getAvgValue() const
+{
+	return avgValue;
+}
+unsigned int cLine::getNumValues() const
+{
+	return numValues;
+}
+unsigned int cLine::getMin() const
+{
+	return min;
+}
+unsigned int cLine::getMax() const
+{
+	return max;
+}
+
+ std::vector<unsigned int> cLine::getValues() const
+ {
+	 return values;
+ }
 
 cLine::~cLine()
 {
