@@ -46,22 +46,25 @@ cLine::retVal cLine::convertToInt(std::string value)
 	retVal ret = {false, 0};
 	char *endptr;
 	errno = 0;
-	long long intVal = strtol(value.c_str(), &endptr, 10);
-	if(errno == ERANGE && (intVal == LONG_MAX || intVal == LONG_MIN))
+	if(!value.empty())
 	{
-		std::cout << "Bad Value(leaving out of set): " << value << std::flush;
-		perror(" ");
-	}
-	else if(intVal < 0)
-	{
-		std::cout << "Bad Value(leaving out of set): " << value << " : Negative number" << std::endl;
-	}
-	else
-	{
-		if(intVal >= 0)
+		long long intVal = strtol(value.c_str(), &endptr, 10);
+		if(errno == ERANGE && (intVal == LONG_MAX || intVal == LONG_MIN))
 		{
-			ret.validValue = true;
-			ret.value = intVal;
+			std::cout << "Bad Value(leaving out of set): " << value << std::flush;
+			perror(" ");
+		}
+		else if(intVal < 0)
+		{
+			std::cout << "Bad Value(leaving out of set): " << value << " : Negative number" << std::endl;
+		}
+		else
+		{
+			if(intVal >= 0)
+			{
+				ret.validValue = true;
+				ret.value = intVal;
+			}
 		}
 	}
 	return ret;
