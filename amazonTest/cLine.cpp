@@ -10,9 +10,10 @@ cLine::cLine()
 {
 }
 
-cLine::cLine(std::string line)
+cLine::cLine(std::string line) : min(0), max(0), numValues(0)
 {
 	std::istringstream ssLine(line);
+	long long totalValue = 0;
 	while(ssLine.good())
 	{
 		char *endptr;
@@ -35,13 +36,16 @@ cLine::cLine(std::string line)
 		{
 			if(intVal >= 0)
 			{
+				if(intVal < min) min = intVal;
+				if(intVal > max) max = intVal;
+				numValues ++;
+				totalValue += intVal;
 				values.push_back(intVal);
-				std::cout << intVal << " ";
 			}
 		}
 
 	}
-	std::cout << std::endl;
+	if(totalValue > 0 && numValues > 0) avgValue = totalValue / numValues;
 }
 
 cLine::~cLine()

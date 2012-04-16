@@ -10,12 +10,12 @@ public:
 	cLine();
 	cLine(std::string);
 	virtual ~ cLine();
+	unsigned int max;
+	unsigned int min;
+	unsigned int numValues;
+	unsigned int avgValue;
 private:
-	std::vector<int> values;
-	int max;
-	int min;
-	int numValues;
-	int avgValue;
+	std::vector<unsigned int> values;
 
 };
 
