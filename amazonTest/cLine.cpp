@@ -103,10 +103,10 @@ unsigned int cLine::getMax() const
 	return max;
 }
 
- std::vector<unsigned int> cLine::getValues() const
- {
-	 return values;
- }
+std::vector<unsigned int> cLine::getValues() const
+{
+	return values;
+}
 
 cLine::~cLine()
 {
