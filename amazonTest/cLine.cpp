@@ -6,10 +6,6 @@
 #include <errno.h>
 
 
-cLine::cLine()
-{
-}
-
 cLine::cLine(std::string line) : min(LONG_MAX), max(0), numValues(0), avgValue(0)
 {
 	std::istringstream ssLine(line);
@@ -45,9 +41,10 @@ cLine::retVal cLine::convertToInt(std::string value)
 {
 	retVal ret = {false, 0};
 	char *endptr;
-	errno = 0;
+	//std::cout << "Interpreted Values: ";
 	if(!value.empty())
 	{
+		errno = 0;
 		long long intVal = strtol(value.c_str(), &endptr, 10);
 		if(errno == ERANGE && (intVal == LONG_MAX || intVal == LONG_MIN))
 		{
@@ -58,21 +55,27 @@ cLine::retVal cLine::convertToInt(std::string value)
 		{
 			std::cout << "Bad Value(leaving out of set): " << value << " : Negative number" << std::endl;
 		}
+		else if(value.c_str() == endptr)
+		{
+			std::cout << "Bad Value(leaving out of set): " << value << " : Invalid number" << std::endl;
+		}
 		else
 		{
-			if(intVal >= 0)
+			if(intVal >= 0 && errno == 0)
 			{
 				ret.validValue = true;
 				ret.value = intVal;
+				//std::cout << intVal << " ";
 			}
 		}
 	}
+	//std::cout << std::endl;
 	return ret;
 }
 
 bool cLine::validLine()
 {
-	std::cout << "values.size: " << values.size() << std::endl;
+	//std::cout << "values.size: " << values.size() << std::endl;
 	if(values.size() > 0) return true;
 	else return false;
 }

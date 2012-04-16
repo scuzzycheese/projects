@@ -1,10 +1,5 @@
 #include "cParseFromFile.h"
 
-cParseFromFile::cParseFromFile()
-{
-
-}
-
 cParseFromFile::cParseFromFile(std::string filename)
 {
    std::ifstream lineFile;

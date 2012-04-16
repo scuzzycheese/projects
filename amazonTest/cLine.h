@@ -7,7 +7,6 @@
 class cLine
 {
 public:
-	cLine();
 	cLine(std::string);
 	bool validLine();
 	std::string origin();

@@ -13,7 +13,6 @@
 class cParseFromFile
 {
 public:
-	cParseFromFile();
 	cParseFromFile(std::string filename);
 	virtual ~ cParseFromFile();
 	std::vector<std::string> lines;
