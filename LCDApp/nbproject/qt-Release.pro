@@ -18,4 +18,4 @@ QMAKE_CC = gcc
 QMAKE_CXX = g++
 DEFINES += 
 INCLUDEPATH += /usr/include/c++/4.4 
-LIBS += 
+LIBS += -ludev
