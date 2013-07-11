@@ -1,6 +1,7 @@
 #include <iostream>
 #include <QObject>
 #include <Qt/QtNetwork>
+#include <stdint.h>
 
 #ifndef _SNETPEER_H
 #define	_SNETPEER_H
