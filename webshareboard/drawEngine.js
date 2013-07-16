@@ -5,6 +5,23 @@ function drawEngine(canvas, context)
 	this.lines = new Array();
 	this.currentLine = null;
 
+	this.resetMatrices = function()
+	{
+		this.operationTranslationMatrix = new Matrix.create
+		([
+			[1,0,0],
+			[0,1,0],
+			[this.canvas.width/2, this.canvas.height/2, 0]
+		]);
+		this.scaleMatrix = new Matrix.I(3);
+		this.translationMatrix = new Matrix.I(3);
+		this.worldMatrix = new Matrix.I(3);
+		this.invertedWorldMatrix = new Matrix.I(3);
+
+		this.scale = 1;
+	}
+	this.resetMatrices();
+
 
 	this.startNewLine = function(point, currentPenColor, currentPenWidth)
 	{
@@ -13,7 +30,6 @@ function drawEngine(canvas, context)
 		this.currentLine = new drawLine(point, currentPenColor, currentPenWidth);
 		this.lines.push(this.currentLine);
 	}
-
 
 	this.addToLine = function(point)
 	{

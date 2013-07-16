@@ -34,6 +34,7 @@ if(window.addEventListener)
 			canvas.addEventListener('mousedown', ev_canvas, false);
 			canvas.addEventListener('mousemove', ev_canvas, false);
 			canvas.addEventListener('mouseup',   ev_canvas, false);
+			canvas.addEventListener('mouseout',   ev_canvas, false);
 		}
 
 		function ev_canvas(ev)
@@ -75,6 +76,15 @@ if(window.addEventListener)
 			};
 
 			this.mouseup = function(ev)
+			{
+				if(this.scribbling)
+				{
+					this.scribbling = false;
+					this.engine.finishLine();
+				}
+			};
+
+			this.mouseout = function(ev)
 			{
 				if(this.scribbling)
 				{
