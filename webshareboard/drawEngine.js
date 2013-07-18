@@ -34,9 +34,33 @@ function drawEngine(canvas, context)
 	this.translate = function(transBy)
 	{
 		this.dScaleMatrix = this.dOperationTranslationMatrix.inverse().x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 0]])).x(this.dOperationTranslationMatrix);
-		var tempMatrix = this.dScaleMatrix;
+		var tempMatrix = new Matrix.create([[this.dScaleMatrix.e(1,1), this.dScaleMatrix.e(1,2), 0],[this.dScaleMatrix.e(2,1), this.dScaleMatrix.e(2,2), 0],[0, 0, 0]]);
+		var tempPoint = this.map(tempMatrix.inverse(), transBy);
+
+		this.translate(this.dOperationTranslationMatrix, (new point(-tempPoint.x, -tempPoint.y)));
+		this.translate(this.dOperationTranslationMatrix, tempPoint);
+
+		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
+		this.dMatrixChanged = true;
+	}
+
+	this.map = function(matrix, point)
+	{
+		var xPrime = matrix.e(1, 1) * point.x + matrix.e(2, 1) * point.y + matrix.e(3, 1);
+		var yPrime = matrix.e(2, 2) * point.y + matrix.e(1, 2) * point.x + matrix.e(3, 2);
+		return new point(xPrime, yPrime);
+	}
+
+	this.translate = function(matrix, transBy)
+	{
+	   var elements = matrix.elements;
+		elements[0][2] = transBy.x;
+		elements[1][2] = transBy.y;
+		matrix.setElements(elements);
 	}
 /*
+				   x' = m11*x + m21*y + dx
+					y' = m22*y + m12*x + dy
 void cEngine::mTranslate(const QPoint &transBy)
 {
 	//I think this needs to be here, because scaling performs quite complex
