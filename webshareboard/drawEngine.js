@@ -29,6 +29,7 @@ function drawEngine(canvas, context)
 		this.dScaleMatrix = this.dOperationTranslationMatrix.inverse().x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 0]])).x(this.dOperationTranslationMatrix);
 		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
 		this.dMatrixChanged = true;
+		this.reDraw();
 	}
 
 	this.translate = function(transBy)
@@ -58,6 +59,7 @@ function drawEngine(canvas, context)
 		elements[1][2] = transBy.y;
 		matrix.setElements(elements);
 	}
+
 /*
 				   x' = m11*x + m21*y + dx
 					y' = m22*y + m12*x + dy
@@ -82,18 +84,35 @@ void cEngine::mTranslate(const QPoint &transBy)
 }
 */
 
+	this.reDraw = function()
+	{
+		var context = this.dContext;
+		this.dContext.clearRect(0, 0, this.dCanvas.width, this.dCanvas.height);
+		this.dLines.forEach(function(line, index, array)
+		{
+			context.beginPath();
+			context.moveTo(line.vectors[0].x, line.vectors[0].y);
+			for(i = 1; i < line.vectors.length; i ++)
+			{	
+				var point = line.vectors[i];
+				context.lineTo(point.x, point.y);
+				context.stroke();
+			}
+		});
+	}
+
 	this.startNewLine = function(point, currentPenColor, currentPenWidth)
 	{
-		context.beginPath();
-		context.moveTo(point.x, point.y);
+		this.dContext.beginPath();
+		this.dContext.moveTo(point.x, point.y);
 		this.dCurrentLine = new drawLine(point, currentPenColor, currentPenWidth);
 		this.dLines.push(this.dCurrentLine);
 	}
 
 	this.addToLine = function(point)
 	{
-		context.lineTo(point.x, point.y);
-		context.stroke();
+		this.dContext.lineTo(point.x, point.y);
+		this.dContext.stroke();
 		this.dCurrentLine.addVectorToLine(point);
 	}
 

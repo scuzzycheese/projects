@@ -81,6 +81,7 @@ if(window.addEventListener)
 				{
 					this.scribbling = false;
 					this.engine.finishLine();
+					this.engine.reDraw();
 				}
 			};
 
