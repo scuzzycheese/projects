@@ -35,6 +35,8 @@ if(window.addEventListener)
 			canvas.addEventListener('mousemove', ev_canvas, false);
 			canvas.addEventListener('mouseup',   ev_canvas, false);
 			canvas.addEventListener('mouseout',   ev_canvas, false);
+			canvas.addEventListener('DOMMouseScroll',   ev_canvas, false);
+			canvas.addEventListener('mousewheel',   ev_canvas, false);
 		}
 
 		function ev_canvas(ev)
@@ -49,6 +51,7 @@ if(window.addEventListener)
 				ev._x = ev.offsetX;
 				ev._y = ev.offsetY;
 			}
+			ev.wheel = (ev.wheelDelta) ? ev.wheelDelta / 120 : -(ev.detail || 0) / 3;
 
 			if(typeof eHandlers[ev.type] === 'function') 
 			{
@@ -93,6 +96,21 @@ if(window.addEventListener)
 					this.engine.finishLine();
 				}
 			};
+
+			this.DOMMouseScroll = function(ev)
+			{
+				//Maybe I have to stop propogation of this event
+				if(ev.wheel > 0)
+				{
+					console.log("UP!")
+					this.engine.scale(1);
+				}
+				if(ev.wheel < 0)
+				{
+					console.log("DOWN!")
+				}
+			};
+			this.mousewheel = this.DOMMouseScroll;
 		}
 
 
