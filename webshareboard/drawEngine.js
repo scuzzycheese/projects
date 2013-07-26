@@ -26,7 +26,12 @@ function drawEngine(canvas, context)
 	this.scale = function(scaleValue)
 	{
 		this.dScale = 1 + (scaleValue / 10);
-		this.dScaleMatrix = this.dOperationTranslationMatrix.inverse().x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 0]])).x(this.dOperationTranslationMatrix);
+		var dOperationTranslationMatrixInverse = this.dOperationTranslationMatrix.inverse();
+		if(dOperationTranslationMatrixInverse === null)
+		{
+			dOperationTranslationMatrixInverse = this.dOperationTranslationMatrix;
+		}
+		this.dScaleMatrix = dOperationTranslationMatrixInverse.x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 0]])).x(this.dOperationTranslationMatrix);
 		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
 		this.dMatrixChanged = true;
 		this.reDraw();
@@ -45,10 +50,10 @@ function drawEngine(canvas, context)
 		this.dMatrixChanged = true;
 	}
 
-	this.map = function(matrix, point)
+	this.map = function(matrix, inPoint)
 	{
-		var xPrime = matrix.e(1, 1) * point.x + matrix.e(2, 1) * point.y + matrix.e(3, 1);
-		var yPrime = matrix.e(2, 2) * point.y + matrix.e(1, 2) * point.x + matrix.e(3, 2);
+		var xPrime = matrix.e(1, 1) * inPoint.x + matrix.e(2, 1) * inPoint.y + matrix.e(3, 1);
+		var yPrime = matrix.e(2, 2) * inPoint.y + matrix.e(1, 2) * inPoint.x + matrix.e(3, 2);
 		return new point(xPrime, yPrime);
 	}
 
@@ -88,17 +93,23 @@ void cEngine::mTranslate(const QPoint &transBy)
 	{
 		var context = this.dContext;
 		this.dContext.clearRect(0, 0, this.dCanvas.width, this.dCanvas.height);
-		this.dLines.forEach(function(line, index, array)
+		//this.dLines.forEach(function(line, index, array)
+		for(j = 0; j < this.dLines.length; j ++)
 		{
+		   var line = this.dLines[j];
 			context.beginPath();
-			context.moveTo(line.vectors[0].x, line.vectors[0].y);
+			var tempAlteredPoint = this.map(this.dWorldMatrix, line.vectors[0]);
+			context.moveTo(tempAlteredPoint.x, tempAlteredPoint.y);
 			for(i = 1; i < line.vectors.length; i ++)
 			{	
 				var point = line.vectors[i];
-				context.lineTo(point.x, point.y);
+				var alteredPoint = this.map(this.dWorldMatrix, line.vectors[i])
+				//context.lineTo(point.x, point.y);
+				context.lineTo(alteredPoint.x, alteredPoint.y);
 				context.stroke();
 			}
-		});
+		}
+		//});
 	}
 
 	this.startNewLine = function(point, currentPenColor, currentPenWidth)

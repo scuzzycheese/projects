@@ -592,7 +592,9 @@ Matrix.prototype = {
 
   // Returns true iff the matrix is singular
   isSingular: function() {
-    return (this.isSquare() && this.determinant() === 0);
+			 var square = this.isSquare();
+			 var determinant = this.determinant();
+    return (square && determinant === 0);
   },
 
   // Returns the trace for square matrices
@@ -640,7 +642,10 @@ Matrix.prototype = {
 
   // Returns the inverse (if one exists) using Gauss-Jordan
   inverse: function() {
-    if (!this.isSquare() || this.isSingular()) { return null; }
+    if (!this.isSquare() || this.isSingular()) 
+	 { 
+				return null; 
+	 }
     var ni = this.elements.length, ki = ni, i, j;
     var M = this.augment(Matrix.I(ni)).toRightTriangular();
     var np, kp = M.elements[0].length, p, els, divisor;
