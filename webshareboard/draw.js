@@ -63,10 +63,12 @@ if(window.addEventListener)
 		{
 			this.scribbling = false;
 			this.engine = new drawEngine(canvas, context);
+			this.scale = 1;
+			this.engine.reDraw();
 
 			this.mousedown = function(ev)
 			{
-				this.engine.startNewLine(new point(ev._x, ev._y), null, null);
+				this.engine.startNewLine(new Point(ev._x, ev._y), null, null);
 				this.scribbling = true;
 			};
 
@@ -74,7 +76,7 @@ if(window.addEventListener)
 			{
 				if(this.scribbling)
 				{
-					this.engine.addToLine(new point(ev._x, ev._y));
+					this.engine.addToLine(new Point(ev._x, ev._y));
 				}
 			};
 
@@ -103,11 +105,14 @@ if(window.addEventListener)
 				if(ev.wheel > 0)
 				{
 					console.log("UP!")
-					this.engine.scale(1);
+					this.scale ++;
+					this.engine.scale(this.scale);
 				}
 				if(ev.wheel < 0)
 				{
 					console.log("DOWN!")
+					this.scale --;
+					this.engine.scale(this.scale);
 				}
 			};
 			this.mousewheel = this.DOMMouseScroll;
