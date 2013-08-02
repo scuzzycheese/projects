@@ -34,42 +34,39 @@ function drawEngine(canvas, context)
 
 	this.translate = function(transBy)
 	{
-		this.dScaleMatrix = this.dOperationTranslationMatrix.inverse().x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 1]])).x(this.dOperationTranslationMatrix);
+		this.dScaleMatrix = this.inverse(this.dOperationTranslationMatrix).x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 1]])).x(this.dOperationTranslationMatrix);
 		var tempMatrix = new Matrix.create([[this.dScaleMatrix.e(1,1), this.dScaleMatrix.e(1,2), 0],[this.dScaleMatrix.e(2,1), this.dScaleMatrix.e(2,2), 0],[0, 0, 1]]);
-		var tempPoint = this.map(tempMatrix.inverse(), transBy);
+		var tempPoint = this.map(this.inverse(tempMatrix), transBy);
 
-		this.translate(this.dOperationTranslationMatrix, (new Point(-tempPoint.x, -tempPoint.y)));
-		this.translate(this.dOperationTranslationMatrix, tempPoint);
+		this.translateMatrix(this.dOperationTranslationMatrix, (new Point(-tempPoint.x, -tempPoint.y)));
+		this.translateMatrix(this.dOperationTranslationMatrix, tempPoint);
 
 		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
 		this.dMatrixChanged = true;
+		this.reDraw();
 	}
 	this.inverse = function(matrix)
 	{
 		var invertedMatrix = matrix.inverse();
 		if(invertedMatrix === null)
 		{
-			invertedMatrix = new Matrix.create([[matrix.e(1, 1), matrix.e(2, 1), -matrix.e(3, 1)], [matrix.e(1, 2), matrix.e(2, 2), -matrix.e(3, 2)], [matrix.e(1, 3), matrix.e(2, 3), matrix.e(3, 3)]]);
+			invertedMatrix = new Matrix.create([[matrix.e(1, 1), matrix.e(1, 2), -matrix.e(1, 3)], [matrix.e(2, 1), matrix.e(2, 2), -matrix.e(2, 3)], [matrix.e(3, 1), matrix.e(3, 2), matrix.e(3, 3)]]);
 		}
 		return invertedMatrix;
 	}
 
 	this.map = function(matrix, inPoint)
 	{
-		//var xPrime = matrix.e(1, 1) * inPoint.x + matrix.e(2, 1) * inPoint.y + matrix.e(1, 3);
-		//var yPrime = matrix.e(2, 2) * inPoint.y + matrix.e(1, 2) * inPoint.x + matrix.e(2, 3);
 		var xPrime = matrix.e(1, 1) * inPoint.x + matrix.e(2, 1) * inPoint.y + matrix.e(3, 1);
 		var yPrime = matrix.e(2, 2) * inPoint.y + matrix.e(1, 2) * inPoint.x + matrix.e(3, 2);
-		//var xPrime = matrix.e(1, 1) * inPoint.x + matrix.e(2, 1) * inPoint.y;
-		//var yPrime = matrix.e(2, 2) * inPoint.y + matrix.e(1, 2) * inPoint.x;
 		return new Point(xPrime, yPrime);
 	}
 
-	this.translate = function(matrix, transBy)
+	this.translateMatrix = function(matrix, transBy)
 	{
 	   var elements = matrix.elements;
-		elements[0][2] = transBy.x;
-		elements[1][2] = transBy.y;
+		elements[2][0] = transBy.x;
+		elements[2][1] = transBy.y;
 		matrix.setElements(elements);
 	}
 

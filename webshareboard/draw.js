@@ -37,6 +37,7 @@ if(window.addEventListener)
 			canvas.addEventListener('mouseout',   ev_canvas, false);
 			canvas.addEventListener('DOMMouseScroll',   ev_canvas, false);
 			canvas.addEventListener('mousewheel',   ev_canvas, false);
+			canvas.addEventListener('contextmenu',   ev_canvas, false);
 		}
 
 		function ev_canvas(ev)
@@ -62,14 +63,34 @@ if(window.addEventListener)
 		function eventHandlers()
 		{
 			this.scribbling = false;
+			this.moving = false;
+			this.lastPos = new Point(0, 0);
 			this.engine = new drawEngine(canvas, context);
 			this.scale = 1;
 			this.engine.reDraw();
 
 			this.mousedown = function(ev)
 			{
-				this.engine.startNewLine(new Point(ev._x, ev._y), null, null);
-				this.scribbling = true;
+				switch(ev.which)
+				{
+					case 1:
+					{
+						this.engine.startNewLine(new Point(ev._x, ev._y), null, null);
+						this.scribbling = true;
+						break;
+					}
+					case 3:
+					{
+						this.contextmenu(ev);
+						break;
+					}
+				}
+			};
+
+			this.contextmenu = function(ev)
+			{
+				this.lastPos = new Point(ev._x, ev._y);
+				this.moving = true;
 			};
 
 			this.mousemove = function(ev)
@@ -77,6 +98,12 @@ if(window.addEventListener)
 				if(this.scribbling)
 				{
 					this.engine.addToLine(new Point(ev._x, ev._y));
+				}
+				if(this.moving)
+				{
+					var tempPoint = new Point(this.lastPos.x - ev._x, this.lastPos.y - ev._y);
+					this.engine.translate(tempPoint);
+					this.lastPos = tempPoint;
 				}
 			};
 
@@ -86,6 +113,11 @@ if(window.addEventListener)
 				{
 					this.scribbling = false;
 					this.engine.finishLine();
+					this.engine.reDraw();
+				}
+				if(this.moving)
+				{
+					this.moving = false;
 					this.engine.reDraw();
 				}
 			};
@@ -104,13 +136,11 @@ if(window.addEventListener)
 				//Maybe I have to stop propogation of this event
 				if(ev.wheel > 0)
 				{
-					console.log("UP!")
 					this.scale ++;
 					this.engine.scale(this.scale);
 				}
 				if(ev.wheel < 0)
 				{
-					console.log("DOWN!")
 					this.scale --;
 					this.engine.scale(this.scale);
 				}
