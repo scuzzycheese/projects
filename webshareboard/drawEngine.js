@@ -19,7 +19,7 @@ function drawEngine(canvas, context)
 		this.dWorldMatrix = new Matrix.I(3);
 		this.dInvertedWorldMatrix = new Matrix.I(3);
 
-		this.dScale = 1;
+		this.dScale = 0;
 	}
 	this.resetMatrices();
 

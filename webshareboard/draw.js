@@ -66,7 +66,8 @@ if(window.addEventListener)
 			this.moving = false;
 			this.lastPos = new Point(0, 0);
 			this.engine = new drawEngine(canvas, context);
-			this.scale = 1;
+			this.scale = 20;
+			this.engine.scale(this.scale * this.scale);
 			this.engine.reDraw();
 
 			this.mousedown = function(ev)
@@ -139,12 +140,15 @@ if(window.addEventListener)
 				if(ev.wheel > 0)
 				{
 					this.scale ++;
-					this.engine.scale(this.scale);
+					this.engine.scale(this.scale * this.scale);
 				}
 				if(ev.wheel < 0)
 				{
-					this.scale --;
-					this.engine.scale(this.scale);
+					if(this.scale > 0)
+					{
+						this.scale --;
+						this.engine.scale(this.scale * this.scale);
+					}
 				}
 			};
 			this.mousewheel = this.DOMMouseScroll;
