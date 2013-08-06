@@ -91,6 +91,8 @@ if(window.addEventListener)
 			{
 				this.lastPos = new Point(ev._x, ev._y);
 				this.moving = true;
+				ev.stopPropagation();
+				ev.preventDefault();
 			};
 
 			this.mousemove = function(ev)
@@ -101,9 +103,9 @@ if(window.addEventListener)
 				}
 				if(this.moving)
 				{
-					var tempPoint = new Point(this.lastPos.x - ev._x, this.lastPos.y - ev._y);
+					var tempPoint = new Point(-(this.lastPos.x - ev._x), -(this.lastPos.y - ev._y));
 					this.engine.translate(tempPoint);
-					this.lastPos = tempPoint;
+					this.lastPos = new Point(ev._x, ev._y);
 				}
 			};
 

@@ -35,11 +35,12 @@ function drawEngine(canvas, context)
 	this.translate = function(transBy)
 	{
 		this.dScaleMatrix = this.inverse(this.dOperationTranslationMatrix).x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 1]])).x(this.dOperationTranslationMatrix);
+
 		var tempMatrix = new Matrix.create([[this.dScaleMatrix.e(1,1), this.dScaleMatrix.e(1,2), 0],[this.dScaleMatrix.e(2,1), this.dScaleMatrix.e(2,2), 0],[0, 0, 1]]);
 		var tempPoint = this.map(this.inverse(tempMatrix), transBy);
 
 		this.translateMatrix(this.dOperationTranslationMatrix, (new Point(-tempPoint.x, -tempPoint.y)));
-		this.translateMatrix(this.dOperationTranslationMatrix, tempPoint);
+		this.translateMatrix(this.dTranslationMatrix, tempPoint);
 
 		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
 		this.dMatrixChanged = true;
@@ -65,8 +66,8 @@ function drawEngine(canvas, context)
 	this.translateMatrix = function(matrix, transBy)
 	{
 	   var elements = matrix.elements;
-		elements[2][0] = transBy.x;
-		elements[2][1] = transBy.y;
+		elements[2][0] += transBy.x;
+		elements[2][1] += transBy.y;
 		matrix.setElements(elements);
 	}
 
