@@ -8,13 +8,6 @@ function drawEngine(canvas, context)
 
 	this.resetMatrices = function()
 	{
-		this.dOperationTranslationMatrix = new Matrix.create
-		([
-			[1, 0, 0],
-			[0, 1, 0],
-			[this.dCanvas.width/2, this.dCanvas.height/2, 1]
-		]);
-		this.dTranslationPoint = new Point(this.dCanvas.width/2, this.dCanvas.height/2);
 		this.dScaleMatrix = new Matrix.I(3);
 		this.dTranslationMatrix = new Matrix.I(3);
 		this.dWorldMatrix = new Matrix.I(3);
@@ -24,54 +17,29 @@ function drawEngine(canvas, context)
 	}
 	this.resetMatrices();
 
-	this.setOperationTranslationToPosition = function(point)
-	{
-		this.dOperationTranslationMatrix = new Matrix.create
-		([
-			[1, 0, 0],
-			[0, 1, 0],
-			[point.x, point.y, 1]
-		]);
-	}
-
 	this.scale = function(scaleValue, aroundPoint)
 	{
-		this.dScale = 1 + (scaleValue / 10);
+       var tempPoint = this.map(this.inverse(this.dWorldMatrix), aroundPoint);
 
-		var newTranseByVector = new Point(aroundPoint.x - this.dTranslationPoint.x, aroundPoint.y - this.dTranslationPoint.y);
-		var tempMatrix = new Matrix.create([[this.dScaleMatrix.e(1,1), this.dScaleMatrix.e(1,2), 0],[this.dScaleMatrix.e(2,1), this.dScaleMatrix.e(2,2), 0],[0, 0, 1]]);
-		var tempPoint = this.map(this.inverse(tempMatrix), newTranseByVector);
-		this.translateMatrix(this.dOperationTranslationMatrix, tempPoint);
+       this.dScale = 1 + (scaleValue / 10);
+       this.dScaleMatrix = new Matrix.create([[this.dScale, 0, 0], [0, this.dScale, 0], [0, 0, 1]]);
+       this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
 
-		this.dTranslationPoint = aroundPoint;
+       var aroundPointAfter = this.map(this.dWorldMatrix, tempPoint);
 
-		this.dScaleMatrix = this.inverse(this.dOperationTranslationMatrix).x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 1]])).x(this.dOperationTranslationMatrix);
-		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
+       this.translateMatrix(this.dTranslationMatrix, (new Point(aroundPoint.x - aroundPointAfter.x, aroundPoint.y - aroundPointAfter.y)));
+       this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
 
-		this.dMatrixChanged = true;
-		this.reDraw();
-	}
+       this.dMatrixChanged = true;
 
-	this.scale_original = function(scaleValue, aroundPoint)
-	{
-		this.dScale = 1 + (scaleValue / 10);
-		this.dScaleMatrix = this.inverse(this.dOperationTranslationMatrix).x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 1]])).x(this.dOperationTranslationMatrix);
-		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
-		this.dMatrixChanged = true;
-		this.reDraw();
+       this.reDraw();
 	}
 
 	this.translate = function(transBy)
 	{
-		this.dScaleMatrix = this.inverse(this.dOperationTranslationMatrix).x(new Matrix.create([[this.dScale, 0, 0],[0, this.dScale, 0],[0, 0, 1]])).x(this.dOperationTranslationMatrix);
-
-		var tempMatrix = new Matrix.create([[this.dScaleMatrix.e(1,1), this.dScaleMatrix.e(1,2), 0],[this.dScaleMatrix.e(2,1), this.dScaleMatrix.e(2,2), 0],[0, 0, 1]]);
-		var tempPoint = this.map(this.inverse(tempMatrix), transBy);
-
-		this.translateMatrix(this.dOperationTranslationMatrix, (new Point(-tempPoint.x, -tempPoint.y)));
-		this.translateMatrix(this.dTranslationMatrix, tempPoint);
-
+		this.translateMatrix(this.dTranslationMatrix, transBy);
 		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
+
 		this.dMatrixChanged = true;
 		this.reDraw();
 	}

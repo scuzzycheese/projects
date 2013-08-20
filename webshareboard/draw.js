@@ -67,7 +67,7 @@ if(window.addEventListener)
 			this.lastPos = new Point(0, 0);
 			this.engine = new drawEngine(canvas, context);
 			this.scale = 20;
-			this.engine.scale(this.scale * this.scale);
+			//this.engine.scale(this.scale * this.scale, new Point(canvas.width/2, canvas.height/2));
 			this.engine.reDraw();
 
 			this.mousedown = function(ev)
@@ -140,14 +140,14 @@ if(window.addEventListener)
 				if(ev.wheel > 0)
 				{
 					this.scale ++;
-					this.engine.scale(this.scale * this.scale);
+					this.engine.scale(this.scale * this.scale, new Point(ev._x, ev._y));
 				}
 				if(ev.wheel < 0)
 				{
 					if(this.scale > 0)
 					{
 						this.scale --;
-						this.engine.scale(this.scale * this.scale);
+						this.engine.scale(this.scale * this.scale, new Point(ev._x, ev._y));
 					}
 				}
 			};
