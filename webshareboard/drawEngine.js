@@ -140,6 +140,10 @@ void cEngine::mTranslate(const QPoint &transBy)
 		this.dCurrentLine.finishLine();
 	}
 
+	this.connectToServer = function(host, port)
+	{
+		var socket = new WebSocket("ws://localhost:8000");  
+	}
 
 }
 

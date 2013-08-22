@@ -66,6 +66,10 @@ if(window.addEventListener)
 			this.moving = false;
 			this.lastPos = new Point(0, 0);
 			this.engine = new drawEngine(canvas, context);
+
+			this.engine.connectToServer("localhost", "6665");
+
+
 			this.scale = 20;
 			//this.engine.scale(this.scale * this.scale, new Point(canvas.width/2, canvas.height/2));
 			this.engine.reDraw();
