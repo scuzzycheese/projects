@@ -6,6 +6,8 @@ function drawEngine(canvas, context)
 	this.dCurrentLine = null;
 	this.dMatrixChanged = false;
 
+	var socket = null;
+
 	this.resetMatrices = function()
 	{
 		this.dScaleMatrix = new Matrix.I(3);
@@ -142,10 +144,26 @@ void cEngine::mTranslate(const QPoint &transBy)
 
 	this.connectToServer = function(host, port)
 	{
-		var socket = new WebSocket("ws://localhost:8000");  
+		socket = new Websock();
+		socket.on("message", getMessage);
+		socket.on("open", sockOpened);
+		socket.open("ws://localhost:8000");  
+	}
+	
+	function getMessage()
+	{
+		console.log(socket.rQshiftStr(socket.rQlen()));
+	}
+
+	function sockOpened()
+	{
+		socket.send_string("NICK shareboard\r\n");
+		socket.send_string("USER shareboard 2 * : shareboard\r\n");
+		socket.send_string("JOIN #test\r\n");
 	}
 
 }
+
 
 
 function drawLine(startPoint, color, width)
