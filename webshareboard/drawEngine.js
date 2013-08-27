@@ -1,51 +1,56 @@
 function drawEngine(canvas, context)
 {
-	this.dCanvas = canvas;
-	this.dContext = context;
-	this.dLines = new Array();
-	this.dCurrentLine = null;
-	this.dMatrixChanged = false;
+	var that = {};
 
+	var dCanvas = canvas;
+	var dContext = context;
+	var dLines = new Array();
+	var dCurrentLine = null;
+	var dMatrixChanged = false;
 	var socket = null;
 
-	this.resetMatrices = function()
+	var dScaleMatrix;
+	var dTranslationMatrix;
+	var dWorldMatrix;
+	var dInvertedWorldMatrix;
+	var dScale;
+
+	function resetMatrices()
 	{
-		this.dScaleMatrix = new Matrix.I(3);
-		this.dTranslationMatrix = new Matrix.I(3);
-		this.dWorldMatrix = new Matrix.I(3);
-		this.dInvertedWorldMatrix = new Matrix.I(3);
-
-		this.dScale = 0;
+		dScaleMatrix = new Matrix.I(3);
+		dTranslationMatrix = new Matrix.I(3);
+		dWorldMatrix = new Matrix.I(3);
+		dInvertedWorldMatrix = new Matrix.I(3);
 	}
-	this.resetMatrices();
+	resetMatrices();
 
-	this.scale = function(scaleValue, aroundPoint)
+	function scale(scaleValue, aroundPoint)
 	{
-       var tempPoint = this.map(this.inverse(this.dWorldMatrix), aroundPoint);
+       var tempPoint = map(inverse(dWorldMatrix), aroundPoint);
 
-       this.dScale = 1 + (scaleValue / 10);
-       this.dScaleMatrix = new Matrix.create([[this.dScale, 0, 0], [0, this.dScale, 0], [0, 0, 1]]);
-       this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
+       dScale = 1 + (scaleValue / 10);
+       dScaleMatrix = new Matrix.create([[dScale, 0, 0], [0, dScale, 0], [0, 0, 1]]);
+       dWorldMatrix = dScaleMatrix.x(dTranslationMatrix);
 
-       var aroundPointAfter = this.map(this.dWorldMatrix, tempPoint);
+       var aroundPointAfter = map(dWorldMatrix, tempPoint);
 
-       this.translateMatrix(this.dTranslationMatrix, (new Point(aroundPoint.x - aroundPointAfter.x, aroundPoint.y - aroundPointAfter.y)));
-       this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
+       translateMatrix(dTranslationMatrix, (new Point(aroundPoint.x - aroundPointAfter.x, aroundPoint.y - aroundPointAfter.y)));
+       dWorldMatrix = dScaleMatrix.x(dTranslationMatrix);
 
-       this.dMatrixChanged = true;
+       dMatrixChanged = true;
 
-       this.reDraw();
+       reDraw();
 	}
 
-	this.translate = function(transBy)
+	function translate(transBy)
 	{
-		this.translateMatrix(this.dTranslationMatrix, transBy);
-		this.dWorldMatrix = this.dScaleMatrix.x(this.dTranslationMatrix);
+		translateMatrix(dTranslationMatrix, transBy);
+		dWorldMatrix = dScaleMatrix.x(dTranslationMatrix);
 
-		this.dMatrixChanged = true;
-		this.reDraw();
+		dMatrixChanged = true;
+		reDraw();
 	}
-	this.inverse = function(matrix)
+	function inverse(matrix)
 	{
 		var invertedMatrix = matrix.inverse();
 		if(invertedMatrix === null)
@@ -55,14 +60,14 @@ function drawEngine(canvas, context)
 		return invertedMatrix;
 	}
 
-	this.map = function(matrix, inPoint)
+	function map(matrix, inPoint)
 	{
 		var xPrime = matrix.e(1, 1) * inPoint.x + matrix.e(2, 1) * inPoint.y + matrix.e(3, 1);
 		var yPrime = matrix.e(2, 2) * inPoint.y + matrix.e(1, 2) * inPoint.x + matrix.e(3, 2);
 		return new Point(xPrime, yPrime);
 	}
 
-	this.translateMatrix = function(matrix, transBy)
+	function translateMatrix(matrix, transBy)
 	{
 	   var elements = matrix.elements;
 		elements[2][0] += transBy.x;
@@ -70,79 +75,53 @@ function drawEngine(canvas, context)
 		matrix.setElements(elements);
 	}
 
-/*
-				   x' = m11*x + m21*y + dx
-					y' = m22*y + m12*x + dy
-void cEngine::mTranslate(const QPoint &transBy)
-{
-	//I think this needs to be here, because scaling performs quite complex
-	//operations on the matrix, the scale matrix has to be updated with
-	//every translation operation
-	dScaleMatrix = dOperationTranslation.inverted() * QMatrix(dScale, 0, 0, dScale, 0, 0) * dOperationTranslation;
 
-
-	QMatrix tempMatrix = dScaleMatrix;
-	tempMatrix.setMatrix(tempMatrix.m11(), tempMatrix.m12(), tempMatrix.m21(), tempMatrix.m22(), 0, 0);
-	QPointF tempPoint = tempMatrix.inverted().map(QPointF(transBy));
-
-
-	dOperationTranslation.translate(-tempPoint.x(), -tempPoint.y());
-	dTranslationMatrix.translate(tempPoint.x(), tempPoint.y());
-
-	dWorldMatrix = dScaleMatrix * dTranslationMatrix;
-	matrixChanged = true;
-}
-*/
-
-	this.reDraw = function()
+	function reDraw()
 	{
-		var context = this.dContext;
-		this.dContext.clearRect(0, 0, this.dCanvas.width, this.dCanvas.height);
-		//this.dLines.forEach(function(line, index, array)
-		for(j = 0; j < this.dLines.length; j ++)
+		var context = dContext;
+		dContext.clearRect(0, 0, dCanvas.width, dCanvas.height);
+		for(j = 0; j < dLines.length; j ++)
 		{
-		   var line = this.dLines[j];
+		   var line = dLines[j];
 			context.beginPath();
-			var tempAlteredPoint = this.map(this.dWorldMatrix, line.vectors[0]);
+			var tempAlteredPoint = map(dWorldMatrix, line.vectors[0]);
 			context.moveTo(tempAlteredPoint.x, tempAlteredPoint.y);
 			for(i = 1; i < line.vectors.length; i ++)
 			{	
 				var point = line.vectors[i];
-				var alteredPoint = this.map(this.dWorldMatrix, line.vectors[i])
-				//context.lineTo(point.x, point.y);
+				var alteredPoint = map(dWorldMatrix, line.vectors[i])
 				context.lineTo(alteredPoint.x, alteredPoint.y);
 				context.stroke();
 			}
 		}
-		//});
 	}
 
-	this.startNewLine = function(point, currentPenColor, currentPenWidth)
+	function startNewLine(point, currentPenColor, currentPenWidth)
 	{
-		this.dInvertedWorldMatrix = this.inverse(this.dWorldMatrix);
+		dInvertedWorldMatrix = inverse(dWorldMatrix);
 
-		var transedPoint = this.map(this.dInvertedWorldMatrix, point);
+		var transedPoint = map(dInvertedWorldMatrix, point);
 
-		this.dContext.beginPath();
-		this.dContext.moveTo(point.x, point.y);
-		this.dCurrentLine = new drawLine(transedPoint, currentPenColor, currentPenWidth);
-		this.dLines.push(this.dCurrentLine);
+		dContext.beginPath();
+		dContext.moveTo(point.x, point.y);
+		dCurrentLine = new drawLine(transedPoint, currentPenColor, currentPenWidth);
+		dLines.push(dCurrentLine);
 	}
 
-	this.addToLine = function(point)
+	function addToLine(point)
 	{
-		var transedPoint = this.map(this.dInvertedWorldMatrix, point);
-		this.dContext.lineTo(point.x, point.y);
-		this.dContext.stroke();
-		this.dCurrentLine.addVectorToLine(transedPoint);
+		var transedPoint = map(dInvertedWorldMatrix, point);
+		dContext.lineTo(point.x, point.y);
+		dContext.stroke();
+		dCurrentLine.addVectorToLine(transedPoint);
 	}
 
-	this.finishLine = function()
+	function finishLine()
 	{
-		this.dCurrentLine.finishLine();
+		dCurrentLine.finishLine();
 	}
 
-	this.connectToServer = function(host, port)
+	function connectToServer(host, port)
 	{
 		socket = new Websock();
 		socket.on("message", getMessage);
@@ -161,6 +140,34 @@ void cEngine::mTranslate(const QPoint &transBy)
 		socket.send_string("USER shareboard 2 * : shareboard\r\n");
 		socket.send_string("JOIN #test\r\n");
 	}
+
+
+	function init()
+	{
+		that.dCanvas = dCanvas;
+		that.dContext = dContext;
+		that.dLines = dLines;
+		that.dCurrentLine = dCurrentLine;
+		that.dMatrixChanged = dMatrixChanged;
+		that.socket = socket;
+		that.dScaleMatrix = dScaleMatrix;
+		that.dTranslationMatrix = dTranslationMatrix;
+		that.dWorldMatrix = dWorldMatrix;
+		that.dInvertedWorldMatrix = dInvertedWorldMatrix;
+		that.dScale = dScale;
+
+		that.scale = scale;
+		that.translate = translate;
+		that.reDraw = reDraw;
+		that.startNewLine = startNewLine;
+		that.addToLine = addToLine;
+		that.finishLine = finishLine;
+		that.connectToServer = connectToServer;
+
+		return that;
+	}
+
+	return init();
 
 }
 
