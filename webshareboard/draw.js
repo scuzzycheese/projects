@@ -37,7 +37,7 @@ function draw()
 		}
 
 		engine = new drawEngine(canvas, context);
-		engine.connectToServer("localhost", "6665");
+		engine.connect();
 		engine.scale(scale * scale, new Point(canvas.width/2, canvas.height/2));
 		engine.reDraw();
 

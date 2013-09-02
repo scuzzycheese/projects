@@ -14,6 +14,7 @@ function drawEngine(canvas, context)
 	var dWorldMatrix;
 	var dInvertedWorldMatrix;
 	var dScale;
+	var dComm;
 
 	function resetMatrices()
 	{
@@ -48,6 +49,7 @@ function drawEngine(canvas, context)
 		dWorldMatrix = dScaleMatrix.x(dTranslationMatrix);
 
 		dMatrixChanged = true;
+		dComm.sendMsg(JSON.stringify(dWorldMatrix));
 		reDraw();
 	}
 	function inverse(matrix)
@@ -121,26 +123,15 @@ function drawEngine(canvas, context)
 		dCurrentLine.finishLine();
 	}
 
-	function connectToServer(host, port)
+	function connect()
 	{
-		socket = new Websock();
-		socket.on("message", getMessage);
-		socket.on("open", sockOpened);
-		socket.open("ws://localhost:8000");  
+		dComm = new commHandler("test");
+		dComm.registerRecvFunc(recvFunc);
 	}
-	
-	function getMessage()
+	function recvFunc(msg)
 	{
-		console.log(socket.rQshiftStr(socket.rQlen()));
+		dComm.sendMsg("YO YO YO");
 	}
-
-	function sockOpened()
-	{
-		socket.send_string("NICK shareboard\r\n");
-		socket.send_string("USER shareboard 2 * : shareboard\r\n");
-		socket.send_string("JOIN #test\r\n");
-	}
-
 
 	function init()
 	{
@@ -149,7 +140,6 @@ function drawEngine(canvas, context)
 		that.dLines = dLines;
 		that.dCurrentLine = dCurrentLine;
 		that.dMatrixChanged = dMatrixChanged;
-		that.socket = socket;
 		that.dScaleMatrix = dScaleMatrix;
 		that.dTranslationMatrix = dTranslationMatrix;
 		that.dWorldMatrix = dWorldMatrix;
@@ -162,7 +152,7 @@ function drawEngine(canvas, context)
 		that.startNewLine = startNewLine;
 		that.addToLine = addToLine;
 		that.finishLine = finishLine;
-		that.connectToServer = connectToServer;
+		that.connect = connect;
 
 		return that;
 	}
@@ -193,4 +183,107 @@ function Point(x, y)
 {
 	this.x = x;
 	this.y = y;
+}
+
+
+function commHandler(channel)
+{
+	var that = {};
+
+	var dNick = "shareboard";
+	var dHost = "localhost";
+	var dPort = 8000;
+	var dSocket = null;
+	var recvFunc = null;
+	var dChannel = channel;
+
+
+	function connectToServer(host, port)
+	{
+		dSocket = new Websock();
+		dSocket.on("message", getMessage);
+		dSocket.on("open", sockOpened);
+		dSocket.open("ws://" + host + ":" + port);  
+	}
+
+	function getMessage()
+	{
+		var msg = dSocket.rQshiftStr(dSocket.rQlen());
+		console.log(msg);
+
+		if(msg.startsWith("PING"))
+		{
+			handlePing(msg);
+			return;
+		}
+		
+		if(msg.indexOf("PRIVMSG #") != -1)
+		{
+			var msgIndicatorIndex = msg.indexOf("PRIVMSG #") + 9;
+			var channel = msg.substring(msgIndicatorIndex, msg.indexOf(" :", msgIndicatorIndex));
+			console.log("Channel: " + channel);
+			if(channel === dChannel)
+			{
+				var msgData = msg.substring(msg.indexOf(" :", msgIndicatorIndex) + 2);
+				handleMsg(msgData.trim());
+			}
+		}
+	}
+
+	function sockOpened()
+	{
+		dSocket.send_string("NICK shareboard\r\n");
+		dSocket.send_string("USER shareboard 2 * : shareboard\r\n");
+		dSocket.send_string("JOIN #" + dChannel + "\r\n");
+	}
+
+	function handleMsg(msg)
+	{
+		console.log("Message Handler: " + msg);
+		if(recvFunc !== null)
+		{
+			recvFunc(msg);
+		}
+	}
+
+	function handlePing(msg)
+	{
+		console.log("PONG " + msg.substr(5));
+		dSocket.send_string("PONG " + msg.substr(5) + "\r\n");
+	}
+
+	function sendMsg(msg)
+	{
+		dSocket.send_string("PRIVMSG #" + dChannel + " :" + msg + "\r\n");
+	}
+
+	function registerRecvFunc(func)
+	{
+		recvFunc = func;
+	}
+
+	function init()
+	{
+		that.sendMsg = sendMsg;
+		that.registerRecvFunc = registerRecvFunc;
+		
+		connectToServer(dHost, dPort);
+
+		return that;
+	}
+
+	return init();
+
+}
+
+if (!String.prototype.startsWith) {
+  Object.defineProperty(String.prototype, 'startsWith', {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+    value: function (searchString, position) {
+      position = position || 0;
+      return this.indexOf(searchString, position) === position;
+    }
+  });
 }
