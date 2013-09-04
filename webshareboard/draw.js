@@ -7,7 +7,6 @@ if(window.addEventListener)
 function draw()	
 {
 	var canvas;
-	var context;
 	var eHandlers;
 	
 	var engine;
@@ -23,23 +22,14 @@ function draw()
 			return;
 		}
 
-		if(!canvas.getContext)
-		{
-			alert('Error: no canvas.getContext!');
-			return;
-		}
 
-		context = canvas.getContext('2d');
-		if(!context)
-		{
-			alert('Error: failed to getContext!');
-			return;
-		}
-
-		engine = new drawEngine(canvas, context);
+		engine = new drawEngine(canvas);
 		engine.connect();
-		engine.scale(scale * scale, new Point(canvas.width/2, canvas.height/2));
-		engine.reDraw();
+
+		//while(!engine.isConnected());
+
+		engine.scale(scale * scale, new Point(canvas.width/2, canvas.height/2), "me");
+		engine.reDraw("me");
 
 		eHandlers = new eventHandlers(engine, scale);
 
@@ -93,7 +83,7 @@ function eventHandlers(eng, startScale)
 		{
 			case 1:
 			{
-				engine.startNewLine(new Point(ev._x, ev._y), null, null);
+				engine.startNewLine(new Point(ev._x, ev._y), null, null, "me");
 				scribbling = true;
 				break;
 			}
@@ -117,12 +107,12 @@ function eventHandlers(eng, startScale)
 	{
 		if(scribbling)
 		{
-			engine.addToLine(new Point(ev._x, ev._y));
+			engine.addToLine(new Point(ev._x, ev._y), "me");
 		}
 		if(moving)
 		{
 			var tempPoint = new Point(-(lastPos.x - ev._x), -(lastPos.y - ev._y));
-			engine.translate(tempPoint);
+			engine.translate(tempPoint, "me");
 			lastPos = new Point(ev._x, ev._y);
 		}
 	}
@@ -132,13 +122,13 @@ function eventHandlers(eng, startScale)
 		if(scribbling)
 		{
 			scribbling = false;
-			engine.finishLine();
-			engine.reDraw();
+			engine.finishLine("me");
+			engine.reDraw("me");
 		}
 		if(moving)
 		{
 			moving = false;
-			engine.reDraw();
+			engine.reDraw("me");
 		}
 	}
 
@@ -147,7 +137,7 @@ function eventHandlers(eng, startScale)
 		if(scribbling)
 		{
 			scribbling = false;
-			engine.finishLine();
+			engine.finishLine("me");
 		}
 	}
 
@@ -157,14 +147,14 @@ function eventHandlers(eng, startScale)
 		if(ev.wheel > 0)
 		{
 			scale ++;
-			engine.scale(scale * scale, new Point(ev._x, ev._y));
+			engine.scale(scale * scale, new Point(ev._x, ev._y), "me");
 		}
 		if(ev.wheel < 0)
 		{
 			if(scale > 0)
 			{
 				scale --;
-				engine.scale(scale * scale, new Point(ev._x, ev._y));
+				engine.scale(scale * scale, new Point(ev._x, ev._y), "me");
 			}
 		}
 	}

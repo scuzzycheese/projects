@@ -1,56 +1,56 @@
-function drawEngine(canvas, context)
+function drawEngine(canvas)
 {
 	var that = {};
 
 	var dCanvas = canvas;
-	var dContext = context;
+	var dContext = {};
 	var dLines = new Array();
-	var dCurrentLine = null;
-	var dMatrixChanged = false;
+	var dCurrentLine = {};
 	var socket = null;
 
-	var dScaleMatrix;
-	var dTranslationMatrix;
-	var dWorldMatrix;
-	var dInvertedWorldMatrix;
+	var dScaleMatrix = {};
+	var dTranslationMatrix = {};
+	var dWorldMatrix = {};
+	var dInvertedWorldMatrix = {};
+	var dState = {};
 	var dScale;
 	var dComm;
 
-	function resetMatrices()
+	function resetMatrices(owner)
 	{
-		dScaleMatrix = new Matrix.I(3);
+		dScaleMatrix[owner] = new Matrix.I(3);
 		dTranslationMatrix = new Matrix.I(3);
-		dWorldMatrix = new Matrix.I(3);
-		dInvertedWorldMatrix = new Matrix.I(3);
+		dWorldMatrix[owner] = new Matrix.I(3);
+		dInvertedWorldMatrix[owner] = new Matrix.I(3);
 	}
-	resetMatrices();
+	//This is a hack, need to do something here
+	resetMatrices("me");
 
-	function scale(scaleValue, aroundPoint)
+	function scale(scaleValue, aroundPoint, owner)
 	{
-       var tempPoint = map(inverse(dWorldMatrix), aroundPoint);
+      var tempPoint = map(inverse(dWorldMatrix[owner]), aroundPoint);
 
-       dScale = 1 + (scaleValue / 10);
-       dScaleMatrix = new Matrix.create([[dScale, 0, 0], [0, dScale, 0], [0, 0, 1]]);
-       dWorldMatrix = dScaleMatrix.x(dTranslationMatrix);
+      dScale = 1 + (scaleValue / 10);
+      dScaleMatrix[owner] = new Matrix.create([[dScale, 0, 0], [0, dScale, 0], [0, 0, 1]]);
+      dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix);
 
-       var aroundPointAfter = map(dWorldMatrix, tempPoint);
+      var aroundPointAfter = map(dWorldMatrix[owner], tempPoint);
 
-       translateMatrix(dTranslationMatrix, (new Point(aroundPoint.x - aroundPointAfter.x, aroundPoint.y - aroundPointAfter.y)));
-       dWorldMatrix = dScaleMatrix.x(dTranslationMatrix);
+      translateMatrix(dTranslationMatrix, (new Point(aroundPoint.x - aroundPointAfter.x, aroundPoint.y - aroundPointAfter.y)));
+      dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix);
 
-       dMatrixChanged = true;
+		dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
 
-       reDraw();
+      reDraw(owner);
 	}
 
-	function translate(transBy)
+	function translate(transBy, owner)
 	{
 		translateMatrix(dTranslationMatrix, transBy);
-		dWorldMatrix = dScaleMatrix.x(dTranslationMatrix);
+		dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix);
 
-		dMatrixChanged = true;
-		dComm.sendMsg(JSON.stringify(dWorldMatrix));
-		reDraw();
+		dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
+		reDraw(owner);
 	}
 	function inverse(matrix)
 	{
@@ -77,50 +77,79 @@ function drawEngine(canvas, context)
 		matrix.setElements(elements);
 	}
 
-
-	function reDraw()
+	function getContext(owner)
 	{
-		var context = dContext;
-		dContext.clearRect(0, 0, dCanvas.width, dCanvas.height);
+		if(!dContext[owner])
+		{
+		/*
+			if(!dCanvas.getContext)
+			{
+				alert('Error: no canvas.getContext!');
+				return;
+			}
+		*/
+
+			dContext[owner] = canvas.getContext('2d');
+			if(!dContext[owner])
+			{
+				alert('Error: failed to getContext!');
+				return;
+			}
+		}
+		return dContext[owner];
+	}
+
+	function reDraw(owner)
+	{
+		var context = getContext(owner);
+		context.clearRect(0, 0, dCanvas.width, dCanvas.height);
 		for(j = 0; j < dLines.length; j ++)
 		{
 		   var line = dLines[j];
 			context.beginPath();
-			var tempAlteredPoint = map(dWorldMatrix, line.vectors[0]);
+			var tempAlteredPoint = map(dWorldMatrix[owner], line.vectors[0]);
 			context.moveTo(tempAlteredPoint.x, tempAlteredPoint.y);
 			for(i = 1; i < line.vectors.length; i ++)
 			{	
 				var point = line.vectors[i];
-				var alteredPoint = map(dWorldMatrix, line.vectors[i])
+				var alteredPoint = map(dWorldMatrix[owner], line.vectors[i])
 				context.lineTo(alteredPoint.x, alteredPoint.y);
 				context.stroke();
 			}
 		}
 	}
 
-	function startNewLine(point, currentPenColor, currentPenWidth)
+	function startNewLine(point, currentPenColor, currentPenWidth, owner)
 	{
-		dInvertedWorldMatrix = inverse(dWorldMatrix);
+		var context = getContext(owner);
+		dInvertedWorldMatrix[owner] = inverse(dWorldMatrix[owner]);
 
-		var transedPoint = map(dInvertedWorldMatrix, point);
+		var transedPoint = map(dInvertedWorldMatrix[owner], point);
 
-		dContext.beginPath();
-		dContext.moveTo(point.x, point.y);
-		dCurrentLine = new drawLine(transedPoint, currentPenColor, currentPenWidth);
-		dLines.push(dCurrentLine);
+		context.beginPath();
+		context.moveTo(point.x, point.y);
+		dCurrentLine[owner] = new drawLine(transedPoint, currentPenColor, currentPenWidth);
+		dLines.push(dCurrentLine[owner]);
+
+		dComm.sendMsg(buildSendString(new State("scribbling")));
+		dComm.sendMsg(buildSendString(transedPoint));
 	}
 
-	function addToLine(point)
+	function addToLine(point, owner)
 	{
-		var transedPoint = map(dInvertedWorldMatrix, point);
-		dContext.lineTo(point.x, point.y);
-		dContext.stroke();
-		dCurrentLine.addVectorToLine(transedPoint);
+		var context = getContext(owner);
+		var transedPoint = map(dInvertedWorldMatrix[owner], point);
+		context.lineTo(point.x, point.y);
+		context.stroke();
+		dCurrentLine[owner].addVectorToLine(transedPoint);
+
+		dComm.sendMsg(buildSendString(transedPoint));
 	}
 
-	function finishLine()
+	function finishLine(owner)
 	{
-		dCurrentLine.finishLine();
+		dCurrentLine[owner].finishLine();
+		dComm.sendMsg(buildSendString(new State("finished_scribbling")));
 	}
 
 	function connect()
@@ -128,22 +157,48 @@ function drawEngine(canvas, context)
 		dComm = new commHandler("test");
 		dComm.registerRecvFunc(recvFunc);
 	}
-	function recvFunc(msg)
+	function recvFunc(msg, from)
 	{
-		dComm.sendMsg("YO YO YO");
+		if(msg.startsWith("{")) 
+		{
+			obj = JSON.parse(msg);
+			if(obj.objType === "matrix")
+			{
+				dInvertedWorldMatrix[from] = obj;
+			}
+			if(obj.objType === "state")
+			{
+				dState[from] = obj;
+			}
+			
+
+			console.log("Object is of type: " + obj.objType);
+		}
+		else
+		{
+			dComm.sendMsg(from + ": YO YO YO");
+		}
+	}
+
+	function isConnected()
+	{
+		return dComm.connected;
+	}
+
+
+	function buildSendString(obj)
+	{
+		if(obj instanceof Matrix) 
+		{
+			obj.objType = "matrix";
+		}
+		return JSON.stringify(obj);
 	}
 
 	function init()
 	{
 		that.dCanvas = dCanvas;
-		that.dContext = dContext;
 		that.dLines = dLines;
-		that.dCurrentLine = dCurrentLine;
-		that.dMatrixChanged = dMatrixChanged;
-		that.dScaleMatrix = dScaleMatrix;
-		that.dTranslationMatrix = dTranslationMatrix;
-		that.dWorldMatrix = dWorldMatrix;
-		that.dInvertedWorldMatrix = dInvertedWorldMatrix;
 		that.dScale = dScale;
 
 		that.scale = scale;
@@ -153,6 +208,7 @@ function drawEngine(canvas, context)
 		that.addToLine = addToLine;
 		that.finishLine = finishLine;
 		that.connect = connect;
+		that.isConnected = isConnected;
 
 		return that;
 	}
@@ -181,8 +237,15 @@ function drawLine(startPoint, color, width)
 
 function Point(x, y)
 {
+	this.objType = "point";
 	this.x = x;
 	this.y = y;
+}
+
+function State(state)
+{
+	this.objType = "state";
+	this.state = state;
 }
 
 
@@ -196,6 +259,7 @@ function commHandler(channel)
 	var dSocket = null;
 	var recvFunc = null;
 	var dChannel = channel;
+	var connected = false;
 
 
 	function connectToServer(host, port)
@@ -203,6 +267,7 @@ function commHandler(channel)
 		dSocket = new Websock();
 		dSocket.on("message", getMessage);
 		dSocket.on("open", sockOpened);
+		dSocket.on("close", sockClosed);
 		dSocket.open("ws://" + host + ":" + port);  
 	}
 
@@ -225,7 +290,8 @@ function commHandler(channel)
 			if(channel === dChannel)
 			{
 				var msgData = msg.substring(msg.indexOf(" :", msgIndicatorIndex) + 2);
-				handleMsg(msgData.trim());
+				var from = msg.substring(1, msg.indexOf("!"));
+				handleMsg(msgData.trim(), from);
 			}
 		}
 	}
@@ -235,14 +301,20 @@ function commHandler(channel)
 		dSocket.send_string("NICK shareboard\r\n");
 		dSocket.send_string("USER shareboard 2 * : shareboard\r\n");
 		dSocket.send_string("JOIN #" + dChannel + "\r\n");
+		connected = true;
 	}
 
-	function handleMsg(msg)
+	function sockClosed()
+	{
+		connected = false;
+	}
+
+	function handleMsg(msg, from)
 	{
 		console.log("Message Handler: " + msg);
 		if(recvFunc !== null)
 		{
-			recvFunc(msg);
+			recvFunc(msg, from);
 		}
 	}
 
@@ -254,7 +326,10 @@ function commHandler(channel)
 
 	function sendMsg(msg)
 	{
-		dSocket.send_string("PRIVMSG #" + dChannel + " :" + msg + "\r\n");
+		if(connected)
+		{
+			dSocket.send_string("PRIVMSG #" + dChannel + " :" + msg + "\r\n");
+		}
 	}
 
 	function registerRecvFunc(func)
@@ -266,6 +341,7 @@ function commHandler(channel)
 	{
 		that.sendMsg = sendMsg;
 		that.registerRecvFunc = registerRecvFunc;
+		that.connected = connected;
 		
 		connectToServer(dHost, dPort);
 
