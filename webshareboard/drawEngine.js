@@ -19,37 +19,51 @@ function drawEngine(canvas)
 	function resetMatrices(owner)
 	{
 		dScaleMatrix[owner] = new Matrix.I(3);
-		dTranslationMatrix = new Matrix.I(3);
+		dTranslationMatrix[owner] = new Matrix.I(3);
 		dWorldMatrix[owner] = new Matrix.I(3);
 		dInvertedWorldMatrix[owner] = new Matrix.I(3);
 	}
 	//This is a hack, need to do something here
 	resetMatrices("me");
 
-	function scale(scaleValue, aroundPoint, owner)
+	function scale(scaleValue, aroundPoint, owner, sendUpdate)
 	{
+		if(typeof(dWorldMatrix[owner]) === "undefined")
+		{
+			resetMatrices(owner);
+		}
       var tempPoint = map(inverse(dWorldMatrix[owner]), aroundPoint);
 
       dScale = 1 + (scaleValue / 10);
       dScaleMatrix[owner] = new Matrix.create([[dScale, 0, 0], [0, dScale, 0], [0, 0, 1]]);
-      dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix);
+      dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix[owner]);
 
       var aroundPointAfter = map(dWorldMatrix[owner], tempPoint);
 
-      translateMatrix(dTranslationMatrix, (new Point(aroundPoint.x - aroundPointAfter.x, aroundPoint.y - aroundPointAfter.y)));
-      dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix);
+      translateMatrix(dTranslationMatrix[owner], (new Point(aroundPoint.x - aroundPointAfter.x, aroundPoint.y - aroundPointAfter.y)));
+      dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix[owner]);
 
-		dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
+		if(sendUpdate)
+		{
+			dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
+		}
 
       reDraw(owner);
 	}
 
-	function translate(transBy, owner)
+	function translate(transBy, owner, sendUpdate)
 	{
-		translateMatrix(dTranslationMatrix, transBy);
-		dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix);
+		if(typeof(dWorldMatrix[owner]) === "undefined")
+		{
+			resetMatrices(owner);
+		}
+		translateMatrix(dTranslationMatrix[owner], transBy);
+		dWorldMatrix[owner] = dScaleMatrix[owner].x(dTranslationMatrix[owner]);
 
-		dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
+		if(sendUpdate)
+		{
+			dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
+		}
 		reDraw(owner);
 	}
 	function inverse(matrix)
@@ -79,7 +93,7 @@ function drawEngine(canvas)
 
 	function getContext(owner)
 	{
-		if(!dContext[owner])
+		if(typeof(dContext[owner]) === "undefined")
 		{
 		/*
 			if(!dCanvas.getContext)
@@ -101,6 +115,10 @@ function drawEngine(canvas)
 
 	function reDraw(owner)
 	{
+		if(typeof(dWorldMatrix[owner]) === "undefined")
+		{
+			resetMatrices(owner);
+		}
 		var context = getContext(owner);
 		context.clearRect(0, 0, dCanvas.width, dCanvas.height);
 		for(j = 0; j < dLines.length; j ++)
@@ -111,7 +129,6 @@ function drawEngine(canvas)
 			context.moveTo(tempAlteredPoint.x, tempAlteredPoint.y);
 			for(i = 1; i < line.vectors.length; i ++)
 			{	
-				var point = line.vectors[i];
 				var alteredPoint = map(dWorldMatrix[owner], line.vectors[i])
 				context.lineTo(alteredPoint.x, alteredPoint.y);
 				context.stroke();
@@ -119,42 +136,88 @@ function drawEngine(canvas)
 		}
 	}
 
-	function startNewLine(point, currentPenColor, currentPenWidth, owner)
+	function startNewLine(point, currentPenColor, currentPenWidth, owner, sendUpdate)
 	{
+		if(typeof(dWorldMatrix[owner]) === "undefined")
+		{
+			resetMatrices(owner);
+		}
 		var context = getContext(owner);
 		dInvertedWorldMatrix[owner] = inverse(dWorldMatrix[owner]);
 
 		var transedPoint = map(dInvertedWorldMatrix[owner], point);
 
-		context.beginPath();
-		context.moveTo(point.x, point.y);
+		if(sendUpdate)
+		{
+			context.moveTo(point.x, point.y);
+		}
+		else
+		{
+			var newPoint = map(dWorldMatrix["me"], transedPoint);
+			context.moveTo(newPoint.x, newPoint.y);
+		}
+
 		dCurrentLine[owner] = new drawLine(transedPoint, currentPenColor, currentPenWidth);
 		dLines.push(dCurrentLine[owner]);
 
-		dComm.sendMsg(buildSendString(new State("scribbling")));
-		dComm.sendMsg(buildSendString(transedPoint));
+		if(sendUpdate)
+		{
+			dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
+			dComm.sendMsg(buildSendString(new State("start_scribbling")));
+			dComm.sendMsg(buildSendString(point));
+		}
 	}
 
-	function addToLine(point, owner)
+	function addToLine(point, owner, sendUpdate)
 	{
+		if(typeof(dWorldMatrix[owner]) === "undefined")
+		{
+			resetMatrices(owner);
+		}
 		var context = getContext(owner);
 		var transedPoint = map(dInvertedWorldMatrix[owner], point);
-		context.lineTo(point.x, point.y);
+
+		if(sendUpdate)
+		{
+			context.lineTo(point.x, point.y);
+		}
+		else
+		{
+			var newPoint = map(dWorldMatrix["me"], transedPoint);
+			context.lineTo(newPoint.x, newPoint.y);
+		}
 		context.stroke();
+
 		dCurrentLine[owner].addVectorToLine(transedPoint);
 
-		dComm.sendMsg(buildSendString(transedPoint));
+		if(sendUpdate)
+		{
+			dComm.sendMsg(buildSendString(point));
+		}
 	}
 
-	function finishLine(owner)
+	function finishLine(owner, sendUpdate)
 	{
+		if(typeof(dWorldMatrix[owner]) === "undefined")
+		{
+			resetMatrices(owner);
+		}
 		dCurrentLine[owner].finishLine();
-		dComm.sendMsg(buildSendString(new State("finished_scribbling")));
+		if(sendUpdate)
+		{
+			dComm.sendMsg(buildSendString(new State("finished_scribbling")));
+		}
 	}
 
 	function connect()
 	{
-		dComm = new commHandler("test");
+		var gParams = getParams();
+		var name = "temp";
+		if(typeof(gParams["name"]) !== "undefined")
+		{
+			name = gParams["name"];
+		}
+		dComm = new commHandler(name, "test");
 		dComm.registerRecvFunc(recvFunc);
 	}
 	function recvFunc(msg, from)
@@ -164,14 +227,28 @@ function drawEngine(canvas)
 			obj = JSON.parse(msg);
 			if(obj.objType === "matrix")
 			{
-				dInvertedWorldMatrix[from] = obj;
+				dWorldMatrix[from] = new Matrix.create(obj.elements);
 			}
 			if(obj.objType === "state")
 			{
 				dState[from] = obj;
+				if(dState[from].state === "finished_scribbling")
+				{
+					finishLine(from, false);
+				}
 			}
-			
-
+			if(obj.objType === "point")
+			{
+				if(dState[from].state === "start_scribbling")
+				{
+					startNewLine(obj, null, null, from, false);
+					dState[from].state = "scribbling";
+				}
+				if(dState[from].state === "scribbling")
+				{
+					addToLine(obj, from, false);
+				}
+			}
 			console.log("Object is of type: " + obj.objType);
 		}
 		else
@@ -249,11 +326,11 @@ function State(state)
 }
 
 
-function commHandler(channel)
+function commHandler(name, channel)
 {
 	var that = {};
 
-	var dNick = "shareboard";
+	var dNick = name;
 	var dHost = "localhost";
 	var dPort = 8000;
 	var dSocket = null;
@@ -284,22 +361,27 @@ function commHandler(channel)
 		
 		if(msg.indexOf("PRIVMSG #") != -1)
 		{
-			var msgIndicatorIndex = msg.indexOf("PRIVMSG #") + 9;
-			var channel = msg.substring(msgIndicatorIndex, msg.indexOf(" :", msgIndicatorIndex));
-			console.log("Channel: " + channel);
-			if(channel === dChannel)
+			var messages = msg.split("\r\n");
+			for(var i = 0; i < messages.length; i ++)
 			{
-				var msgData = msg.substring(msg.indexOf(" :", msgIndicatorIndex) + 2);
-				var from = msg.substring(1, msg.indexOf("!"));
-				handleMsg(msgData.trim(), from);
+				var message = messages[i];
+				var msgIndicatorIndex = message.indexOf("PRIVMSG #") + 9;
+				var channel = message.substring(msgIndicatorIndex, message.indexOf(" :", msgIndicatorIndex));
+				console.log("Channel: " + channel);
+				if(channel === dChannel)
+				{
+					var msgData = message.substring(message.indexOf(" :", msgIndicatorIndex) + 2);
+					var from = message.substring(1, message.indexOf("!"));
+					handleMsg(msgData.trim(), from);
+				}
 			}
 		}
 	}
 
 	function sockOpened()
 	{
-		dSocket.send_string("NICK shareboard\r\n");
-		dSocket.send_string("USER shareboard 2 * : shareboard\r\n");
+		dSocket.send_string("NICK " + dNick + "\r\n");
+		dSocket.send_string("USER " + dNick + " 2 * : " + dNick + "\r\n");
 		dSocket.send_string("JOIN #" + dChannel + "\r\n");
 		connected = true;
 	}
@@ -350,6 +432,20 @@ function commHandler(channel)
 
 	return init();
 
+}
+
+function getParams()
+{
+	var prmstr = window.location.search.substr(1);
+	var prmarr = prmstr.split ("&");
+	var params = {};
+
+	for(var i = 0; i < prmarr.length; i++)
+	{
+		var tmparr = prmarr[i].split("=");
+		params[tmparr[0]] = tmparr[1];
+	}
+	return params;
 }
 
 if (!String.prototype.startsWith) {

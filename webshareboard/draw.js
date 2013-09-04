@@ -28,7 +28,7 @@ function draw()
 
 		//while(!engine.isConnected());
 
-		engine.scale(scale * scale, new Point(canvas.width/2, canvas.height/2), "me");
+		engine.scale(scale * scale, new Point(canvas.width/2, canvas.height/2), "me", true);
 		engine.reDraw("me");
 
 		eHandlers = new eventHandlers(engine, scale);
@@ -83,7 +83,7 @@ function eventHandlers(eng, startScale)
 		{
 			case 1:
 			{
-				engine.startNewLine(new Point(ev._x, ev._y), null, null, "me");
+				engine.startNewLine(new Point(ev._x, ev._y), null, null, "me", true);
 				scribbling = true;
 				break;
 			}
@@ -107,12 +107,12 @@ function eventHandlers(eng, startScale)
 	{
 		if(scribbling)
 		{
-			engine.addToLine(new Point(ev._x, ev._y), "me");
+			engine.addToLine(new Point(ev._x, ev._y), "me", true);
 		}
 		if(moving)
 		{
 			var tempPoint = new Point(-(lastPos.x - ev._x), -(lastPos.y - ev._y));
-			engine.translate(tempPoint, "me");
+			engine.translate(tempPoint, "me", true);
 			lastPos = new Point(ev._x, ev._y);
 		}
 	}
@@ -122,7 +122,7 @@ function eventHandlers(eng, startScale)
 		if(scribbling)
 		{
 			scribbling = false;
-			engine.finishLine("me");
+			engine.finishLine("me", true);
 			engine.reDraw("me");
 		}
 		if(moving)
@@ -137,7 +137,7 @@ function eventHandlers(eng, startScale)
 		if(scribbling)
 		{
 			scribbling = false;
-			engine.finishLine("me");
+			engine.finishLine("me", true);
 		}
 	}
 
@@ -147,14 +147,14 @@ function eventHandlers(eng, startScale)
 		if(ev.wheel > 0)
 		{
 			scale ++;
-			engine.scale(scale * scale, new Point(ev._x, ev._y), "me");
+			engine.scale(scale * scale, new Point(ev._x, ev._y), "me", true);
 		}
 		if(ev.wheel < 0)
 		{
 			if(scale > 0)
 			{
 				scale --;
-				engine.scale(scale * scale, new Point(ev._x, ev._y), "me");
+				engine.scale(scale * scale, new Point(ev._x, ev._y), "me", true);
 			}
 		}
 	}
