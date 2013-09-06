@@ -6,10 +6,20 @@
     <style type="text/css"><!--
       #container { position: relative; }
       #drawCanvas { border: 1px solid #000; }
-    --></style>
+    -->
+		  .left {
+				float: left;
+				position: relative;
+		  }
+
+		  .right {
+				float: right;
+				position: relative;
+		  }
+		</style>
   </head>
   <body>
-    <div id="container">
+		<div id="container" class="left">
       <canvas id="drawCanvas" width="800" height="600">
         <p>Unfortunately, your browser is currently unsupported by our web 
         application.  We are sorry for the inconvenience. Please use one of the 
@@ -21,8 +31,20 @@
           href="http://www.konqueror.org">Konqueror</a>.</p>
       </canvas>
     </div>
-	 <div><pre id="irc"></pre></div>
-
+	<div class="right">
+		<div><pre id="chatWindow"></pre></div>
+		<br/>
+		<div>
+			<div class="left">
+				<input type="text" size="90" id="chatInputText" />
+			</div>
+			<div class="right">
+				<button type="button" id="sendButton">Send</button>
+			</div>
+		</div>
+	</div>
+	
+	 <script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
 	 <script type="text/javascript" src="include/base64.js"></script>
 	 <script type="text/javascript" src="include/websock.js"></script>
 	 <script type="text/javascript" src="include/util.js"></script>

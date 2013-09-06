@@ -15,6 +15,7 @@ function drawEngine(canvas)
 	var dState = {};
 	var dScale;
 	var dComm;
+	var dVT100;
 
 	function resetMatrices(owner)
 	{
@@ -253,8 +254,14 @@ function drawEngine(canvas)
 		}
 		else
 		{
-			dComm.sendMsg(from + ": YO YO YO");
+			displayMessageOnTerm(msg, from);
 		}
+	}
+
+	//This should be a callback outside of the drawengine rather
+	function displayMessageOnTerm(msg, from)
+	{
+		dVT100.write(from + ": " + msg + "\r\n");
 	}
 
 	function isConnected()
@@ -272,6 +279,25 @@ function drawEngine(canvas)
 		return JSON.stringify(obj);
 	}
 
+
+	//All these should be handled as callbacks into drawEngine rather
+	function handleInputBoxMessages(event)
+	{
+		if(event.keyCode == 13)
+		{
+			handleSendButton();
+		}
+	}
+
+	function handleSendButton()
+	{
+		var inputBoxValue = $("#chatInputText").val();
+		$("#chatInputText").val("");
+		dVT100.write("Me: " + inputBoxValue + "\r\n");
+		dComm.sendMsg(inputBoxValue + "\r\n");
+	}
+
+
 	function init()
 	{
 		that.dCanvas = dCanvas;
@@ -286,6 +312,12 @@ function drawEngine(canvas)
 		that.finishLine = finishLine;
 		that.connect = connect;
 		that.isConnected = isConnected;
+
+
+		//All these should be handled as callbacks into drawEngine rather
+ 		dVT100 = new VT100(80, 24, "chatWindow");
+		$("#chatInputText").keyup(handleInputBoxMessages);
+		$("#sendButton").click(handleSendButton);
 
 		return that;
 	}
@@ -331,7 +363,7 @@ function commHandler(name, channel)
 	var that = {};
 
 	var dNick = name;
-	var dHost = "localhost";
+	var dHost = "192.168.0.60";
 	var dPort = 8000;
 	var dSocket = null;
 	var recvFunc = null;
