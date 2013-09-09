@@ -1,6 +1,8 @@
+var drawer = new draw();
+
 if(window.addEventListener)
 {
-	window.addEventListener('load', new draw(), false);
+	window.addEventListener('load', drawer, false);
 }
 	
 
@@ -11,6 +13,9 @@ function draw()
 	
 	var engine;
 	var scale = 20;
+	var dVT100;
+
+	var that = {};
 
 
 	function init ()
@@ -24,7 +29,14 @@ function draw()
 
 
 		engine = new drawEngine(canvas);
+
+ 		dVT100 = new VT100(80, 24, "chatWindow");
+		$("#chatInputText").keyup(handleInputBoxMessages);
+		$("#sendButton").click(handleSendButton);
+
+		engine.registerChatMsgReceiver(handleIncomingChatMessage);
 		engine.connect();
+
 
 		//while(!engine.isConnected());
 
@@ -40,6 +52,10 @@ function draw()
 		canvas.addEventListener('DOMMouseScroll',   ev_canvas, false);
 		canvas.addEventListener('mousewheel',   ev_canvas, false);
 		canvas.addEventListener('contextmenu',   ev_canvas, false);
+
+		that.engine = engine;
+
+		return that;
 	}
 
 	function ev_canvas(ev)
@@ -62,7 +78,27 @@ function draw()
 		}
 	}
 
-	init();
+	function handleIncomingChatMessage(msg, from)
+	{
+		dVT100.write(from + ": " + msg + "\r\n");
+	}
+
+	function handleInputBoxMessages(event)
+	{
+		if(event.keyCode == 13)
+		{
+			handleSendButton();
+		}
+	}
+
+	function handleSendButton()
+	{
+		var inputBoxValue = $("#chatInputText").val();
+		$("#chatInputText").val("");
+		dVT100.write("Me: " + inputBoxValue + "\r\n");
+		engine.sendChatMsg(inputBoxValue + "\r\n");
+	}
+	return init();
 }
 
 

@@ -3,19 +3,21 @@ function drawEngine(canvas)
 	var that = {};
 
 	var dCanvas = canvas;
-	var dContext = {};
+	var dContext;
 	var dLines = new Array();
 	var dCurrentLine = {};
-	var socket = null;
 
 	var dScaleMatrix = {};
 	var dTranslationMatrix = {};
 	var dWorldMatrix = {};
 	var dInvertedWorldMatrix = {};
 	var dState = {};
+	var dLastPoint = {};
+
 	var dScale;
 	var dComm;
-	var dVT100;
+
+	var dChatReceiver = null;
 
 	function resetMatrices(owner)
 	{
@@ -92,9 +94,9 @@ function drawEngine(canvas)
 		matrix.setElements(elements);
 	}
 
-	function getContext(owner)
+	function getContext()
 	{
-		if(typeof(dContext[owner]) === "undefined")
+		if(typeof(dContext) === "undefined")
 		{
 		/*
 			if(!dCanvas.getContext)
@@ -104,14 +106,14 @@ function drawEngine(canvas)
 			}
 		*/
 
-			dContext[owner] = canvas.getContext('2d');
-			if(!dContext[owner])
+			dContext = canvas.getContext('2d');
+			if(!dContext)
 			{
 				alert('Error: failed to getContext!');
 				return;
 			}
 		}
-		return dContext[owner];
+		return dContext;
 	}
 
 	function reDraw(owner)
@@ -120,7 +122,7 @@ function drawEngine(canvas)
 		{
 			resetMatrices(owner);
 		}
-		var context = getContext(owner);
+		var context = getContext();
 		context.clearRect(0, 0, dCanvas.width, dCanvas.height);
 		for(j = 0; j < dLines.length; j ++)
 		{
@@ -143,19 +145,19 @@ function drawEngine(canvas)
 		{
 			resetMatrices(owner);
 		}
-		var context = getContext(owner);
+		var context = getContext();
 		dInvertedWorldMatrix[owner] = inverse(dWorldMatrix[owner]);
 
 		var transedPoint = map(dInvertedWorldMatrix[owner], point);
 
 		if(sendUpdate)
 		{
-			context.moveTo(point.x, point.y);
+			dLastPoint[owner] = point;
 		}
 		else
 		{
 			var newPoint = map(dWorldMatrix["me"], transedPoint);
-			context.moveTo(newPoint.x, newPoint.y);
+			dLastPoint["me"] = newPoint;
 		}
 
 		dCurrentLine[owner] = new drawLine(transedPoint, currentPenColor, currentPenWidth);
@@ -175,17 +177,21 @@ function drawEngine(canvas)
 		{
 			resetMatrices(owner);
 		}
-		var context = getContext(owner);
+		var context = getContext();
 		var transedPoint = map(dInvertedWorldMatrix[owner], point);
 
 		if(sendUpdate)
 		{
+			context.moveTo(dLastPoint[owner].x, dLastPoint[owner].y);
 			context.lineTo(point.x, point.y);
+			dLastPoint[owner] = point;
 		}
 		else
 		{
+			context.moveTo(dLastPoint["me"].x, dLastPoint["me"].y);
 			var newPoint = map(dWorldMatrix["me"], transedPoint);
 			context.lineTo(newPoint.x, newPoint.y);
+			dLastPoint["me"] = newPoint;
 		}
 		context.stroke();
 
@@ -254,14 +260,21 @@ function drawEngine(canvas)
 		}
 		else
 		{
-			displayMessageOnTerm(msg, from);
+			if(dChatReceiver != null)
+			{
+				dChatReceiver(msg, from);
+			}
 		}
 	}
 
-	//This should be a callback outside of the drawengine rather
-	function displayMessageOnTerm(msg, from)
+	function registerChatMsgReceiver(receiver)
 	{
-		dVT100.write(from + ": " + msg + "\r\n");
+		dChatReceiver = receiver;
+	}
+
+	function sendChatMsg(msg)
+	{
+		dComm.sendMsg(msg);
 	}
 
 	function isConnected()
@@ -280,24 +293,6 @@ function drawEngine(canvas)
 	}
 
 
-	//All these should be handled as callbacks into drawEngine rather
-	function handleInputBoxMessages(event)
-	{
-		if(event.keyCode == 13)
-		{
-			handleSendButton();
-		}
-	}
-
-	function handleSendButton()
-	{
-		var inputBoxValue = $("#chatInputText").val();
-		$("#chatInputText").val("");
-		dVT100.write("Me: " + inputBoxValue + "\r\n");
-		dComm.sendMsg(inputBoxValue + "\r\n");
-	}
-
-
 	function init()
 	{
 		that.dCanvas = dCanvas;
@@ -312,12 +307,8 @@ function drawEngine(canvas)
 		that.finishLine = finishLine;
 		that.connect = connect;
 		that.isConnected = isConnected;
-
-
-		//All these should be handled as callbacks into drawEngine rather
- 		dVT100 = new VT100(80, 24, "chatWindow");
-		$("#chatInputText").keyup(handleInputBoxMessages);
-		$("#sendButton").click(handleSendButton);
+		that.sendChatMsg = sendChatMsg;
+		that.registerChatMsgReceiver = registerChatMsgReceiver;
 
 		return that;
 	}
@@ -358,113 +349,6 @@ function State(state)
 }
 
 
-function commHandler(name, channel)
-{
-	var that = {};
-
-	var dNick = name;
-	var dHost = "192.168.0.60";
-	var dPort = 8000;
-	var dSocket = null;
-	var recvFunc = null;
-	var dChannel = channel;
-	var connected = false;
-
-
-	function connectToServer(host, port)
-	{
-		dSocket = new Websock();
-		dSocket.on("message", getMessage);
-		dSocket.on("open", sockOpened);
-		dSocket.on("close", sockClosed);
-		dSocket.open("ws://" + host + ":" + port);  
-	}
-
-	function getMessage()
-	{
-		var msg = dSocket.rQshiftStr(dSocket.rQlen());
-		console.log(msg);
-
-		if(msg.startsWith("PING"))
-		{
-			handlePing(msg);
-			return;
-		}
-		
-		if(msg.indexOf("PRIVMSG #") != -1)
-		{
-			var messages = msg.split("\r\n");
-			for(var i = 0; i < messages.length; i ++)
-			{
-				var message = messages[i];
-				var msgIndicatorIndex = message.indexOf("PRIVMSG #") + 9;
-				var channel = message.substring(msgIndicatorIndex, message.indexOf(" :", msgIndicatorIndex));
-				console.log("Channel: " + channel);
-				if(channel === dChannel)
-				{
-					var msgData = message.substring(message.indexOf(" :", msgIndicatorIndex) + 2);
-					var from = message.substring(1, message.indexOf("!"));
-					handleMsg(msgData.trim(), from);
-				}
-			}
-		}
-	}
-
-	function sockOpened()
-	{
-		dSocket.send_string("NICK " + dNick + "\r\n");
-		dSocket.send_string("USER " + dNick + " 2 * : " + dNick + "\r\n");
-		dSocket.send_string("JOIN #" + dChannel + "\r\n");
-		connected = true;
-	}
-
-	function sockClosed()
-	{
-		connected = false;
-	}
-
-	function handleMsg(msg, from)
-	{
-		console.log("Message Handler: " + msg);
-		if(recvFunc !== null)
-		{
-			recvFunc(msg, from);
-		}
-	}
-
-	function handlePing(msg)
-	{
-		console.log("PONG " + msg.substr(5));
-		dSocket.send_string("PONG " + msg.substr(5) + "\r\n");
-	}
-
-	function sendMsg(msg)
-	{
-		if(connected)
-		{
-			dSocket.send_string("PRIVMSG #" + dChannel + " :" + msg + "\r\n");
-		}
-	}
-
-	function registerRecvFunc(func)
-	{
-		recvFunc = func;
-	}
-
-	function init()
-	{
-		that.sendMsg = sendMsg;
-		that.registerRecvFunc = registerRecvFunc;
-		that.connected = connected;
-		
-		connectToServer(dHost, dPort);
-
-		return that;
-	}
-
-	return init();
-
-}
 
 function getParams()
 {
