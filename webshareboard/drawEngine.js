@@ -1,3 +1,7 @@
+var STATE_NEW_LINE = "newLine";
+var STATE_END_LINE = "endLine";
+var STATE_DRAWING_LINE = "drawingLine"
+
 function drawEngine(canvas)
 {
 	var that = {};
@@ -130,6 +134,7 @@ function drawEngine(canvas)
 			context.beginPath();
 			var tempAlteredPoint = map(dWorldMatrix[owner], line.vectors[0]);
 			context.moveTo(tempAlteredPoint.x, tempAlteredPoint.y);
+			context.strokeStyle = line.lineBase.color;
 			for(i = 1; i < line.vectors.length; i ++)
 			{	
 				var alteredPoint = map(dWorldMatrix[owner], line.vectors[i])
@@ -160,13 +165,13 @@ function drawEngine(canvas)
 			dLastPoint["me"] = newPoint;
 		}
 
-		dCurrentLine[owner] = new drawLine(transedPoint, currentPenColor, currentPenWidth);
+		dCurrentLine[owner] = new Line(transedPoint, currentPenColor, currentPenWidth);
 		dLines.push(dCurrentLine[owner]);
 
 		if(sendUpdate)
 		{
 			dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
-			dComm.sendMsg(buildSendString(new State("start_scribbling")));
+			dComm.sendMsg(buildSendString(new State(STATE_NEW_LINE, dCurrentLine[owner].lineBase)));
 			dComm.sendMsg(buildSendString(point));
 		}
 	}
@@ -183,6 +188,7 @@ function drawEngine(canvas)
 		if(sendUpdate)
 		{
 			context.moveTo(dLastPoint[owner].x, dLastPoint[owner].y);
+			context.strokeStyle = dCurrentLine[owner].lineBase.color;
 			context.lineTo(point.x, point.y);
 			dLastPoint[owner] = point;
 		}
@@ -190,6 +196,7 @@ function drawEngine(canvas)
 		{
 			context.moveTo(dLastPoint["me"].x, dLastPoint["me"].y);
 			var newPoint = map(dWorldMatrix["me"], transedPoint);
+			context.strokeStyle = dCurrentLine[owner].lineBase.color;
 			context.lineTo(newPoint.x, newPoint.y);
 			dLastPoint["me"] = newPoint;
 		}
@@ -212,8 +219,9 @@ function drawEngine(canvas)
 		dCurrentLine[owner].finishLine();
 		if(sendUpdate)
 		{
-			dComm.sendMsg(buildSendString(new State("finished_scribbling")));
+			dComm.sendMsg(buildSendString(new State(STATE_END_LINE)));
 		}
+		reDraw(owner);
 	}
 
 	function connect()
@@ -239,21 +247,22 @@ function drawEngine(canvas)
 			if(obj.objType === "state")
 			{
 				dState[from] = obj;
-				if(dState[from].state === "finished_scribbling")
+				if(dState[from].state === STATE_END_LINE)
 				{
 					finishLine(from, false);
 				}
 			}
 			if(obj.objType === "point")
 			{
-				if(dState[from].state === "start_scribbling")
-				{
-					startNewLine(obj, null, null, from, false);
-					dState[from].state = "scribbling";
-				}
-				if(dState[from].state === "scribbling")
+				if(dState[from].state === STATE_DRAWING_LINE)
 				{
 					addToLine(obj, from, false);
+				}
+				if(dState[from].state === STATE_NEW_LINE)
+				{
+					var lineBase = dState[from].payLoad;
+					startNewLine(obj, lineBase.color, lineBase.width, from, false);
+					dState[from].state = STATE_DRAWING_LINE;
 				}
 			}
 			console.log("Object is of type: " + obj.objType);
@@ -318,11 +327,16 @@ function drawEngine(canvas)
 }
 
 
-
-function drawLine(startPoint, color, width)
+function LineBase(color, width)
 {
+	this.objType = "linebase";
 	this.color = color;
 	this.width = width;
+}
+
+function Line(startPoint, color, width)
+{
+	this.lineBase = new LineBase(color, width);
 	this.vectors = [startPoint];
 
 	this.addVectorToLine = function(point)
@@ -342,10 +356,11 @@ function Point(x, y)
 	this.y = y;
 }
 
-function State(state)
+function State(state, payLoad)
 {
 	this.objType = "state";
 	this.state = state;
+	this.payLoad = payLoad;
 }
 
 

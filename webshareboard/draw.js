@@ -119,7 +119,8 @@ function eventHandlers(eng, startScale)
 		{
 			case 1:
 			{
-				engine.startNewLine(new Point(ev._x, ev._y), null, null, "me", true);
+				var penColor = $("#penColor").val();
+				engine.startNewLine(new Point(ev._x, ev._y), penColor, 5, "me", true);
 				scribbling = true;
 				break;
 			}
