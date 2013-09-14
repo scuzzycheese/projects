@@ -174,6 +174,7 @@ function drawEngine(canvas)
 			dComm.sendMsg(buildSendString(new State(STATE_NEW_LINE, dCurrentLine[owner].lineBase)));
 			dComm.sendMsg(buildSendString(point));
 		}
+		reDraw(owner);
 	}
 
 	function addToLine(point, owner, sendUpdate)
