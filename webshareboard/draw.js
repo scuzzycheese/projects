@@ -112,6 +112,7 @@ function eventHandlers(eng, startScale)
 	var lastPos = new Point(0, 0);
 	var engine = eng;
 	var scale = startScale;
+	var penColor = "#000000";
 
 	function mousedown(ev)
 	{
@@ -119,7 +120,6 @@ function eventHandlers(eng, startScale)
 		{
 			case 1:
 			{
-				var penColor = $("#penColor").val();
 				engine.startNewLine(new Point(ev._x, ev._y), penColor, 5, "me", true);
 				scribbling = true;
 				break;
@@ -212,7 +212,42 @@ function eventHandlers(eng, startScale)
 		that.DOMMouseScroll = DOMMouseScroll;
 		that.mousewheel = DOMMouseScroll;
 
+		setupColourHandlers();
+
 		return that;
+	}
+
+	function setupColourHandlers()
+	{
+		$("#penColor").change(function(event)
+		{
+			penColor = $("#penColor").val();
+		});
+
+		$("#colorButtonRed").click(function(event)
+		{
+			penColor = "#FF0000";
+		});
+		$("#colorButtonGreen").click(function(event)
+		{
+			penColor = "#00FF00";
+		});
+		$("#colorButtonBlue").click(function(event)
+		{
+			penColor = "#0000FF";
+		});
+		$("#colorButtonYellow").click(function(event)
+		{
+			penColor = "#FFFF00";
+		});
+		$("#colorButtonOrange").click(function(event)
+		{
+			penColor = "#FFA500";
+		});
+		$("#colorButtonBlack").click(function(event)
+		{
+			penColor = "#000000";
+		});
 	}
 
 	return init();
