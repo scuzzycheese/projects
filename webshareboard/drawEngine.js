@@ -55,7 +55,7 @@ function drawEngine(canvas)
 			dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
 		}
 
-      reDraw(owner);
+      reDraw();
 	}
 
 	function translate(transBy, owner, sendUpdate)
@@ -71,7 +71,7 @@ function drawEngine(canvas)
 		{
 			dComm.sendMsg(buildSendString(dWorldMatrix[owner]));
 		}
-		reDraw(owner);
+		reDraw();
 	}
 	function inverse(matrix)
 	{
@@ -120,8 +120,9 @@ function drawEngine(canvas)
 		return dContext;
 	}
 
-	function reDraw(owner)
+	function reDraw()
 	{
+		owner = "me";
 		if(typeof(dWorldMatrix[owner]) === "undefined")
 		{
 			resetMatrices(owner);
@@ -174,7 +175,7 @@ function drawEngine(canvas)
 			dComm.sendMsg(buildSendString(new State(STATE_NEW_LINE, dCurrentLine[owner].lineBase)));
 			dComm.sendMsg(buildSendString(point));
 		}
-		reDraw(owner);
+		reDraw();
 	}
 
 	function addToLine(point, owner, sendUpdate)
@@ -186,6 +187,7 @@ function drawEngine(canvas)
 		var context = getContext();
 		var transedPoint = map(dInvertedWorldMatrix[owner], point);
 
+		//TODO: maybe this shoulkd be if(owner !== "me") ?
 		if(sendUpdate)
 		{
 			context.moveTo(dLastPoint[owner].x, dLastPoint[owner].y);
@@ -222,7 +224,7 @@ function drawEngine(canvas)
 		{
 			dComm.sendMsg(buildSendString(new State(STATE_END_LINE)));
 		}
-		reDraw(owner);
+		reDraw();
 	}
 
 	function connect()
@@ -339,15 +341,53 @@ function Line(startPoint, color, width)
 {
 	this.lineBase = new LineBase(color, width);
 	this.vectors = [startPoint];
+	this.lineLimit = 
+	{
+		bottomRight: new Point
+		(
+			startPoint.x, 
+			startPoint.y	
+ 		), 
+		topLeft: new Point
+		(
+			startPoint.x, 
+			startPoint.y
+ 		)
+	};
+	
+	this.addToLimits = function(point)
+	{
+		if(point.x > this.lineLimit.bottomRight.x)
+		{	
+			this.lineLimit.bottomRight.x = point.x;
+		}
+		if(point.y > this.lineLimit.bottomRight.y)
+		{
+			this.lineLimit.bottomRight.y = point.y;
+		}
+
+		if(point.x < this.lineLimit.topLeft.x)
+		{
+			this.lineLimit.topLeft.x = point.x;
+		}
+		if(point.y < this.lineLimit.topLeft.y)
+		{
+			this.lineLimit.topLeft.y = point.y;
+		}
+	}
 
 	this.addVectorToLine = function(point)
 	{
 		this.vectors.push(point);
+		this.addToLimits(point);
 	}
 	
 	this.finishLine = function()
 	{
 	}
+
+	this.addToLimits(startPoint);
+
 }
 
 function Point(x, y)
