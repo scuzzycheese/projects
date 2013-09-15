@@ -184,26 +184,22 @@ function drawEngine(canvas)
 		{
 			resetMatrices(owner);
 		}
-		var context = getContext();
 		var transedPoint = map(dInvertedWorldMatrix[owner], point);
+		var pointToDrawCrosshair = point;
 
 		//TODO: maybe this shoulkd be if(owner !== "me") ?
 		if(sendUpdate)
 		{
-			context.moveTo(dLastPoint[owner].x, dLastPoint[owner].y);
-			context.strokeStyle = dCurrentLine[owner].lineBase.color;
-			context.lineTo(point.x, point.y);
+			//drawLine(dLastPoint[owner], point, dCurrentLine[owner].lineBase.color);
 			dLastPoint[owner] = point;
 		}
 		else
 		{
-			context.moveTo(dLastPoint["me"].x, dLastPoint["me"].y);
 			var newPoint = map(dWorldMatrix["me"], transedPoint);
-			context.strokeStyle = dCurrentLine[owner].lineBase.color;
-			context.lineTo(newPoint.x, newPoint.y);
+			//drawLine(dLastPoint["me"], newPoint, dCurrentLine[owner].lineBase.color);
 			dLastPoint["me"] = newPoint;
+			pointToDrawCrosshair = newPoint;
 		}
-		context.stroke();
 
 		dCurrentLine[owner].addVectorToLine(transedPoint);
 
@@ -211,6 +207,28 @@ function drawEngine(canvas)
 		{
 			dComm.sendMsg(buildSendString(point));
 		}
+		reDraw();
+		drawCrosshair(owner, pointToDrawCrosshair);
+	}
+
+	function drawLine(startPoint, endPoint, color)
+	{
+		var context = getContext();
+		context.beginPath();
+		context.moveTo(startPoint.x, startPoint.y);
+		context.strokeStyle = color;
+		context.lineTo(endPoint.x, endPoint.y);
+		context.stroke();
+	}
+
+	function drawCrosshair(owner, point)
+	{
+		var context = getContext();
+		context.beginPath();
+		context.arc(point.x, point.y, 10, 0, 2 * Math.PI, false);
+		context.stroke();
+		context.font = "20pt Arial";
+		context.fillText(owner, point.x, point.y);
 	}
 
 	function finishLine(owner, sendUpdate)
