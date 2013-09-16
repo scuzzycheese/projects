@@ -224,11 +224,13 @@ function drawEngine(canvas)
 	function drawCrosshair(owner, point)
 	{
 		var context = getContext();
+		
 		context.beginPath();
+		context.strokeStyle = "black";
 		context.arc(point.x, point.y, 10, 0, 2 * Math.PI, false);
 		context.stroke();
 		context.font = "20pt Arial";
-		context.fillText(owner, point.x, point.y);
+		context.fillText(owner, point.x + 20, point.y + 5);
 	}
 
 	function finishLine(owner, sendUpdate)

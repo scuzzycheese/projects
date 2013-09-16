@@ -3,25 +3,37 @@
   <head>
     <meta charset="utf-8">
     <title>Paint</title>
-    <style type="text/css"><!--
-      #container { position: relative; }
-      #drawCanvas { border: 1px solid #000; }
-    -->
-		  .left {
-				float: left;
-				position: relative;
-		  }
+    <style type="text/css">
+      #container 
+		{ 
+			position: relative;
+		}
+      #drawCanvas
+		{ 
+			border: 1px solid #000; 
+			cursor: crosshair;
+		}
+      #drawCanvas:active
+		{ 
+			cursor: crosshair;
+		}
+		.left
+		{
+			float: left;
+			position: relative;
+		}
 
-		  .right {
-				float: right;
-				position: relative;
-		  }
+		.right 
+		{
+			float: right;
+			position: relative;
+		}
 		</style>
   </head>
   <body>
 		<div id="container" class="left">
 		<div class="left">
-			<canvas id="drawCanvas" width="800" height="600">
+			<canvas id="drawCanvas" width="800" height="600" >
 				<p>Unfortunately, your browser is currently unsupported by our web 
 				application.  We are sorry for the inconvenience. Please use one of the 
 				supported browsers listed below, or draw the image you want using an 

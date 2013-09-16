@@ -116,6 +116,7 @@ function eventHandlers(eng, startScale)
 
 	function mousedown(ev)
 	{
+		//ev.target.style.cursor = 'crosshair';
 		switch(ev.which)
 		{
 			case 1:
@@ -130,6 +131,8 @@ function eventHandlers(eng, startScale)
 				break;
 			}
 		}
+		ev.stopPropagation();
+		ev.preventDefault();
 	}
 
 	function contextmenu(ev)
