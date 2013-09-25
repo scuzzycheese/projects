@@ -136,6 +136,7 @@ function drawEngine(canvas)
 			var tempAlteredPoint = map(dWorldMatrix[owner], line.vectors[0]);
 			context.moveTo(tempAlteredPoint.x, tempAlteredPoint.y);
 			context.strokeStyle = line.lineBase.color;
+			context.lineWidth = line.lineBase.width * dScale; 
 			for(i = 1; i < line.vectors.length; i ++)
 			{	
 				var alteredPoint = map(dWorldMatrix[owner], line.vectors[i])
@@ -228,6 +229,7 @@ function drawEngine(canvas)
 		context.beginPath();
 		context.strokeStyle = "black";
 		context.arc(point.x, point.y, 10, 0, 2 * Math.PI, false);
+		context.lineWidth = 1;
 		context.stroke();
 		context.font = "20pt Arial";
 		context.fillText(owner, point.x + 20, point.y + 5);

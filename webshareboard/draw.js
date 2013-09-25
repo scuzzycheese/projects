@@ -121,7 +121,7 @@ function eventHandlers(eng, startScale)
 		{
 			case 1:
 			{
-				engine.startNewLine(new Point(ev._x, ev._y), penColor, 5, "me", true);
+				engine.startNewLine(new Point(ev._x, ev._y), penColor, 0.05, "me", true);
 				scribbling = true;
 				break;
 			}
