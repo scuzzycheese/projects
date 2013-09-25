@@ -113,6 +113,7 @@ function eventHandlers(eng, startScale)
 	var engine = eng;
 	var scale = startScale;
 	var penColor = "#000000";
+	var lineWidth = 0.05;
 
 	function mousedown(ev)
 	{
@@ -121,7 +122,7 @@ function eventHandlers(eng, startScale)
 		{
 			case 1:
 			{
-				engine.startNewLine(new Point(ev._x, ev._y), penColor, 0.05, "me", true);
+				engine.startNewLine(new Point(ev._x, ev._y), penColor, lineWidth, "me", true);
 				scribbling = true;
 				break;
 			}
@@ -250,6 +251,11 @@ function eventHandlers(eng, startScale)
 		$("#colorButtonBlack").click(function(event)
 		{
 			penColor = "#000000";
+		});
+
+		$("#lineWidth").change(function(event)
+		{
+			lineWidth = $("#lineWidth").val() / 20;
 		});
 	}
 
