@@ -257,7 +257,8 @@ function drawEngine(canvas)
 		{
 			name = gParams["name"];
 		}
-		dComm = new commHandler(name, "test");
+		//dComm = new commHandler(name, "test");
+		dComm = new commHandler(name, "kumotest");
 		dComm.registerRecvFunc(recvFunc);
 	}
 	function recvFunc(msg, from)

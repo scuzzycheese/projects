@@ -129,6 +129,7 @@ function eventHandlers(eng, startScale)
 			case 3:
 			{
 				contextmenu(ev);
+				moving = true;
 				break;
 			}
 		}
@@ -139,7 +140,6 @@ function eventHandlers(eng, startScale)
 	function contextmenu(ev)
 	{
 		lastPos = new Point(ev._x, ev._y);
-		moving = true;
 		ev.stopPropagation();
 		ev.preventDefault();
 	}
@@ -198,6 +198,8 @@ function eventHandlers(eng, startScale)
 				engine.scale(scale * scale, new Point(ev._x, ev._y), "me", true);
 			}
 		}
+		ev.stopPropagation();
+		ev.preventDefault();
 	}
 
 	function init()

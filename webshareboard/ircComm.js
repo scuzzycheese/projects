@@ -3,7 +3,8 @@ function commHandler(name, channel)
 	var that = {};
 
 	var dNick = name;
-	var dHost = "192.168.0.60";
+	//var dHost = "192.168.0.60";
+	var dHost = "daine.aka.amazon.com";
 	var dPort = 8000;
 	var dSocket = null;
 	var recvFunc = null;

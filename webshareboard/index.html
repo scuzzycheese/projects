@@ -5,103 +5,103 @@
     <title>Paint</title>
     <style type="text/css">
       #container 
-		{ 
-			position: relative;
-		}
+      { 
+         position: relative;
+      }
       #drawCanvas
-		{ 
-			border: 1px solid #000; 
-			cursor: crosshair;
-		}
+      { 
+         border: 1px solid #000; 
+         cursor: crosshair;
+      }
       #drawCanvas:active
-		{ 
-			cursor: crosshair;
-		}
-		.left
-		{
-			float: left;
-			position: relative;
-		}
+      { 
+         cursor: crosshair;
+      }
+      .left
+      {
+         float: left;
+         position: relative;
+      }
 
-		.right 
-		{
-			float: right;
-			position: relative;
-		}
-		</style>
+      .right 
+      {
+         float: right;
+         position: relative;
+      }
+      </style>
   </head>
   <body>
-		<div id="container" class="left">
-		<div class="left">
-			<canvas id="drawCanvas" width="800" height="600" >
-				<p>Unfortunately, your browser is currently unsupported by our web 
-				application.  We are sorry for the inconvenience. Please use one of the 
-				supported browsers listed below, or draw the image you want using an 
-				offline tool.</p>
-				<p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a 
-					href="http://www.mozilla.com">Firefox</a>, <a 
-					href="http://www.apple.com/safari">Safari</a>, and <a 
-					href="http://www.konqueror.org">Konqueror</a>.</p>
-			</canvas>
-		</div>
-		<div class="right">
-			Common Colors:<br/>
-			<div class="left">
-				<input id="colorButtonRed" type="button" style="background-color: #FF0000; width: 80px"/>
-			</div>
-			<div class="right">
-				  <input id="colorButtonGreen" type="button" style="background-color:#00FF00; width: 80px"/>
-			</div>
-			<br/>
-			<br/>
-			<div class="left">
-				<input id="colorButtonBlue" type="button" style="background-color:#0000FF; width: 80px"/>
-			</div>
-			<div class="right">
-				<input id="colorButtonYellow" type="button" style="background-color:#FFFF00; width: 80px"/>
-			</div>
-			<br/>
-			<br/>
-			<div class="left">
-				<input id="colorButtonOrange" type="button" style="background-color:#FFA500; width: 80px"/>
-			</div>
-			<div class="right">
-				<input id="colorButtonBlack" type="button" style="background-color:#000000; width: 80px"/>
-			</div>
-			<br/>
-			<br/>
+    <div id="container" class="left">
+      <div class="left">
+        <canvas id="drawCanvas" width="800" height="600" >
+          <p>Unfortunately, your browser is currently unsupported by our web 
+          application.  We are sorry for the inconvenience. Please use one of the 
+          supported browsers listed below, or draw the image you want using an 
+          offline tool.</p>
+          <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a 
+               href="http://www.mozilla.com">Firefox</a>, <a 
+               href="http://www.apple.com/safari">Safari</a>, and <a 
+               href="http://www.konqueror.org">Konqueror</a>.</p>
+        </canvas>
+      </div>
+      <div class="right">
+         Common Colors:<br/>
+         <div class="left">
+            <input id="colorButtonRed" type="button" style="background-color: #FF0000; width: 80px"/>
+         </div>
+         <div class="right">
+              <input id="colorButtonGreen" type="button" style="background-color:#00FF00; width: 80px"/>
+         </div>
+         <br/>
+         <br/>
+         <div class="left">
+            <input id="colorButtonBlue" type="button" style="background-color:#0000FF; width: 80px"/>
+         </div>
+         <div class="right">
+            <input id="colorButtonYellow" type="button" style="background-color:#FFFF00; width: 80px"/>
+         </div>
+         <br/>
+         <br/>
+         <div class="left">
+            <input id="colorButtonOrange" type="button" style="background-color:#FFA500; width: 80px"/>
+         </div>
+         <div class="right">
+            <input id="colorButtonBlack" type="button" style="background-color:#000000; width: 80px"/>
+         </div>
+         <br/>
+         <br/>
 
 
-			Custom color:<br/>
-			<input id="penColor" type="color"/>
-			<br/>
-			<br/>
-			Line Width:<br/>
-			<input id="lineWidth" name="lineWidth" type="range" min="1" max="10"/>
-		</div>
-    </div>
-	<div class="right">
-		<div><pre id="chatWindow"></pre></div>
-		<br/>
-		<div>
-			<div class="left">
-				<input type="text" size="90" id="chatInputText" />
-			</div>
-			<div class="right">
-				<button type="button" id="sendButton">Send</button>
-			</div>
-		</div>
-	</div>
-	
-	 <script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
-	 <script type="text/javascript" src="include/base64.js"></script>
-	 <script type="text/javascript" src="include/websock.js"></script>
-	 <script type="text/javascript" src="include/util.js"></script>
-	 <script type="text/javascript" src="include/webutil.js"></script>
-	 <script type="text/javascript" src="include/keysym.js"></script>
-	 <script type="text/javascript" src="include/VT100.js"></script>
-	 <script type="text/javascript" src="sylvester.js"></script>
-	 <script type="text/javascript" src="ircComm.js"></script>
+         Custom color:<br/>
+         <input id="penColor" type="color"/>
+         <br/>
+         <br/>
+         Line Width:<br/>
+         <input id="lineWidth" name="lineWidth" type="range" min="1" max="10"/>
+      </div>
+   </div>
+   <div class="right">
+      <div><pre id="chatWindow"></pre></div>
+      <br/>
+      <div>
+         <div class="left">
+            <input type="text" size="60" id="chatInputText" />
+         </div>
+         <div class="right">
+            <button type="button" id="sendButton">Send</button>
+         </div>
+      </div>
+   </div>
+   
+    <script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="include/base64.js"></script>
+    <script type="text/javascript" src="include/websock.js"></script>
+    <script type="text/javascript" src="include/util.js"></script>
+    <script type="text/javascript" src="include/webutil.js"></script>
+    <script type="text/javascript" src="include/keysym.js"></script>
+    <script type="text/javascript" src="include/VT100.js"></script>
+    <script type="text/javascript" src="sylvester.js"></script>
+    <script type="text/javascript" src="ircComm.js"></script>
     <script type="text/javascript" src="drawEngine.js"></script>
     <script type="text/javascript" src="draw.js"></script>
   </body>
